@@ -77,9 +77,8 @@ function renderHeader() {
   </div>
   <header class="site">
     <div class="container">
-      <a class="logo" href="/index.html">
-        <span class="mark">${BRAND.initials}</span>
-        <span>${BRAND.name}<small>AI &amp; Blockchain Certifications</small></span>
+      <a class="logo" href="/index.html" aria-label="${BRAND.name}">
+        <img class="logo-img" src="/assets/brand/ITHR_Logo_FullColor.svg" alt="${BRAND.name}">
       </a>
       <nav class="main" id="nav">
         <a href="/catalog.html">Certifications</a>
@@ -112,9 +111,8 @@ function renderFooter() {
     <div class="container">
       <div class="foot-grid">
         <div class="brand">
-          <a class="logo" href="/index.html" style="color:#fff">
-            <span class="mark">${BRAND.initials}</span>
-            <span style="color:#fff">${BRAND.name}</span>
+          <a class="logo" href="/index.html" aria-label="${BRAND.name}">
+            <img class="logo-img" src="/assets/brand/ITHR_Logo_Reverse_OnDark.svg" alt="${BRAND.name}">
           </a>
           <p style="margin-top:14px">${BRAND.legal} delivers role-based AI &amp; Blockchain certifications that turn skills into verifiable, career-ready credentials.</p>
         </div>
@@ -152,4 +150,17 @@ function requireAuth() {
   return true;
 }
 
-document.addEventListener('DOMContentLoaded', () => { renderHeader(); renderFooter(); });
+function injectHead() {
+  if (document.getElementById('ithr-favicons')) return;
+  const m = document.createElement('div'); m.id = 'ithr-favicons';
+  const links = [
+    '<link rel="icon" href="/assets/brand/favicon.ico" sizes="any">',
+    '<link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32x32.png">',
+    '<link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/favicon-16x16.png">',
+    '<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">',
+    '<link rel="manifest" href="/assets/brand/site.webmanifest">',
+    '<meta name="theme-color" content="#16335E">',
+  ].join('');
+  document.head.insertAdjacentHTML('beforeend', links);
+}
+document.addEventListener('DOMContentLoaded', () => { injectHead(); renderHeader(); renderFooter(); });
