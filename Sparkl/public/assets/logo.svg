@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 96" role="img" aria-label="Sparkl">
+  <defs>
+    <linearGradient id="sg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7C5CFC"/>
+      <stop offset=".5" stop-color="#36C5F0"/>
+      <stop offset="1" stop-color="#2BD9A6"/>
+    </linearGradient>
+  </defs>
+  <!-- sparkle glyph -->
+  <g transform="translate(8,8)">
+    <path d="M40 4 C44 26 54 36 76 40 C54 44 44 54 40 76 C36 54 26 44 4 40 C26 36 36 26 40 4 Z" fill="#FFC83D"/>
+    <path d="M40 18 C42.5 31 49 37.5 62 40 C49 42.5 42.5 49 40 62 C37.5 49 31 42.5 18 40 C31 37.5 37.5 31 40 18 Z" fill="#FF6B6B" opacity=".85"/>
+    <circle cx="74" cy="14" r="5" fill="#36C5F0"/>
+    <circle cx="14" cy="70" r="3.5" fill="#2BD9A6"/>
+  </g>
+  <!-- wordmark -->
+  <text x="104" y="64" font-family="'Baloo 2','Fredoka',Verdana,sans-serif" font-weight="800" font-size="58" fill="url(#sg)" letter-spacing="-1">Sparkl</text>
+</svg>

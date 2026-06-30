@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sparkl — Find your spark</title>
+  <meta name="description" content="A playful, AI-powered learning world where curious kids explore real school subjects with their buddy Sparky.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="pill">✨ AI buddy included — meet Sparky</span>
+        <h1>Learning that makes you go <span class="hl">“aha!”</span></h1>
+        <p class="lead">Sparkl turns real school subjects into a playful adventure. Read a colourful lesson, try a fun quiz, and chat with <b>Sparky</b>, your friendly AI study buddy who explains anything — your way.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-lg" href="#explore">Start exploring</a>
+          <a class="btn btn-ghost btn-lg" href="#how">How it works</a>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:22px;flex-wrap:wrap">
+          <span class="pill">Ages 10–18</span>
+          <span class="pill">Cambridge-aligned</span>
+          <span class="pill">Safe &amp; ad-free</span>
+        </div>
+      </div>
+      <div class="hero-art"><img src="/assets/mascot.svg" alt="Sparky the mascot"></div>
+    </div>
+  </section>
+
+  <section class="section" id="explore">
+    <div class="container">
+      <span class="kicker">Pick your level</span>
+      <h2>Choose your adventure</h2>
+      <p class="sub">Every age has its own world of subjects and lessons. Tap a level to see what’s inside.</p>
+      <div class="bands" id="bands"><div class="loading">Loading levels…</div></div>
+
+      <div id="subjects-wrap" style="margin-top:40px"></div>
+    </div>
+  </section>
+
+  <section class="section" id="how" style="background:#f7f4ff">
+    <div class="container">
+      <span class="kicker">Super simple</span>
+      <h2>How Sparkl works</h2>
+      <p class="sub">Three happy steps, every single lesson.</p>
+      <div class="steps">
+        <div class="step"><div class="n" style="background:var(--grape)">1</div><h3>Read &amp; discover</h3><p class="muted">A short, colourful lesson explains the idea with examples you can actually picture.</p></div>
+        <div class="step"><div class="n" style="background:var(--sky)">2</div><h3>Play the quiz</h3><p class="muted">Try a friendly quiz that tells you straight away how you did — and why.</p></div>
+        <div class="step"><div class="n" style="background:var(--mint)">3</div><h3>Ask Sparky</h3><p class="muted">Stuck or curious? Your AI buddy explains it a new way, as many times as you like.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="grownups">
+    <div class="container">
+      <div class="card" style="max-width:820px;margin:0 auto;background:linear-gradient(120deg,#fff,#f7f4ff)">
+        <span class="kicker" style="text-align:left">For grown-ups</span>
+        <h2 style="text-align:left;font-size:28px">Built to be safe, kind and useful</h2>
+        <p class="muted">Sparkl is designed for children. Sparky, our AI buddy, is guided to stay on safe, school-appropriate topics, to encourage effort over perfection, and to teach by guiding rather than handing over answers. Lessons follow a recognised curriculum structure so what your child learns lines up with school.</p>
+        <ul class="keypoints" style="margin-top:10px">
+          <li>Age-appropriate, encouraging tone — no pressure, no ads</li>
+          <li>Curriculum-aligned topics and practice quizzes</li>
+          <li>An AI buddy that guides with hints instead of giving answers away</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+  <script src="/js/app.js"></script>
+  <script>
+    const SUBJECT_COLORS = { English:'var(--grape)', Mathematics:'var(--sky)', Science:'var(--mint)' };
+    let CUR = null, activeBand = null;
+
+    async function init(){
+      try { CUR = await api('/curriculum'); } catch { $('#bands').innerHTML = '<p class="muted">Could not load lessons.</p>'; return; }
+      renderBands();
+      const firstActive = CUR.bands.find(b => b.active) || CUR.bands[0];
+      if (firstActive) selectBand(firstActive.id);
+    }
+
+    function renderBands(){
+      $('#bands').innerHTML = CUR.bands.map(b => `
+        <div class="band" style="background:linear-gradient(135deg, ${b.color}, ${shade(b.color)})" data-band="${b.id}">
+          ${b.active ? '' : '<span class="soon">Coming soon</span>'}
+          <h3>${esc(b.label)}</h3>
+          <span class="stage">${esc(b.stage)}</span>
+          <p>${esc(b.blurb)}</p>
+          <span class="go">${b.active ? 'Explore subjects' : 'Peek inside'} ${icon('rocket',16)}</span>
+        </div>`).join('');
+      $$('.band').forEach(el => el.onclick = () => selectBand(el.dataset.band));
+    }
+
+    function selectBand(bandId){
+      activeBand = bandId;
+      const band = CUR.bands.find(b => b.id === bandId);
+      const cur = CUR.curricula[0] ? CUR.curricula[0].id : 'cambridge';
+      const subjects = (CUR.subjectsByBand[cur + '|' + bandId]) || [];
+      const wrap = $('#subjects-wrap');
+      if (!subjects.length){ wrap.innerHTML = ''; return; }
+      wrap.innerHTML = `
+        <h2 style="font-size:26px;text-align:center">${esc(band.label)} · subjects</h2>
+        <p class="sub">${esc(band.stage)}</p>
+        <div class="subjects">${subjects.map(subjectCard).join('')}</div>`;
+      wrap.scrollIntoView({ behavior:'smooth', block:'start' });
+    }
+
+    function subjectCard(s){
+      const color = SUBJECT_COLORS[s.subject] || 'var(--coral)';
+      return `<div class="subject">
+        <div class="shead">
+          <div class="ic" style="background:${color}">${icon(s.icon || 'star',26)}</div>
+          <div><h3>${esc(s.subject)}</h3><span class="count">${s.withContent} of ${s.total} lessons ready</span></div>
+        </div>
+        ${s.topics.map(t => `
+          <div class="topic-row ${t.hasContent?'live':''}">
+            <span class="dot"></span>
+            ${t.hasContent
+              ? `<a class="t lk" href="/topic/${t.id}">${esc(t.title)}</a><span class="badge-new">Play</span>`
+              : `<span class="t">${esc(t.title)}</span><span class="lock">soon</span>`}
+          </div>`).join('')}
+      </div>`;
+    }
+
+    // darken a hex colour for the gradient end
+    function shade(hex){
+      const c = hex.replace('#',''); if(c.length!==6) return hex;
+      const n = parseInt(c,16); let r=(n>>16)-28, g=((n>>8)&255)-28, b=(n&255)-28;
+      r=Math.max(0,r); g=Math.max(0,g); b=Math.max(0,b);
+      return '#'+(r<<16|g<<8|b).toString(16).padStart(6,'0');
+    }
+
+    init();
+  </script>
+</body>
+</html>

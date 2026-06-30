@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-label="Sparky the mascot">
+  <defs>
+    <radialGradient id="body" cx=".4" cy=".35" r=".8">
+      <stop offset="0" stop-color="#FFE07A"/>
+      <stop offset="1" stop-color="#FFC83D"/>
+    </radialGradient>
+  </defs>
+  <!-- glow -->
+  <circle cx="110" cy="112" r="92" fill="#FFC83D" opacity=".15"/>
+  <!-- star body -->
+  <path d="M110 14
+           C122 64 156 98 206 110
+           C156 122 122 156 110 206
+           C98 156 64 122 14 110
+           C64 98 98 64 110 14 Z"
+        fill="url(#body)" stroke="#211A4A" stroke-width="6" stroke-linejoin="round"/>
+  <!-- cheeks -->
+  <circle cx="84" cy="118" r="10" fill="#FF6B6B" opacity=".6"/>
+  <circle cx="136" cy="118" r="10" fill="#FF6B6B" opacity=".6"/>
+  <!-- eyes -->
+  <circle cx="90" cy="100" r="13" fill="#211A4A"/>
+  <circle cx="130" cy="100" r="13" fill="#211A4A"/>
+  <circle cx="94" cy="96" r="4.5" fill="#fff"/>
+  <circle cx="134" cy="96" r="4.5" fill="#fff"/>
+  <!-- smile -->
+  <path d="M88 124 Q110 146 132 124" fill="none" stroke="#211A4A" stroke-width="6" stroke-linecap="round"/>
+  <!-- little sparkle -->
+  <path d="M176 44 c2 9 6 13 15 15 c-9 2 -13 6 -15 15 c-2 -9 -6 -13 -15 -15 c9 -2 13 -6 15 -15 Z" fill="#36C5F0"/>
+</svg>

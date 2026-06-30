@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lesson — Sparkl</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <section class="lesson-hero">
+    <div class="container">
+      <div class="crumbs" id="crumbs"><a href="/">Home</a> / Lesson</div>
+      <h1 id="t-title">Loading…</h1>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="lesson-grid">
+      <div id="main"><div class="loading">Loading your lesson…</div></div>
+
+      <aside>
+        <div class="buddy">
+          <div class="buddy-head">
+            <img src="/assets/mascot.svg" alt="Sparky">
+            <div><b>Sparky</b><div class="st" id="buddy-st">your study buddy</div></div>
+            <button class="iconbtn spk" id="spk" title="Read answers aloud" style="margin-left:auto;width:36px;height:36px"></button>
+          </div>
+          <div class="buddy-log" id="log"></div>
+          <div class="chips" id="chips"></div>
+          <div class="buddy-input">
+            <button class="iconbtn mic" id="mic" title="Talk to Sparky"></button>
+            <input id="inp" placeholder="Ask Sparky anything…" autocomplete="off">
+            <button class="iconbtn send" id="send" title="Send"></button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+  <script src="/js/app.js"></script>
+  <script>
+    const topicId = location.pathname.split('/').filter(Boolean).pop() || qs('id');
+    let topic = null, picked = [], voiceOn = false, listening = false, recog = null;
+
+    async function init(){
+      try { topic = await api('/topic/' + encodeURIComponent(topicId)); }
+      catch { $('#main').innerHTML = '<p class="muted">Lesson not found.</p>'; return; }
+      document.title = topic.title + ' — Sparkl';
+      $('#t-title').textContent = topic.title;
+      $('#crumbs').innerHTML = '<a href="/">Home</a> / ' + esc(topic.subject||'Lesson') + ' / ' + esc(topic.title);
+
+      if (!topic.hasContent){
+        $('#main').innerHTML = '<div class="card"><h2>Coming soon! ✨</h2><p class="muted">This lesson is still being written. Sparky can still help you explore the idea — just ask on the right!</p></div>';
+      } else {
+        renderLesson();
+      }
+      setupBuddy();
+    }
+
+    function renderLesson(){
+      picked = new Array((topic.quiz||[]).length).fill(undefined);
+      $('#main').innerHTML = `
+        <div class="card">
+          <h2>What you'll learn ${icon('star',22)}</h2>
+          <div class="objgrid">${(topic.objectives||[]).map(o=>`<span class="obj">${esc(o)}</span>`).join('')}</div>
+        </div>
+        <div class="card lesson-body">
+          ${(topic.body||[]).map(p=>`<p>${esc(p)}</p>`).join('')}
+          ${topic.example?`<div class="example"><b>Try this 👀</b><br>${esc(topic.example)}</div>`:''}
+        </div>
+        <div class="card">
+          <h2>Remember these ★</h2>
+          <ul class="keypoints">${(topic.keyPoints||[]).map(k=>`<li>${esc(k)}</li>`).join('')}</ul>
+          ${topic.summary?`<div class="summary" style="margin-top:14px">${esc(topic.summary)}</div>`:''}
+        </div>
+        ${(topic.quiz&&topic.quiz.length)?`
+        <div class="card" id="quizcard">
+          <h2>Quick quiz 🎯</h2>
+          <p class="muted" style="margin-top:-6px">Pick an answer for each, then check how you did.</p>
+          <div id="quiz">${topic.quiz.map(quizQ).join('')}</div>
+          <button class="btn btn-primary" id="check">Check my answers ${icon('check',16)}</button>
+        </div>`:''}`;
+
+      $$('.opt').forEach(o => o.onclick = () => pick(Number(o.dataset.q), Number(o.dataset.o)));
+      const cb = $('#check'); if (cb) cb.onclick = checkQuiz;
+    }
+
+    function quizQ(q, qi){
+      return `<div class="q" data-q="${qi}">
+        <div class="qt">${qi+1}. ${esc(q.text)}</div>
+        ${q.options.map((opt,oi)=>`<div class="opt" data-q="${qi}" data-o="${oi}">${esc(opt)}<span class="mk"></span></div>`).join('')}
+        <div class="explain" id="ex-${qi}" style="display:none"></div>
+      </div>`;
+    }
+
+    function pick(qi, oi){
+      picked[qi] = oi;
+      $$(`.opt[data-q="${qi}"]`).forEach(o => o.classList.toggle('sel', Number(o.dataset.o)===oi));
+    }
+
+    async function checkQuiz(){
+      const res = await api('/topic/'+encodeURIComponent(topicId)+'/check', { method:'POST', body:{ answers: picked } });
+      res.results.forEach(r => {
+        const ex = $('#ex-'+r.index);
+        $$(`.opt[data-q="${r.index}"]`).forEach(o => {
+          const oi = Number(o.dataset.o);
+          o.classList.remove('sel');
+          if (oi === r.correctIndex){ o.classList.add('correct'); o.querySelector('.mk').textContent='✓'; }
+          if (oi === r.chosen && !r.correct){ o.classList.add('wrong'); o.querySelector('.mk').textContent='✗'; }
+        });
+        if (ex){ ex.style.display='block'; ex.textContent = (r.correct?'Nice! ':'Not quite. ') + r.explanation; }
+      });
+      const card = $('#quizcard');
+      const old = $('#scorebar'); if (old) old.remove();
+      const bar = document.createElement('div'); bar.className='scorebar'; bar.id='scorebar';
+      const msg = res.pct===100 ? "Perfect! You're a star ⭐" : res.pct>=60 ? "Great effort — keep going!" : "Good try! Ask Sparky for help 👇";
+      bar.innerHTML = `<span class="big">${res.score}/${res.total}</span><div><b>${msg}</b><div class="muted" style="font-size:14px">${res.pct}% correct</div></div>`;
+      card.insertBefore(bar, $('#quiz'));
+      bar.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+
+    /* ---------- Sparky buddy ---------- */
+    function setupBuddy(){
+      $('#chips').innerHTML = ["Explain this simply","Give me a hint","Quiz me","I'm a bit stuck"]
+        .map(c=>`<button class="chip">${esc(c)}</button>`).join('');
+      $$('.chip').forEach(b => b.onclick = () => { $('#inp').value = b.textContent; sendMsg(); });
+      $('#spk').innerHTML = icon('speaker',18); $('#mic').innerHTML = icon('mic',20); $('#send').innerHTML = icon('send',20);
+      $('#send').onclick = sendMsg;
+      $('#inp').addEventListener('keydown', e => { if (e.key==='Enter') sendMsg(); });
+      $('#spk').onclick = () => { voiceOn = !voiceOn; $('#spk').style.opacity = voiceOn?1:.55; if(!voiceOn) window.speechSynthesis && speechSynthesis.cancel(); };
+      $('#spk').style.opacity = .55;
+      setupMic();
+      addBot("Hi! I'm Sparky ✨ I'm right here while you learn. Ask me to explain anything, give a hint, or quiz you!");
+    }
+
+    const history = [];
+    function addBot(text){ const d=document.createElement('div'); d.className='msg bot'; d.textContent=text; $('#log').appendChild(d); $('#log').scrollTop=1e9; return d; }
+    function addUser(text){ const d=document.createElement('div'); d.className='msg user'; d.textContent=text; $('#log').appendChild(d); $('#log').scrollTop=1e9; }
+
+    async function sendMsg(){
+      const text = $('#inp').value.trim(); if (!text) return;
+      $('#inp').value=''; addUser(text); history.push({role:'user',content:text});
+      const node = addBot('…'); let full='';
+      $('#buddy-st').textContent = 'thinking…';
+      try {
+        const res = await fetch('/api/buddy/stream', {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ topicId, messages: history })
+        });
+        const reader = res.body.getReader(); const dec = new TextDecoder(); let buf='';
+        while(true){
+          const {value,done} = await reader.read(); if (done) break;
+          buf += dec.decode(value,{stream:true}); let i;
+          while((i=buf.indexOf('\n'))>=0){
+            const line=buf.slice(0,i).trim(); buf=buf.slice(i+1);
+            if(!line.startsWith('data:')) continue;
+            try{ const ev=JSON.parse(line.slice(5).trim());
+              if(ev.delta){ full+=ev.delta; node.textContent=full; $('#log').scrollTop=1e9; }
+              if(ev.done){ $('#buddy-st').textContent = ev.provider==='demo'?'demo mode':'your study buddy'; }
+            }catch{}
+          }
+        }
+      } catch(e){ full = 'Oops, I lost connection! Try again?'; node.textContent=full; }
+      history.push({role:'assistant',content:full});
+      if (voiceOn) speak(full);
+    }
+
+    function speak(text){
+      if(!('speechSynthesis' in window)) return;
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text.replace(/[*_#`]/g,''));
+      u.rate = 1; u.pitch = 1.15; speechSynthesis.speak(u);
+    }
+
+    function setupMic(){
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if(!SR){ $('#mic').style.display='none'; return; }
+      recog = new SR(); recog.lang='en-US'; recog.interimResults=false; recog.maxAlternatives=1;
+      recog.onresult = e => { $('#inp').value = e.results[0][0].transcript; sendMsg(); };
+      recog.onend = () => { listening=false; $('#mic').classList.remove('on'); };
+      $('#mic').onclick = () => {
+        if(listening){ recog.stop(); return; }
+        try{ recog.start(); listening=true; $('#mic').classList.add('on'); }catch{}
+      };
+    }
+
+    init();
+  </script>
+</body>
+</html>

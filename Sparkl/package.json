@@ -1,0 +1,16 @@
+{
+  "name": "sparkl",
+  "version": "1.0.0",
+  "description": "Sparkl — a playful, AI-powered learning world for curious kids (ages 10–18).",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node server/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "license": "UNLICENSED",
+  "author": "Sparkl",
+  "engines": { "node": ">=18" }
+}
