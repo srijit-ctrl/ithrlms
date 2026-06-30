@@ -1,0 +1,292 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of AI Agents and Agent Architectures",
+      "objectives": [
+        "Define what distinguishes an AI agent from a single model call",
+        "Describe the perceive-reason-act loop that drives agent behavior",
+        "Compare common architecture patterns and when each fits"
+      ],
+      "body": [
+        "An AI agent is a system that uses a language model as a reasoning engine to pursue a goal across multiple steps, deciding for itself what to do next rather than following a fixed script. The defining trait is autonomy within a loop: the agent observes its situation, reasons about progress toward the goal, takes an action, observes the result, and repeats until the task is done or a stopping condition is met. This contrasts sharply with a one-shot prompt, where the model produces a single response and the interaction ends.",
+        "Most agents follow a perceive-reason-act cycle. Perception means gathering relevant context, such as the user request, prior conversation, retrieved documents, or the output of a previous action. Reasoning is where the model interprets that context and forms an intention, often expressed as a plan or a choice of tool. Acting is the concrete step the agent takes in the world, such as calling a function, querying a database, or replying to the user. The loop continues because each action produces a new observation that feeds the next round of reasoning.",
+        "Architectures differ mainly in how much structure surrounds the model. A reactive agent decides one step at a time with no explicit plan, which is simple and robust for short tasks. A deliberative agent first produces a plan, then executes its steps, which suits longer multi-stage work. Layered or hybrid designs combine a fast reactive layer for routine decisions with a slower planning layer for harder ones. The ReAct pattern interleaves reasoning traces with actions and has become a widely used baseline.",
+        "Choosing an architecture is a tradeoff between capability and control. More autonomy lets an agent handle open-ended problems but makes its behavior harder to predict, test, and bound. More structure improves reliability and auditability but can be brittle when reality departs from the designer's assumptions. A practical rule is to grant the least autonomy that still solves the problem, then expand scope only as evaluation and guardrails prove the system behaves safely."
+      ],
+      "keyPoints": [
+        "An agent uses a model as a reasoning engine to pursue goals across multiple steps autonomously",
+        "The core mechanism is a loop: perceive, reason, act, observe, repeat",
+        "Reactive agents decide step by step; deliberative agents plan first then execute",
+        "ReAct interleaves reasoning and actions and is a common baseline pattern",
+        "Architecture choice trades capability against predictability and control",
+        "Grant the least autonomy that solves the task, then expand as evaluation allows"
+      ],
+      "example": "A customer-support agent receives a billing complaint, retrieves the customer record (perceive), decides the charge looks like a duplicate (reason), calls a refund tool with the order ID (act), reads the confirmation (observe), and then drafts a reply to the customer, looping until the issue is resolved or escalated to a human.",
+      "summary": "AI agents pair a language model with an action loop to pursue goals autonomously, and their architecture should match the task while trading capability against control."
+    },
+    {
+      "order": 2,
+      "title": "Tool Use and Function Calling",
+      "objectives": [
+        "Define tool use and explain why agents need external tools",
+        "Describe how function calling connects a model to real actions",
+        "Design clear tool schemas and handle tool errors gracefully"
+      ],
+      "body": [
+        "Tool use is the capability that lets an agent reach beyond the text it can generate and take real actions in external systems. A tool is any function the agent can invoke, such as a web search, a database query, a calculator, an email sender, or a call to another service. Tool use matters because a language model on its own cannot look up live data, perform reliable arithmetic, or change the state of the world. By exposing tools, designers give the agent verified capabilities and reduce its need to guess.",
+        "Function calling is the mechanism that makes tool use work. The developer describes each available tool with a name, a description of what it does, and a structured schema for its inputs, usually as JSON. When the model decides a tool is needed, it does not run the tool itself; instead it emits a structured request naming the tool and its arguments. The surrounding agent runtime parses that request, executes the real function, and returns the result back to the model as a new observation that informs the next step.",
+        "Good tool design strongly shapes agent reliability. Names and descriptions should be unambiguous so the model picks the right tool, and input schemas should be tight enough to prevent malformed calls while flexible enough to cover real cases. Each tool should do one thing well, and side-effecting tools should be clearly distinguished from read-only ones. Returning concise, well-structured results helps the model reason about outcomes without being overwhelmed by raw data.",
+        "Robust agents treat tool calls as fallible. Network calls time out, APIs return errors, and arguments can be wrong. The runtime should validate arguments, catch failures, and feed clear error messages back to the model so it can retry, choose a different tool, or ask for help. Designers also bound risk by limiting which tools an agent can use, requiring confirmation for irreversible actions, and logging every call for later review and debugging."
+      ],
+      "keyPoints": [
+        "Tool use lets an agent take real actions and access data beyond the model itself",
+        "Function calling means the model emits a structured request and the runtime executes it",
+        "Tools are described with a name, a purpose, and a typed input schema",
+        "Clear names, tight schemas, and single-purpose tools improve reliability",
+        "Tool calls can fail, so validate inputs and return errors as observations",
+        "Bound risk with allow-lists, confirmation for irreversible actions, and call logging"
+      ],
+      "example": "A research agent is given a search_web tool and a fetch_page tool. To answer a question, it emits a function call naming search_web with the argument query set to the topic. The runtime runs the search, returns the top links, and the agent then calls fetch_page on the most promising URL to read the content before summarizing.",
+      "summary": "Tool use, implemented through function calling, lets an agent invoke external functions via structured requests, and clear schemas plus error handling make it reliable."
+    },
+    {
+      "order": 3,
+      "title": "Planning and Task Decomposition",
+      "objectives": [
+        "Define planning and explain its role in multi-step tasks",
+        "Compare upfront planning with adaptive replanning approaches",
+        "Apply decomposition techniques to break goals into actionable steps"
+      ],
+      "body": [
+        "Planning is the process by which an agent decides on a sequence of steps that will move it from its current state toward a goal, rather than choosing each action in isolation. A plan can be an explicit ordered list of subtasks, a tree of options, or a looser intention that guides the next few moves. Planning matters most when a task is too large or interdependent to solve in one action, because it lets the agent reason about ordering, dependencies, and resources before committing to work.",
+        "Approaches to planning fall along a spectrum. Upfront planning has the agent produce a full plan before acting, which gives a clear roadmap and is easy to inspect but can fail when early assumptions turn out wrong. Adaptive or interleaved planning has the agent plan a little, act, observe, and then revise, which copes better with uncertainty at the cost of more model calls. Many real systems blend the two: they sketch a high-level plan, then replan locally whenever an observation contradicts expectations.",
+        "Task decomposition is the practical heart of planning. The agent breaks a broad goal into smaller subgoals that are each concrete enough to map onto an action or a tool call. Effective decomposition produces steps that are independent where possible, ordered by dependency where not, and small enough that success or failure is easy to judge. Techniques such as chain-of-thought reasoning, explicit subtask lists, and recursive breakdown of hard subtasks all help the model produce usable plans.",
+        "Plans are only useful if the agent tracks progress against them. A robust design records which steps are done, which failed, and what was learned, then uses that state to decide whether to continue, retry, or replan. Without this feedback the agent may repeat steps, drift from the goal, or loop indefinitely. Setting explicit stopping conditions, step budgets, and checkpoints keeps planning grounded and prevents runaway behavior on open-ended tasks."
+      ],
+      "keyPoints": [
+        "Planning chooses a sequence of steps toward a goal instead of isolated actions",
+        "Upfront planning gives a clear roadmap; adaptive planning handles uncertainty better",
+        "Many systems blend a high-level plan with local replanning on surprises",
+        "Decomposition splits a goal into concrete, dependency-ordered subtasks",
+        "Tracking progress against the plan prevents repeated work and drift",
+        "Step budgets and stopping conditions guard against runaway loops"
+      ],
+      "example": "A travel-booking agent receives the goal book a three-day trip to Lisbon. It decomposes this into find flights, choose a hotel, and arrange airport transfer, orders them by dependency, books the flight first, then observes the arrival time and replans the transfer step around it rather than following a rigid initial plan.",
+      "summary": "Planning lets an agent decompose a goal into ordered subtasks and adapt as it learns, with progress tracking and step budgets keeping the process reliable."
+    },
+    {
+      "order": 4,
+      "title": "Memory and Context Management",
+      "objectives": [
+        "Define agent memory and distinguish short-term from long-term memory",
+        "Explain how context windows constrain what an agent can remember",
+        "Select retrieval and summarization strategies to manage state over time"
+      ],
+      "body": [
+        "Memory is how an agent retains and reuses information across the steps of a task and across separate sessions. It matters because a language model is stateless between calls: on its own it remembers nothing beyond the text placed in its current input. Agent memory is the deliberate machinery that preserves goals, intermediate results, user preferences, and lessons learned, so the agent can act coherently over a long task instead of starting fresh on every step.",
+        "It helps to distinguish two kinds of memory. Short-term, or working, memory holds the information relevant to the current task, such as the running conversation, the active plan, and recent tool results; it usually lives in the context window passed to the model on each call. Long-term memory persists beyond a single session in an external store, such as a database or vector index, and holds durable facts like user profiles, past outcomes, or domain knowledge that the agent retrieves when relevant.",
+        "The context window is the central constraint. Everything the model considers on a given call, including instructions, history, and retrieved data, must fit within a finite token limit. As tasks grow, raw history can exceed that limit or crowd out the most important details. Designers manage this with strategies such as summarizing older turns into compact notes, dropping low-value content, and storing the full record externally so it can be recalled selectively rather than carried in full.",
+        "Retrieval ties long-term memory back into the loop. A common pattern stores past information as embeddings in a vector database, then at each step retrieves the few most relevant items and injects them into the context. This keeps the working set small while giving the agent access to a large body of knowledge. Good memory design decides deliberately what to write, what to retrieve, and what to forget, because indiscriminate accumulation degrades both cost and reasoning quality."
+      ],
+      "keyPoints": [
+        "Memory lets an agent retain and reuse information across steps and sessions",
+        "Models are stateless between calls, so memory must be engineered deliberately",
+        "Short-term memory holds current task state; long-term memory persists in an external store",
+        "The context window is finite, forcing choices about what to keep in view",
+        "Summarization and selective dropping keep working memory within limits",
+        "Retrieval, often via a vector store, pulls relevant long-term facts into context"
+      ],
+      "example": "A personal assistant agent stores each user preference, such as prefers window seats, as an embedding in a vector store. When the user later asks to book a flight, the agent retrieves that preference and adds it to the current context, while summarizing the long booking conversation so the running history stays within the context window.",
+      "summary": "Agent memory engineers state that models lack by themselves, using short-term context plus long-term external stores and retrieval to stay coherent within finite context limits."
+    },
+    {
+      "order": 5,
+      "title": "Multi-Agent Systems and Orchestration",
+      "objectives": [
+        "Explain why and when to split work across multiple agents",
+        "Compare common multi-agent patterns such as supervisor and pipeline",
+        "Identify the coordination and communication challenges these systems raise"
+      ],
+      "body": [
+        "A multi-agent system divides a problem among several specialized agents that collaborate rather than relying on one general agent to do everything. The motivation is similar to organizing a team: a focused agent with a narrow role, a tailored prompt, and a limited toolset is often more reliable than a single agent juggling many responsibilities. Splitting work can also enable parallelism, isolate failures, and make each component easier to test, evaluate, and reason about in isolation.",
+        "Several coordination patterns recur in practice. In the supervisor or orchestrator pattern, a lead agent receives the goal, decomposes it, and delegates subtasks to worker agents, then integrates their results. In a pipeline pattern, agents are arranged in sequence so each one transforms the output of the previous stage. In a collaborative or debate pattern, peer agents propose, critique, and refine solutions together. The right pattern depends on whether the work is hierarchical, sequential, or genuinely deliberative.",
+        "Communication is the connective tissue of these systems. Agents exchange messages that must carry enough context for the recipient to act, yet stay concise to avoid overwhelming context windows. Designers define clear interfaces: what each agent expects as input, what it promises as output, and how errors propagate. Shared memory or a common scratchpad can let agents coordinate, but it must be managed carefully so that stale or conflicting information does not corrupt the collective reasoning.",
+        "Multi-agent designs add power but also new failure modes. Coordination overhead grows, costs multiply with each additional model call, and small errors can cascade as one agent's flawed output becomes another's trusted input. Loops can form when agents hand work back and forth without converging. These risks mean multi-agent systems are justified when a single agent genuinely cannot cope, and they demand the same evaluation, step budgets, and oversight as any other agent, applied at the level of the whole system."
+      ],
+      "keyPoints": [
+        "Multi-agent systems split a problem among specialized, focused agents",
+        "Specialization can improve reliability, parallelism, and testability",
+        "Supervisor, pipeline, and collaborative patterns suit different task shapes",
+        "Clear message interfaces and managed shared state enable coordination",
+        "Errors can cascade and loops can form across agents, so convergence matters",
+        "Use multiple agents only when a single agent cannot cope, and govern the whole system"
+      ],
+      "example": "A content-production system uses a supervisor agent that receives the request write a blog post on remote work. It delegates research to a researcher agent, passes the findings to a writer agent, then routes the draft to an editor agent for revision, integrating the polished result before returning it to the user.",
+      "summary": "Multi-agent systems coordinate specialized agents through patterns like supervisor and pipeline, gaining reliability and parallelism while introducing coordination, cost, and cascading-error challenges."
+    },
+    {
+      "order": 6,
+      "title": "Evaluation, Safety, and Guardrails",
+      "objectives": [
+        "Define guardrails and explain their role in safe agent behavior",
+        "Describe methods for evaluating agent performance beyond single outputs",
+        "Apply layered safety controls to constrain agent actions"
+      ],
+      "body": [
+        "Guardrails are the constraints and checks that keep an agent operating within safe, intended boundaries. A guardrail can validate that an output matches an expected format, block a tool call that falls outside an allowed list, filter unsafe or off-topic content, or require human approval before an irreversible action. Guardrails matter because an autonomous agent acting on real systems can cause real harm, and the model's own judgment, while useful, is not a sufficient safety mechanism on its own.",
+        "Evaluating agents is harder than scoring a single model answer because behavior unfolds over many steps and depends on tools and state. Effective evaluation looks at the whole trajectory, not just the final output: did the agent choose appropriate tools, avoid unnecessary steps, recover from errors, and reach a correct outcome? Practitioners build test suites of representative tasks with known good results, measure success rates and cost, and use techniques such as LLM-as-judge scoring alongside human review to assess quality at scale.",
+        "Safety controls work best in layers, because no single check catches everything. Input guardrails screen and sanitize what enters the agent, including defenses against prompt injection where malicious text tries to hijack the agent's instructions. Action guardrails constrain what the agent may do, through permission scopes, allow-lists, rate limits, and confirmation steps. Output guardrails validate and filter what the agent returns. Layering these means a failure in one control can still be caught by another.",
+        "Guardrails and evaluation reinforce each other in an ongoing cycle. Evaluation reveals where an agent fails or behaves unexpectedly, which informs new guardrails; guardrails then change behavior, which must be re-evaluated. Logging every decision, tool call, and outcome makes this loop possible by providing the evidence to diagnose problems and prove the system behaves as intended. Treating safety as a continuous practice, rather than a one-time gate, is what keeps a deployed agent trustworthy as conditions change."
+      ],
+      "keyPoints": [
+        "Guardrails are constraints and checks that keep an agent within safe boundaries",
+        "The model's own judgment is not a sufficient safety mechanism by itself",
+        "Evaluate the whole trajectory, not just the final output",
+        "Use test suites, success and cost metrics, and LLM-as-judge plus human review",
+        "Layer input, action, and output guardrails, including prompt-injection defenses",
+        "Logging plus a continuous evaluate-and-harden loop keeps deployed agents trustworthy"
+      ],
+      "example": "A finance agent that can issue payments is wrapped in guardrails: an allow-list restricts it to approved vendor accounts, a rule blocks any single transfer above a set amount without human approval, and an output check confirms the payment summary matches the original request before the transaction is finalized.",
+      "summary": "Guardrails constrain agent actions in layers while trajectory-level evaluation measures behavior, and together in a continuous loop they keep autonomous agents safe and trustworthy."
+    },
+    {
+      "order": 7,
+      "title": "Human Oversight and Real-World Deployment",
+      "objectives": [
+        "Explain the role of human-in-the-loop oversight in agent deployments",
+        "Describe how to scope, monitor, and roll out agents responsibly",
+        "Identify operational practices that sustain agents after launch"
+      ],
+      "body": [
+        "Human oversight keeps a person meaningfully in control of an autonomous agent, especially where mistakes are costly or irreversible. Human-in-the-loop designs insert approval points so the agent pauses and waits for sign-off before high-stakes actions, while human-on-the-loop designs let the agent act but keep a person monitoring and able to intervene. The right level of oversight depends on the risk: low-stakes, easily reversible tasks can run with light supervision, whereas consequential actions warrant explicit human confirmation.",
+        "Responsible deployment begins with tight scoping. Define clearly what the agent is allowed to do, which systems and data it can touch, and what outcomes count as success or failure. Narrow scope reduces both risk and the surface area that must be tested. Teams commonly start with a limited pilot, run the agent in a shadow mode where it proposes but does not execute actions, and only widen autonomy once real-world behavior matches expectations across a representative range of cases.",
+        "Once live, an agent must be observed continuously. Monitoring tracks success rates, latency, cost per task, tool-call patterns, and error types, with alerts when metrics drift outside normal ranges. Detailed logging of every decision and action supports debugging, auditing, and accountability. Because the world changes, agents need feedback channels so that users can flag bad behavior, and that signal should feed back into evaluation, prompt updates, and guardrail tuning.",
+        "Sustaining an agent is an operational discipline, not a one-time launch. Models, tools, and data shift over time, and behavior that was safe at launch can degrade, a problem often called drift. Teams plan for regression testing before changes ship, maintain rollback paths, document escalation procedures for when the agent gets stuck, and keep clear ownership so someone is accountable for the system. Done well, this turns an impressive demo into a dependable production capability."
+      ],
+      "keyPoints": [
+        "Human-in-the-loop pauses for approval; human-on-the-loop monitors and can intervene",
+        "Match the oversight level to the risk and reversibility of the action",
+        "Scope agents tightly and pilot them, often starting in a propose-only shadow mode",
+        "Monitor success, cost, latency, and errors, with alerts on metric drift",
+        "Log every decision and action for debugging, auditing, and accountability",
+        "Plan for drift with regression tests, rollback paths, and clear ownership"
+      ],
+      "example": "A company deploys an agent to triage IT support tickets. For three weeks it runs in shadow mode, proposing categorizations and replies that a human agent reviews. Once its accuracy is proven, it is allowed to auto-resolve low-risk password-reset tickets, while anything touching security still routes to a person for approval.",
+      "summary": "Real-world agent deployment depends on appropriate human oversight, tight scoping and phased rollout, continuous monitoring and logging, and ongoing operational care to counter drift."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What most clearly distinguishes an AI agent from a single language-model call?",
+      "options": [
+        "An agent autonomously loops through perceiving, reasoning, and acting to pursue a goal across multiple steps",
+        "An agent always uses a larger model than a single call does",
+        "An agent never requires any human involvement at any stage",
+        "An agent produces exactly one response and then stops"
+      ],
+      "correctIndex": 0,
+      "explanation": "The defining feature of an agent is autonomy within a perceive-reason-act loop that spans multiple steps toward a goal, unlike a one-shot call that ends after a single response. Model size and total absence of humans are not what define an agent."
+    },
+    {
+      "text": "In function calling, what does the language model actually do when a tool is needed?",
+      "options": [
+        "It emits a structured request naming the tool and its arguments, which the runtime then executes",
+        "It directly runs the external function and modifies the system itself",
+        "It rewrites the tool's source code before running it",
+        "It ignores tools and generates the answer from memory alone"
+      ],
+      "correctIndex": 0,
+      "explanation": "The model does not execute tools. It produces a structured request specifying the tool name and arguments, and the surrounding agent runtime runs the real function and returns the result as a new observation."
+    },
+    {
+      "text": "Which statement best defines tool use in the context of AI agents?",
+      "options": [
+        "The capability that lets an agent invoke external functions to act in or read from systems beyond the model",
+        "The practice of fine-tuning the model on additional training data",
+        "A way to make the model respond faster to prompts",
+        "The process of compressing the conversation history"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tool use is the agent's ability to call external functions, such as searches, queries, or actions, that extend it beyond text generation. It is unrelated to fine-tuning, latency, or history compression."
+    },
+    {
+      "text": "What is planning in an agent, and why does it matter?",
+      "options": [
+        "Deciding a sequence of steps toward a goal, which matters when a task is too large for a single action",
+        "Picking the cheapest model available for every request",
+        "Storing user data permanently in a vector database",
+        "Filtering unsafe content out of the agent's output"
+      ],
+      "correctIndex": 0,
+      "explanation": "Planning is choosing an ordered sequence of steps to reach a goal, valuable for multi-step interdependent tasks. The other options describe model selection, memory storage, and output guardrails, which are different concerns."
+    },
+    {
+      "text": "How do upfront planning and adaptive planning primarily differ?",
+      "options": [
+        "Upfront planning forms a full plan before acting, while adaptive planning revises the plan as observations arrive",
+        "Upfront planning uses tools, while adaptive planning never uses tools",
+        "Upfront planning requires multiple agents, while adaptive planning requires only one",
+        "There is no real difference between the two approaches"
+      ],
+      "correctIndex": 0,
+      "explanation": "Upfront planning commits to a complete plan before acting, which is easy to inspect but brittle, whereas adaptive planning interleaves planning and acting so it can revise when reality diverges from expectations."
+    },
+    {
+      "text": "Why must agent memory be engineered deliberately rather than assumed?",
+      "options": [
+        "Because the model is stateless between calls and remembers nothing beyond its current input",
+        "Because models automatically store all past conversations forever",
+        "Because memory makes the model run faster",
+        "Because memory replaces the need for any tools"
+      ],
+      "correctIndex": 0,
+      "explanation": "A language model retains nothing between calls beyond the text in its current input, so any persistence of goals, results, or preferences must be built explicitly through working memory and external stores."
+    },
+    {
+      "text": "Which pair correctly describes short-term versus long-term agent memory?",
+      "options": [
+        "Short-term holds current task state in the context window; long-term persists durable facts in an external store",
+        "Short-term is stored in a vector database; long-term is stored in the prompt",
+        "Short-term lasts across sessions; long-term lasts only one step",
+        "They are identical and the distinction is purely cosmetic"
+      ],
+      "correctIndex": 0,
+      "explanation": "Short-term, or working, memory holds the active task state and usually lives in the context window, while long-term memory persists durable information in an external store such as a database or vector index for later retrieval."
+    },
+    {
+      "text": "In the supervisor multi-agent pattern, what role does the lead agent play?",
+      "options": [
+        "It decomposes the goal, delegates subtasks to worker agents, and integrates their results",
+        "It executes every subtask itself without any helpers",
+        "It only validates the output format and does nothing else",
+        "It stores the long-term memory for all other agents"
+      ],
+      "correctIndex": 0,
+      "explanation": "In the supervisor or orchestrator pattern, the lead agent breaks the goal into subtasks, delegates them to specialized worker agents, and then combines their outputs into a final result."
+    },
+    {
+      "text": "What is a guardrail in an agent system?",
+      "options": [
+        "A constraint or check that keeps the agent operating within safe, intended boundaries",
+        "A technique for making the model generate longer responses",
+        "A type of vector database used for retrieval",
+        "A planning algorithm that orders subtasks"
+      ],
+      "correctIndex": 0,
+      "explanation": "A guardrail is a constraint or check, such as input filtering, action allow-lists, confirmation steps, or output validation, that keeps an autonomous agent within safe and intended limits. It is not a generation, storage, or planning technique."
+    },
+    {
+      "text": "Why is human oversight commonly used when deploying agents on high-stakes actions?",
+      "options": [
+        "Because a person can approve or intervene before costly or irreversible actions occur",
+        "Because humans make the agent run with lower latency",
+        "Because oversight removes the need to evaluate the agent",
+        "Because it lets the agent skip all guardrails"
+      ],
+      "correctIndex": 0,
+      "explanation": "Human-in-the-loop and human-on-the-loop designs keep a person able to approve or intervene before consequential actions, matching oversight to risk. Oversight does not reduce latency, replace evaluation, or remove the need for guardrails."
+    }
+  ]
+}

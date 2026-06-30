@@ -1,0 +1,239 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "What Artificial Intelligence Is and How It Works",
+      "objectives": [
+        "Define artificial intelligence in plain language for a public-sector context",
+        "Distinguish traditional software rules from machine learning",
+        "Recognize common AI capabilities relevant to government work"
+      ],
+      "body": [
+        "Artificial intelligence, or AI, is software that performs tasks we usually associate with human thinking, such as recognizing patterns, understanding language, or making predictions. Unlike a traditional program that follows fixed rules written by a developer, many AI systems learn from examples in data. A spam filter that improves as it sees more messages is a familiar example. For government staff, the key idea is simple: AI does not truly understand the world the way people do. It finds statistical patterns and uses them to produce useful outputs, which means it can be remarkably helpful and also confidently wrong.",
+        "Most AI in use today is called machine learning. Instead of a person writing every rule, the system studies large collections of past examples and adjusts itself to make better guesses. If you show it thousands of approved and denied benefit applications, it can learn signals that often appear in each group. The result is a model, a kind of mathematical summary of those patterns. The quality of that model depends almost entirely on the quality, completeness, and fairness of the data it learned from.",
+        "A newer branch, generative AI, can create text, images, or summaries rather than just sorting or scoring. Large language models power chat assistants that draft emails, summarize long reports, or answer questions in plain language. These tools feel conversational, but they predict likely words rather than checking facts. They can invent details that sound authoritative, a behavior often called a hallucination. In government, where accuracy and citizen trust matter deeply, staff must treat generative outputs as drafts to verify, never as final authoritative statements.",
+        "It helps to separate hype from reality. AI is not conscious, does not have intentions, and cannot be held legally accountable. People and agencies remain responsible for every decision. Knowing what AI can do well, such as handling repetitive language tasks or spotting patterns in large datasets, and where it struggles, such as nuanced judgment or fairness, lets you adopt it wisely. This foundation prepares you to evaluate the government use cases and responsibilities covered throughout this course."
+      ],
+      "keyPoints": [
+        "AI is software that performs tasks associated with human thinking, mainly by finding patterns",
+        "Machine learning systems learn from data examples rather than from hand-written rules",
+        "Generative AI creates content and can sound confident while being factually wrong",
+        "AI has no understanding or intent; people and agencies remain accountable",
+        "Output quality depends heavily on the quality and fairness of the underlying data"
+      ],
+      "example": "A city revenue office uses a machine learning model trained on years of past property records to flag tax filings that may contain errors, then routes those flagged cases to human reviewers rather than auto-rejecting them.",
+      "summary": "AI is pattern-finding software that learns from data and can generate content, but it lacks true understanding, so trained staff and agencies stay responsible for outcomes."
+    },
+    {
+      "order": 2,
+      "title": "AI Use Cases in Citizen Services and Government Operations",
+      "objectives": [
+        "Identify high-value AI use cases in citizen-facing services",
+        "Describe how AI can improve internal government operations",
+        "Explain why human oversight is essential in public-sector use cases"
+      ],
+      "body": [
+        "Governments serve millions of people, often with limited staff and aging systems, so AI is appealing where work is repetitive and high in volume. On the citizen-facing side, chat assistants and virtual agents can answer routine questions about permits, taxes, or benefits at any hour, in multiple languages, freeing human staff for complex cases. Translation tools widen access for residents who speak different languages. Document tools can help people understand dense forms. The goal is faster, fairer, more accessible service, not the removal of human help when residents need it.",
+        "Behind the scenes, AI can streamline government operations. It can sort and route incoming requests to the right department, summarize lengthy public comments during rulemaking, extract data from scanned paper forms, and detect anomalies that may indicate fraud or error. Predictive tools can help agencies anticipate demand, such as when to schedule road maintenance or staff a call center. These applications save time and money, but they support decisions rather than replace the public servants who weigh context, exercise discretion, and answer to the community.",
+        "Some use cases carry higher stakes than others. Helping a resident find the right form is low risk. Deciding who receives a benefit, who is investigated, or how resources are allocated affects people's lives and rights directly. Higher-stakes decisions demand stronger safeguards: human review, the ability to appeal, and clear documentation of how the tool was used. A useful habit is to ask, before deployment, what happens if this system is wrong, and who is harmed. The answer shapes how much oversight is required.",
+        "Successful adoption usually starts small. Agencies pilot a tool on a narrow, well-understood problem, measure results against clear goals, gather feedback from staff and residents, and only then expand. This approach limits risk, builds trust, and produces evidence that the tool actually helps. It also surfaces practical issues, such as gaps in data or staff training needs, before they affect the whole public. Matching the right use case to the right level of caution is the heart of responsible public-sector AI."
+      ],
+      "keyPoints": [
+        "Citizen services benefit from AI in answering routine questions, translation, and accessibility",
+        "Operations gain from request routing, summarization, data extraction, and anomaly detection",
+        "Higher-stakes decisions about benefits, rights, or resources need stronger human oversight",
+        "Always ask what happens if the system is wrong and who could be harmed",
+        "Start with small pilots, measure results, then scale responsibly"
+      ],
+      "example": "A state unemployment agency deploys a 24-hour virtual assistant to answer common questions about claim status and required documents, while every actual eligibility determination is still made by a trained caseworker who can be appealed to.",
+      "summary": "AI can improve both citizen services and internal operations, but the higher the stakes for residents, the more human oversight, appeal rights, and careful piloting are required."
+    },
+    {
+      "order": 3,
+      "title": "Data Stewardship and Privacy Duties",
+      "objectives": [
+        "Explain why government data carries special privacy responsibilities",
+        "Identify core privacy principles that guide public-sector AI",
+        "Recognize practical safeguards for protecting citizen data"
+      ],
+      "body": [
+        "AI systems run on data, and in government that data often includes deeply personal information: tax records, health details, immigration status, criminal history, and more. Citizens usually have no choice but to share this information to receive services, which places a special duty of care on agencies. Mishandling it can cause real harm, from identity theft to discrimination, and can erode the public trust that government depends on. Before any AI project begins, staff should ask what data it uses, where that data came from, and whether residents would reasonably expect it to be used this way.",
+        "Several privacy principles guide responsible use. Purpose limitation means data collected for one reason, such as issuing a driver license, should not be quietly reused for an unrelated AI project without proper authority. Data minimization means using only what is necessary, not gathering everything possible. Accuracy matters because decisions based on outdated or wrong records harm people. Retention limits mean not keeping personal data longer than needed. Many jurisdictions also give residents rights to access, correct, or learn how their information is used, and these rights apply even when an AI system is involved.",
+        "Public agencies often operate under specific laws and policies, which vary by country and level of government. Examples include data protection regulations, public records and freedom of information rules, and sector-specific protections for health or education data. Vendors and cloud services introduce additional questions: where is the data stored, who can access it, and is it ever used to train someone else's commercial model? Contracts and privacy reviews should answer these clearly before personal data leaves the agency's control.",
+        "Practical safeguards turn principles into action. Limiting access so only authorized staff can see sensitive records, encrypting data, keeping audit logs of who used what, and removing or masking identifying details when full identity is not needed all reduce risk. A formal privacy impact assessment, completed before launch, helps teams spot and fix problems early. Treating citizen data as borrowed rather than owned keeps the focus where it belongs: on protecting the people the agency serves."
+      ],
+      "keyPoints": [
+        "Government data is often highly sensitive and shared without real choice, creating a duty of care",
+        "Key principles include purpose limitation, data minimization, accuracy, and retention limits",
+        "Residents often have rights to access and correct their data, even within AI systems",
+        "Vendor and cloud arrangements raise questions about storage, access, and reuse for training",
+        "Access controls, encryption, audit logs, masking, and privacy impact assessments reduce risk"
+      ],
+      "example": "Before launching a tool that predicts which families may need child welfare support, an agency runs a privacy impact assessment, confirms it will use only legally authorized data, masks names during model testing, and documents who may access the records.",
+      "summary": "Government holds sensitive citizen data under a special duty of care, so privacy principles, applicable laws, and concrete safeguards must guide every AI project."
+    },
+    {
+      "order": 4,
+      "title": "Fairness, Transparency, and Accountability",
+      "objectives": [
+        "Explain how bias can enter AI systems used by government",
+        "Describe what transparency means for public-sector AI",
+        "Identify who is accountable when an AI system causes harm"
+      ],
+      "body": [
+        "Fairness is central to government because public agencies must treat people equally under the law. AI can undermine fairness in subtle ways. If a system learns from historical data that reflects past discrimination, it can repeat and even amplify that bias while appearing neutral and objective. A hiring or benefits model trained on biased records may quietly disadvantage certain groups. Because the math looks impartial, unfair outcomes can go unnoticed. Agencies must actively test for disparate effects across different communities rather than assuming a tool is fair simply because it is automated.",
+        "Transparency means people can understand that AI is being used and, at a meaningful level, how it reaches its conclusions. For residents, this includes being told when an automated system is involved in a decision about them and having a clear way to question or appeal it. For agencies, it means avoiding black-box tools that no one can explain or audit. Explainability does not require revealing every technical detail, but staff should be able to describe in plain terms what factors a system considers and why a given outcome occurred.",
+        "Accountability ensures that someone is answerable for what an AI system does. The system itself cannot be blamed; responsibility stays with the officials and agencies that choose, deploy, and rely on it. This means assigning clear ownership, documenting decisions, keeping records that allow later review, and maintaining the ability to override or shut down a tool that behaves badly. Public-sector accountability is stronger than in many private settings because citizens can demand answers through oversight bodies, courts, and democratic processes.",
+        "These three values reinforce one another. Transparency makes it possible to detect unfairness; accountability creates the responsibility to fix it. Practical steps include bias testing before and after launch, keeping a meaningful human in the loop for consequential decisions, publishing plain-language notices about AI use, and creating channels for residents to contest outcomes. Building these habits early prevents harm, protects vulnerable groups, and sustains the legitimacy that public institutions cannot function without."
+      ],
+      "keyPoints": [
+        "AI can absorb and amplify historical bias while appearing neutral",
+        "Agencies must test for unequal effects across different communities",
+        "Transparency means disclosing AI use and being able to explain decisions in plain terms",
+        "Accountability stays with people and agencies, never with the system itself",
+        "Human review, appeal channels, and documentation make fairness enforceable"
+      ],
+      "example": "A municipality testing an automated tool for prioritizing housing assistance discovers it disadvantages applicants from certain neighborhoods, so it pauses the tool, publishes a notice about its use, adds human review, and retrains the model with corrected data.",
+      "summary": "Fairness, transparency, and accountability work together so that government AI treats people equally, can be explained and questioned, and always has a responsible human behind it."
+    },
+    {
+      "order": 5,
+      "title": "Procurement Basics for Government AI",
+      "objectives": [
+        "Describe how buying AI differs from buying traditional software",
+        "Identify key questions to ask AI vendors before purchase",
+        "Explain contract terms that protect the public interest"
+      ],
+      "body": [
+        "Most government agencies buy AI rather than build it, which makes procurement a critical control point. Buying AI is not like buying ordinary software. An AI tool's behavior depends on data and models that may change over time, may be hard to inspect, and may be shared across many customers. Procurement teams need to understand not just features and price, but how the system was trained, what data it requires, how it can fail, and what evidence the vendor can provide that it works fairly and reliably for the agency's specific population.",
+        "Strong procurement starts with clear requirements tied to a real public need, not to a trendy technology. Before issuing a solicitation, agencies should define the problem, the acceptable level of risk, and the standards a tool must meet, including privacy, security, accessibility, and fairness. During evaluation, useful vendor questions include: What data was the model trained on? Has it been tested for bias and for our use case? How are errors detected and corrected? Can you explain individual decisions? Where is our data stored, and will it ever be used to train other customers' systems?",
+        "Contracts translate these expectations into enforceable commitments. Helpful terms include the agency's ownership or control of its own data, prohibitions on the vendor reusing that data to train commercial models, rights to audit and to obtain documentation, defined performance and accuracy standards, security and breach-notification duties, and clear responsibility if the system causes harm. Avoiding vendor lock-in matters too, so the agency can switch providers or export its data later. These provisions keep leverage with the public, not solely with the seller.",
+        "Procurement is also where many ethical and legal duties become real. Requiring vendors to support transparency, to enable human oversight, and to meet accessibility standards ensures the values from earlier modules are not lost once a contract is signed. Involving privacy, legal, security, and program staff together, rather than treating AI as a purely technical purchase, leads to better choices. Done well, procurement is one of the most powerful tools an agency has for ensuring AI serves the public responsibly."
+      ],
+      "keyPoints": [
+        "Most agencies buy AI, so procurement is a key point of control",
+        "Buying AI differs from traditional software because behavior depends on data and changing models",
+        "Define the public need, risk level, and required standards before issuing a solicitation",
+        "Ask vendors about training data, bias testing, error handling, explainability, and data reuse",
+        "Contracts should secure data control, audit rights, performance standards, and clear liability"
+      ],
+      "example": "A county issues a request for proposals for a permit-processing AI that specifies the agency keeps ownership of its data, forbids the vendor from using it to train other products, requires bias testing reports, and reserves the right to audit the system annually.",
+      "summary": "Because agencies usually buy rather than build AI, careful procurement with sharp vendor questions and protective contract terms is one of the strongest ways to safeguard the public interest."
+    },
+    {
+      "order": 6,
+      "title": "Responsible Adoption and Governance",
+      "objectives": [
+        "Outline a responsible process for adopting AI in a public agency",
+        "Identify the roles and governance structures that support oversight",
+        "Describe how to monitor and improve AI systems after launch"
+      ],
+      "body": [
+        "Responsible adoption brings together everything in this course into a repeatable process. It begins with a clear public purpose and an honest assessment of risk. Low-risk tools, like drafting routine correspondence, can move quickly with light oversight. Higher-risk uses that affect rights or benefits need deeper review, stakeholder input, and stronger safeguards before launch. Many governments now require an impact assessment that documents the purpose, the data used, the risks identified, and the mitigations in place. This record creates accountability and gives the public confidence that decisions were made thoughtfully.",
+        "Governance gives adoption structure rather than leaving it to chance. Effective agencies define who can approve AI projects, set agency-wide policies and acceptable-use rules, and maintain an inventory of where AI is used so nothing operates in the shadows. Cross-functional review, involving program leaders, legal, privacy, security, and affected communities, balances different concerns. Some agencies appoint a responsible AI officer or committee to coordinate. The aim is not to block innovation but to channel it through clear, consistent guardrails that protect residents and staff alike.",
+        "People are as important as policies. Staff need training to understand what AI can and cannot do, how to verify its outputs, and when to escalate concerns. Treating frontline employees as partners surfaces practical problems early and builds trust. Equally important is engaging the public, especially communities most affected by a tool, so that adoption reflects real needs and values. A culture where staff feel safe raising doubts about an AI system is one of the strongest protections an agency can have.",
+        "Adoption does not end at launch. AI systems can drift as the world and the underlying data change, so ongoing monitoring is essential. Agencies should track accuracy, watch for emerging bias, log incidents, gather feedback from residents and staff, and review whether the tool still serves its purpose. They must also be willing to pause or retire a system that is not working. By combining clear purpose, sound governance, trained people, and continuous monitoring, public agencies can capture the benefits of AI while honoring their duty to serve everyone fairly."
+      ],
+      "keyPoints": [
+        "Match the depth of review to the risk level of each AI use",
+        "Impact assessments document purpose, data, risks, and mitigations for accountability",
+        "Governance includes approval roles, policies, and an inventory of AI systems in use",
+        "Staff training and public engagement build trust and surface problems early",
+        "Monitor systems after launch for drift and bias, and be ready to pause or retire them"
+      ],
+      "example": "A government agency creates an AI review committee, requires an impact assessment for any tool affecting citizen benefits, trains caseworkers to verify AI suggestions, and reviews each deployed system every quarter, retiring one chatbot that gave inconsistent answers.",
+      "summary": "Responsible adoption combines risk-based review, clear governance roles, trained and empowered staff, public engagement, and ongoing monitoring so AI serves the public fairly over time."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What is the most accurate description of how most modern AI systems work?",
+      "options": [
+        "They follow only fixed rules that a developer writes by hand",
+        "They learn patterns from large collections of example data",
+        "They genuinely understand the world the way humans do",
+        "They are conscious and can be held legally accountable"
+      ],
+      "correctIndex": 1,
+      "explanation": "Most modern AI uses machine learning, finding statistical patterns in data rather than relying on hand-written rules, and it has no true understanding or legal accountability."
+    },
+    {
+      "text": "When a generative AI tool produces confident but false information, this behavior is commonly called what?",
+      "options": [
+        "A hallucination",
+        "A firewall",
+        "A backup",
+        "A migration"
+      ],
+      "correctIndex": 0,
+      "explanation": "Generative models predict likely words rather than checking facts, so they can invent authoritative-sounding but incorrect details, often called a hallucination, which is why outputs must be verified."
+    },
+    {
+      "text": "Which government use case generally requires the strongest human oversight and appeal rights?",
+      "options": [
+        "Helping a resident locate the correct application form",
+        "Translating a public webpage into another language",
+        "Deciding who is eligible to receive a benefit",
+        "Summarizing internal meeting notes for staff"
+      ],
+      "correctIndex": 2,
+      "explanation": "Decisions that directly affect people's rights, benefits, or resources are high stakes, so they demand human review, the ability to appeal, and clear documentation."
+    },
+    {
+      "text": "What does the privacy principle of data minimization mean?",
+      "options": [
+        "Collecting as much data as technically possible",
+        "Using only the data that is necessary for the task",
+        "Keeping personal data forever in case it is useful",
+        "Sharing data freely with any interested vendor"
+      ],
+      "correctIndex": 1,
+      "explanation": "Data minimization means gathering and using only the personal data necessary for a specific purpose, which reduces risk and respects citizens' privacy."
+    },
+    {
+      "text": "How can bias enter an AI system used by a government agency?",
+      "options": [
+        "Only when a programmer deliberately inserts it",
+        "It cannot, because automated systems are always neutral",
+        "When the system learns from historical data that reflects past discrimination",
+        "Only when the hardware is outdated"
+      ],
+      "correctIndex": 2,
+      "explanation": "If training data reflects historical discrimination, an AI system can repeat and amplify that bias while appearing neutral, so agencies must actively test for unequal effects."
+    },
+    {
+      "text": "When an AI system causes harm in a government context, who remains accountable?",
+      "options": [
+        "The AI system itself",
+        "No one, because the technology is automated",
+        "The officials and agencies that chose and deployed it",
+        "The residents affected by the decision"
+      ],
+      "correctIndex": 2,
+      "explanation": "Responsibility cannot be assigned to the system; the officials and agencies that select, deploy, and rely on AI remain accountable for its outcomes."
+    },
+    {
+      "text": "Why is buying AI different from buying traditional software?",
+      "options": [
+        "AI is always cheaper than traditional software",
+        "AI behavior depends on data and models that can change and may be hard to inspect",
+        "AI never requires any contract or vendor questions",
+        "AI tools never store or use any data"
+      ],
+      "correctIndex": 1,
+      "explanation": "An AI tool's behavior depends on training data and evolving models that can be opaque, so procurement must probe how it was trained, how it can fail, and how data is handled."
+    },
+    {
+      "text": "Which practice best supports responsible AI adoption after a system goes live?",
+      "options": [
+        "Assuming the system will stay accurate forever once launched",
+        "Ongoing monitoring for drift and bias, with willingness to pause or retire the tool",
+        "Hiding the inventory of AI systems from oversight bodies",
+        "Removing all human review to save staff time"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI systems can drift as data and conditions change, so continuous monitoring for accuracy and bias, plus the willingness to pause or retire a tool, is essential to responsible adoption."
+    }
+  ]
+}

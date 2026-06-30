@@ -1,0 +1,288 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of Context Engineering",
+      "objectives": [
+        "Define context engineering and distinguish it from prompt engineering",
+        "Explain why language models need external context to stay reliable",
+        "Identify the core components of a context pipeline"
+      ],
+      "body": [
+        "Context engineering is the discipline of assembling, structuring, and delivering the right information to a language model at inference time so it can answer accurately. A model only knows what it learned during training plus whatever you place in its input. Context engineering treats that input as a system to be designed rather than a single hand-written prompt. It spans data preparation, retrieval, ranking, formatting, and evaluation, all working together so the model receives relevant, trustworthy material for each request.",
+        "Prompt engineering focuses on phrasing instructions well. Context engineering is broader: it decides which documents, facts, and prior turns reach the model, how they are chunked and ranked, and how they are arranged in the input. A brilliant prompt cannot rescue a model that lacks the underlying facts. Most production failures, such as confident but wrong answers, trace back to missing or poorly assembled context rather than weak wording, which is why this discipline has become central to dependable applications.",
+        "Models have fixed knowledge cutoffs and cannot see private or recent data unless you supply it. They also have no memory between separate calls. Context engineering closes both gaps by retrieving fresh, domain-specific information and by carrying forward relevant history. Done well, it lets a general model behave like a specialist grounded in your organization data, without retraining or fine-tuning the underlying weights.",
+        "A typical pipeline has several stages: ingest and clean source documents, split them into chunks, embed those chunks into vectors, store them in a searchable index, retrieve the most relevant pieces for a query, and assemble a final prompt that mixes instructions, retrieved evidence, and user input. Each stage has design choices that affect accuracy, latency, and cost. The rest of this course examines these stages in the order data flows through them."
+      ],
+      "keyPoints": [
+        "Context engineering designs the full input a model receives, not just the wording",
+        "Models only know training data plus whatever you put in the context window",
+        "Most reliability failures come from missing or badly assembled context",
+        "A pipeline ingests, chunks, embeds, indexes, retrieves, and assembles context",
+        "It turns a general model into a grounded specialist without retraining"
+      ],
+      "example": "A support assistant must answer questions about a product released after the model training cutoff. Prompt tweaks alone fail because the facts are absent. A context pipeline ingests the new release notes, retrieves the relevant sections per question, and places them in the prompt so the model answers correctly.",
+      "summary": "Context engineering is the systematic design of everything a model sees at inference, closing the gaps left by fixed training data and stateless calls."
+    },
+    {
+      "order": 2,
+      "title": "Document Ingestion and Chunking",
+      "objectives": [
+        "Define chunking and explain why long documents must be split",
+        "Compare fixed-size, recursive, and semantic chunking strategies",
+        "Choose chunk size and overlap appropriate to a use case"
+      ],
+      "body": [
+        "Chunking is the process of breaking long source documents into smaller passages, called chunks, that can be embedded, indexed, and retrieved independently. Models and embedding systems handle bounded amounts of text, and retrieving an entire document wastes the context window and dilutes relevance. By splitting content into focused pieces, the system can fetch only the passages that match a query, keeping the assembled prompt tight and on topic. Chunking quality strongly shapes the accuracy of everything downstream.",
+        "Before chunking, raw sources must be ingested and cleaned. This means extracting text from formats like PDF, HTML, or slides, stripping navigation boilerplate, and normalizing whitespace and encoding. Poor extraction, such as scrambled tables or merged columns, produces noisy chunks that retrieve badly no matter how good the later stages are. Preserving structure like headings and section boundaries gives later steps useful signals about where natural topic breaks occur.",
+        "Several chunking strategies exist. Fixed-size chunking splits text every N tokens or characters, which is simple but can cut sentences mid-thought. Recursive chunking respects boundaries by splitting on paragraphs first, then sentences, only falling back to raw length when needed. Semantic chunking groups text by meaning, starting new chunks where the topic shifts. Most teams add overlap, repeating a small slice of text between adjacent chunks so context that straddles a boundary is not lost.",
+        "Choosing chunk size is a tradeoff. Small chunks give precise retrieval but may lack surrounding context, so the model sees a fact without its conditions. Large chunks carry more context but dilute relevance and crowd the window. A common starting point is a few hundred tokens with a modest overlap, then tuning based on evaluation. The right answer depends on document type: dense legal clauses differ from conversational FAQs."
+      ],
+      "keyPoints": [
+        "Chunking splits long documents into independently retrievable passages",
+        "Clean extraction and preserved structure precede good chunking",
+        "Fixed-size, recursive, and semantic strategies trade simplicity for coherence",
+        "Overlap repeats text across boundaries so straddling context survives",
+        "Chunk size balances retrieval precision against sufficient surrounding context"
+      ],
+      "example": "A 40-page employee handbook is ingested from PDF, cleaned of headers and footers, then split with recursive chunking into roughly 300-token passages with 50-token overlap. A question about parental leave now retrieves the specific leave paragraph rather than the whole chapter.",
+      "summary": "Chunking turns large cleaned documents into focused, overlapping passages whose size and boundaries directly determine downstream retrieval quality."
+    },
+    {
+      "order": 3,
+      "title": "Embeddings and Vector Search",
+      "objectives": [
+        "Define embeddings and explain how they represent meaning",
+        "Define vector search and describe similarity metrics",
+        "Explain the role of a vector database and approximate nearest neighbor search"
+      ],
+      "body": [
+        "An embedding is a numerical vector, a list of numbers, that represents the meaning of a piece of text in a high-dimensional space. An embedding model is trained so that texts with similar meaning land close together and unrelated texts land far apart, regardless of exact wording. This lets software compare ideas rather than match keywords, so a query about car maintenance can find a passage about vehicle servicing even though no words overlap. Embeddings are the bridge between human language and mathematical search.",
+        "Vector search is the technique of finding the chunks whose embeddings are most similar to the embedding of a query. The query is embedded with the same model used for the chunks, then the system computes a similarity score between the query vector and stored vectors and returns the closest matches. Common similarity measures include cosine similarity, which compares the angle between vectors, and dot product. The top results become candidate evidence for the model.",
+        "Storing and searching millions of vectors efficiently requires a vector database such as a dedicated index or a database extension. Comparing a query against every stored vector exactly is slow at scale, so these systems use approximate nearest neighbor algorithms that trade a tiny amount of accuracy for large speed gains. They also support metadata filters, letting you restrict a search to a department, language, or date range alongside the similarity match.",
+        "Embedding choice matters. Models differ in dimension count, supported languages, maximum input length, and domain strength. Critically, the same embedding model must be used for both indexing and querying, since vectors from different models are not comparable. Many teams pair vector search with traditional keyword search in a hybrid approach, because pure semantic search can miss exact terms like product codes or names that keyword matching handles well."
+      ],
+      "keyPoints": [
+        "An embedding is a vector encoding the meaning of text in a numeric space",
+        "Similar meanings produce nearby vectors regardless of exact wording",
+        "Vector search ranks chunks by similarity to the embedded query",
+        "Cosine similarity and dot product are common scoring metrics",
+        "Vector databases use approximate nearest neighbor search and metadata filters",
+        "The same embedding model must index and query; hybrid search adds keywords"
+      ],
+      "example": "Handbook chunks are embedded and stored in a vector index. A user asks how much time off new parents get. The query is embedded, vector search returns the parental leave chunk as the closest match by cosine similarity, and a metadata filter limits results to the current policy year.",
+      "summary": "Embeddings convert text into meaning-bearing vectors, and vector search retrieves the most similar chunks quickly using approximate nearest neighbor methods and similarity metrics."
+    },
+    {
+      "order": 4,
+      "title": "Retrieval-Augmented Generation Patterns",
+      "objectives": [
+        "Define retrieval-augmented generation and its core loop",
+        "Compare naive, hybrid, reranking, and multi-step RAG patterns",
+        "Explain how retrieval and generation responsibilities are divided"
+      ],
+      "body": [
+        "Retrieval-augmented generation, or RAG, is an architecture that retrieves relevant external information at query time and feeds it to a language model so the model can ground its answer in that evidence. The core loop is straightforward: take the user question, retrieve matching chunks from a knowledge store, place those chunks in the prompt as context, and ask the model to answer using them. RAG lets a model use private, current, or large knowledge bases without baking that knowledge into its weights.",
+        "Naive RAG performs a single vector search and passes the top chunks straight to the model. It is easy to build but struggles when the query is ambiguous, when keywords matter, or when the best evidence is not the most semantically similar. These limits motivate richer patterns. Hybrid retrieval combines vector and keyword search and merges their results, capturing both meaning and exact terms so that named entities and codes are not lost.",
+        "Reranking adds a second, more precise scoring stage. The system first retrieves a broad candidate set quickly, then a reranker model scores each candidate against the query more carefully and keeps only the best few. This improves the signal-to-noise ratio of the context without retrieving everything with an expensive model. Reranking is often the single highest-impact upgrade over naive RAG because it directly raises the relevance of what the model finally reads.",
+        "More advanced patterns handle harder questions. Query rewriting reshapes a vague question into better search terms or splits it into sub-questions. Multi-step or iterative RAG retrieves, reasons, and retrieves again when the first pass is insufficient. Agentic RAG lets the model decide when and what to search. Each added step improves coverage of complex queries but increases latency and cost, so designers match pattern complexity to the difficulty of the questions they expect."
+      ],
+      "keyPoints": [
+        "RAG retrieves external evidence at query time and grounds generation in it",
+        "The core loop is retrieve, assemble context, then generate the answer",
+        "Naive RAG uses one search; hybrid adds keyword matching to semantics",
+        "Reranking rescores candidates and is often the biggest quality gain",
+        "Query rewriting and multi-step RAG handle complex or ambiguous questions",
+        "Added retrieval steps raise quality but also latency and cost"
+      ],
+      "example": "A user asks why an order was delayed and references invoice INV-7741. Hybrid retrieval finds policy chunks semantically and the exact invoice record by keyword. A reranker keeps the three most relevant passages, and the model answers citing the shipping-delay policy and that specific invoice.",
+      "summary": "RAG grounds model answers in retrieved evidence, and patterns from hybrid search to reranking and multi-step retrieval progressively raise relevance for harder queries."
+    },
+    {
+      "order": 5,
+      "title": "Context Windows and Prompt Assembly",
+      "objectives": [
+        "Define the context window and its token budget",
+        "Explain prompt assembly and the ordering of context components",
+        "Apply strategies to manage limited context and positional effects"
+      ],
+      "body": [
+        "The context window is the maximum amount of text, measured in tokens, that a model can process in a single request, covering both the input you supply and the output it generates. A token is a chunk of text roughly the size of a short word or word fragment. Everything competes for this fixed budget: system instructions, retrieved chunks, conversation history, the user question, and room for the answer. Context engineering must fit the most useful material into that limited space.",
+        "Prompt assembly is the step that combines all these pieces into the final input string sent to the model. A common structure places stable system instructions first, then retrieved evidence clearly delimited, then relevant conversation history, and finally the current user question near the end. Clear separators and labels help the model tell instructions from evidence from user text, which reduces confusion and makes it easier to ask the model to cite sources by name.",
+        "Position within the window matters because models attend unevenly to long inputs. Research describes a lost-in-the-middle effect where information buried in the center of a very long context is used less reliably than material near the beginning or end. Practical responses include retrieving fewer but more relevant chunks, ordering the strongest evidence prominently, and avoiding the temptation to stuff the window full simply because space exists.",
+        "When relevant material exceeds the budget, several strategies help. Summarization compresses older conversation turns or long documents into shorter form. Trimming drops low-scoring chunks after reranking. Truncation cuts history beyond a limit. Each technique trades completeness for fit, so teams measure the effect on answer quality. The goal is a lean, well-ordered prompt where every included token earns its place rather than a maximally filled window."
+      ],
+      "keyPoints": [
+        "The context window is the token budget for input plus output combined",
+        "All components compete for that fixed space, including the answer itself",
+        "Prompt assembly orders instructions, evidence, history, and the question",
+        "Lost-in-the-middle means central content in long inputs is used less reliably",
+        "Summarization, trimming, and truncation fit relevant material into the budget"
+      ],
+      "example": "An assistant has an 8,000-token window. The system rule takes 300 tokens, three reranked chunks take 1,500, a summarized chat history takes 400, and the question takes 100, leaving ample room for a cited answer with the strongest chunk placed first.",
+      "summary": "The context window is a finite token budget, and prompt assembly orders and compresses instructions, evidence, and history so the most relevant content lands where the model uses it best."
+    },
+    {
+      "order": 6,
+      "title": "Memory and Stateful Context",
+      "objectives": [
+        "Distinguish short-term and long-term memory in LLM applications",
+        "Explain how conversation state is stored and recalled",
+        "Choose memory strategies that respect the context budget"
+      ],
+      "body": [
+        "Language models are stateless: each API call is independent and the model remembers nothing from earlier calls on its own. Any sense of continuity in a chat assistant comes from the application resupplying past information in each new request. Memory in this setting means the engineering of what prior content to keep, how to store it, and how to feed the right pieces back into the context window at the right time. Memory is therefore a context engineering problem, not a model feature.",
+        "Short-term memory covers the current conversation. The simplest approach appends the full message history to every request, but this grows until it overflows the window. Better approaches summarize older turns into a running synopsis, keep only the most recent turns verbatim, or combine both. The aim is to preserve the thread of the discussion, including decisions and user preferences stated earlier, without spending the whole budget replaying the transcript.",
+        "Long-term memory persists facts across separate sessions, such as a user stated preference, account details, or past resolutions. These facts are typically written to a store, often a vector index, and retrieved when relevant to a later conversation, much like RAG over the user own history. This lets an assistant recognize a returning user and recall prior context days later, while keeping only the pertinent memories in the active window rather than the entire history.",
+        "Memory design balances helpfulness, cost, and correctness. Retrieving too much stale memory clutters the prompt and can mislead the model with outdated facts, so memories need recency and relevance scoring and sometimes expiration. Sensitive personal data raises privacy duties, so teams decide what to retain, for how long, and how to let users review or delete it. Good memory feels seamless to the user while staying lean and governed under the hood."
+      ],
+      "keyPoints": [
+        "Models are stateless; continuity comes from the application resupplying context",
+        "Short-term memory manages the current chat via history, summaries, or both",
+        "Long-term memory persists facts across sessions, often via a vector store",
+        "Relevant memories are retrieved into the window rather than replayed wholesale",
+        "Memory must balance helpfulness with cost, freshness, and privacy duties"
+      ],
+      "example": "A returning customer says fix it again. The app retrieves a long-term memory noting their prior printer-driver issue and resolution from last month, plus a summary of today earlier turns, so the assistant continues seamlessly without asking the user to repeat everything.",
+      "summary": "Because models are stateless, memory is the engineered storage and selective recall of short-term conversation and long-term facts, fed back into the window with attention to cost, freshness, and privacy."
+    },
+    {
+      "order": 7,
+      "title": "Grounding, Citations, and Evaluation",
+      "objectives": [
+        "Explain grounding and how citations reduce hallucination",
+        "Define key retrieval and generation evaluation metrics",
+        "Design an evaluation loop to improve a context pipeline"
+      ],
+      "body": [
+        "A hallucination is a confident model statement that is not supported by the provided evidence or by fact. Grounding is the practice of tying every claim in an answer to retrieved source material, and it is the strongest defense against hallucination in a context pipeline. Beyond supplying good evidence, grounding is enforced through instructions that tell the model to answer only from the supplied context and to say it does not know when the context lacks an answer, rather than inventing one.",
+        "Citations make grounding visible and verifiable. By asking the model to attach a source reference, such as a document name or chunk identifier, to each claim, the application lets users and reviewers check whether the cited passage actually supports the statement. Citations also enable automated checks that flag claims whose cited source does not contain the asserted fact. This turns trust from a hope into something the system can measure and surface to users.",
+        "Evaluation separates retrieval quality from generation quality. Retrieval metrics ask whether the right chunks were fetched: recall measures how often the needed passage appears in results, and precision measures how little irrelevant material comes with it. Generation metrics ask whether the answer is faithful to the retrieved context, relevant to the question, and complete. Faithfulness, the degree to which the answer is supported by its sources, is the metric most directly tied to hallucination.",
+        "A practical evaluation loop starts with a curated set of representative questions paired with known good answers and sources. You run the pipeline, score retrieval and generation with a mix of automated metrics and human or model-based judgment, then change one variable, such as chunk size, the reranker, or the prompt, and measure the effect. Iterating this way turns context engineering from guesswork into a measurable practice and guards against regressions when components change."
+      ],
+      "keyPoints": [
+        "Grounding ties every claim to retrieved evidence and curbs hallucination",
+        "Instruct the model to answer only from context and to admit uncertainty",
+        "Citations make grounding verifiable by users and automated checks",
+        "Retrieval is judged by recall and precision; generation by faithfulness and relevance",
+        "Faithfulness is the metric most directly linked to hallucination",
+        "An evaluation loop changes one variable at a time against a test set"
+      ],
+      "example": "A finance assistant answers a tax question and appends Source: policy-2026.pdf, section 4. An automated faithfulness check confirms that section actually states the cited rate, and a weekly evaluation set catches when a new chunk-size change quietly lowers retrieval recall.",
+      "summary": "Grounding with enforced citations curbs hallucination, and a disciplined evaluation loop measuring retrieval recall and generation faithfulness turns pipeline tuning into a repeatable, verifiable practice."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What best defines context engineering?",
+      "options": [
+        "Systematically assembling, structuring, and delivering the right information to a model at inference time",
+        "Rewording a single prompt until the model responds politely",
+        "Retraining a model weights on new domain data",
+        "Increasing the model parameter count for better accuracy"
+      ],
+      "correctIndex": 0,
+      "explanation": "Context engineering designs the entire input a model receives, including retrieval, ranking, and assembly, not just the wording of one prompt and not retraining."
+    },
+    {
+      "text": "What is an embedding in the context of retrieval systems?",
+      "options": [
+        "A numerical vector that represents the meaning of text so similar meanings sit close together",
+        "A compressed copy of the original document stored for backup",
+        "A keyword index listing every exact word in a corpus",
+        "A set of instructions that tells the model how to format answers"
+      ],
+      "correctIndex": 0,
+      "explanation": "An embedding is a meaning-bearing vector; texts with similar meaning produce nearby vectors, enabling semantic comparison rather than exact keyword matching."
+    },
+    {
+      "text": "What does chunking accomplish in a context pipeline?",
+      "options": [
+        "It splits long documents into smaller passages that can be embedded and retrieved independently",
+        "It merges many documents into one large file before indexing",
+        "It translates documents into a single common language",
+        "It removes all formatting and converts text into vectors directly"
+      ],
+      "correctIndex": 0,
+      "explanation": "Chunking breaks long sources into focused passages so retrieval can fetch only relevant pieces, keeping prompts tight and on topic."
+    },
+    {
+      "text": "Why is overlap often added between adjacent chunks?",
+      "options": [
+        "So context that straddles a chunk boundary is not lost",
+        "To reduce the total number of chunks that must be stored",
+        "To guarantee every chunk has exactly the same token count",
+        "To remove duplicate sentences from the corpus"
+      ],
+      "correctIndex": 0,
+      "explanation": "Overlap repeats a small slice of text across boundaries so a fact spanning two chunks remains intact in at least one of them."
+    },
+    {
+      "text": "What does vector search do?",
+      "options": [
+        "It finds the chunks whose embeddings are most similar to the embedded query",
+        "It scans documents for an exact string match only",
+        "It sorts documents alphabetically by title",
+        "It compresses vectors to save storage space"
+      ],
+      "correctIndex": 0,
+      "explanation": "Vector search embeds the query with the same model and returns the stored chunks with the closest vectors, typically by cosine similarity or dot product."
+    },
+    {
+      "text": "Which statement about embedding models is correct?",
+      "options": [
+        "The same embedding model must be used for both indexing and querying",
+        "Any two embedding models produce interchangeable, comparable vectors",
+        "Embedding models only work on numeric data, not text",
+        "Larger embedding dimensions always guarantee better answers"
+      ],
+      "correctIndex": 0,
+      "explanation": "Vectors from different models are not comparable, so the query must be embedded with the same model used to index the chunks."
+    },
+    {
+      "text": "What is retrieval-augmented generation (RAG)?",
+      "options": [
+        "An architecture that retrieves relevant external information at query time and feeds it to the model to ground its answer",
+        "A method of fine-tuning model weights on retrieved documents",
+        "A way to generate synthetic training data automatically",
+        "A technique that removes the need for any external knowledge"
+      ],
+      "correctIndex": 0,
+      "explanation": "RAG retrieves matching evidence at query time and places it in the prompt so the model grounds its answer in that evidence rather than relying only on training."
+    },
+    {
+      "text": "Which upgrade most directly improves the relevance of the chunks a model finally reads in RAG?",
+      "options": [
+        "Adding a reranking stage that rescores retrieved candidates more precisely",
+        "Increasing the temperature setting of the model",
+        "Storing the vectors in a larger disk volume",
+        "Removing all metadata from the index"
+      ],
+      "correctIndex": 0,
+      "explanation": "Reranking rescores a broad candidate set and keeps only the best few, directly raising the signal-to-noise ratio of the context the model reads."
+    },
+    {
+      "text": "What is the context window of a language model?",
+      "options": [
+        "The maximum amount of text in tokens the model can process in one request, covering input and output",
+        "A graphical settings panel for configuring the model",
+        "The time window during which a model stays loaded in memory",
+        "The set of documents permanently stored inside the model weights"
+      ],
+      "correctIndex": 0,
+      "explanation": "The context window is the fixed token budget for a single request shared by instructions, evidence, history, the question, and the generated answer."
+    },
+    {
+      "text": "Which practice most directly reduces hallucination in a context pipeline?",
+      "options": [
+        "Grounding answers in retrieved evidence and instructing the model to answer only from that context",
+        "Letting the model answer from general knowledge without any sources",
+        "Always filling the entire context window regardless of relevance",
+        "Disabling citations so users cannot verify claims"
+      ],
+      "correctIndex": 0,
+      "explanation": "Grounding ties claims to retrieved sources and instructs the model to admit uncertainty when context lacks an answer, which is the strongest defense against hallucination."
+    }
+  ]
+}

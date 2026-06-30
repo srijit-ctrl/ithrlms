@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of Microsoft 365 Copilot for Marketing Teams",
+      "objectives": [
+        "Explain how Microsoft 365 Copilot connects to your marketing content and data",
+        "Identify where Copilot appears across Word, PowerPoint, Excel, Outlook, and Teams",
+        "Recognize the role of grounding data in producing relevant marketing output"
+      ],
+      "body": [
+        "Microsoft 365 Copilot is an AI assistant woven into the apps marketers already use every day. Rather than living in a separate window, it sits inside Word, PowerPoint, Excel, Outlook, and Teams, ready to draft, summarize, analyze, and reshape your work. For a marketing team, this means a campaign brief in Word, a pitch deck in PowerPoint, and an audience spreadsheet in Excel can all be supported by the same assistant, using your own organizational content as context rather than generic information pulled from the open web.",
+        "The power of Copilot for marketers comes from grounding. Grounding means Copilot draws on the files, emails, chats, and documents you can already access through your work account, then combines that context with its language abilities to produce a response. When you ask it to summarize last quarter results or draft a launch announcement, it can reference the actual materials in your environment. This makes its output far more specific to your brand and campaign than a tool that only knows public information.",
+        "Copilot respects the permissions you already have. It can only reference content you are allowed to open, so it does not expose files locked away from you. As a marketer, you remain the editor and decision maker. Copilot generates a starting point, and you refine the message, check the facts, and confirm it matches the brand. Treating its output as a confident draft rather than a finished deliverable keeps quality high and protects your reputation with audiences and stakeholders.",
+        "Getting strong results depends on giving Copilot clear direction. A vague request such as write something about our product produces generic text, while a focused prompt that names the audience, the goal, the tone, and the format produces something usable. Throughout this course you will learn to prompt deliberately, point Copilot at the right source files, and review every draft critically so the assistant accelerates your work without replacing your judgment or your distinctive marketing voice."
+      ],
+      "keyPoints": [
+        "Copilot is embedded directly in Word, PowerPoint, Excel, Outlook, and Teams",
+        "Grounding lets Copilot use your own files and messages as context",
+        "Copilot only references content your account already has permission to access",
+        "Output is a draft starting point that always needs human review",
+        "Clear, specific prompts produce far more useful marketing results"
+      ],
+      "example": "A marketing coordinator opens Word and asks Copilot to draft a 200 word product launch announcement using the approved positioning document in the team folder, then refines the tone to match the brand voice.",
+      "summary": "Microsoft 365 Copilot is an embedded AI assistant that grounds its responses in your own marketing content, producing drafts you then review and refine."
+    },
+    {
+      "order": 2,
+      "title": "Drafting and Refining Marketing Content in Word",
+      "objectives": [
+        "Use Copilot to draft marketing copy from a brief or source document",
+        "Apply iterative prompting to refine tone, length, and structure",
+        "Repurpose long content into shorter formats for different channels"
+      ],
+      "body": [
+        "Word is where much of a marketer day begins, from campaign briefs and blog posts to press releases and email copy. Copilot in Word can generate a first draft from a short prompt or from an existing document you reference. Instead of staring at a blank page, you describe what you need, who it is for, and the tone you want, and Copilot produces structured text you can immediately start shaping. This shifts your time from generating raw words to editing, sharpening, and adding the human insight that makes marketing resonate.",
+        "The most effective approach is iterative. Your first prompt produces a draft, and then you guide Copilot through follow up instructions: make it shorter, make the opening more energetic, add a section on pricing, or rewrite for a more formal audience. Each instruction builds on the previous result. Marketers who treat Copilot as a conversation rather than a single command get tighter, more on brand copy because they steer the language in stages rather than hoping one perfect prompt does everything at once.",
+        "Copilot is especially strong at repurposing. A long blog post can become a short LinkedIn caption, a customer email, or three social snippets, all from the same source. By pointing Copilot at an existing document and asking for a specific new format, you maintain consistency of message while adapting it to each channel. This saves significant time during a campaign when one core idea must appear across many touchpoints without sounding repetitive or losing its central promise to the audience.",
+        "Even with strong drafts, your editorial eye remains essential. Copilot can introduce claims that are not accurate, miss a regulatory nuance, or drift from your brand voice. Always verify product details, statistics, and legal language against trusted sources before publishing. Reading the draft aloud, checking that the call to action is clear, and confirming the tone fits the audience are habits that turn a quick Copilot draft into polished, trustworthy marketing content ready for review and approval."
+      ],
+      "keyPoints": [
+        "Copilot drafts marketing copy from a prompt or a referenced document",
+        "Iterative follow up prompts refine tone, length, and structure step by step",
+        "One source document can be repurposed into many channel specific formats",
+        "Always verify claims, statistics, and legal language before publishing",
+        "The marketer remains the editor who ensures brand voice and accuracy"
+      ],
+      "example": "A content marketer references a 1,200 word blog post and asks Copilot to produce a 90 word LinkedIn post, a 50 word email teaser, and three short social captions, then edits each to match the brand tone.",
+      "summary": "Copilot in Word accelerates drafting and repurposing of marketing copy through iterative prompting, while the marketer edits for accuracy and brand voice."
+    },
+    {
+      "order": 3,
+      "title": "Building Compelling Decks with Copilot in PowerPoint",
+      "objectives": [
+        "Generate presentation drafts from documents or prompts in PowerPoint",
+        "Use Copilot to restructure, summarize, and tighten slide content",
+        "Apply design and narrative best practices to Copilot generated decks"
+      ],
+      "body": [
+        "Marketing teams live in presentations: campaign pitches, quarterly reviews, sales enablement decks, and client proposals. Copilot in PowerPoint can turn a Word brief or a written prompt into a structured starter deck, complete with suggested slides, headings, and talking points. This removes the friction of building a deck from nothing and gives you a logical skeleton to refine. You spend your energy on the story and the visuals rather than on assembling the basic framework slide by slide.",
+        "Beyond creating decks, Copilot helps you reshape them. You can ask it to condense a long presentation into a shorter executive version, add a slide that summarizes key results, or reorganize sections so the strongest message leads. For marketers preparing the same content for different audiences, this flexibility is valuable. A detailed internal review deck can be trimmed into a crisp client facing version while keeping the core narrative and brand consistency intact across both.",
+        "A strong marketing deck is more than text on slides. Copilot can draft concise slide copy, but you bring the persuasive arc: a clear problem, a compelling solution, proof points, and a confident call to action. Keep slides visual and uncluttered, use one main idea per slide, and let speaker notes carry the detail. Copilot can even help draft those speaker notes so your spoken narrative complements the visuals rather than simply repeating the words on screen.",
+        "As always, review is non negotiable. Copilot may generate slides that overstate a benefit, misorder a logical flow, or include placeholder figures. Check every data point, confirm that claims align with approved messaging, and ensure the visual design reflects brand guidelines. A few minutes spent verifying and polishing transforms a fast Copilot draft into a deck that earns trust in front of clients, executives, and prospects, reinforcing rather than undermining your marketing credibility."
+      ],
+      "keyPoints": [
+        "Copilot turns briefs or prompts into structured starter presentations",
+        "It can condense, expand, and reorganize decks for different audiences",
+        "Marketers supply the persuasive narrative arc and brand aligned visuals",
+        "Copilot can draft speaker notes that complement rather than repeat slides",
+        "Verify all figures and claims against approved messaging before presenting"
+      ],
+      "example": "A campaign manager points Copilot at an approved campaign brief in Word and asks it to build a ten slide pitch deck, then requests a condensed five slide executive version for the leadership review.",
+      "summary": "Copilot in PowerPoint drafts and reshapes marketing decks quickly, freeing marketers to focus on narrative, visuals, and verifying every claim before presenting."
+    },
+    {
+      "order": 4,
+      "title": "Audience and Campaign Data Analysis in Excel",
+      "objectives": [
+        "Use Copilot to explore, summarize, and find patterns in marketing data",
+        "Generate formulas, charts, and insights from campaign performance tables",
+        "Interpret Copilot output critically and validate against source numbers"
+      ],
+      "body": [
+        "Marketing decisions improve when they rest on data, yet many marketers are not spreadsheet experts. Copilot in Excel helps bridge that gap by letting you ask questions in plain language about a table of data. You can ask which channel drove the most conversions, how engagement changed month over month, or which audience segment responded best to a campaign. Copilot interprets your structured data and returns summaries, highlights, and suggested formulas, making analysis accessible without deep technical skill.",
+        "Copilot can generate formulas and add calculated columns based on a description of what you want to measure. If you need a column for cost per lead, a conversion rate, or a running total, you describe the goal and Copilot proposes the formula. It can also suggest charts that visualize trends, such as a line chart of weekly signups or a bar chart comparing channel performance. These features turn a raw export from your campaign platform into a clearer picture you can act on quickly.",
+        "Good marketing analysis depends on clean, well organized data. Copilot works best when your spreadsheet has clear headers, consistent formatting, and data arranged in a proper table. Before analyzing, take a moment to remove duplicate rows, fix inconsistent labels, and confirm date formats. Feeding Copilot tidy data produces far more reliable summaries, while messy inputs lead to confusing or misleading results that could steer a campaign in the wrong direction if trusted without scrutiny.",
+        "Treat Copilot insights as a draft analysis, not a final verdict. The assistant can misread an ambiguous column, apply a formula in a way you did not intend, or surface a correlation that has no real meaning. Always sanity check the numbers against your source totals, confirm that a trend makes business sense, and consider what the data does not show. Combining Copilot speed with your marketing judgment produces insights that are both fast and trustworthy."
+      ],
+      "keyPoints": [
+        "Copilot answers plain language questions about marketing data tables",
+        "It generates formulas, calculated columns, and suggested charts",
+        "Clean, well structured data produces far more reliable analysis",
+        "Insights are a starting point that must be validated against source numbers",
+        "Marketer judgment interprets meaning and spots misleading correlations"
+      ],
+      "example": "An analyst imports a campaign export into Excel, asks Copilot which channel produced the lowest cost per acquisition, and has it add a cost per lead column and a bar chart, then validates the totals against the source platform.",
+      "summary": "Copilot in Excel makes campaign and audience analysis accessible through plain language questions, formulas, and charts, provided the data is clean and the results are validated."
+    },
+    {
+      "order": 5,
+      "title": "Coordinating Campaigns in Outlook and Teams",
+      "objectives": [
+        "Use Copilot in Outlook to draft, summarize, and prioritize marketing email",
+        "Apply Copilot in Teams to recap meetings and surface action items",
+        "Streamline campaign coordination and stakeholder communication"
+      ],
+      "body": [
+        "Campaign execution depends as much on coordination as on creative work. Copilot in Outlook helps marketers move faster through a crowded inbox by summarizing long email threads, drafting replies, and adjusting the tone of messages. When a vendor thread runs to twenty messages, Copilot can produce a short recap of decisions and open questions so you reply with confidence. It can also draft outreach emails to partners, influencers, or internal stakeholders that you then personalize before sending.",
+        "Copilot in Teams supports the meetings where campaigns are planned and reviewed. During or after a meeting, it can generate a recap, list the decisions made, and capture action items with owners. For a marketing team juggling multiple campaigns, this means fewer dropped tasks and clearer accountability. Instead of scribbling notes and trying to remember who agreed to what, you get a structured summary you can share, edit, and turn directly into a follow up plan.",
+        "These coordination features shine during busy launch periods. A product launch involves designers, copywriters, media buyers, and leadership, all communicating across email and chat. Copilot can help you keep the threads straight, draft status updates, and ensure that the next steps from a planning meeting are documented and assigned. The result is smoother handoffs, fewer misunderstandings, and more of your attention available for the strategic and creative decisions that actually drive campaign performance.",
+        "Even helpful summaries need a human check. Copilot may misattribute a comment, soften an important nuance, or omit a sensitive point that matters. Before forwarding a meeting recap or sending a Copilot drafted email to an external partner, read it carefully to confirm it is accurate, appropriately toned, and free of confidential detail that should not leave the team. The assistant speeds up communication, but you remain responsible for what carries your name and your team reputation."
+      ],
+      "keyPoints": [
+        "Copilot in Outlook summarizes threads and drafts marketing email replies",
+        "Copilot in Teams generates meeting recaps, decisions, and action items",
+        "Coordination features reduce dropped tasks during busy launch periods",
+        "Always review recaps and drafts for accuracy, tone, and confidentiality",
+        "The marketer stays accountable for every message sent in their name"
+      ],
+      "example": "After a campaign planning meeting in Teams, a marketing lead has Copilot produce a recap with assigned action items, then uses Copilot in Outlook to draft a status update email to leadership, editing both before sharing.",
+      "summary": "Copilot in Outlook and Teams streamlines campaign coordination by summarizing communication and capturing action items, while the marketer reviews everything for accuracy and tone."
+    },
+    {
+      "order": 6,
+      "title": "Maintaining Brand Voice and Consistency with Copilot",
+      "objectives": [
+        "Define brand voice attributes that can guide Copilot prompts",
+        "Use reference materials to keep Copilot output on brand",
+        "Establish review habits that protect consistency across channels"
+      ],
+      "body": [
+        "A consistent brand voice is one of the most valuable assets a marketing team owns, and it is also the thing AI drafts most easily dilute. Copilot does not inherently know your brand personality, so you must teach it through your prompts and reference materials. Start by articulating your voice in concrete terms: are you warm or authoritative, playful or precise, concise or detailed? Capturing these attributes in a short brand voice guide gives you language you can paste directly into prompts to steer Copilot toward your style.",
+        "The most reliable way to keep Copilot on brand is to ground it in approved examples. Point it at a previous campaign, a published article, or a messaging document that exemplifies your voice, and ask it to match that style. Because Copilot can reference your existing content, it can mirror the rhythm, vocabulary, and tone of work you already trust. This anchoring produces drafts that feel like an extension of your brand rather than generic marketing language that could belong to any company.",
+        "Consistency also means using shared, approved terminology. Brands often have specific ways of naming products, describing benefits, and phrasing their value proposition, along with words they deliberately avoid. Build a simple reference of preferred terms, banned phrases, and required disclaimers, and include the relevant parts in your prompts. When the whole team prompts Copilot with the same guidance, output stays aligned across writers, channels, and campaigns, preventing the subtle drift that erodes a recognizable brand over time.",
+        "No prompt is perfect, so a human review step protects the brand. Read each draft and ask whether it sounds unmistakably like your brand, whether it uses approved terms, and whether it would feel at home next to your best existing content. Maintaining a feedback loop, where editors note where Copilot drifted and refine the shared guidance, steadily improves results. Over time the team builds a library of strong prompts and examples that make on brand drafting faster and more dependable."
+      ],
+      "keyPoints": [
+        "Copilot does not know your brand voice unless you describe it explicitly",
+        "Grounding Copilot in approved examples produces on brand drafts",
+        "Shared preferred terms and banned phrases keep teams consistent",
+        "A human review step confirms drafts sound unmistakably on brand",
+        "A growing library of prompts and examples improves results over time"
+      ],
+      "example": "A brand manager creates a short voice guide with three tone attributes and a list of approved product terms, then pastes it into every Copilot prompt and points the assistant at a flagship blog post to mirror its style.",
+      "summary": "Keeping Copilot output on brand requires explicit voice guidance, grounding in approved examples, shared terminology, and consistent human review across the team."
+    },
+    {
+      "order": 7,
+      "title": "Responsible Use and Data Handling in Marketing",
+      "objectives": [
+        "Apply responsible AI principles to marketing work with Copilot",
+        "Protect customer and company data when prompting and sharing output",
+        "Establish accuracy, disclosure, and compliance practices for AI assisted content"
+      ],
+      "body": [
+        "Using Copilot responsibly is essential for any marketing team that values customer trust and legal compliance. Responsible use begins with accuracy. Because AI can generate confident but incorrect statements, you must verify every factual claim, statistic, product detail, and quotation before it reaches an audience. Marketers are accountable for what they publish, and an unchecked AI claim that turns out to be false can damage reputation, mislead customers, and in regulated areas create real legal exposure for the organization.",
+        "Data handling deserves careful attention. Avoid pasting sensitive customer information, confidential strategy, or unreleased financial figures into prompts unless your organization has confirmed it is appropriate within your governed environment. Understand your company policy on what data Copilot may use and how its output may be stored or shared. Treating prompts with the same caution you would apply to any work document helps prevent accidental exposure of personal data, trade secrets, or material that should remain strictly internal.",
+        "Privacy and consent matter when marketing with AI. Customer data used for targeting or personalization is often governed by regulations and by the promises you made when you collected it. Copilot should never become a shortcut around those obligations. Before using audience data in analysis or content, confirm you have the right to use it for that purpose, and avoid generating messaging that could feel manipulative, deceptive, or discriminatory. Responsible marketing respects the people on the other side of every campaign.",
+        "Finally, consider transparency and fairness. Some organizations and jurisdictions expect disclosure when content is meaningfully AI generated, and audiences increasingly value honesty about how material is produced. Watch for bias or stereotyping in AI output, since training data can carry assumptions that do not reflect your values or your diverse audience. By combining rigorous fact checking, careful data handling, respect for privacy, and a commitment to fairness, marketing teams can capture the speed of Copilot while upholding the standards that sustain long term trust."
+      ],
+      "keyPoints": [
+        "Verify every factual claim because AI can sound confident yet be wrong",
+        "Keep sensitive customer and company data out of ungoverned prompts",
+        "Respect privacy, consent, and the regulations governing audience data",
+        "Watch for bias and avoid manipulative or deceptive messaging",
+        "Follow disclosure and transparency expectations for AI assisted content"
+      ],
+      "example": "Before using a customer list to draft a personalized email campaign with Copilot, a marketer confirms the data may be used for that purpose, keeps individual records out of the prompt, and fact checks every product claim in the final copy.",
+      "summary": "Responsible marketing with Copilot means verifying accuracy, protecting customer and company data, respecting privacy and consent, and upholding fairness and transparency."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What does grounding mean in the context of Microsoft 365 Copilot for marketers?",
+      "options": [
+        "Copilot draws on your accessible files, emails, and documents as context for its responses",
+        "Copilot only uses information from the public internet",
+        "Copilot disables itself when it cannot reach a server",
+        "Copilot saves every draft permanently to a shared drive"
+      ],
+      "correctIndex": 0,
+      "explanation": "Grounding means Copilot combines its language abilities with the content you already have permission to access, making output specific to your brand and campaigns rather than generic."
+    },
+    {
+      "text": "Why should a marketer treat Copilot output as a draft rather than a finished deliverable?",
+      "options": [
+        "Because Copilot can introduce inaccurate claims or drift from brand voice and needs human review",
+        "Because Copilot output is always grammatically incorrect",
+        "Because drafts cannot be edited once generated",
+        "Because Copilot refuses to produce final content"
+      ],
+      "correctIndex": 0,
+      "explanation": "Copilot generates a confident starting point that may contain errors or off brand language, so the marketer must review, verify, and refine it before publishing."
+    },
+    {
+      "text": "Which prompting approach produces the strongest marketing copy in Word?",
+      "options": [
+        "Iterative prompting that refines tone, length, and structure in stages",
+        "A single vague request and accepting the first result",
+        "Avoiding any instructions about audience or tone",
+        "Copying the prompt from an unrelated industry"
+      ],
+      "correctIndex": 0,
+      "explanation": "Treating Copilot as a conversation and steering it through follow up instructions yields tighter, more on brand copy than hoping one prompt does everything."
+    },
+    {
+      "text": "What is a key benefit of using Copilot to repurpose content in Word?",
+      "options": [
+        "One source document can become many channel specific formats while keeping a consistent message",
+        "It permanently deletes the original document",
+        "It guarantees content needs no editing",
+        "It prevents the content from being used on social media"
+      ],
+      "correctIndex": 0,
+      "explanation": "Pointing Copilot at an existing document and requesting new formats lets marketers adapt one core idea across channels while maintaining message consistency."
+    },
+    {
+      "text": "When using Copilot in PowerPoint, what does the marketer primarily contribute?",
+      "options": [
+        "The persuasive narrative arc, brand aligned visuals, and verification of claims",
+        "Nothing, because Copilot finalizes the deck automatically",
+        "Only the file name of the presentation",
+        "A guarantee that all figures are correct without checking"
+      ],
+      "correctIndex": 0,
+      "explanation": "Copilot drafts and reshapes slides, but the marketer supplies the story, ensures visuals match brand guidelines, and verifies every data point and claim."
+    },
+    {
+      "text": "What condition most improves the reliability of Copilot analysis in Excel?",
+      "options": [
+        "Clean, well structured data with clear headers and consistent formatting",
+        "As many duplicate rows as possible",
+        "Mixing several date formats in one column",
+        "Removing all column headers before analyzing"
+      ],
+      "correctIndex": 0,
+      "explanation": "Copilot produces far more reliable summaries when the spreadsheet is tidy, so removing duplicates and fixing inconsistent labels before analyzing is essential."
+    },
+    {
+      "text": "How should a marketer treat an insight Copilot surfaces from campaign data?",
+      "options": [
+        "As a draft analysis to validate against source numbers and business sense",
+        "As a final verdict requiring no checking",
+        "As proof that any correlation is meaningful",
+        "As a reason to ignore the original data entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": "Copilot can misread columns or surface meaningless correlations, so insights must be sanity checked against source totals and judged for real business meaning."
+    },
+    {
+      "text": "Which Copilot capability best supports campaign coordination in Teams?",
+      "options": [
+        "Generating meeting recaps with decisions and assigned action items",
+        "Automatically sending emails without any review",
+        "Deleting meeting recordings to save space",
+        "Blocking team members from joining meetings"
+      ],
+      "correctIndex": 0,
+      "explanation": "Copilot in Teams captures decisions and action items with owners, reducing dropped tasks during busy launches, though recaps still need a human accuracy check."
+    },
+    {
+      "text": "What is the most reliable way to keep Copilot output aligned with your brand voice?",
+      "options": [
+        "Ground Copilot in approved examples and include explicit voice guidance in prompts",
+        "Assume Copilot already knows your brand personality",
+        "Use a different tone in every prompt at random",
+        "Avoid giving Copilot any reference material"
+      ],
+      "correctIndex": 0,
+      "explanation": "Copilot does not inherently know your voice, so describing voice attributes and pointing it at trusted examples anchors drafts to your recognizable brand style."
+    },
+    {
+      "text": "Which practice reflects responsible data handling when prompting Copilot in marketing?",
+      "options": [
+        "Keeping sensitive customer data out of ungoverned prompts and confirming you may use audience data",
+        "Pasting full customer records into any prompt for convenience",
+        "Ignoring privacy regulations because AI is involved",
+        "Publishing AI claims without verifying them"
+      ],
+      "correctIndex": 0,
+      "explanation": "Responsible use means protecting sensitive data, respecting privacy and consent obligations for audience data, and verifying every claim before it reaches customers."
+    }
+  ]
+}

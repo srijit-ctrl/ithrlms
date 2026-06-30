@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of AI Policy and Governance",
+      "objectives": [
+        "Define what AI policy seeks to achieve and where it sits among law, regulation, and voluntary standards",
+        "Distinguish hard law from soft governance instruments and explain when each is appropriate",
+        "Identify the core public-interest goals that motivate AI governance"
+      ],
+      "body": [
+        "AI policy is the set of rules, principles, and institutional arrangements that shape how artificial intelligence is developed, deployed, and overseen. It spans binding law, sector regulation, procurement requirements, and voluntary standards. A practitioner shaping policy must understand that governance is not a single lever but a layered system in which legislatures, agencies, standards bodies, and organizations each play distinct roles. Effective policy aligns these layers so that incentives, obligations, and oversight reinforce rather than contradict one another.",
+        "A useful distinction is between hard law and soft governance. Hard law, such as statutes and regulations, creates enforceable obligations with penalties. Soft instruments, such as voluntary frameworks, codes of practice, and technical standards, guide behavior without direct legal force but can become influential through adoption, procurement, or later incorporation into law. Both have trade-offs: hard law offers certainty and accountability but can be slow and rigid, while soft governance is flexible and adaptive but may lack teeth.",
+        "Policy work is fundamentally about balancing competing values. Innovation, economic competitiveness, individual rights, public safety, and national interest can pull in different directions. A common goal across jurisdictions is to capture the benefits of AI, such as productivity, scientific discovery, and better public services, while limiting harms such as discrimination, unsafe outcomes, and erosion of trust. Good policy makes these trade-offs explicit rather than hiding them, and it explains the reasoning so that affected parties can scrutinize and improve it.",
+        "Practitioners should approach AI policy with humility about uncertainty. The technology evolves quickly, evidence about real-world harms and benefits is still accumulating, and reasonable people disagree about the right balance. This argues for governance that is proportionate, evidence-seeking, and revisable. Mechanisms such as review clauses, pilots, and monitoring allow policy to be corrected as understanding improves, reducing the cost of getting initial decisions wrong."
+      ],
+      "keyPoints": [
+        "AI governance is layered, spanning law, regulation, procurement, and voluntary standards",
+        "Hard law offers enforceability and certainty; soft governance offers flexibility and speed",
+        "Policy balances innovation, rights, safety, and competitiveness, and should make trade-offs explicit",
+        "Uncertainty about AI argues for proportionate, evidence-seeking, and revisable rules",
+        "Multiple institutions share responsibility, so coherence across layers matters"
+      ],
+      "example": "A government issues a voluntary AI code of practice for industry while signaling that parts may later become binding regulation. Early adopters shape the eventual rules and build internal capability, illustrating how soft governance can pave the way for hard law.",
+      "summary": "AI policy is a layered system blending binding law and voluntary instruments to balance innovation, rights, and safety under conditions of genuine uncertainty."
+    },
+    {
+      "order": 2,
+      "title": "Risk-Based Regulation of AI",
+      "objectives": [
+        "Explain the rationale for proportionate, risk-based regulation of AI systems",
+        "Describe how risk tiers translate into differentiated obligations",
+        "Apply a structured method for classifying an AI use case by risk"
+      ],
+      "body": [
+        "Risk-based regulation tailors obligations to the potential for harm rather than treating all AI uniformly. The premise is that a low-stakes recommendation system and a tool used in medical diagnosis or criminal justice should not face identical rules. By concentrating scrutiny where harms are most likely and most severe, regulators aim to protect people without imposing disproportionate burdens on benign uses. This approach has become a dominant design pattern in AI governance around the world.",
+        "A typical structure sorts uses into tiers. Some applications are deemed unacceptable and prohibited; others are classified as high risk and subject to stringent requirements such as risk management, data governance, documentation, human oversight, and conformity assessment; many fall into limited or minimal risk categories with lighter transparency duties or none at all. The European Union AI Act is a prominent example of a tiered model, though jurisdictions differ in how they define tiers and what obligations attach to each.",
+        "Classifying risk requires looking at context, not just the technology. The same model can be low risk in one setting and high risk in another depending on the stakes for affected individuals, the degree of autonomy, the reversibility of outcomes, and the vulnerability of those affected. Practitioners should assess the use case along dimensions such as potential severity of harm, likelihood, scale of deployment, and the availability of meaningful human review and redress.",
+        "Risk-based approaches face real challenges. Categories can be hard to define precisely, leaving ambiguity at the boundaries. Static tiers may not capture emergent or general-purpose systems whose risks depend on how downstream users apply them. Policy designers address this with mechanisms such as periodic reclassification, obligations that scale with capability or compute, and guidance that helps organizations self-assess. The aim is a framework that is predictable enough to follow yet adaptable enough to remain relevant."
+      ],
+      "keyPoints": [
+        "Risk-based regulation matches the stringency of rules to the severity and likelihood of harm",
+        "Common tiers range from prohibited uses to high, limited, and minimal risk",
+        "Risk depends on context of use, not the technology alone",
+        "The EU AI Act is a leading tiered model, but jurisdictions define tiers differently",
+        "General-purpose and emergent systems strain static categories, requiring adaptive mechanisms"
+      ],
+      "example": "An identical facial-analysis model is minimal risk when unlocking a personal device but potentially high risk when used to screen job applicants, showing why classification must consider context, stakes, and the availability of human review.",
+      "summary": "Risk-based regulation concentrates the strongest obligations on the highest-stakes uses, but practitioners must classify by context and build in mechanisms to handle ambiguity and emerging systems."
+    },
+    {
+      "order": 3,
+      "title": "Rights, Safety, and Protection from Harm",
+      "objectives": [
+        "Identify the individual and societal harms AI policy seeks to prevent",
+        "Connect fundamental rights such as privacy, non-discrimination, and due process to AI safeguards",
+        "Describe safety practices that reduce the likelihood and severity of AI harms"
+      ],
+      "body": [
+        "A central purpose of AI governance is protecting people from harm while preserving their rights. Harms can be individual, such as a wrongful loan denial, or collective, such as the amplification of harmful content at scale. Rights commonly engaged by AI include privacy and data protection, freedom from unlawful discrimination, due process in decisions that affect a person, and freedom of expression. Anchoring policy in established rights gives it legitimacy and connects it to existing legal protections rather than starting from a blank slate.",
+        "Discrimination and fairness deserve particular attention because AI systems learn from data that may reflect historical bias. A model trained on biased records can reproduce or amplify unfair outcomes even without anyone intending to discriminate. Safeguards include representative data, testing for disparate impact across groups, and documenting limitations. Because fairness has multiple, sometimes incompatible technical definitions, policy should require organizations to articulate which notion they pursue and why, rather than assuming a single correct answer exists.",
+        "Safety focuses on preventing AI systems from producing dangerous, unreliable, or unintended outcomes. Practices include rigorous testing and evaluation before deployment, monitoring in operation, fallback procedures when systems fail, and limits on use in safety-critical contexts without adequate validation. For more capable general-purpose systems, additional measures such as red-teaming, incident reporting, and staged release have been proposed to surface risks before they cause widespread harm.",
+        "Rights and safety protections are most effective when paired with avenues for redress. People affected by automated decisions benefit from being informed, from access to human review, and from the ability to contest outcomes. Building these channels into policy ensures that protections are not merely aspirational. It also creates feedback that helps organizations detect errors and improve systems over time, turning accountability into a mechanism for continuous learning."
+      ],
+      "keyPoints": [
+        "AI policy protects rights such as privacy, non-discrimination, due process, and expression",
+        "Bias in training data can produce unfair outcomes even without discriminatory intent",
+        "Fairness has multiple technical definitions, so organizations should justify the one they choose",
+        "Safety relies on testing, monitoring, fallbacks, and limits in critical contexts",
+        "Redress mechanisms such as human review and contestation make protections real"
+      ],
+      "example": "A public agency deploying an automated benefits-eligibility tool tests it for disparate impact across demographic groups, publishes its limitations, and guarantees applicants the right to request human review of an adverse decision.",
+      "summary": "Protecting rights and safety means anchoring policy in established legal protections, guarding against bias and unsafe outcomes, and providing affected people with meaningful redress."
+    },
+    {
+      "order": 4,
+      "title": "Transparency, Accountability, and Documentation",
+      "objectives": [
+        "Distinguish transparency, explainability, and accountability and explain why each matters",
+        "Describe documentation and disclosure practices that support oversight",
+        "Identify when transparency obligations should be tailored to different audiences"
+      ],
+      "body": [
+        "Transparency, explainability, and accountability are related but distinct. Transparency concerns making relevant information available, such as disclosing that a person is interacting with an AI system. Explainability concerns providing understandable reasons for a particular output or decision. Accountability concerns assigning responsibility so that someone can be held answerable when things go wrong. Policy often requires all three, but conflating them leads to vague obligations that are hard to meet or enforce.",
+        "Documentation is a practical backbone of accountability. Records such as descriptions of training data, intended purpose, known limitations, evaluation results, and human-oversight arrangements allow regulators, auditors, and downstream users to understand a system. Standardized artifacts, sometimes called system or model documentation, help spread this information consistently. Good documentation is created during development rather than reconstructed afterward, and it is kept current as systems are updated.",
+        "Transparency must be calibrated to its audience and purpose. A regulator may need detailed technical records, an affected individual may need a plain-language explanation of how a decision was reached and how to contest it, and the public may need high-level disclosures about where AI is used. Disclosing everything to everyone can overwhelm users, expose security weaknesses, or reveal trade secrets, so policy should specify what information goes to whom and why. The goal is meaningful understanding, not raw data volume.",
+        "Accountability also depends on clear allocation of responsibility across the AI supply chain. Developers, deployers, and operators each have different knowledge and control, so obligations should track their actual ability to influence outcomes. Mechanisms such as audits, conformity assessments, logging, and incident reporting turn accountability from principle into practice. When responsibilities are mapped clearly, gaps where no one is answerable, often called accountability gaps, are less likely to appear."
+      ],
+      "keyPoints": [
+        "Transparency, explainability, and accountability are distinct and should not be conflated",
+        "Documentation created during development underpins effective oversight",
+        "Disclosure should be tailored to regulators, affected individuals, and the public differently",
+        "Responsibility should track each actor's knowledge and control over the system",
+        "Audits, logging, and incident reporting operationalize accountability"
+      ],
+      "example": "A bank using an AI credit model maintains internal model documentation for auditors, gives declined applicants a plain-language explanation of the main factors, and assigns a named owner accountable for monitoring the model in production.",
+      "summary": "Effective oversight requires distinguishing transparency, explainability, and accountability, supporting them with living documentation, audience-appropriate disclosure, and clearly allocated responsibility."
+    },
+    {
+      "order": 5,
+      "title": "Standards and Frameworks: NIST AI RMF, ISO/IEC 42001, and the EU AI Act",
+      "objectives": [
+        "Summarize the purpose and structure of the NIST AI Risk Management Framework",
+        "Explain what ISO/IEC 42001 provides as an AI management system standard",
+        "Describe the EU AI Act accurately as a risk-based regulation without inventing specifics"
+      ],
+      "body": [
+        "The NIST AI Risk Management Framework is a voluntary framework published by the United States National Institute of Standards and Technology to help organizations manage risks across the AI lifecycle. It is organized around core functions commonly described as Govern, Map, Measure, and Manage, which guide organizations to establish a risk culture, understand context, assess risks, and act on them. Because it is voluntary and outcome-focused rather than prescriptive, it can be adapted across sectors and paired with other obligations.",
+        "ISO/IEC 42001 is an international standard for an AI management system. It follows the familiar management-system pattern used by standards such as those for quality and information security, providing requirements for governance structures, policies, roles, risk and impact assessment, and continual improvement. Organizations can seek certification against it through accredited bodies, which can demonstrate to customers and regulators that responsible-AI practices are embedded in operations rather than handled ad hoc. It complements, rather than replaces, legal obligations.",
+        "The European Union AI Act is a regulation that takes a risk-based approach, setting different obligations depending on the risk associated with an AI use, including prohibited practices, requirements for high-risk systems, and transparency duties for certain uses. It also addresses general-purpose AI models. Practitioners should describe it at this level of generality and consult the official text and authoritative guidance for precise definitions, thresholds, timelines, and obligations, since these details are specific and subject to implementation measures.",
+        "These instruments serve different functions and often work together. A framework like the NIST AI RMF helps an organization structure its internal risk practices; a management-system standard like ISO/IEC 42001 lets it formalize and certify those practices; and a regulation like the EU AI Act may impose binding legal duties. Many organizations use voluntary frameworks and standards as a route to readiness for current or anticipated regulation, mapping their controls to multiple instruments to avoid duplicated effort."
+      ],
+      "keyPoints": [
+        "The NIST AI RMF is a voluntary, outcome-focused framework organized around Govern, Map, Measure, and Manage",
+        "ISO/IEC 42001 is a certifiable AI management system standard following the established management-system pattern",
+        "The EU AI Act is a binding, risk-based regulation; cite the official text for precise legal specifics",
+        "Frameworks structure practice, standards formalize and certify it, and regulation imposes legal duties",
+        "Mapping controls across instruments reduces duplication and supports regulatory readiness"
+      ],
+      "example": "A multinational firm adopts the NIST AI RMF to structure its risk process, pursues ISO/IEC 42001 certification to formalize governance, and maps both to EU AI Act obligations so a single control set supports voluntary and legal requirements.",
+      "summary": "The NIST AI RMF, ISO/IEC 42001, and the EU AI Act play complementary roles as a voluntary framework, a certifiable standard, and a binding regulation, and are best used in combination."
+    },
+    {
+      "order": 6,
+      "title": "Stakeholder Engagement and Inclusive Policymaking",
+      "objectives": [
+        "Identify the stakeholders whose input strengthens AI policy and why",
+        "Describe methods for meaningful and balanced consultation",
+        "Recognize and mitigate risks such as capture and unequal participation"
+      ],
+      "body": [
+        "Sound AI policy is shaped with, not just for, the people it affects. Relevant stakeholders include industry developers and deployers, civil society and consumer groups, academics and technical experts, affected communities, frontline public servants, and other parts of government. Each brings knowledge the others lack: industry understands feasibility and cost, civil society surfaces lived harms, and technical experts clarify what is and is not possible. Engaging this range improves both the quality and the legitimacy of policy.",
+        "Engagement methods vary in depth and formality. Public consultations and requests for comment gather written input at scale; expert advisory bodies provide ongoing technical guidance; citizen panels and deliberative forums elicit considered public judgment; and pilots or sandboxes generate practical evidence by testing rules in controlled settings. Choosing methods that fit the question and the timeline matters, as does giving participants enough information and time to contribute meaningfully rather than as a formality.",
+        "Inclusive engagement must guard against predictable failures. Well-resourced interests can dominate consultations, a dynamic often called regulatory capture, while smaller voices and affected communities may be underrepresented. Remedies include proactively reaching out to underrepresented groups, publishing who was consulted and how input was used, and being transparent about competing interests. Balancing input does not mean treating all claims as equally evidenced; policymakers should weigh contributions on their merits and explain their reasoning.",
+        "Engagement is most valuable when it visibly influences outcomes. Closing the loop by reporting what was heard, what changed, and what did not, and why, builds trust and encourages future participation. It also creates a record that supports accountability and later review. Treating consultation as a genuine input to decisions, rather than a box to tick, distinguishes durable, broadly accepted policy from rules that face resistance and rapid challenge."
+      ],
+      "keyPoints": [
+        "Diverse stakeholders supply complementary knowledge that improves policy quality and legitimacy",
+        "Methods include consultations, expert bodies, deliberative forums, and regulatory sandboxes",
+        "Regulatory capture and unequal participation are predictable risks to manage",
+        "Weigh input on its merits and explain reasoning rather than counting voices",
+        "Closing the loop on consultation builds trust and supports accountability"
+      ],
+      "example": "Before finalizing rules for AI in hiring, a regulator runs a public consultation, convenes a technical advisory panel, holds sessions with worker and disability advocates, and then publishes a summary explaining which suggestions it adopted and why.",
+      "summary": "Inclusive, well-structured stakeholder engagement improves the quality and legitimacy of AI policy, provided it guards against capture and genuinely informs decisions."
+    },
+    {
+      "order": 7,
+      "title": "Implementation and Public-Sector AI Adoption",
+      "objectives": [
+        "Translate AI policy principles into operational practices within organizations",
+        "Describe responsible approaches to public-sector AI procurement and deployment",
+        "Explain how monitoring, evaluation, and review keep policy effective over time"
+      ],
+      "body": [
+        "Policy delivers value only when it is implemented. Inside organizations, this means turning principles into concrete processes: assigning governance roles, requiring risk and impact assessments before deployment, setting documentation and approval gates, and training staff. Many organizations establish an internal governance body to review higher-risk uses and maintain an inventory of AI systems so that oversight is grounded in an accurate picture of what is actually deployed. Implementation succeeds when responsibilities are clear and embedded in everyday workflows.",
+        "The public sector has a dual role as both a regulator and a major user of AI, and its own deployments warrant particular care because government decisions can carry the force of the state and affect rights directly. Responsible public-sector adoption emphasizes lawful basis, fairness, transparency to the public, human oversight of consequential decisions, and accountability. Procurement is a powerful lever: by writing responsible-AI requirements into contracts, governments can raise standards across their supply chains and shape vendor behavior well beyond a single project.",
+        "Impact assessments are a practical implementation tool, especially for higher-stakes uses. Conducted before deployment, they identify affected people, foreseeable harms, mitigations, and oversight arrangements, and they create a record that supports transparency and later review. For public-sector systems, publishing summaries of such assessments can strengthen public trust. The discipline of assessing impact early often improves design, because problems are cheaper to fix before a system is in operation than after.",
+        "AI systems and their context change, so implementation must include monitoring, evaluation, and review. Performance can drift as data shifts, new risks can emerge, and assumptions made at launch may no longer hold. Effective programs define metrics, monitor outcomes in operation, capture incidents, and schedule periodic reviews that can trigger retraining, additional controls, or retirement of a system. Building in review clauses and feedback loops ensures that policy and deployments remain effective and proportionate as evidence accumulates."
+      ],
+      "keyPoints": [
+        "Implementation turns principles into roles, assessments, approval gates, and an AI inventory",
+        "The public sector is both regulator and user, and its deployments warrant heightened care",
+        "Procurement requirements let governments raise standards across vendor supply chains",
+        "Impact assessments before deployment surface harms and improve design early",
+        "Monitoring, incident capture, and scheduled review keep systems and policy effective over time"
+      ],
+      "example": "A city government adds responsible-AI clauses to its procurement template, requires an impact assessment and human-oversight plan before any consequential system goes live, and reviews each system annually against defined performance and fairness metrics.",
+      "summary": "Effective implementation embeds governance into workflows, uses procurement and impact assessments as levers, and relies on ongoing monitoring and review to keep AI use safe, fair, and proportionate."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What primarily distinguishes hard law from soft governance instruments in AI policy?",
+      "options": [
+        "Hard law creates enforceable obligations with penalties, while soft instruments guide behavior without direct legal force",
+        "Hard law applies only to governments, while soft governance applies only to private companies",
+        "Soft governance is always stricter than hard law",
+        "Hard law is voluntary, while soft governance is mandatory"
+      ],
+      "correctIndex": 0,
+      "explanation": "Hard law such as statutes and regulations is enforceable with penalties, whereas soft instruments like voluntary frameworks and codes of practice guide behavior without direct legal force, though they can become influential through adoption or later incorporation into law."
+    },
+    {
+      "text": "What is the core idea behind a risk-based approach to AI regulation?",
+      "options": [
+        "All AI systems should face identical obligations regardless of use",
+        "Obligations should be proportionate to the potential severity and likelihood of harm",
+        "Only government-developed AI should be regulated",
+        "Regulation should focus solely on the underlying technology rather than its use"
+      ],
+      "correctIndex": 1,
+      "explanation": "Risk-based regulation tailors the stringency of obligations to the potential for harm, concentrating scrutiny on high-stakes uses while imposing lighter or no requirements on low-risk ones."
+    },
+    {
+      "text": "Why can the same AI model be considered low risk in one setting and high risk in another?",
+      "options": [
+        "Because risk depends only on the size of the model",
+        "Because risk classification is assigned randomly",
+        "Because risk depends on context such as stakes for individuals, reversibility, and vulnerability of those affected",
+        "Because only newer models can be high risk"
+      ],
+      "correctIndex": 2,
+      "explanation": "Risk depends on the context of use, not the technology alone. Factors include the severity and likelihood of harm, the stakes for affected individuals, reversibility of outcomes, and the vulnerability of those affected."
+    },
+    {
+      "text": "Why does AI policy pay particular attention to bias and fairness?",
+      "options": [
+        "Because AI systems can reproduce or amplify historical bias in their training data even without discriminatory intent",
+        "Because bias only occurs when developers deliberately program it",
+        "Because fairness has a single universally agreed technical definition",
+        "Because bias affects only the speed of AI systems"
+      ],
+      "correctIndex": 0,
+      "explanation": "Models learn from data that may reflect historical bias, so they can reproduce or amplify unfair outcomes without anyone intending to discriminate. Fairness also has multiple, sometimes incompatible technical definitions, so organizations should justify the one they adopt."
+    },
+    {
+      "text": "How are transparency, explainability, and accountability best understood in AI governance?",
+      "options": [
+        "As identical concepts that can be used interchangeably",
+        "As distinct concepts: making information available, providing understandable reasons, and assigning answerability",
+        "As concepts that apply only to open-source systems",
+        "As purely technical issues with no policy relevance"
+      ],
+      "correctIndex": 1,
+      "explanation": "Transparency means making relevant information available, explainability means providing understandable reasons for outputs, and accountability means assigning responsibility so someone can be held answerable. Conflating them leads to vague, hard-to-enforce obligations."
+    },
+    {
+      "text": "Which best describes the NIST AI Risk Management Framework?",
+      "options": [
+        "A binding regulation with criminal penalties",
+        "A certification scheme administered by the European Union",
+        "A voluntary, outcome-focused framework organized around functions such as Govern, Map, Measure, and Manage",
+        "A standard that prohibits all high-risk AI"
+      ],
+      "correctIndex": 2,
+      "explanation": "The NIST AI RMF is a voluntary framework from the United States National Institute of Standards and Technology, organized around core functions commonly described as Govern, Map, Measure, and Manage, and adaptable across sectors."
+    },
+    {
+      "text": "What does ISO/IEC 42001 primarily provide?",
+      "options": [
+        "A binding law replacing national regulation",
+        "A certifiable AI management system standard following the established management-system pattern",
+        "A list of approved AI vendors",
+        "A technical method for training large language models"
+      ],
+      "correctIndex": 1,
+      "explanation": "ISO/IEC 42001 is an international AI management system standard. It follows the familiar management-system pattern, providing requirements for governance, risk assessment, and continual improvement, and organizations can be certified against it. It complements rather than replaces legal obligations."
+    },
+    {
+      "text": "What is the most accurate general description of the EU AI Act?",
+      "options": [
+        "A voluntary code with no legal effect",
+        "A regulation that takes a risk-based approach, with different obligations depending on the risk of an AI use",
+        "A standard that applies only to public-sector bodies",
+        "A framework identical to the NIST AI RMF"
+      ],
+      "correctIndex": 1,
+      "explanation": "The EU AI Act is a binding regulation that uses a risk-based approach, with obligations differing by risk level, including prohibited practices, high-risk requirements, and certain transparency duties. Practitioners should consult the official text for precise definitions and thresholds."
+    },
+    {
+      "text": "What is a key risk to guard against during stakeholder engagement in AI policymaking?",
+      "options": [
+        "Regulatory capture, where well-resourced interests dominate while smaller voices are underrepresented",
+        "The impossibility of gathering any written input",
+        "The requirement that all input be treated as equally evidenced",
+        "The legal ban on consulting technical experts"
+      ],
+      "correctIndex": 0,
+      "explanation": "Well-resourced interests can dominate consultations, a dynamic called regulatory capture, while affected communities may be underrepresented. Remedies include proactive outreach, transparency about who was consulted, and weighing input on its merits rather than by volume."
+    },
+    {
+      "text": "Why is monitoring and periodic review important after an AI system is deployed?",
+      "options": [
+        "Because systems never change once deployed, so review confirms perfection",
+        "Because performance can drift, new risks can emerge, and launch-time assumptions may no longer hold",
+        "Because review is only needed for low-risk systems",
+        "Because monitoring replaces the need for any pre-deployment assessment"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI systems and their context change over time. Performance can drift as data shifts and new risks can emerge, so effective programs define metrics, monitor outcomes, capture incidents, and schedule reviews that may trigger retraining, additional controls, or retirement."
+    }
+  ]
+}

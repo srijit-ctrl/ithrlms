@@ -1,0 +1,289 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Requirements, Constraints, and Architecture Foundations",
+      "objectives": [
+        "Translate business goals into measurable AI system requirements",
+        "Identify quality attributes such as latency, accuracy, and cost that drive design",
+        "Frame architecture decisions around constraints and trade-offs"
+      ],
+      "body": [
+        "Every durable AI architecture begins with disciplined requirements work, not with a model choice. The practitioner first elicits the business outcome the system must produce, then expresses it as measurable targets: acceptable response latency, minimum task accuracy, throughput at peak load, and a budget ceiling per request. Without these numbers, later decisions become guesswork. A useful habit is to write each requirement as a sentence that a test could verify, so the team can later prove the system meets it rather than merely hoping that it does.",
+        "AI systems carry quality attributes that traditional software rarely emphasises. Accuracy is probabilistic, so you specify acceptable error rates rather than absolute correctness. Latency includes model inference time plus retrieval, network, and orchestration overhead. Cost scales with token volume and call frequency, which makes it a first-class design concern. Privacy and safety requirements may forbid sending certain data to external providers. Capturing these attributes early prevents expensive rework, because they shape the data layer, the model selection, and the deployment topology all at once.",
+        "Constraints turn an open design space into a tractable one. Regulatory rules may dictate data residency; an existing cloud contract may favour one provider; a small team may rule out operating self-hosted models. The architect documents these constraints explicitly and treats them as boundaries rather than obstacles. Each constraint removes options and therefore makes the remaining choices clearer. Good architecture is largely the art of recognising which trade-offs are forced by constraints and which remain genuinely free for optimisation.",
+        "Finally, the practitioner records decisions and their rationale in a lightweight architecture decision log. Each entry names the decision, the alternatives considered, and the reason one was chosen. This record becomes invaluable when requirements shift, when new team members join, or when an auditor asks why personal data flows the way it does. Treating architecture as a living, documented set of reasoned choices is what separates a maintainable system from a fragile prototype that no one dares to change."
+      ],
+      "keyPoints": [
+        "Start from measurable business outcomes, not from a favourite model",
+        "Express requirements so a test can verify them later",
+        "Treat latency, accuracy, and cost as first-class quality attributes",
+        "Document constraints explicitly; they narrow the design space usefully",
+        "Maintain an architecture decision log capturing alternatives and rationale"
+      ],
+      "example": "A claims-triage assistant for an insurer is specified as: classify each claim within two seconds at peak load of fifty requests per second, achieve at least ninety percent agreement with senior adjusters on a labelled test set, keep cost under three cents per claim, and never transmit policyholder identifiers to a third-party model. These four measurable targets directly drive the choice of a smaller hosted model with on-premise data masking.",
+      "summary": "Sound AI architecture starts by turning business goals into measurable, testable requirements and documenting the constraints and trade-offs that shape every later decision."
+    },
+    {
+      "order": 2,
+      "title": "Data Layer and Retrieval-Augmented Generation",
+      "objectives": [
+        "Design ingestion and chunking pipelines that preserve meaning",
+        "Choose embedding and vector storage strategies for a RAG system",
+        "Apply retrieval patterns that improve grounding and reduce hallucination"
+      ],
+      "body": [
+        "The data layer is where most AI architectures succeed or fail. Retrieval-augmented generation, or RAG, supplies a language model with relevant context fetched at query time, letting it answer from your knowledge rather than from its frozen training data. The pipeline begins with ingestion: collecting source documents, normalising formats, and stripping noise such as navigation boilerplate. Clean inputs matter because every downstream step inherits their quality. The architect plans for incremental ingestion so new and updated documents flow in without rebuilding the entire index.",
+        "Chunking divides documents into passages small enough to embed yet large enough to carry meaning. Splitting blindly by character count often severs a sentence from the context that explains it, which degrades retrieval. Better strategies respect structure, breaking on headings, paragraphs, or semantic boundaries, and they overlap adjacent chunks slightly so a concept spanning a boundary is not lost. The chunk size interacts with the model context window and with cost, so it is tuned experimentally against a representative set of real questions rather than chosen by rule of thumb.",
+        "Each chunk is converted to an embedding, a numeric vector capturing its meaning, and stored in a vector database that supports fast similarity search. At query time the user question is embedded the same way, and the store returns the nearest passages. Many production systems combine this dense vector search with traditional keyword search, a hybrid approach that catches exact terms the embeddings might miss. A reranking step can then reorder candidates so the most relevant passages land in the prompt, which sharply improves answer grounding.",
+        "Grounding is the discipline of making the model answer only from retrieved evidence. The architecture enforces it by instructing the model to cite sources, by withholding an answer when retrieval returns nothing relevant, and by keeping the retrieved context distinct from user instructions. Metadata filtering lets the system restrict retrieval to documents a given user is permitted to see, which is essential for security. A well-built data layer thus delivers not just relevant text but trustworthy, permission-aware, and citable evidence on which the model can safely reason."
+      ],
+      "keyPoints": [
+        "RAG grounds a model in your data fetched at query time",
+        "Clean ingestion and structure-aware chunking preserve meaning",
+        "Embeddings plus vector search enable semantic retrieval",
+        "Hybrid search and reranking improve relevance over dense search alone",
+        "Metadata filtering enforces per-user permissions on retrieval",
+        "Grounding requires citations and graceful handling of empty results"
+      ],
+      "example": "A support knowledge assistant ingests product manuals and past tickets, chunks them on section headings with a small overlap, and stores embeddings with metadata tagging each chunk by product line and access level. A query first filters to the customer's licensed products, runs hybrid dense-plus-keyword search, reranks the top twenty passages, and feeds the best six to the model with an instruction to cite the source section or decline if none apply.",
+      "summary": "The data layer turns raw documents into permission-aware, citable evidence through careful ingestion, chunking, embedding, and hybrid retrieval that grounds the model and curbs hallucination."
+    },
+    {
+      "order": 3,
+      "title": "Model Selection and Evaluation",
+      "objectives": [
+        "Compare hosted and self-hosted models against requirements",
+        "Match model capability and size to each task in the system",
+        "Build evaluation harnesses that measure quality objectively"
+      ],
+      "body": [
+        "Model selection is a fit problem, not a popularity contest. The practitioner maps each requirement onto candidate models and asks which combination satisfies accuracy, latency, cost, and privacy together. A larger frontier model may give the best answers but cost more and respond slower; a compact model may be cheaper and faster yet need more careful prompting or retrieval support. Often the right answer is a portfolio: route easy, high-volume requests to a small model and reserve a powerful model for the difficult minority, balancing quality against spend.",
+        "The hosted-versus-self-hosted decision shapes much of the architecture. Hosted models offered through an API remove operational burden, scale elastically, and update automatically, but they send data outside your perimeter and bill per token. Self-hosted open-weight models keep data inside your boundary and can lower marginal cost at high volume, yet they demand GPU capacity, deployment expertise, and ongoing maintenance. The choice follows from the constraints captured earlier, particularly data residency, sustained request volume, and the team's operational maturity.",
+        "Capability matching avoids waste. Not every step needs a reasoning-heavy model. Classification, extraction, and routing often run well on small, inexpensive models, while open-ended synthesis or complex reasoning justifies a larger one. Decomposing a workflow into discrete tasks lets the architect assign the cheapest model that meets each task's bar. This task-level routing is one of the most effective levers for controlling cost without sacrificing the quality that users actually notice.",
+        "No selection is credible without evaluation. The architect builds a harness that runs candidate models against a curated dataset of representative inputs with known good outputs, scoring them on the metrics the requirements named. Evaluation combines automated scoring, model-graded checks for open-ended answers, and human review of edge cases. Crucially, the same harness becomes a regression suite: when a provider updates a model or you change a prompt, you rerun it and confirm quality has not silently dropped. Evaluation turns model choice from opinion into evidence."
+      ],
+      "keyPoints": [
+        "Select models by fit to accuracy, latency, cost, and privacy together",
+        "Consider a portfolio that routes by task difficulty",
+        "Hosted models ease operations; self-hosted models keep data in-boundary",
+        "Match model size to each task rather than over-provisioning everywhere",
+        "Build an evaluation harness with curated test data and clear metrics",
+        "Reuse the harness as a regression suite across model and prompt changes"
+      ],
+      "example": "A document-processing platform routes layout classification to a small fast model, entity extraction to a mid-tier model, and final summary generation to a frontier model only when the document exceeds a complexity threshold. An evaluation harness of eight hundred labelled documents scores each stage nightly, so a provider model update that lowers extraction accuracy is caught before it reaches customers.",
+      "summary": "Choose models by measured fit to requirements, route tasks to the smallest capable model, and back every decision with an evaluation harness that doubles as a regression suite."
+    },
+    {
+      "order": 4,
+      "title": "Integration Patterns and Orchestration",
+      "objectives": [
+        "Apply common patterns such as chaining, routing, and tool use",
+        "Design agentic workflows with appropriate guardrails",
+        "Integrate AI components cleanly with existing enterprise systems"
+      ],
+      "body": [
+        "Real systems rarely consist of a single model call. The practitioner assembles proven integration patterns into a coherent workflow. Prompt chaining breaks a complex task into ordered steps where each output feeds the next, improving reliability over one giant prompt. Routing inspects an incoming request and dispatches it to the handler best suited to it. Parallelisation runs independent subtasks at once and aggregates the results. These patterns are composable building blocks, and choosing among them is a core architectural skill rather than an implementation afterthought.",
+        "Tool use, sometimes called function calling, lets a model invoke external capabilities: querying a database, calling an internal service, or performing a calculation it cannot do reliably on its own. The architecture defines each tool with a clear schema, validates the model's requested arguments, executes the call in a controlled environment, and returns the result for the model to incorporate. Tool use extends a model beyond its training data and connects it to authoritative systems of record, which is often the difference between a demo and a dependable product.",
+        "Agentic workflows let a model plan, act, observe results, and iterate toward a goal with reduced step-by-step human direction. They unlock flexibility for open-ended tasks but introduce risk, because an agent can loop, take unintended actions, or run up cost. The architect contains this with guardrails: step and time limits, human approval gates for consequential actions, restricted tool permissions, and thorough logging of every decision. The guiding principle is to grant only the autonomy a task genuinely needs and no more.",
+        "Integration with existing enterprise systems demands the same rigour as any service. AI components sit behind well-defined interfaces, communicate through queues or APIs, and never become a hidden single point of failure. Idempotency, retries with backoff, timeouts, and fallback responses keep the wider system resilient when a model call is slow or fails. Treating the AI layer as one more dependable service, rather than a magical black box bolted onto the side, is what lets it survive contact with production traffic and real users."
+      ],
+      "keyPoints": [
+        "Compose chaining, routing, and parallelisation as building blocks",
+        "Use tool calling to connect models to authoritative systems",
+        "Validate tool arguments and execute calls in a controlled environment",
+        "Constrain agentic autonomy with limits, approval gates, and logging",
+        "Wrap AI components in resilient interfaces with retries and fallbacks"
+      ],
+      "example": "An onboarding assistant routes each request to one of three chains. A document-verification chain calls a tool to query the identity service, validates the returned status, and either advances the case or, for a flagged result, pauses for human approval before any account is created. Every tool call and model decision is logged with a correlation identifier so the whole flow can be audited later.",
+      "summary": "Robust AI workflows compose patterns like chaining, routing, and tool use, contain agentic autonomy with guardrails, and integrate behind resilient interfaces rather than as fragile black boxes."
+    },
+    {
+      "order": 5,
+      "title": "Scalability and Cost Optimisation",
+      "objectives": [
+        "Design for throughput, concurrency, and graceful degradation",
+        "Apply caching, batching, and routing to control cost",
+        "Forecast and govern spend across an AI system's lifecycle"
+      ],
+      "body": [
+        "Scalability in AI systems differs from classic web scaling because the expensive unit is the model call, not the CPU cycle. The architect designs for concurrency by making request handling asynchronous, queuing work so bursts do not overwhelm downstream models, and applying rate limits that protect provider quotas. Horizontal scaling of stateless orchestration layers is straightforward; the real bottleneck is usually the model endpoint itself. Planning explicitly for peak load, and for what the system does when it exceeds capacity, prevents cascading failures during the moments that matter most.",
+        "Graceful degradation keeps a system useful under stress. When the primary model is saturated or unavailable, the architecture can fall back to a smaller model, serve a cached answer, queue the request for later, or return a clear partial response. These behaviours are designed deliberately, not improvised during an incident. The same thinking applies to provider outages: a multi-provider abstraction lets the system shift load when one endpoint fails, trading a little added complexity for substantially better availability.",
+        "Cost optimisation is continuous architecture work. Caching identical or semantically similar requests avoids paying for the same answer twice. Batching groups requests to use endpoints efficiently. Prompt engineering that trims unnecessary tokens lowers per-call cost across millions of calls. The task-level model routing introduced earlier remains the single largest lever, because directing the bulk of traffic to small models while reserving large ones for hard cases can cut spend dramatically without users noticing any quality loss.",
+        "Governing spend requires visibility before it requires discipline. The architect instruments the system to attribute cost by feature, customer, and model so finance and engineering see where money goes. Budgets and alerts catch runaway loops or a sudden traffic spike before the invoice does. Forecasting models projected volume against per-request cost to predict the bill at scale, which sometimes reveals that an approach affordable in a pilot becomes untenable in production. Cost is therefore designed in from the start, never bolted on after the first surprising statement arrives."
+      ],
+      "keyPoints": [
+        "The model call, not the CPU, is the scarce and costly unit",
+        "Use async handling, queues, and rate limits for concurrency",
+        "Design graceful degradation and multi-provider fallback deliberately",
+        "Cache, batch, trim prompts, and route by task to cut cost",
+        "Instrument cost by feature and customer with budgets and alerts"
+      ],
+      "example": "A high-traffic chatbot caches answers to frequent questions, routes routine queries to a small model, and escalates only complex threads to a frontier model. An async queue smooths bursts, and if the primary provider returns errors the orchestrator retries against a secondary provider. A dashboard attributes daily token cost per customer, and an alert fires when any account exceeds twice its rolling average.",
+      "summary": "Scale AI systems by treating the model call as the scarce resource, designing async handling and graceful degradation, and controlling cost continuously through caching, routing, and per-feature spend visibility."
+    },
+    {
+      "order": 6,
+      "title": "Security, Privacy, and Responsible AI",
+      "objectives": [
+        "Identify AI-specific threats including prompt injection and data leakage",
+        "Apply defence-in-depth controls across the data and model layers",
+        "Embed privacy, governance, and responsible-AI practices into the design"
+      ],
+      "body": [
+        "AI systems inherit every traditional security concern and add new ones. Prompt injection is the signature threat: malicious instructions hidden in user input or in retrieved documents attempt to override the system's intended behaviour. Because a language model cannot perfectly distinguish trusted instructions from untrusted content, the architecture must enforce separation through design. That means keeping system instructions apart from user and retrieved text, constraining what tools a model may call, validating outputs before acting on them, and never granting a model more privilege than the task requires.",
+        "Data leakage is the second major risk. Sensitive information can escape through prompts sent to external providers, through logs that capture personal data, or through a model surfacing one user's content to another. Defence-in-depth answers this with layered controls: mask or tokenise sensitive fields before they reach a model, scope retrieval to data the requesting user is authorised to see, encrypt data in transit and at rest, and scrub logs of personal information. No single control is sufficient, so the architect assumes any one layer may fail and ensures another stands behind it.",
+        "Privacy and governance turn legal obligations into engineering requirements. The system honours data residency rules, supports deletion and retention policies, and records the lawful basis for processing personal data. A clear data inventory tracks what information enters the AI layer, where it travels, and who can access it. When external providers are involved, contractual terms about training on customer data and about retention become part of the architecture review, because a provider quietly retaining prompts can violate the very policies the system was built to uphold.",
+        "Responsible AI extends security into fairness, transparency, and accountability. The architecture supports human oversight of consequential decisions, logs enough context to explain why an output was produced, and includes monitoring for harmful or biased outputs. Content filtering screens both inputs and outputs against policy. These measures are not optional polish; in many domains they are regulatory requirements, and in all domains they protect users and the organisation's reputation. A secure, private, and responsible design is therefore woven through every layer rather than added as a final checkbox."
+      ],
+      "keyPoints": [
+        "Prompt injection is mitigated by separating instructions from content",
+        "Grant models least privilege and validate outputs before acting",
+        "Prevent leakage with masking, scoped retrieval, encryption, and log scrubbing",
+        "Encode data residency, retention, and lawful basis into the design",
+        "Review provider terms on data retention and training",
+        "Build in human oversight, logging, and content filtering for responsible AI"
+      ],
+      "example": "A healthcare intake assistant tokenises patient identifiers before any text reaches the model, scopes document retrieval to the clinician's assigned patients, and runs both user input and model output through a content filter. Tool access is limited to a read-only records lookup, every interaction is logged without raw personal data, and a clinician approves any drafted clinical note before it is saved.",
+      "summary": "Secure AI architecture separates instructions from untrusted content, applies layered controls against leakage, encodes privacy obligations into the design, and embeds human oversight and monitoring for responsible operation."
+    },
+    {
+      "order": 7,
+      "title": "MLOps, Observability, and Reference Architectures",
+      "objectives": [
+        "Establish deployment, versioning, and monitoring practices for AI systems",
+        "Detect drift and quality regression in production",
+        "Assemble the layers into a coherent end-to-end reference architecture"
+      ],
+      "body": [
+        "Operating an AI system is an ongoing discipline that the practitioner plans for from day one. Prompts, retrieval configurations, and model versions are all artefacts that must be version-controlled and deployed through repeatable pipelines, because a change to any of them can shift behaviour. Promoting changes through staging environments, running the evaluation harness as a gate, and supporting fast rollback turn updates from risky events into routine ones. This applies whether you call a hosted model or operate your own; in both cases the configuration around the model is software that deserves software discipline.",
+        "Observability for AI extends ordinary monitoring with quality and cost dimensions. Beyond latency and error rates, the architecture tracks token usage, retrieval relevance, refusal and fallback rates, and sampled output quality. Tracing follows a single request across every step, so an engineer can see which retrieval, which prompt, and which model produced a given answer. Capturing inputs and outputs, with privacy controls applied, creates the dataset needed to debug failures and to improve the system over time. Without this visibility, an AI system fails silently and slowly.",
+        "Drift and regression are the quiet enemies of a deployed system. The world changes, user behaviour shifts, source documents go stale, and providers update models, any of which can erode quality without throwing an error. The architecture defends against this by rerunning evaluations on a schedule, monitoring distributions of inputs and outputs for unexpected change, and routing a sample of production traffic to human review. Detecting decline early, while it is a tuning problem rather than an incident, is one of the strongest signs of a mature AI operation.",
+        "A reference architecture ties the preceding layers together. A typical design flows from a client through an API gateway and orchestration layer into a data layer with vector and keyword stores, out to one or more model endpoints behind a provider abstraction, and back, with caching, security controls, and observability cutting across every layer. Drawing this picture explicitly lets a team reason about failure modes, scaling limits, and security boundaries as a whole. The practitioner adapts the template to each context, but the recurring shape gives a reliable starting point for designing scalable, cost-aware, and secure AI systems end to end."
+      ],
+      "keyPoints": [
+        "Version and deploy prompts, retrieval config, and model versions as software",
+        "Gate releases with the evaluation harness and support fast rollback",
+        "Extend observability with token, retrieval, and output-quality metrics",
+        "Trace each request across every step for debugging",
+        "Schedule re-evaluation and traffic sampling to catch drift early",
+        "Use a layered reference architecture as an adaptable starting template"
+      ],
+      "example": "A production assistant stores prompts and retrieval settings in version control and ships them through a pipeline that blocks release unless the evaluation harness passes. Distributed tracing links each answer to its retrieval, prompt, and model version. A nightly job replays a benchmark set and a weekly job sends a traffic sample to reviewers, so when a provider model update lowers scores the team rolls back within hours rather than discovering the problem from customer complaints.",
+      "summary": "Mature AI operations version and gate every change, observe quality and cost alongside reliability, watch for drift, and assemble the layers into a coherent reference architecture that can be reasoned about as a whole."
+    }
+  ],
+  "questions": [
+    {
+      "text": "Why should AI architecture work begin with measurable requirements rather than choosing a model first?",
+      "options": [
+        "Because measurable targets for latency, accuracy, and cost let the team verify the system and drive every later decision",
+        "Because the newest model is always the correct starting point regardless of the use case",
+        "Because requirements are only needed for regulatory audits and nothing else",
+        "Because model choice cannot influence latency or cost in any architecture"
+      ],
+      "correctIndex": 0,
+      "explanation": "Requirements expressed as measurable, testable targets define what the system must achieve and shape the data layer, model selection, and deployment together. Starting from a model is guesswork until those targets exist."
+    },
+    {
+      "text": "In a RAG pipeline, why is structure-aware chunking with slight overlap preferred over splitting strictly by character count?",
+      "options": [
+        "Because it guarantees the model never needs an embedding step",
+        "Because respecting structure and overlapping boundaries preserves the context a passage needs to stay meaningful",
+        "Because character-based splitting is impossible to implement in practice",
+        "Because overlap eliminates the need for any vector database"
+      ],
+      "correctIndex": 1,
+      "explanation": "Blind character splitting can sever a sentence from the context that explains it, degrading retrieval. Structure-aware chunking with overlap keeps passages coherent so retrieved evidence remains useful."
+    },
+    {
+      "text": "What is the main advantage of combining dense vector search with keyword search and a reranking step?",
+      "options": [
+        "It removes the need to embed the user query",
+        "It allows the system to skip grounding entirely",
+        "It catches exact terms embeddings might miss and orders the most relevant passages into the prompt",
+        "It makes the vector database unnecessary for storage"
+      ],
+      "correctIndex": 2,
+      "explanation": "Hybrid search captures exact-term matches that dense embeddings can overlook, and reranking reorders candidates so the most relevant passages reach the model, improving grounding."
+    },
+    {
+      "text": "When is task-level model routing most valuable in an AI architecture?",
+      "options": [
+        "When you want to send every request to the largest available model",
+        "When you want to route easy high-volume tasks to small models and reserve large models for hard cases to control cost",
+        "When you want to avoid evaluating model quality",
+        "When you want to remove the need for any retrieval layer"
+      ],
+      "correctIndex": 1,
+      "explanation": "Decomposing a workflow and assigning the cheapest capable model to each task, while reserving powerful models for the difficult minority, is among the strongest levers for cutting cost without noticeable quality loss."
+    },
+    {
+      "text": "Which statement best describes the role of an evaluation harness?",
+      "options": [
+        "It is only used once before launch and then discarded",
+        "It replaces the need for any human review of outputs",
+        "It runs candidates against curated test data with known answers and is reused as a regression suite across changes",
+        "It measures only infrastructure uptime and nothing about output quality"
+      ],
+      "correctIndex": 2,
+      "explanation": "The harness scores models on requirement-based metrics using representative inputs, and rerunning it after prompt or provider model changes catches silent quality regressions."
+    },
+    {
+      "text": "Why does an agentic workflow require explicit guardrails such as step limits and approval gates?",
+      "options": [
+        "Because agents are incapable of using any external tools",
+        "Because added autonomy can cause loops, unintended actions, or runaway cost that must be contained",
+        "Because guardrails make a model respond faster",
+        "Because approval gates are only a cosmetic user-interface feature"
+      ],
+      "correctIndex": 1,
+      "explanation": "Agentic autonomy unlocks flexibility but introduces risk of looping, unintended actions, and cost overruns, so limits, approval gates, restricted permissions, and logging keep behaviour safe and grant only the autonomy a task needs."
+    },
+    {
+      "text": "In AI systems, why is the model call treated as the scarce, costly unit when planning for scalability?",
+      "options": [
+        "Because model endpoints are usually the bottleneck and bill per token, unlike inexpensive CPU cycles",
+        "Because CPU cycles are always more expensive than model calls",
+        "Because model calls never fail and need no fallback",
+        "Because scalability concerns do not apply to AI systems at all"
+      ],
+      "correctIndex": 0,
+      "explanation": "The expensive, rate-limited resource is the model endpoint, so architects design async handling, queuing, and graceful degradation around it rather than around ordinary compute."
+    },
+    {
+      "text": "What is the recommended architectural defence against prompt injection?",
+      "options": [
+        "Trusting all retrieved documents because they come from internal sources",
+        "Giving the model maximum tool privileges to handle any instruction",
+        "Separating system instructions from user and retrieved content, limiting tool access, and validating outputs before acting",
+        "Disabling logging so attackers cannot study the system"
+      ],
+      "correctIndex": 2,
+      "explanation": "Because a model cannot perfectly tell trusted instructions from untrusted content, the architecture enforces separation, applies least privilege to tools, and validates outputs before any action."
+    },
+    {
+      "text": "Which combination of controls best reduces the risk of sensitive data leakage in an AI system?",
+      "options": [
+        "Sending all raw data to external providers and hoping logs stay private",
+        "Masking sensitive fields, scoping retrieval to authorised data, encrypting data, and scrubbing logs as layered defences",
+        "Relying on a single encryption setting as the only control",
+        "Removing all monitoring so no data is ever captured"
+      ],
+      "correctIndex": 1,
+      "explanation": "Defence-in-depth assumes any one layer may fail, so masking, permission-scoped retrieval, encryption, and log scrubbing work together to prevent leakage through prompts, logs, or cross-user exposure."
+    },
+    {
+      "text": "Why does a mature AI operation schedule re-evaluation and sample production traffic for human review?",
+      "options": [
+        "To detect drift and quality regression early, before they become customer-facing incidents",
+        "To eliminate the need for version control of prompts",
+        "To increase token cost intentionally",
+        "Because production traffic cannot be traced any other way"
+      ],
+      "correctIndex": 0,
+      "explanation": "Stale data, shifting behaviour, and provider model updates can erode quality without raising errors, so scheduled evaluations and traffic sampling surface decline while it is still a tuning problem rather than an incident."
+    }
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of Microsoft 365 Copilot for HR",
+      "objectives": [
+        "Explain how Copilot connects generative AI to your work data through the Microsoft Graph",
+        "Identify where Copilot appears across Word, Excel, Outlook, Teams, and PowerPoint",
+        "Describe the boundaries of what Copilot can and cannot access in an HR context"
+      ],
+      "body": [
+        "Microsoft 365 Copilot is an AI assistant woven into the apps HR teams already use every day. Rather than living in a separate window, it sits inside Word, Excel, Outlook, Teams, and PowerPoint, drawing on a large language model and the content you can already reach through your organization. For an HR practitioner this means you can ask for a draft policy, a summary of a long thread, or a chart of attrition trends without leaving the document you are working in. Understanding this design helps you set realistic expectations about what the tool will and will not do.",
+        "A key idea is grounding. Copilot combines the reasoning ability of the language model with relevant content from your tenant, retrieved through the Microsoft Graph. When you ask about a hiring report, it can pull from files, emails, and chats that your account already has permission to open. It does not invent access. If you cannot see a confidential compensation file, Copilot cannot use it on your behalf either. This permission inheritance is the foundation of responsible HR use.",
+        "Copilot works through prompts, which are the instructions you type in natural language. A clear prompt names the task, the audience, the tone, and any source material. HR work rewards specificity because the subject matter is sensitive and often regulated. A vague request produces a generic draft, while a precise one produces something closer to publishable. Throughout this course you will practise writing prompts that protect employee dignity and reflect your organization policies.",
+        "Finally, Copilot is an assistant, not a decision maker. It accelerates drafting, analysis, and summarizing, but a qualified HR professional must review every output before it reaches a candidate, an employee, or a regulator. Treating Copilot as a fast first-draft partner, rather than an authority, keeps you in control of accuracy, fairness, and compliance. The modules that follow build practical skills on top of this mindset."
+      ],
+      "keyPoints": [
+        "Copilot is embedded directly inside the core Microsoft 365 apps",
+        "Outputs are grounded in tenant content retrieved through the Microsoft Graph",
+        "Copilot inherits your existing permissions and cannot reach data you cannot see",
+        "Clear, specific prompts produce better and safer HR drafts",
+        "Every output requires human review before it is used in a decision or communication"
+      ],
+      "example": "An HR coordinator opens Word and types a prompt asking Copilot to draft a remote-work guideline based on an existing policy document, then reviews and edits the result for accuracy.",
+      "summary": "Microsoft 365 Copilot is an embedded AI assistant grounded in your permitted work data; it speeds up HR drafting and analysis but always requires professional review."
+    },
+    {
+      "order": 2,
+      "title": "Writing Job Descriptions and Policies in Word",
+      "objectives": [
+        "Use Copilot to draft and refine job descriptions from a short brief",
+        "Generate and update HR policy documents while preserving organizational voice",
+        "Apply review techniques that catch inaccurate or non-inclusive language"
+      ],
+      "body": [
+        "Word is where much HR writing happens, and Copilot can produce a strong first draft from a brief prompt. To create a job description, you might describe the role title, the team, the seniority, and a few must-have skills, then ask Copilot to draft a structured posting. The result typically includes a summary, responsibilities, and qualifications. Your job is then to verify that every requirement is genuinely needed and that the language welcomes a broad range of qualified applicants rather than narrowing the pool unnecessarily.",
+        "Copilot can also rewrite existing material. If you paste an older policy and ask for a clearer, plain-language version, it will simplify dense sentences while keeping the substance. You can reference a file directly so that the new draft reflects your established tone and terminology. This is useful when you are refreshing an employee handbook section or aligning several documents to a single style. Always confirm that legal or regulatory wording has not been softened in a way that changes its meaning.",
+        "Inclusive language matters in both job ads and policies. You can ask Copilot to flag wording that may discourage certain groups, such as unnecessary jargon or gendered terms, and suggest neutral alternatives. Treat these suggestions as prompts for your own judgement, not as a guarantee of compliance. Bias can be subtle, and a human reviewer who knows the organization and its legal context remains essential to producing fair, defensible documents.",
+        "A practical workflow is to draft, then interrogate. After Copilot produces a job description, ask it to list the assumptions it made, or to highlight requirements that might exclude capable candidates. This turns the tool into a thinking partner. You stay accountable for the final wording, but the back-and-forth helps surface issues you might otherwise miss when writing alone under time pressure."
+      ],
+      "keyPoints": [
+        "A short, specific brief yields a structured job description draft",
+        "Copilot can rewrite existing policies into plainer language using a referenced file",
+        "Always verify that regulatory or legal wording keeps its original meaning",
+        "Ask Copilot to flag potentially exclusionary or biased phrasing",
+        "Drafting then interrogating the output surfaces hidden assumptions",
+        "The HR professional remains accountable for the final fair and accurate text"
+      ],
+      "example": "A recruiter gives Copilot a three-line brief for a junior data analyst role and asks it to draft an inclusive job posting, then requests a list of any requirements that might unnecessarily exclude entry-level applicants.",
+      "summary": "Copilot drafts and refines job descriptions and policies quickly, but the HR writer must verify accuracy, legal meaning, and inclusive language before publishing."
+    },
+    {
+      "order": 3,
+      "title": "HR Analytics and Reporting in Excel",
+      "objectives": [
+        "Use Copilot to analyze HR datasets and surface trends in Excel",
+        "Generate formulas, summaries, and visualizations from natural-language requests",
+        "Interpret AI-produced analysis critically before sharing conclusions"
+      ],
+      "body": [
+        "Excel is the home of HR metrics such as headcount, turnover, time-to-hire, and engagement scores. Copilot lets you ask questions of a table in plain language, for example requesting a breakdown of attrition by department or a trend over the last four quarters. It can suggest formulas, create PivotTable-style summaries, and add charts. This lowers the barrier for HR professionals who understand their people data but are not spreadsheet experts, letting them move from raw numbers to insight more quickly.",
+        "To work well, Copilot needs clean, well-structured data. Information should sit in a formatted table with clear column headers and consistent values. If categories are spelled inconsistently or dates are stored as text, the analysis will be unreliable. Part of being a Copilot-capable analyst is preparing data so the tool can reason about it. A few minutes tidying headers and removing stray blank rows often makes the difference between a useful answer and a confusing one.",
+        "Copilot can explain what it did, which is valuable for trust. You can ask how a number was calculated or which rows were included, and use that explanation to sanity-check the result against your own knowledge. Numbers about people carry weight, so never present a Copilot figure to leadership without confirming it makes sense. AI can misread an ambiguous column or apply a filter you did not intend, and a confident-looking chart can still be wrong.",
+        "Beyond calculation, Copilot helps with narrative. After producing a summary, you can ask it to describe the main story in a few sentences suitable for a report. This is a strong use case because it converts analysis into communication. Still, the interpretation belongs to you. Correlation in an HR dataset rarely proves cause, and the responsible analyst frames findings carefully rather than letting the tool overstate what the data can support."
+      ],
+      "keyPoints": [
+        "Copilot answers plain-language questions about HR tables and builds charts",
+        "Clean, well-structured data with clear headers is essential for reliable output",
+        "Ask Copilot to explain its calculations so you can verify them",
+        "Never share a people metric with leadership without sanity-checking it",
+        "Copilot can draft a narrative summary, but interpretation stays with you",
+        "Avoid letting AI overstate causation in sensitive workforce data"
+      ],
+      "example": "An HR analyst asks Copilot in Excel to chart voluntary turnover by tenure band for the past year, then asks it to explain which rows it counted before sharing the finding in a leadership update.",
+      "summary": "Copilot turns HR spreadsheets into trends, charts, and narratives, but reliable insight depends on clean data and careful human verification of every figure."
+    },
+    {
+      "order": 4,
+      "title": "Building Onboarding and Training Decks in PowerPoint",
+      "objectives": [
+        "Generate onboarding and training presentations from documents or prompts",
+        "Refine slide structure, tone, and visuals to match your audience",
+        "Ensure presented content is accurate, current, and accessible"
+      ],
+      "body": [
+        "Onboarding decks and training materials are time-consuming to build from scratch. Copilot in PowerPoint can create a starter presentation from a prompt describing the topic and audience, or transform an existing Word document such as an onboarding guide into a structured slide deck. This is especially helpful for HR teams who repeatedly produce orientation content for new hires and want a consistent, professional starting point they can then tailor.",
+        "Once a draft deck exists, Copilot helps you shape it. You can ask it to condense a wordy slide into bullet points, add a slide that summarizes key benefits, or adjust the tone to feel warmer and more welcoming for first-day nerves. Because new employees form early impressions from these materials, attention to clarity and friendliness pays off. You remain the designer of the experience, using Copilot to iterate faster rather than to replace your understanding of what new joiners need.",
+        "Accuracy is critical in onboarding because new hires take the content as authoritative. Details about benefits, pay dates, leave policies, and compliance training must be current and correct. Copilot may pull from an older document or generalize, so verify every factual claim against the latest official source. An attractive slide that states the wrong enrollment deadline can create real frustration and erode trust in HR during a crucial first week.",
+        "Accessibility deserves deliberate attention. You can ask Copilot to suggest concise alt text for images or to simplify language for a broad audience, but you should still check contrast, reading order, and clarity. Inclusive onboarding materials respect employees with different needs and reflect well on the organization. Treat AI suggestions as a helpful starting point and apply your own accessibility standards before finalizing the deck."
+      ],
+      "keyPoints": [
+        "Copilot creates starter decks from prompts or from existing Word documents",
+        "It can condense slides, add summaries, and adjust tone for new hires",
+        "Verify every benefit, policy, and date against the latest official source",
+        "New employees treat onboarding content as authoritative, so accuracy is vital",
+        "Use Copilot for alt text and plain language, then apply your own accessibility checks"
+      ],
+      "example": "An HR specialist points Copilot at an onboarding handbook in Word and asks it to build a ten-slide welcome deck, then refines the tone and verifies the benefits-enrollment deadline before delivery.",
+      "summary": "Copilot accelerates onboarding and training deck creation from documents or prompts, while the HR professional ensures the content is accurate, welcoming, and accessible."
+    },
+    {
+      "order": 5,
+      "title": "Interview, Recruitment, and Communication Support",
+      "objectives": [
+        "Use Copilot to prepare interview questions and candidate communications",
+        "Summarize email threads and draft replies in Outlook and Teams",
+        "Maintain professionalism and fairness across recruitment touchpoints"
+      ],
+      "body": [
+        "Recruitment generates a high volume of communication, and Copilot can lighten the load across Outlook and Teams. From a job description you can ask it to draft a set of structured interview questions tied to the role competencies, giving interviewers a consistent foundation. Consistency matters for fairness, because asking comparable questions of every candidate reduces the influence of unstructured impressions. You then refine the questions to suit your context and remove any that probe protected characteristics.",
+        "In Outlook, Copilot can summarize a long candidate thread so you quickly grasp where a conversation stands, and it can draft replies such as interview invitations, follow-ups, or respectful declines. A good practice is to provide the tone you want, for example warm and concise, and the key facts, then let Copilot assemble the message. You read every draft carefully before sending, especially rejection emails, where wording must be considerate and free of anything that could be read as discriminatory.",
+        "Teams is where much hiring coordination happens through chats and meetings. Copilot can recap a meeting or thread so a hiring panel aligns on next steps without re-reading everything. This helps distributed teams move faster and keeps decisions documented. As always, treat the recap as a draft record; confirm that it captured commitments accurately and that any sensitive candidate details are shared only with people who should have them.",
+        "Fairness is the throughline of recruitment support. Copilot can help you phrase feedback objectively and focus on job-relevant criteria, but it cannot guarantee an unbiased process on its own. The responsible recruiter uses the tool to standardize and speed routine communication while personally safeguarding equal treatment, candidate privacy, and a positive experience for everyone, including those who are not selected."
+      ],
+      "keyPoints": [
+        "Copilot drafts structured, competency-based interview questions for consistency",
+        "It summarizes candidate threads and drafts invitations, follow-ups, and declines",
+        "Always review rejection and feedback wording for tone and non-discrimination",
+        "Teams recaps help panels align but must be checked for accuracy and confidentiality",
+        "Structured, comparable questions support fairer hiring decisions",
+        "The recruiter remains responsible for equal treatment and candidate privacy"
+      ],
+      "example": "A hiring manager asks Copilot to turn a job description into eight structured interview questions, then uses Outlook Copilot to draft a warm, concise interview invitation that they review before sending.",
+      "summary": "Copilot streamlines interview prep and recruitment communication in Outlook and Teams, while the recruiter safeguards fairness, tone, and candidate privacy throughout."
+    },
+    {
+      "order": 6,
+      "title": "Privacy, Data Protection, and Responsible Use of Employee Data",
+      "objectives": [
+        "Explain how Copilot handles permissions and confidentiality with HR data",
+        "Apply principles of data minimization and purpose limitation when prompting",
+        "Recognize what should never be entered or relied upon in AI workflows"
+      ],
+      "body": [
+        "HR data is among the most sensitive in any organization, covering compensation, health, performance, and personal identifiers. Copilot respects the access controls already in place, meaning it only surfaces content the prompting user is permitted to see. This is reassuring, but it places responsibility on the organization to manage permissions well. Over-shared files become discoverable through Copilot, so good information governance and Copilot readiness go hand in hand. As an HR user you should understand who can see what before relying on AI summaries.",
+        "Data minimization is a guiding principle. When you craft a prompt, include only the information necessary for the task. Rather than pasting an entire employee record to ask a narrow question, supply the specific fields that matter. This reduces the chance of sensitive details spreading into drafts, chats, or documents where they do not belong. Purpose limitation follows naturally: use employee data only for the legitimate HR purpose for which it was collected, not for unrelated experiments with the tool.",
+        "Certain content should never enter casual AI workflows or be treated as a system of record. Highly sensitive matters such as disciplinary investigations, medical accommodations, or legal disputes demand careful, often offline handling guided by policy and counsel. Even where Copilot could technically help, the prudent choice is to keep such material within tightly controlled processes. Knowing where to stop is as important a skill as knowing how to prompt.",
+        "Regulations such as data protection laws impose duties around consent, retention, and the rights of individuals. Copilot does not absolve HR of these duties. You should align AI-assisted work with your privacy notices and retention schedules, and be ready to explain how a decision was reached if asked. Responsible use means combining the convenience of the tool with the discipline that employee trust and the law both require."
+      ],
+      "keyPoints": [
+        "Copilot only surfaces data the user already has permission to access",
+        "Strong permission and file-sharing hygiene is a prerequisite for safe use",
+        "Practise data minimization by including only necessary fields in prompts",
+        "Use employee data solely for its original, legitimate HR purpose",
+        "Keep investigations, medical, and legal matters out of casual AI workflows",
+        "AI assistance does not remove HR duties under data protection law"
+      ],
+      "example": "Instead of pasting a full personnel file, an HR partner asks Copilot to summarize only the three performance-review comments they copied in, keeping unrelated personal data out of the prompt.",
+      "summary": "Copilot inherits your permissions but not your legal duties; responsible HR use depends on good governance, data minimization, purpose limitation, and knowing what to keep out of AI."
+    },
+    {
+      "order": 7,
+      "title": "Fairness, Bias, and Governance in AI-Assisted HR",
+      "objectives": [
+        "Identify where bias can enter AI-assisted HR processes and how to mitigate it",
+        "Establish review, transparency, and accountability practices for Copilot use",
+        "Build a responsible-use framework that supports compliant, ethical HR work"
+      ],
+      "body": [
+        "Bias in HR has serious consequences, and AI can either reduce or amplify it. Language models learn from large bodies of text that carry historical patterns, so an unreviewed output may reflect stereotypes in subtle ways, such as the tone of feedback or the framing of a job ad. The mitigation is not to avoid the tool but to pair it with deliberate human oversight. Reviewing for bias, testing prompts for skewed results, and inviting diverse perspectives all strengthen fairness in AI-assisted work.",
+        "Transparency builds trust with employees and candidates. People generally accept that organizations use modern tools, but they expect honesty about how. Being clear that Copilot assisted in drafting a communication, while a person made the decision, sets the right expectation. Avoid letting AI make or appear to make consequential people decisions such as hiring, promotion, or termination. Those judgments must rest with accountable humans who can explain and defend their reasoning.",
+        "Governance turns good intentions into consistent practice. A simple internal framework might define approved use cases, require human review before any AI-assisted output reaches an employee, prohibit entering certain sensitive data, and name who is accountable. Training the HR team on these rules matters as much as the rules themselves. When everyone understands the boundaries, the organization captures Copilot productivity gains without drifting into risky or unfair behaviour.",
+        "Finally, responsible adoption is iterative. As tools evolve and laws develop, revisit your practices, gather feedback from the HR team, and update guidance. Keep a record of how AI is used in key processes so you can answer questions from auditors, regulators, or employees. The most successful HR teams treat Copilot as a powerful assistant operating within clear guardrails, combining efficiency with the fairness and accountability that define good people practice."
+      ],
+      "keyPoints": [
+        "AI can amplify historical bias, so deliberate human review is essential",
+        "Test prompts and outputs for skewed or stereotyped language",
+        "Be transparent that AI assisted while a person made the decision",
+        "Never let Copilot make consequential hiring, promotion, or termination calls",
+        "A governance framework defines approved uses, review steps, and accountability",
+        "Revisit practices as tools and regulations evolve, and keep usage records"
+      ],
+      "example": "Before posting a role, an HR lead asks Copilot to check the draft for biased or exclusionary language, has a diverse colleague review it too, and documents that a human approved the final wording.",
+      "summary": "Fair, accountable HR requires pairing Copilot with bias review, transparency, and a clear governance framework so AI assists people decisions without ever making them."
+    }
+  ],
+  "questions": [
+    {
+      "text": "How does Microsoft 365 Copilot determine which organizational content it can use to ground an HR response?",
+      "options": [
+        "It can access all files in the tenant regardless of the user",
+        "It inherits the existing permissions of the user making the request",
+        "It only uses content the IT administrator manually approves each time",
+        "It relies solely on the public internet for grounding"
+      ],
+      "correctIndex": 1,
+      "explanation": "Copilot retrieves content through the Microsoft Graph and only surfaces information the prompting user already has permission to access, so it cannot reach data the user cannot see."
+    },
+    {
+      "text": "What is the most important reason an HR professional must review every Copilot output?",
+      "options": [
+        "Copilot is an assistant, and a human stays accountable for accuracy, fairness, and compliance",
+        "Copilot charges extra for unreviewed documents",
+        "Reviewing makes the document load faster",
+        "Outputs cannot be edited once generated"
+      ],
+      "correctIndex": 0,
+      "explanation": "Copilot accelerates drafting and analysis but is not a decision maker; a qualified professional must verify accuracy, fairness, and compliance before any output is used."
+    },
+    {
+      "text": "When drafting a job description in Word, what should you do after Copilot produces the draft?",
+      "options": [
+        "Publish it immediately to save time",
+        "Verify each requirement is genuinely needed and check for exclusionary language",
+        "Remove all qualifications to broaden the pool",
+        "Assume the inclusive-language check guarantees legal compliance"
+      ],
+      "correctIndex": 1,
+      "explanation": "The HR writer must confirm every requirement is necessary and review for biased or exclusionary phrasing, since AI suggestions support but do not replace human judgement on fairness."
+    },
+    {
+      "text": "What condition most directly improves the reliability of Copilot analysis in Excel?",
+      "options": [
+        "Using as many colors as possible in the sheet",
+        "Storing all dates as free text",
+        "Clean, well-structured data with clear headers and consistent values",
+        "Hiding the column headers from view"
+      ],
+      "correctIndex": 2,
+      "explanation": "Copilot reasons best over clean, formatted tables with clear headers and consistent values; messy or inconsistent data produces unreliable results."
+    },
+    {
+      "text": "Before sharing a Copilot-generated turnover figure with leadership, an analyst should:",
+      "options": [
+        "Trust it because the chart looks professional",
+        "Ask Copilot to explain its calculation and sanity-check the result",
+        "Delete the underlying data first",
+        "Round the number to make it look cleaner"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI can misread an ambiguous column or apply an unintended filter, so the analyst should have Copilot explain how the number was produced and verify it makes sense."
+    },
+    {
+      "text": "Why is verifying factual details especially critical in onboarding decks built with Copilot?",
+      "options": [
+        "Because new hires treat the content as authoritative and act on it",
+        "Because PowerPoint cannot display text correctly otherwise",
+        "Because onboarding slides are never edited again",
+        "Because Copilot refuses to generate dates"
+      ],
+      "correctIndex": 0,
+      "explanation": "New employees take onboarding content as authoritative, so an incorrect benefit detail or deadline can cause real problems and erode trust in HR during a critical first week."
+    },
+    {
+      "text": "How does using Copilot to create structured interview questions support fairness?",
+      "options": [
+        "It guarantees a fully unbiased hiring process automatically",
+        "It lets interviewers skip preparation entirely",
+        "It promotes asking comparable, competency-based questions of every candidate",
+        "It hides candidate names from the panel"
+      ],
+      "correctIndex": 2,
+      "explanation": "Consistent, competency-based questions asked of all candidates reduce the influence of unstructured impressions, though the recruiter still safeguards overall fairness."
+    },
+    {
+      "text": "Which practice best reflects data minimization when prompting Copilot with employee data?",
+      "options": [
+        "Pasting an entire personnel file to be safe",
+        "Including only the specific fields the task requires",
+        "Sharing the data in a public channel for convenience",
+        "Adding extra personal details Copilot did not request"
+      ],
+      "correctIndex": 1,
+      "explanation": "Data minimization means including only the information necessary for the task, which limits sensitive details from spreading into drafts, chats, or documents."
+    },
+    {
+      "text": "Which type of matter should generally be kept out of casual Copilot workflows?",
+      "options": [
+        "A routine draft of a welcome email",
+        "A list of standard interview questions",
+        "An active disciplinary investigation or medical accommodation case",
+        "A general headcount summary"
+      ],
+      "correctIndex": 2,
+      "explanation": "Highly sensitive matters such as investigations, medical accommodations, and legal disputes require controlled, policy-guided handling and should not enter casual AI workflows."
+    },
+    {
+      "text": "What is a core element of a responsible governance framework for Copilot in HR?",
+      "options": [
+        "Allowing Copilot to make final hiring and termination decisions",
+        "Requiring human review before AI-assisted output reaches an employee",
+        "Avoiding any record of how AI is used",
+        "Letting each person set their own private rules"
+      ],
+      "correctIndex": 1,
+      "explanation": "A sound framework defines approved uses, requires human review before output reaches employees, restricts sensitive data, and assigns accountability, while keeping consequential decisions with people."
+    }
+  ]
+}

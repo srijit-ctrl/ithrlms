@@ -12,6 +12,7 @@ const store = require('./store');
 const tutor = require('./tutor/tutor');
 const { LANGUAGES } = require('./tutor/languages');
 const llm = require('./tutor/llm');
+const tts = require('./tutor/tts');
 
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'ithr-lms-dev-secret-change-me';
@@ -337,6 +338,7 @@ app.get('/api/courses/:slug/tutor', auth, (req, res) => {
     greeting: tutor.buildGreeting(profile),
     languages: LANGUAGES,
     llm: { provider: llm.activeProvider() },
+    tts: { provider: tts.ttsProvider() },
   });
 });
 
@@ -366,7 +368,7 @@ app.post('/api/tutor/chat', auth, async (req, res) => {
 
 // ---------- health check (for host uptime probes) ----------
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', courses: store.listCourses().length, llm: llm.activeProvider(), time: new Date().toISOString() });
+  res.json({ status: 'ok', courses: store.listCourses().length, llm: llm.activeProvider(), tts: tts.ttsProvider(), time: new Date().toISOString() });
 });
 
 // Streaming tutor chat: writes the reply token-by-token for an instant feel.
@@ -465,6 +467,18 @@ app.get('/api/admin/jobs/:id/applications', auth, requireAdmin, (req, res) => {
 });
 app.get('/api/admin/applications', auth, requireAdmin, (req, res) => {
   res.json(store.listApplications(null));
+});
+
+// Premium text-to-speech (returns audio when a provider key is set; 501 otherwise so the UI uses the browser voice).
+app.post('/api/tts', auth, async (req, res) => {
+  const { text } = req.body || {};
+  if (!text || !String(text).trim()) return res.status(400).json({ error: 'text is required' });
+  if (tts.ttsProvider() === 'none') return res.status(501).json({ error: 'No premium TTS provider configured' });
+  const out = await tts.synthesize({ text });
+  if (!out) return res.status(502).json({ error: 'TTS generation failed' });
+  res.setHeader('Content-Type', out.contentType);
+  res.setHeader('Cache-Control', 'no-store');
+  res.send(out.buffer);
 });
 
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');

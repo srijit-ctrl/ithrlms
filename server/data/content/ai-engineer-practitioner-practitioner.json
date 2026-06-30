@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Building Reliable Data Pipelines for ML",
+      "objectives": [
+        "Describe the stages of an ML data pipeline from ingestion to feature delivery",
+        "Explain why data versioning and validation are essential to reproducibility",
+        "Identify common data quality failures that silently degrade model performance"
+      ],
+      "body": [
+        "Every production machine learning system rests on a data pipeline that moves raw records from source systems into a form models can consume. A typical pipeline ingests data from databases, event streams, or files, then cleans, joins, and transforms it into features. Because models learn statistical patterns directly from this data, the pipeline is not plumbing you can ignore. Poorly handled nulls, inconsistent units, or duplicated rows propagate straight into model behavior. Treating the pipeline as a first-class engineering artifact, with tests and ownership, is what separates a demo from a dependable service.",
+        "Reproducibility is the discipline that lets you rebuild the exact dataset used to train a given model months later. This requires versioning data alongside code. Tools such as DVC or LakeFS snapshot datasets and tie them to a commit, so an experiment can be replayed precisely. Without versioning, you cannot diagnose why a retrained model behaves differently, because the input may have shifted underneath you. Capturing the schema, row counts, and a content hash at each run turns vague debugging into a concrete comparison between two known states of the world.",
+        "Data validation acts as a contract between the pipeline and the model. Frameworks like Great Expectations or TensorFlow Data Validation assert that columns exist, types match, value ranges hold, and category sets stay stable. When an upstream team renames a field or starts emitting nulls, validation fails loudly at ingestion rather than producing a quietly worse model weeks later. The goal is to fail fast and visibly, because a broken pipeline that still returns numbers is more dangerous than one that stops outright and pages an engineer.",
+        "Feature engineering converts validated raw data into the numeric and categorical signals a model actually trains on. Engineers must guard against leakage, where information unavailable at prediction time sneaks into training features and inflates offline scores. A common cause is computing aggregates over the full dataset, including future rows, before splitting into train and test. Disciplined pipelines compute features using only data that would exist at the moment of prediction, and they materialize the same logic for both training and serving to avoid training-serving skew."
+      ],
+      "keyPoints": [
+        "A data pipeline ingests, cleans, transforms, and delivers features for training and serving",
+        "Version data with the same rigor as code so any model run can be reproduced",
+        "Validation contracts catch schema and distribution changes before they corrupt models",
+        "Data leakage uses information unavailable at prediction time and fakes good offline results",
+        "Training-serving skew arises when feature logic differs between training and production"
+      ],
+      "example": "A fraud team builds a pipeline that joins transaction events with account history. They use DVC to snapshot each daily dataset and Great Expectations to assert that the amount column is always positive and the country code is one of a known set. When an upstream change starts sending amounts in cents instead of dollars, validation fails at ingestion and blocks the bad data from ever reaching the training job.",
+      "summary": "A trustworthy ML system begins with a versioned, validated, leakage-free data pipeline that delivers identical feature logic to both training and serving."
+    },
+    {
+      "order": 2,
+      "title": "Training Models from Scratch vs Fine-Tuning",
+      "objectives": [
+        "Define training from scratch and fine-tuning and contrast their data and compute needs",
+        "Explain transfer learning and when adapting a pretrained model is preferable",
+        "Choose between full fine-tuning and parameter-efficient methods for a given budget"
+      ],
+      "body": [
+        "Training from scratch means initializing a model with random weights and learning every parameter from your own labeled data. It gives you full control over architecture and behavior, but it demands large, well-labeled datasets and substantial compute, because the model must learn even basic structure of the domain from nothing. Training from scratch is justified when no suitable pretrained model exists, when the data is highly proprietary, or when the input modality is unusual. For most teams it is the expensive last resort rather than the default starting point.",
+        "Fine-tuning starts from a model that was already trained on a large general corpus and continues training it on a smaller, task-specific dataset. The pretrained weights already encode useful representations, so the model needs far less data and compute to specialize. This is an application of transfer learning, the idea that knowledge gained on one task transfers to a related one. Fine-tuning a model that understands general language or images, then nudging it toward your narrow task, typically beats training from scratch on both cost and final accuracy when relevant pretrained models are available.",
+        "The two approaches differ sharply in their requirements. From-scratch training may need millions of examples and many GPU-days, while fine-tuning can succeed with thousands of examples and hours of compute. The risk profiles differ too. Fine-tuning can suffer catastrophic forgetting, where the model loses general capability as it overfits the new task, so practitioners often use low learning rates and freeze early layers. From-scratch training avoids inherited bias from the base model but offers no head start and far more ways to fail.",
+        "Parameter-efficient fine-tuning has become the practical middle ground for large models. Instead of updating all weights, methods such as LoRA inject small trainable matrices while keeping the original parameters frozen. This slashes memory and storage cost, lets you keep many task-specific adapters around one shared base model, and reduces forgetting. When deciding, weigh dataset size, compute budget, how far the task is from the base model, and whether you must host many specialized variants. For most intermediate teams, parameter-efficient fine-tuning is the sensible default."
+      ],
+      "keyPoints": [
+        "Training from scratch learns all weights from random initialization and needs large data and compute",
+        "Fine-tuning continues training a pretrained model on task-specific data, a form of transfer learning",
+        "Fine-tuning usually wins on cost and accuracy when a relevant pretrained model exists",
+        "Catastrophic forgetting is the loss of general ability when a model overfits a new task",
+        "Parameter-efficient methods like LoRA tune small added weights and keep the base frozen"
+      ],
+      "example": "A support team needs a classifier for ticket categories. Rather than training a language model from scratch, they take a pretrained transformer and apply LoRA fine-tuning on twelve thousand labeled tickets. Training finishes in two hours on a single GPU, the base weights stay frozen, and they store a small adapter per product line so several teams share one hosted base model.",
+      "summary": "Fine-tuning a pretrained model via transfer learning is usually cheaper and more accurate than training from scratch, with parameter-efficient methods offering the best cost-to-quality tradeoff."
+    },
+    {
+      "order": 3,
+      "title": "Evaluation and Metrics That Reflect Reality",
+      "objectives": [
+        "Select evaluation metrics appropriate to the task and the cost of different errors",
+        "Explain why a single accuracy number can hide serious model failures",
+        "Design train, validation, and test splits that produce honest performance estimates"
+      ],
+      "body": [
+        "Evaluation is the process of measuring how well a model performs against held-out data using metrics that match the real-world objective. The choice of metric is a modeling decision, not an afterthought. Accuracy, the fraction of correct predictions, is misleading on imbalanced data. If only one percent of transactions are fraudulent, a model that always predicts honest scores ninety-nine percent accuracy while catching zero fraud. Engineers must pick metrics that reflect what actually matters, such as the relative cost of false positives versus false negatives.",
+        "For classification, precision measures how many predicted positives are truly positive, while recall measures how many actual positives were found. These trade off against each other, and the F1 score combines them into a single harmonic mean. The ROC curve and its area summarize performance across all thresholds. For regression, mean absolute error and root mean squared error quantify how far predictions land from the truth, with RMSE penalizing large misses more heavily. Choosing among these depends on which errors hurt your users most.",
+        "Honest evaluation requires disciplined data splitting. The training set fits the model, the validation set tunes hyperparameters and guides choices, and the test set is touched only once at the end to estimate real-world performance. Reusing the test set to make decisions leaks information and inflates your estimate. For time-dependent problems, splits must respect chronology so the model is never evaluated on data that precedes its training window, which would let it cheat by seeing the future.",
+        "A single aggregate metric can mask failures concentrated in important subgroups. A model may score well overall yet perform poorly for a minority class, a specific region, or a rare but high-value scenario. Slicing evaluation across meaningful segments reveals these blind spots before users do. Pair offline metrics with online evaluation, such as A/B tests, because offline scores measure prediction quality while online tests measure actual business impact, and the two can diverge in surprising ways."
+      ],
+      "keyPoints": [
+        "Evaluation measures held-out performance with metrics that match the real objective",
+        "Accuracy is misleading on imbalanced data; precision, recall, and F1 give a fuller picture",
+        "Train fits the model, validation tunes choices, and test is used once for an honest estimate",
+        "Time-based problems require chronological splits to prevent the model from seeing the future",
+        "Slice metrics by subgroup and confirm offline gains with online A/B tests"
+      ],
+      "example": "An engineer evaluating a loan-default model sees ninety-four percent accuracy and nearly celebrates, then computes recall and finds the model catches only one in five actual defaults. Switching the headline metric to recall at a fixed precision, and slicing by loan size, exposes that the model fails badly on large loans, which is exactly where errors are most costly.",
+      "summary": "Sound evaluation chooses metrics that reflect real error costs, uses clean train, validation, and test splits, and slices results to surface failures a single number would hide."
+    },
+    {
+      "order": 4,
+      "title": "Deploying Models to Production",
+      "objectives": [
+        "Compare batch, online, and streaming inference patterns and when each fits",
+        "Describe how to package and serve a model behind a stable interface",
+        "Apply safe rollout strategies such as shadow, canary, and blue-green deployment"
+      ],
+      "body": [
+        "Deployment is the act of making a trained model available to produce predictions for real users or systems. There are three common patterns. Batch inference scores large sets of records on a schedule and stores results, which suits recommendations refreshed nightly. Online inference serves predictions synchronously through an API with low latency, which suits fraud checks during checkout. Streaming inference scores events continuously as they arrive. Choosing a pattern depends on latency requirements, request volume, and how fresh the predictions must be.",
+        "Packaging turns a trained model artifact into a deployable, reproducible unit. Engineers export the model, pin its dependencies, and wrap it in a service exposing a stable contract, typically a REST or gRPC endpoint. Containerizing with Docker ensures the same environment runs in development and production, eliminating the classic works-on-my-machine failure. The serving layer must handle input validation, apply the exact same feature transformations used in training, and return predictions with versioning metadata so you always know which model produced a given result.",
+        "Releasing a new model carries risk, so mature teams never flip all traffic at once. Shadow deployment sends real traffic to the new model without using its outputs, letting you compare predictions safely. Canary deployment routes a small percentage of live traffic to the new version and watches metrics before widening. Blue-green keeps the old and new versions running so you can switch instantly and roll back if something breaks. These strategies turn a scary release into a controlled, reversible experiment.",
+        "Serving infrastructure must meet latency and throughput targets under real load. Engineers reduce cost and latency with techniques like batching requests, quantizing weights to lower precision, and caching frequent predictions. Autoscaling adjusts capacity to demand. A clear separation between the model artifact, the feature logic, and the serving runtime keeps the system maintainable, because you can update one without rebuilding the others. Always expose health checks and a model version so operators can reason about what is live."
+      ],
+      "keyPoints": [
+        "Batch, online, and streaming inference fit different latency and freshness needs",
+        "Package models in containers with pinned dependencies for reproducible serving",
+        "Serving must reuse the exact training feature logic to avoid training-serving skew",
+        "Shadow, canary, and blue-green rollouts make releases safe and reversible",
+        "Batching, quantization, caching, and autoscaling control latency and cost at load"
+      ],
+      "example": "A team ships a new recommendation model using a canary rollout. They route five percent of live traffic to the new version inside a Docker container behind a gRPC endpoint, watch click-through and latency for an hour, and only then widen to fifty and a hundred percent. When an early canary shows a latency spike, they roll back instantly without affecting most users.",
+      "summary": "Production deployment means serving a packaged model through the right inference pattern with a stable interface and safe, reversible rollout strategies that protect users."
+    },
+    {
+      "order": 5,
+      "title": "Monitoring, Drift, and Model Decay",
+      "objectives": [
+        "Define data drift and concept drift and explain how each degrades a deployed model",
+        "Set up monitoring for operational health, data quality, and prediction quality",
+        "Design retraining triggers and feedback loops that keep models current"
+      ],
+      "body": [
+        "A model that performs well at launch will not stay that way, because the world it predicts keeps changing. Monitoring is the continuous observation of a live model to detect degradation before it harms users. It spans three layers. Operational monitoring tracks latency, error rates, and throughput. Data monitoring watches the distribution of incoming features. Prediction monitoring tracks the model outputs and, when labels eventually arrive, the actual accuracy. Without all three, a model can fail silently while every server stays green and healthy.",
+        "Drift is the general term for the gap that grows between the data a model was trained on and the data it now sees. Data drift, also called covariate shift, is a change in the distribution of input features, such as a new customer segment with different behavior. Concept drift is a change in the relationship between inputs and the target, so the same inputs now imply a different correct answer. Concept drift is harder to catch because inputs can look normal while the right prediction has quietly changed.",
+        "Detecting drift relies on statistical comparison between a reference distribution and recent production data. Tests such as the population stability index, Kolmogorov-Smirnov, or chi-squared flag when a feature has shifted beyond a threshold. Because labels often arrive late or never, teams lean on proxy signals like prediction distribution shifts and input drift as early warnings. The aim is to raise an alert while the model is merely slipping, not after it has caused a string of bad decisions that users and stakeholders have already noticed.",
+        "Monitoring is only useful if it drives action. Teams define triggers that launch retraining when drift crosses a threshold, when measured accuracy drops, or on a fixed schedule as a safety net. A feedback loop captures production outcomes as fresh labels, feeding the next training cycle. Crucially, retraining must run through the same validated pipeline and evaluation gates as the original model, so a drift-driven update never ships worse than what it replaces. Monitoring closes the loop from deployment back to data."
+      ],
+      "keyPoints": [
+        "Monitor operational health, input data distributions, and prediction quality together",
+        "Data drift is a shift in input distributions; concept drift changes the input-to-target relationship",
+        "Concept drift is harder to detect because inputs may look normal while correct answers change",
+        "Statistical tests and proxy signals flag drift before labels confirm accuracy loss",
+        "Drift alerts and feedback loops should trigger retraining through the same validation gates"
+      ],
+      "example": "A demand-forecasting model degrades after a competitor exits the market. Operational dashboards stay green, but the team detects rising population stability index on the price feature, classic data drift. Weeks later, accuracy drops because buying behavior itself changed, a concept drift. Their monitoring triggers a retraining job that ingests recent labeled sales through the existing pipeline and ships only after passing the same evaluation gates.",
+      "summary": "Deployed models decay as data and relationships change, so layered monitoring detects data and concept drift early and triggers retraining through the same validated pipeline."
+    },
+    {
+      "order": 6,
+      "title": "MLOps: Automating the Model Lifecycle",
+      "objectives": [
+        "Define MLOps and explain how it extends DevOps to handle data and models",
+        "Describe the role of experiment tracking, model registries, and CI/CD for ML",
+        "Explain how reproducibility and automation reduce risk across the lifecycle"
+      ],
+      "body": [
+        "MLOps is the set of practices that automate and standardize the machine learning lifecycle, from data preparation through training, deployment, and monitoring. It extends DevOps, but with an extra dimension: traditional software has code, while ML systems also depend on data and trained models that change over time. MLOps treats all three as versioned, testable artifacts. The goal is to move a model from a notebook experiment to a monitored production service reliably and repeatably, so success does not depend on one engineer remembering a sequence of manual steps.",
+        "Experiment tracking records every training run with its code version, data version, hyperparameters, and resulting metrics. Tools such as MLflow or Weights and Biases turn a chaotic search into a searchable history, so you can compare runs and reproduce the best one. A model registry then stores approved model versions with stage labels like staging and production, plus lineage back to the data and code that produced them. Together these create an auditable trail answering which model is live and exactly how it was built.",
+        "Continuous integration and delivery for ML automate the path from change to deployment. CI runs tests on data validation, feature code, and model quality whenever something changes. CD packages a passing model and promotes it through environments. Many teams add continuous training, where pipelines automatically retrain on fresh data and only promote a model that beats the current one on the evaluation gate. Automation replaces brittle manual handoffs with a pipeline that is consistent, fast, and far less prone to human error.",
+        "Reproducibility is the connective tissue of MLOps. By pinning data versions, code commits, environment definitions, and random seeds, a team can rebuild any model exactly, which is essential for debugging, auditing, and regulatory compliance. Maturing an organization usually means progressing from fully manual workflows toward automated pipelines and finally toward fully automated continuous training. Each step reduces the time to recover from incidents and the risk that a model in production is a mystery no one can explain or rebuild."
+      ],
+      "keyPoints": [
+        "MLOps automates the lifecycle and versions code, data, and models as testable artifacts",
+        "Experiment tracking captures runs so the best result can be compared and reproduced",
+        "A model registry stores approved versions with stages and lineage to data and code",
+        "CI/CD and continuous training test, package, and promote models through evaluation gates",
+        "Reproducibility via pinned versions and seeds supports debugging, auditing, and compliance"
+      ],
+      "example": "A team adopts MLflow to log every run and a model registry to label production versions. Their CI pipeline runs data validation and a held-out accuracy check on each pull request; only a model that exceeds the live one on the test gate gets promoted to staging, then production. Six months later an auditor asks how a flagged decision was made, and the team rebuilds the exact model from its pinned data and code.",
+      "summary": "MLOps applies automation, versioning, and CI/CD to the whole ML lifecycle so models move from experiment to production reliably, reproducibly, and with a full audit trail."
+    },
+    {
+      "order": 7,
+      "title": "Responsible and Secure Machine Learning",
+      "objectives": [
+        "Identify sources of bias and explain why fairness must be measured, not assumed",
+        "Describe the main security threats to ML systems and basic defenses",
+        "Apply privacy and governance practices to deployed models"
+      ],
+      "body": [
+        "Responsible ML means building systems that are fair, transparent, and accountable, not just accurate. Bias enters through data that reflects historical inequities, through unrepresentative sampling, or through proxy features that stand in for protected attributes. A model trained on biased data will faithfully reproduce and even amplify that bias at scale. Because models optimize whatever the data rewards, fairness cannot be assumed from good intentions; it must be defined, measured across affected groups, and monitored over time, the same way you would track any other production metric.",
+        "Fairness has several formal definitions that can conflict, such as equal error rates across groups versus equal selection rates. Engineers must choose a definition appropriate to the context with stakeholders, then measure it on sliced evaluation data. Mitigation can happen before training by rebalancing data, during training by adding fairness constraints, or after training by adjusting thresholds per group. Transparency tools like feature attribution help explain individual predictions, which matters for trust, for debugging, and increasingly for legal requirements to justify automated decisions.",
+        "ML systems face security threats that classic software does not. Adversarial examples are inputs perturbed slightly to fool a model while looking normal to humans. Data poisoning corrupts the training set so the model learns attacker-chosen behavior. Model inversion and membership inference attacks try to extract sensitive training data from a deployed model. Defenses include validating and sanitizing training data, monitoring inputs for anomalies, rate limiting query access, and adversarial training that exposes the model to crafted attacks so it learns to resist them.",
+        "Privacy and governance round out a defensible system. Minimize the personal data collected, anonymize or pseudonymize where possible, and apply techniques like differential privacy when training on sensitive records. Governance means documenting data sources, intended use, known limitations, and approval owners, often captured in model cards. Access controls protect both the data and the model artifact, which is itself valuable intellectual property. Responsible and secure ML is not a final checklist but an ongoing practice woven into the same pipelines and monitoring used for quality."
+      ],
+      "keyPoints": [
+        "Bias comes from skewed data and proxy features and must be measured across groups",
+        "Fairness has conflicting formal definitions; choose one with stakeholders and monitor it",
+        "Adversarial examples, data poisoning, and inversion attacks are ML-specific threats",
+        "Defenses include data sanitization, input monitoring, rate limiting, and adversarial training",
+        "Privacy techniques and governance docs like model cards make systems accountable"
+      ],
+      "example": "A hiring-screen model shows higher false rejection rates for one demographic group during sliced evaluation. The team rebalances training data, adds a per-group threshold adjustment, and documents the limitation in a model card. They also rate limit the prediction API and run adversarial training after discovering that crafted resume text could manipulate scores, closing both a fairness gap and a security hole.",
+      "summary": "Responsible and secure ML requires measuring fairness across groups, defending against ML-specific attacks, and embedding privacy and governance into the everyday pipeline."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What is the primary purpose of data validation contracts in an ML pipeline?",
+      "options": [
+        "To compress the dataset so it trains faster",
+        "To fail loudly when schema or distributions change before bad data reaches the model",
+        "To automatically label unlabeled records",
+        "To increase model accuracy by adding more features"
+      ],
+      "correctIndex": 1,
+      "explanation": "Validation contracts assert expectations about types, ranges, and schema so that upstream changes are caught at ingestion, preventing a quietly degraded model rather than improving accuracy or labeling."
+    },
+    {
+      "text": "Which statement best distinguishes fine-tuning from training a model from scratch?",
+      "options": [
+        "Fine-tuning starts from random weights while training from scratch uses pretrained weights",
+        "Fine-tuning continues training a pretrained model on task-specific data, needing less data and compute",
+        "Fine-tuning never changes any model weights at all",
+        "Training from scratch always produces better accuracy than fine-tuning"
+      ],
+      "correctIndex": 1,
+      "explanation": "Fine-tuning begins from a pretrained model and adapts it with a smaller task-specific dataset, leveraging transfer learning to cut data and compute needs. Training from scratch starts from random weights."
+    },
+    {
+      "text": "Why can accuracy be a misleading metric on an imbalanced dataset?",
+      "options": [
+        "Accuracy cannot be computed when classes are imbalanced",
+        "A model that always predicts the majority class can score high while missing the rare class entirely",
+        "Accuracy only works for regression problems",
+        "Accuracy requires the test set to be larger than the training set"
+      ],
+      "correctIndex": 1,
+      "explanation": "With heavy imbalance, predicting only the majority class yields high accuracy while completely failing on the rare but often important class, so precision, recall, or F1 are more informative."
+    },
+    {
+      "text": "What is data leakage in machine learning?",
+      "options": [
+        "When training data is accidentally deleted from storage",
+        "When information unavailable at prediction time is used in features, inflating offline scores",
+        "When a model is too small to fit the data",
+        "When predictions are served too slowly to users"
+      ],
+      "correctIndex": 1,
+      "explanation": "Leakage occurs when features include information that would not exist at prediction time, producing unrealistically good offline metrics that collapse in production."
+    },
+    {
+      "text": "Which deployment strategy routes a small percentage of live traffic to a new model while watching metrics?",
+      "options": [
+        "Canary deployment",
+        "Batch inference",
+        "Data poisoning",
+        "Quantization"
+      ],
+      "correctIndex": 0,
+      "explanation": "Canary deployment sends a small slice of real traffic to the new version and monitors metrics before widening, making releases controlled and reversible."
+    },
+    {
+      "text": "How does concept drift differ from data drift?",
+      "options": [
+        "Concept drift is a hardware failure while data drift is a software bug",
+        "Data drift changes the input distribution; concept drift changes the relationship between inputs and the target",
+        "They are two names for the exact same phenomenon",
+        "Concept drift only happens during training, never in production"
+      ],
+      "correctIndex": 1,
+      "explanation": "Data drift is a shift in input feature distributions, while concept drift is a change in the input-to-target relationship, so the correct answer for the same input changes."
+    },
+    {
+      "text": "What does a model registry provide in an MLOps workflow?",
+      "options": [
+        "A place to store approved model versions with stage labels and lineage to data and code",
+        "A tool that automatically writes feature engineering code",
+        "A database of customer personal information",
+        "A network firewall for the serving endpoint"
+      ],
+      "correctIndex": 0,
+      "explanation": "A model registry stores versioned, approved models with stages such as staging and production plus lineage, creating an auditable record of what is live and how it was built."
+    },
+    {
+      "text": "What best defines MLOps?",
+      "options": [
+        "A single metric used to evaluate model accuracy",
+        "Practices that automate and standardize the ML lifecycle, versioning code, data, and models",
+        "A technique for compressing neural networks",
+        "A type of adversarial attack on training data"
+      ],
+      "correctIndex": 1,
+      "explanation": "MLOps extends DevOps to machine learning by automating the lifecycle and treating code, data, and models as versioned, testable artifacts for reliable, reproducible delivery."
+    },
+    {
+      "text": "Which technique helps a model resist adversarial examples?",
+      "options": [
+        "Removing the validation set",
+        "Adversarial training that exposes the model to crafted attack inputs during training",
+        "Increasing the learning rate to maximum",
+        "Disabling all monitoring"
+      ],
+      "correctIndex": 1,
+      "explanation": "Adversarial training augments learning with deliberately perturbed inputs so the model learns to remain robust against such attacks, unlike the other options which weaken the system."
+    },
+    {
+      "text": "Why should the test set be used only once at the very end of model development?",
+      "options": [
+        "Because the test set is always smaller than the validation set",
+        "Because reusing it to make decisions leaks information and inflates the performance estimate",
+        "Because test data cannot be stored long term",
+        "Because the model trains directly on the test set"
+      ],
+      "correctIndex": 1,
+      "explanation": "Repeatedly consulting the test set to tune choices leaks information into the process, producing an optimistic estimate; the validation set is for tuning and the test set for a single honest final estimate."
+    }
+  ]
+}

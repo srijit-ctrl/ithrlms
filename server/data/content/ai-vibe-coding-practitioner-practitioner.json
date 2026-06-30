@@ -1,0 +1,286 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of AI Pair-Programming",
+      "objectives": [
+        "Explain what vibe coding means and how it differs from traditional development",
+        "Identify where AI assistants help most and where they fall short",
+        "Set realistic expectations for speed, quality, and oversight"
+      ],
+      "body": [
+        "Vibe coding describes a workflow where you describe what you want in natural language and let an AI assistant generate the code, while you steer, correct, and integrate the results. It shifts the developer from typing every line to directing an extremely fast but imperfect collaborator. The promise is speed: you can scaffold a feature, draft a function, or explore an unfamiliar library in minutes. The catch is that the model produces plausible-looking output regardless of whether it is correct, so the human remains responsible for judgment, verification, and final ownership of everything that ships.",
+        "Modern assistants come in several shapes. Inline completion tools suggest the next few lines as you type. Chat-based assistants answer questions and generate larger blocks on request. Agentic tools can read your files, run commands, and make multi-step edits across a project with limited supervision. Each tier trades convenience for control. The more autonomy you grant, the more carefully you must define the task and inspect the result, because a confident agent can touch many files before you notice a mistake.",
+        "The core mental model is collaboration, not delegation. You are pairing with a partner that has read enormous amounts of code but has no real understanding of your specific system, your constraints, or your intentions beyond the words you give it. It cannot run your tests in its head, it does not know your production data, and it will invent APIs that do not exist when it is uncertain. Treating its output as a first draft, never a finished product, keeps you in the right frame of mind.",
+        "Used well, these tools compress the boring parts of development and free you to focus on design and correctness. Used carelessly, they generate code you do not understand, accumulate silent bugs, and create security holes. The difference is almost entirely about process: clear prompts, tight feedback loops, disciplined review, and tests. The rest of this course builds those habits so you can move fast without shipping work you cannot stand behind."
+      ],
+      "keyPoints": [
+        "Vibe coding means directing an AI partner rather than typing every line yourself",
+        "Assistants range from inline completion to autonomous agents, trading control for convenience",
+        "Models produce plausible output whether or not it is correct",
+        "The human keeps responsibility for judgment, verification, and ownership",
+        "Treat all AI output as a first draft to be checked, never a finished result"
+      ],
+      "example": "A developer asks an assistant to scaffold a REST endpoint for creating users. The model generates a route, validation, and a database call in seconds. The developer reads each line, notices the validation allows duplicate emails, and refines the prompt before integrating the code.",
+      "summary": "AI pair-programming trades typing for steering, but the human stays accountable for correctness, since models generate confident output without understanding your system."
+    },
+    {
+      "order": 2,
+      "title": "Effective Prompting for Code",
+      "objectives": [
+        "Write prompts that include context, constraints, and desired output format",
+        "Break large requests into reviewable, incremental steps",
+        "Recognize and correct prompts that lead to vague or wrong code"
+      ],
+      "body": [
+        "The quality of generated code depends heavily on the quality of your request. A good code prompt states the goal, the language and framework, the relevant context, and any constraints such as performance, style, or libraries to avoid. Vague prompts like make a login function invite the model to guess, and it will fill gaps with assumptions that may not match your project. Specific prompts like write a login handler in Express that validates against our existing User model and returns a JWT produce far more usable results.",
+        "Context is the single biggest lever. The model only knows what you tell it plus whatever files the tool can see. Pasting the relevant function signatures, data shapes, or error messages dramatically improves accuracy. When you skip context, the model invents it, which is a common source of hallucinated APIs and mismatched types. If your assistant can read the repository, point it at the specific files rather than hoping it finds them.",
+        "Work in small increments. Asking for an entire feature in one prompt produces a large block that is hard to verify and easy to misjudge. Instead, request one function, review it, then request the next. This keeps each piece small enough to read carefully and makes it obvious where a problem was introduced. Incremental prompting also lets you correct course early, before a wrong assumption propagates through dozens of lines.",
+        "Iterate with feedback rather than starting over. When the output is close but wrong, tell the model exactly what is off: this throws when the list is empty, or use our logger instead of console. Pasting the actual error message or failing test output is especially effective because it gives the model concrete evidence rather than your paraphrase. Good prompting is a conversation, and each turn should narrow the gap between what you got and what you need."
+      ],
+      "keyPoints": [
+        "State goal, language, framework, context, and constraints explicitly",
+        "Provide real context such as signatures, data shapes, and error messages",
+        "Break large features into small, reviewable requests",
+        "Iterate by describing exactly what is wrong rather than restarting",
+        "Paste actual errors and test output to ground the model in evidence"
+      ],
+      "example": "Instead of write a caching layer, a developer prompts: add an in-memory cache with a 60 second TTL to the getProduct function below, keyed by product id, falling back to the existing database call on a miss. They paste the function, then review the single focused result.",
+      "summary": "Precise, context-rich, incremental prompts produce code you can actually use, while iterating with concrete feedback closes the gap between draft and correct."
+    },
+    {
+      "order": 3,
+      "title": "Working with AI Coding Assistants and Agents",
+      "objectives": [
+        "Choose the right tool tier for a given task",
+        "Configure and scope agentic tools to limit blast radius",
+        "Manage context windows, project files, and persistent instructions"
+      ],
+      "body": [
+        "Different tasks call for different tools. Inline completion shines for boilerplate and repetitive patterns where you can glance at a suggestion and accept or reject it instantly. Chat assistants suit explaining unfamiliar code, drafting a function, or exploring options. Agentic tools that can edit files and run commands are powerful for multi-file refactors and scaffolding, but they demand the most oversight because they act before you see every change. Matching the tool to the task avoids both wasted effort and unnecessary risk.",
+        "Agents work best with a clearly scoped task and a limited blast radius. Give them a focused goal, point them at the relevant directory, and prefer working on a branch so changes are easy to inspect and revert. Many tools support an approval mode where you confirm each command or edit; keep that on until you trust the agent for a given kind of work. Letting an agent run freely across an entire codebase invites sweeping changes that are hard to untangle.",
+        "Context management is a practical skill. Models have a finite context window, so they cannot hold your whole repository at once. Bring the right files into view, and remove stale or irrelevant ones that crowd out what matters. Many assistants support a project instructions file that captures conventions, preferred libraries, and rules the model should always follow. Investing in that file pays off across every interaction by reducing repeated corrections.",
+        "Keep a tight feedback loop with your tools. Run the build and tests frequently rather than after a long unsupervised session, so you catch divergence early. Commit in small steps so you can always return to a known-good state. When an agent goes off the rails, it is far easier to recover from the last commit than to reverse engineer what twenty edits did. The goal is to harness autonomy while always retaining a clear path back."
+      ],
+      "keyPoints": [
+        "Match tool tier to task: completion, chat, or agentic",
+        "Scope agents tightly and work on a branch to limit blast radius",
+        "Use approval modes until an agent earns trust for a task type",
+        "Manage context by bringing in relevant files and removing noise",
+        "Capture conventions in a project instructions file",
+        "Commit and test in small steps to keep a path back to safety"
+      ],
+      "example": "A developer asks an agent to rename a database column across the project. They create a branch, enable per-edit approval, point the agent at the data and model directories, and review each change. After the tests pass, they commit; the branch makes any rollback trivial.",
+      "summary": "Pick the right tool tier, scope agents tightly on a branch with approvals, manage context deliberately, and commit in small steps to keep recovery easy."
+    },
+    {
+      "order": 4,
+      "title": "Reviewing AI-Generated Code",
+      "objectives": [
+        "Read generated code critically rather than accepting it on sight",
+        "Spot common AI failure modes such as hallucinated APIs and subtle logic errors",
+        "Apply a consistent review checklist before integrating any AI output"
+      ],
+      "body": [
+        "Reviewing AI-generated code is the most important habit in this entire course. Models are fluent, which makes their output look trustworthy even when it is wrong. They will invent functions that do not exist, call libraries with the wrong arguments, mishandle edge cases, and produce code that compiles but does the wrong thing. Because the prose around the code sounds authoritative, it is dangerously easy to skim and accept. You must read generated code with the same skepticism you would apply to a pull request from a stranger.",
+        "Several failure modes recur often enough to watch for specifically. Hallucinated APIs are methods or parameters that simply do not exist in the version you use. Outdated patterns come from training data that predates current best practice. Subtle logic errors include off-by-one mistakes, inverted conditions, and mishandled null or empty cases. Silent assumptions appear when the model guesses at behavior you never specified. None of these announce themselves; only careful reading and testing reveal them.",
+        "A consistent checklist turns review from a vague feeling into a reliable process. Ask: do I understand every line, or am I trusting it blindly? Does it actually do what I asked, including the edge cases? Are the APIs and arguments real and current? Does it follow our conventions and avoid duplicating existing code? Does it handle errors and invalid input? Does it introduce security or performance concerns? If you cannot answer these, the code is not ready, no matter how clean it looks.",
+        "Never integrate code you do not understand. If a block is opaque, ask the model to explain it line by line, then verify that explanation against the documentation rather than taking it at face value, since a model can confidently explain its own mistake. Understanding the code is also what lets you maintain it later, debug it under pressure, and answer for it in review. The speed of generation is only valuable if you retain genuine comprehension and ownership of what ships."
+      ],
+      "keyPoints": [
+        "Fluent output looks trustworthy even when it is wrong; read it skeptically",
+        "Watch for hallucinated APIs, outdated patterns, and subtle logic errors",
+        "Use a fixed checklist covering correctness, edge cases, conventions, and security",
+        "Never integrate code you do not fully understand",
+        "Verify model explanations against real documentation, not the model itself"
+      ],
+      "example": "An assistant generates a date utility that calls a parseRelative method on a popular library. The developer cannot find it in the docs, asks the model to cite where it comes from, and confirms it was hallucinated. They replace it with the library's real parsing function before committing.",
+      "summary": "Review every line of AI output against a consistent checklist, watch for hallucinations and subtle errors, and never integrate code you do not understand."
+    },
+    {
+      "order": 5,
+      "title": "Testing and Verifying AI Output",
+      "objectives": [
+        "Use automated tests as the primary safety net for generated code",
+        "Write or review tests so they actually exercise the intended behavior",
+        "Verify behavior empirically rather than trusting that code looks correct"
+      ],
+      "body": [
+        "Tests are how you turn looks correct into is correct. Code review catches many problems, but humans miss subtle bugs, and AI output hides them well. Automated tests give you empirical evidence that the behavior matches the requirement, and they keep giving it every time you change the code. For any generated logic that matters, a passing test you trust is worth more than any amount of confidence in the model. Make running tests a routine part of the loop, not an afterthought.",
+        "You can ask the model to generate tests, but treat those tests with the same suspicion as the code. A model may write tests that pass trivially, assert the wrong thing, or simply mirror a bug in the implementation so both agree and both are wrong. Read each test and confirm it would actually fail if the behavior broke. A useful technique is to deliberately break the implementation and check that the test catches it; a test that never fails protects nothing.",
+        "Cover the cases the model is most likely to get wrong. Empty inputs, null values, boundary numbers, duplicate entries, concurrent access, and error paths are where generated code commonly stumbles. Writing tests for these forces you to think about the specification clearly, which often reveals that the prompt itself was ambiguous. Tests are therefore both a verification tool and a way to sharpen your own understanding of what the feature should do.",
+        "Verification extends beyond unit tests. Run the code against realistic data, check the actual output rather than assuming it, and exercise the integration points where generated code meets the rest of your system. For anything user-facing or persistent, confirm behavior end to end. The discipline is simple: do not believe code works because it reads well or because the model said so; believe it works because you watched it produce the right result under conditions you chose."
+      ],
+      "keyPoints": [
+        "Automated tests provide empirical proof that behavior matches the requirement",
+        "Treat AI-generated tests with the same suspicion as the code itself",
+        "Confirm tests actually fail when the behavior breaks",
+        "Target edge cases: empty, null, boundary, duplicate, and error paths",
+        "Verify end to end with realistic data, not just by reading the code"
+      ],
+      "example": "After an agent writes a discount calculator, the developer reviews its generated tests, finds they only check a single happy path, and adds cases for a zero subtotal, a negative quantity, and an expired coupon. Two of the new tests fail, exposing a logic bug the clean-looking code had hidden.",
+      "summary": "Tests turn confidence into evidence, but generated tests need the same scrutiny as code; target edge cases and verify behavior empirically rather than by appearance."
+    },
+    {
+      "order": 6,
+      "title": "Security and Risk in AI-Assisted Development",
+      "objectives": [
+        "Identify security risks introduced by AI-generated code",
+        "Protect secrets, dependencies, and sensitive data when using AI tools",
+        "Apply secure review practices to anything an assistant produces"
+      ],
+      "body": [
+        "AI assistants learned from public code, which includes a great deal of insecure code, so they readily reproduce vulnerable patterns. Generated output commonly contains injection risks from unsanitized input, weak or missing authentication checks, hardcoded credentials, and overly permissive configurations. The model is optimizing for plausible code that satisfies the request, not for security. Every piece of generated code that touches input, authentication, or data access deserves a deliberate security review before it goes anywhere near production.",
+        "Dependencies are a particular hazard. Models sometimes suggest packages that are outdated, unmaintained, or, in a documented attack pattern, do not exist at all, which attackers exploit by publishing malicious packages under the hallucinated names. Always confirm that a suggested dependency is real, actively maintained, and appropriate before installing it. Pin versions, review what you add, and be skeptical of any import you did not deliberately choose. A confident suggestion is not a vetted one.",
+        "Protect your own secrets and sensitive data when prompting. Pasting API keys, credentials, customer data, or proprietary code into a tool can expose it depending on how that tool handles data. Know your organization's policy and your tool's data handling before sharing anything sensitive. Use placeholders for secrets in prompts, and never let a generated config commit real credentials. The convenience of pasting everything is not worth leaking information you cannot take back.",
+        "Be especially careful with agents that can run commands. An agent acting on a vague instruction, or following text it read from an untrusted file or web page, can execute destructive or malicious operations. This prompt injection risk grows with autonomy. Keep agents in approval mode for anything that deletes, deploys, or reaches the network, run them with least privilege, and treat external content the agent ingests as untrusted. Security is the area where blind trust is most expensive, so it is the area where human oversight matters most."
+      ],
+      "keyPoints": [
+        "Models readily reproduce insecure patterns learned from public code",
+        "Review anything touching input, authentication, or data access for vulnerabilities",
+        "Verify suggested dependencies are real, maintained, and pinned",
+        "Never paste secrets or sensitive data without knowing the tool's data handling",
+        "Keep command-running agents in approval mode and treat external content as untrusted"
+      ],
+      "example": "An assistant writes a query that concatenates a user-supplied id directly into SQL. The developer recognizes the injection risk, rewrites it as a parameterized query, and adds a test with a malicious input string to confirm the fix holds.",
+      "summary": "AI readily produces insecure code and risky dependency suggestions, so review every security-sensitive piece, protect secrets, and keep agents tightly controlled."
+    },
+    {
+      "order": 7,
+      "title": "Keeping a Human in the Loop and Building Durable Habits",
+      "objectives": [
+        "Define clear boundaries for what an AI may decide versus what a human must approve",
+        "Maintain comprehension and ownership of an AI-assisted codebase over time",
+        "Establish team practices that scale responsible vibe coding"
+      ],
+      "body": [
+        "Speed without oversight eventually produces a codebase no one understands. Keeping a human in the loop means a person reviews, comprehends, and approves what ships, especially for changes that are risky, far-reaching, or hard to reverse. The right level of oversight scales with risk: a throwaway script needs little, while authentication, payments, data migrations, and production deployments need a careful human decision every time. Decide these boundaries deliberately rather than letting convenience set them by default.",
+        "Ownership is the long-term cost that careless vibe coding ignores. You will have to debug, extend, and explain this code months from now, possibly without the assistant that wrote it. If you accepted code you never understood, that future is painful. Maintaining ownership means understanding the architecture and key logic, keeping documentation honest, and refusing to merge anything you could not maintain yourself. The model accelerates the work, but you remain the engineer of record.",
+        "Teams need shared norms so individual discipline does not depend on mood or deadline. Useful practices include requiring human review of AI-generated pull requests, marking which code was AI-assisted, agreeing on approved tools and their data handling, and writing down security and dependency rules. Treat the assistant as a junior contributor whose work is always reviewed, never merged on trust. These norms keep quality consistent as more of the codebase becomes AI-assisted.",
+        "Finally, keep learning and stay skeptical. These tools change quickly, their failure modes shift, and overreliance dulls the very judgment you need to supervise them. Keep your own skills sharp by understanding what the assistant produces and occasionally solving problems unaided. The practitioner's edge is not typing speed; it is the judgment to direct an AI well, the discipline to verify its work, and the integrity to own the result. That combination is what lets you build software fast without building something you cannot trust."
+      ],
+      "keyPoints": [
+        "Scale oversight with risk; high-stakes changes always need human approval",
+        "Maintain genuine comprehension and ownership of the codebase over time",
+        "Treat the assistant as a junior contributor whose work is always reviewed",
+        "Establish team norms for review, tooling, security, and data handling",
+        "Keep your own skills sharp to avoid overreliance dulling your judgment"
+      ],
+      "example": "A team adopts a rule that any AI-assisted pull request must note that fact and pass human review plus the test suite before merge. When an agent's payment-refund change arrives, a reviewer reads it fully, questions an edge case, and requests a fix before approving.",
+      "summary": "Keep a human in the loop sized to the risk, preserve comprehension and ownership, and build team norms so responsible vibe coding scales beyond any one person."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What is the most accurate description of the developer's role in vibe coding?",
+      "options": [
+        "To accept AI suggestions quickly so features ship faster",
+        "To direct and verify an AI partner while retaining ownership of what ships",
+        "To delegate full responsibility for correctness to the AI",
+        "To stop writing tests because the AI handles quality"
+      ],
+      "correctIndex": 1,
+      "explanation": "Vibe coding shifts the developer from typing to steering, but the human keeps responsibility for judgment, verification, and ownership. The model produces plausible output regardless of correctness, so accountability cannot be delegated."
+    },
+    {
+      "text": "Why does providing concrete context like function signatures and error messages improve generated code?",
+      "options": [
+        "It makes the model run faster",
+        "It lets the model invent fewer details, reducing hallucinated APIs and mismatched types",
+        "It guarantees the output is secure",
+        "It removes the need to review the result"
+      ],
+      "correctIndex": 1,
+      "explanation": "The model only knows what you tell it plus visible files. When you omit context, it fills gaps with assumptions, a common source of hallucinated APIs and type mismatches. Concrete context grounds the response in reality."
+    },
+    {
+      "text": "An assistant generates a clean, well-formatted function that compiles. What should you do before integrating it?",
+      "options": [
+        "Integrate it, since clean code that compiles is reliable",
+        "Read every line critically and verify it does what you asked, including edge cases",
+        "Trust the model's accompanying explanation as proof of correctness",
+        "Run it only in production to see if users complain"
+      ],
+      "correctIndex": 1,
+      "explanation": "Fluent, compiling code can still be wrong, contain hallucinated calls, or mishandle edge cases. You must read it skeptically and verify behavior. Looking correct is not the same as being correct."
+    },
+    {
+      "text": "Which is a known risk specifically tied to AI-suggested dependencies?",
+      "options": [
+        "Packages are always the latest version",
+        "The model may suggest a nonexistent package name that attackers publish maliciously",
+        "Suggested packages cannot be installed",
+        "Dependencies suggested by AI never need version pinning"
+      ],
+      "correctIndex": 1,
+      "explanation": "Models sometimes hallucinate package names, and attackers exploit this by publishing malicious packages under those names. Always confirm a dependency is real, maintained, and appropriate, and pin versions before installing."
+    },
+    {
+      "text": "Why should you treat AI-generated tests with the same suspicion as AI-generated code?",
+      "options": [
+        "Generated tests always fail and waste time",
+        "They may pass trivially, assert the wrong thing, or mirror a bug so both agree and both are wrong",
+        "Tests written by AI cannot be run",
+        "Tests are unnecessary once the AI writes the code"
+      ],
+      "correctIndex": 1,
+      "explanation": "A model can write tests that pass trivially or encode the same wrong assumption as the implementation, so both pass while both are wrong. Confirm each test would actually fail if the behavior broke."
+    },
+    {
+      "text": "What is the best way to limit the blast radius when using an autonomous coding agent?",
+      "options": [
+        "Let it run unsupervised across the whole repository for speed",
+        "Scope the task, work on a branch, and keep per-edit approval until it earns trust",
+        "Disable version control so changes are permanent",
+        "Give it production credentials so it can verify its own work"
+      ],
+      "correctIndex": 1,
+      "explanation": "Agents act before you see every change, so a tight scope, a branch, and approval mode keep changes inspectable and reversible. Unsupervised runs across a whole codebase make mistakes hard to untangle."
+    },
+    {
+      "text": "An assistant writes a database query by concatenating user input directly into a SQL string. What is the right response?",
+      "options": [
+        "Ship it, since the model knows secure patterns",
+        "Recognize the injection risk and rewrite it as a parameterized query, then test with malicious input",
+        "Add a comment warning future developers and leave it as is",
+        "Assume it is safe because it compiles and passes a happy-path test"
+      ],
+      "correctIndex": 1,
+      "explanation": "Models reproduce insecure patterns from public code, including SQL injection. Concatenating user input is exploitable; the fix is parameterized queries, verified with a test using a malicious input string."
+    },
+    {
+      "text": "Why is working in small, incremental prompts better than requesting an entire feature at once?",
+      "options": [
+        "It uses fewer tokens and is always cheaper",
+        "Each piece stays small enough to review carefully and it is clear where a problem was introduced",
+        "It prevents the model from ever making mistakes",
+        "It removes the need to test the code"
+      ],
+      "correctIndex": 1,
+      "explanation": "Large single-prompt features are hard to verify and easy to misjudge. Small increments keep each piece reviewable and make the source of any problem obvious, allowing early course correction."
+    },
+    {
+      "text": "What does keeping a human in the loop mean for high-risk changes like payments or data migrations?",
+      "options": [
+        "A human should glance at the diff if there is time",
+        "A person must review, comprehend, and approve the change, with oversight scaled to the risk",
+        "The agent can self-approve once tests pass",
+        "Human review is only needed for the first such change"
+      ],
+      "correctIndex": 1,
+      "explanation": "Oversight should scale with risk. High-stakes, hard-to-reverse changes require a human to review, understand, and approve every time, rather than relying on the agent or convenience to decide."
+    },
+    {
+      "text": "What is the central reason never to integrate AI-generated code you do not understand?",
+      "options": [
+        "It will always contain syntax errors",
+        "You lose the ability to maintain, debug, and answer for code you must own long term",
+        "The model charges more for complex code",
+        "Understood code runs faster than unfamiliar code"
+      ],
+      "correctIndex": 1,
+      "explanation": "Comprehension is what lets you maintain, debug, and stand behind code months later, possibly without the assistant. Accepting opaque code trades short-term speed for a codebase no one can own or fix."
+    }
+  ]
+}
