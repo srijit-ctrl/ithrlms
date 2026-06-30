@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Certification Exam — ITHR Technologies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    .exam-wrap { max-width: 820px; margin: 36px auto; padding: 0 20px; }
+    .q-card { background:#fff; border:1px solid var(--line); border-radius: var(--radius); padding: 22px; margin-bottom: 16px; }
+    .q-card h3 { font-size: 17px; margin-bottom: 14px; }
+    .opt { display:flex; gap:12px; align-items:flex-start; border:1.5px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:10px; cursor:pointer; transition:.15s; }
+    .opt:hover { border-color: var(--brand-500); background: var(--bg-soft); }
+    .opt input { margin-top:3px; }
+    .opt.sel { border-color: var(--brand-500); background: rgba(47,111,224,.06); }
+    .opt.correct { border-color: var(--ok); background:#e7f7ee; }
+    .opt.wrong { border-color:#dc2626; background:#fdecea; }
+    .exam-bar { position: sticky; top: 110px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 18px; display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; z-index:5; }
+    .score-ring { width:120px;height:120px;border-radius:50%;display:grid;place-items:center;margin:0 auto 16px;font-size:30px;font-weight:900;color:#fff; }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+  <div class="exam-wrap" id="wrap"><div class="loading">Loading exam…</div></div>
+  <div id="site-footer"></div>
+  <script src="/js/app.js"></script>
+  <script>
+    if (!Auth.isAuthed) location.href = '/login.html?next=' + encodeURIComponent(location.pathname + location.search);
+    const slug = qs('slug');
+    let exam, answers = {};
+
+    async function init() {
+      try { exam = await api(`/courses/${encodeURIComponent(slug)}/exam`, { authed: true }); }
+      catch (e) { $('#wrap').innerHTML = `<div class="alert alert-err">${esc(e.message)}</div><a class="btn btn-ghost" href="/course.html?slug=${slug}">Back to course</a>`; return; }
+      render();
+    }
+
+    function render() {
+      $('#wrap').innerHTML = `
+        <a href="/course.html?slug=${slug}" class="muted" style="font-size:14px">← Back to course</a>
+        <h1 style="font-size:28px;margin-top:8px">${esc(exam.courseName)}</h1>
+        <p class="muted">Answer all ${exam.questions.length} questions. You need <b>${exam.passPercent}%</b> to pass and earn your credential.</p>
+        <div class="exam-bar">
+          <span id="prog" class="muted">0 / ${exam.questions.length} answered</span>
+          <button class="btn btn-primary btn-sm" id="submit">Submit exam</button>
+        </div>
+        <div id="questions">
+          ${exam.questions.map((q, i) => `
+            <div class="q-card" data-qid="${q.id}">
+              <h3>${i + 1}. ${esc(q.text)}</h3>
+              ${q.options.map((o, oi) => `
+                <label class="opt" data-opt="${oi}">
+                  <input type="radio" name="q${q.id}" value="${oi}">
+                  <span>${esc(o)}</span>
+                </label>`).join('')}
+            </div>`).join('')}
+        </div>
+        <button class="btn btn-primary btn-block" id="submit2">Submit exam</button>`;
+
+      $$('.opt input').forEach((inp) => inp.onchange = () => {
+        const card = inp.closest('.q-card');
+        answers[card.dataset.qid] = Number(inp.value);
+        $$('.opt', card).forEach((l) => l.classList.remove('sel'));
+        inp.closest('.opt').classList.add('sel');
+        $('#prog').textContent = `${Object.keys(answers).length} / ${exam.questions.length} answered`;
+      });
+      $('#submit').onclick = $('#submit2').onclick = submit;
+    }
+
+    async function submit() {
+      if (Object.keys(answers).length < exam.questions.length &&
+          !confirm('You have unanswered questions. Submit anyway?')) return;
+      const res = await api(`/courses/${encodeURIComponent(slug)}/exam/submit`, { method: 'POST', authed: true, body: { answers } });
+      showResult(res);
+    }
+
+    function showResult(res) {
+      const reviewById = Object.fromEntries(res.review.map((r) => [r.questionId, r]));
+      const color = res.passed ? 'var(--ok)' : '#dc2626';
+      $('#wrap').scrollIntoView({ behavior: 'smooth' });
+      $('#wrap').innerHTML = `
+        <div class="q-card center" style="padding:34px">
+          <div class="score-ring" style="background:${color}">${res.score}%</div>
+          <h1 style="font-size:26px">${res.passed ? 'Congratulations — you passed!' : 'Not quite — try again'}</h1>
+          <p class="muted">You scored ${res.correct} of ${res.total} (pass mark ${res.passPercent}%).</p>
+          ${res.passed
+            ? `<p style="margin:14px 0">Your verifiable credential has been issued:</p>
+               <p><span class="credid">${esc(res.credential)}</span></p>
+               <div style="margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+                 <a class="btn btn-accent" href="/verify.html?id=${encodeURIComponent(res.credential)}">View credential</a>
+                 <a class="btn btn-ghost" href="/dashboard.html">Go to dashboard</a>
+               </div>`
+            : `<div style="margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+                 <button class="btn btn-primary" onclick="location.reload()">Retake exam</button>
+                 <a class="btn btn-ghost" href="/course.html?slug=${slug}">Review the course</a>
+               </div>`}
+        </div>
+        <h2 style="font-size:20px;margin:24px 0 12px">Review</h2>
+        ${exam.questions.map((q, i) => {
+          const r = reviewById[q.id]; if (!r) return '';
+          return `<div class="q-card">
+            <h3>${i + 1}. ${esc(q.text)}</h3>
+            ${q.options.map((o, oi) => {
+              let cls = '';
+              if (oi === r.correctIndex) cls = 'correct';
+              else if (oi === r.yourAnswer) cls = 'wrong';
+              return `<div class="opt ${cls}"><span>${esc(o)}</span>${oi === r.correctIndex ? ' ✓' : (oi === r.yourAnswer ? ' ✗' : '')}</div>`;
+            }).join('')}
+          </div>`;
+        }).join('')}`;
+    }
+    init();
+  </script>
+</body>
+</html>

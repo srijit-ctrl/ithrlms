@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Tutor — ITHR Technologies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    .tutor-wrap { max-width: 920px; margin: 24px auto; padding: 0 16px; }
+    .tutor-top { background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+    .tutor-avatar { width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--brand-700),var(--accent-500));display:grid;place-items:center;color:#fff;font-weight:900;font-size:20px;flex:none; }
+    .tutor-top .meta { flex:1; min-width:180px; }
+    .tutor-top .meta b { font-size:17px; color:var(--ink); }
+    .tutor-top select { padding:9px 12px;border:1.5px solid var(--line);border-radius:999px;font:inherit; }
+    .provider-pill { font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:#e8f0fe;color:#1853b6; }
+    .chat { background:#fff;border:1px solid var(--line);border-radius:var(--radius);margin-top:14px;display:flex;flex-direction:column;height:60vh;min-height:420px; }
+    .msgs { flex:1;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:12px; }
+    .msg { max-width:78%;padding:11px 15px;border-radius:14px;font-size:15px;line-height:1.55;white-space:pre-wrap; }
+    .msg.bot { background:var(--bg-soft);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px; }
+    .msg.me { background:linear-gradient(135deg,var(--brand-600),var(--brand-500));color:#fff;align-self:flex-end;border-bottom-right-radius:4px; }
+    .msg.bot em { color:var(--muted);font-size:12.5px; }
+    .typing { align-self:flex-start;color:var(--muted);font-size:14px;padding:4px 8px; }
+    .chips { display:flex;gap:8px;flex-wrap:wrap;padding:0 18px 12px; }
+    .chip { border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font:inherit;font-size:13px;cursor:pointer;color:var(--brand-600);font-weight:600; }
+    .chip:hover { border-color:var(--brand-500);background:var(--bg-soft); }
+    .composer { border-top:1px solid var(--line);padding:12px;display:flex;gap:10px; }
+    .composer textarea { flex:1;border:1.5px solid var(--line);border-radius:12px;padding:11px 14px;font:inherit;resize:none;max-height:120px; }
+    .picker { background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin-top:14px; }
+    .picker select { width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font:inherit;margin:10px 0 14px; }
+    [dir=rtl] .msg.me { border-bottom-right-radius:14px;border-bottom-left-radius:4px; }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+  <div class="tutor-wrap">
+    <div id="boot" class="loading">Loading your tutor…</div>
+    <div id="app" style="display:none">
+      <div class="tutor-top">
+        <div class="tutor-avatar" id="avatar">AI</div>
+        <div class="meta">
+          <b id="t-name">Tutor</b>
+          <div class="muted" style="font-size:13px" id="t-course"></div>
+        </div>
+        <span class="provider-pill" id="provider"></span>
+        <label style="font-size:13px;color:var(--muted)">Language
+          <select id="lang"></select>
+        </label>
+      </div>
+      <div class="chat">
+        <div class="msgs" id="msgs"></div>
+        <div class="chips">
+          <button class="chip" data-send="Can you explain a key concept from this course?">Explain a concept</button>
+          <button class="chip" data-send="Give me a hint, not the full answer.">Give me a hint</button>
+          <button class="chip" data-send="Quiz me with a quick question.">Quiz me</button>
+          <button class="chip" data-send="I'm a bit confused — can you slow down?">I'm confused</button>
+        </div>
+        <div class="composer">
+          <textarea id="input" rows="1" placeholder="Ask your tutor anything… (any language)"></textarea>
+          <button class="btn btn-primary" id="send">Send</button>
+        </div>
+      </div>
+      <p class="muted" style="font-size:12.5px;margin-top:10px">Your AI tutor stays focused on this course and escalates to a human instructor when needed. It can make mistakes — verify anything critical.</p>
+    </div>
+    <!-- course picker shown when no ?slug= -->
+    <div id="picker" class="picker" style="display:none">
+      <h2 style="margin:0 0 4px">Choose a course</h2>
+      <p class="muted" style="margin:0">Pick a course and your dedicated AI tutor will open.</p>
+      <select id="course-select"></select>
+      <button class="btn btn-primary" id="open-course">Open tutor</button>
+    </div>
+  </div>
+  <div id="site-footer"></div>
+  <script src="/js/app.js"></script>
+  <script>
+    if (!Auth.isAuthed) location.href = '/login.html?next=' + encodeURIComponent(location.pathname + location.search);
+    let cfg, history = [], slug = qs('slug');
+
+    async function boot() {
+      if (!slug) return showPicker();
+      try { cfg = await api('/courses/' + encodeURIComponent(slug) + '/tutor', { authed: true }); }
+      catch (e) { $('#boot').innerHTML = '<div class="alert alert-err">' + esc(e.message) + '</div>'; return; }
+      $('#boot').style.display = 'none'; $('#app').style.display = 'block';
+      $('#t-name').textContent = cfg.profile.tutorName;
+      $('#avatar').textContent = cfg.profile.tutorName.slice(0, 2).toUpperCase();
+      $('#t-course').textContent = cfg.profile.courseName;
+      $('#provider').textContent = cfg.llm.provider === 'demo' ? 'Demo mode' : 'Live · ' + cfg.llm.provider;
+      $('#lang').innerHTML = cfg.languages.map((l) => `<option value="${l.code}" ${l.code === cfg.profile.defaultLanguage ? 'selected' : ''}>${esc(l.name)}</option>`).join('');
+      addMsg('bot', cfg.greeting);
+    }
+
+    async function showPicker() {
+      $('#boot').style.display = 'none'; $('#picker').style.display = 'block';
+      const courses = await api('/courses');
+      $('#course-select').innerHTML = courses.map((c) => `<option value="${c.slug}">${esc(c.name)}</option>`).join('');
+      $('#open-course').onclick = () => location.href = '/tutor.html?slug=' + encodeURIComponent($('#course-select').value);
+    }
+
+    function addMsg(who, text) {
+      const el = document.createElement('div');
+      el.className = 'msg ' + (who === 'me' ? 'me' : 'bot');
+      const lang = cfg && cfg.languages.find((l) => l.code === $('#lang').value);
+      if (who === 'bot' && lang && lang.rtl) el.setAttribute('dir', 'rtl');
+      // render the demo footnote in italics
+      el.innerHTML = esc(text).replace(/_\(([^)]+)\)_/g, '<em>($1)</em>');
+      $('#msgs').appendChild(el);
+      $('#msgs').scrollTop = $('#msgs').scrollHeight;
+    }
+
+    async function send(text) {
+      text = (text || $('#input').value).trim();
+      if (!text) return;
+      $('#input').value = '';
+      addMsg('me', text);
+      history.push({ role: 'user', content: text });
+      const typing = document.createElement('div');
+      typing.className = 'typing'; typing.textContent = cfg.profile.tutorName + ' is thinking…';
+      $('#msgs').appendChild(typing); $('#msgs').scrollTop = $('#msgs').scrollHeight;
+      try {
+        const res = await api('/tutor/chat', { method: 'POST', authed: true, body: { slug, messages: history, language: $('#lang').value } });
+        typing.remove();
+        addMsg('bot', res.reply);
+        history.push({ role: 'assistant', content: res.reply });
+        $('#provider').textContent = res.provider === 'demo' ? 'Demo mode' : 'Live · ' + res.provider;
+      } catch (e) { typing.remove(); addMsg('bot', 'Sorry — ' + e.message); }
+    }
+
+    document.addEventListener('click', (e) => {
+      const chip = e.target.closest('.chip'); if (chip) send(chip.dataset.send);
+      if (e.target.id === 'send') send();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.target.id === 'input' && e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+    });
+    document.addEventListener('change', (e) => {
+      if (e.target.id === 'lang' && cfg) {
+        const l = cfg.languages.find((x) => x.code === e.target.value);
+        send('Let\'s continue in ' + l.name + ' from now on, please.');
+      }
+    });
+    boot();
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Track — ITHR Technologies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <section class="course-hero" style="padding:48px 0">
+    <div class="container">
+      <div class="crumbs"><a href="/index.html">Home</a> / <a href="/catalog.html">Certifications</a> / <span id="crumb">Track</span></div>
+      <h1 id="cat-title">Loading…</h1>
+      <p id="cat-blurb" style="color:#d4e1f5;max-width:60ch"></p>
+    </div>
+  </section>
+  <section class="block">
+    <div class="container">
+      <div class="course-grid" id="grid"><div class="loading">Loading…</div></div>
+    </div>
+  </section>
+  <div id="site-footer"></div>
+  <script src="/js/app.js"></script>
+  <script src="/js/cards.js"></script>
+  <script>
+    async function init() {
+      const slug = qs('cat');
+      await loadCategoryNames();
+      const cats = await api('/categories');
+      const cat = cats.find((c) => c.slug === slug);
+      if (cat) {
+        document.title = cat.name + ' — ITHR Technologies';
+        $('#cat-title').textContent = cat.name;
+        $('#crumb').textContent = cat.name;
+        $('#cat-blurb').textContent = cat.blurb;
+      }
+      const courses = await api('/courses?category=' + encodeURIComponent(slug));
+      $('#grid').innerHTML = courses.length ? courses.map(courseCard).join('')
+        : '<p class="muted">No certifications in this track yet.</p>';
+    }
+    init();
+  </script>
+</body>
+</html>

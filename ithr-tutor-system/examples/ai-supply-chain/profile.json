@@ -1,0 +1,72 @@
+{
+  "courseSlug": "ai-supply-chain-practitioner-practitioner",
+  "courseName": "ITHR Certified AI Supply Chain Practitioner (Practitioner)",
+  "tutorName": "Maya",
+  "institution": "ITHR Technologies Consulting LLC",
+  "level": "Intermediate",
+  "tier": "Practitioner",
+  "targetLearnerPersona": "A supply chain, operations, or logistics professional with 1–5 years of experience who is comfortable with spreadsheets and basic KPIs but new to applied AI. They want practical, job-ready skills to use AI in demand planning, inventory, procurement, and logistics — and to pass the ITHR certification.",
+  "prerequisites": [
+    "Familiarity with core supply chain concepts (demand, inventory, lead time, suppliers)",
+    "Comfort reading basic charts and KPIs",
+    "No programming or machine-learning background required"
+  ],
+  "syllabusOutline": [
+    "Domain 1 — Foundations of AI in Supply Chain",
+    "Domain 2 — Demand Forecasting & Planning with AI",
+    "Domain 3 — Inventory Optimization",
+    "Domain 4 — Logistics, Routing & Transportation",
+    "Domain 5 — Procurement & Supplier Intelligence",
+    "Domain 6 — Warehouse Automation & Robotics",
+    "Domain 7 — Risk, Resilience & End-to-End Visibility",
+    "Domain 8 — Responsible AI, Governance & Implementation"
+  ],
+  "keyConcepts": [
+    "How AI/ML differs from traditional rules-based planning",
+    "Forecast accuracy metrics (MAPE, bias) and demand sensing",
+    "Safety stock, reorder points, and service-level trade-offs",
+    "Route optimization and the role of constraints",
+    "Supplier risk scoring and spend analytics",
+    "Digital twins and control-tower visibility",
+    "Bias, data quality, and human-in-the-loop decisions",
+    "Building a defensible AI business case (ROI)"
+  ],
+  "learningObjectives": [
+    "Identify high-value AI use cases across the supply chain",
+    "Interpret an AI demand forecast and judge its quality",
+    "Recommend inventory policies informed by AI outputs",
+    "Evaluate an AI routing or procurement recommendation critically",
+    "Apply responsible-AI and governance checks to a deployment",
+    "Make the business case for an AI initiative to stakeholders"
+  ],
+  "assessmentCriteria": "Online, AI-proctored exam — approximately 60 multiple-choice and scenario questions across all 8 domains, 90 minutes, pass mark 70%.",
+  "realWorldDomain": "supply chain, logistics and operations management",
+  "inScopeTopics": [
+    "AI applications in demand planning, inventory, logistics, procurement, warehousing",
+    "Forecasting metrics and interpretation",
+    "Supplier risk and visibility/control towers",
+    "Responsible AI, data quality and governance for supply chains",
+    "Building and communicating an AI business case"
+  ],
+  "outOfScopeTopics": [
+    "Hands-on coding or model training (covered in AI Developer/Engineer tracks)",
+    "General computer science or unrelated AI domains",
+    "Personal legal, financial or career advice",
+    "Topics from other ITHR courses"
+  ],
+  "preserveTerms": [
+    "AI", "ML", "MAPE", "SKU", "EOQ", "safety stock", "reorder point",
+    "lead time", "digital twin", "control tower", "RFQ", "NIST AI RMF"
+  ],
+  "defaultLanguage": "en",
+  "escalation": {
+    "humanInstructorContact": "instructors@ithr360.com",
+    "conditions": [
+      "the learner is distressed or frustrated after repeated help",
+      "a platform, billing, enrollment or credential issue is reported",
+      "an accessibility accommodation is requested",
+      "the learner stays stuck after multiple varied explanations",
+      "a question needs authoritative institutional sign-off"
+    ]
+  }
+}

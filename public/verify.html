@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verify Credential — ITHR Technologies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <section class="block soft">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Credential Verification</span>
+        <h2>Verify an ITHR credential</h2>
+        <p>Enter a credential ID to confirm it was issued by ITHR Technologies Consulting LLC.</p>
+      </div>
+      <div style="max-width:560px;margin:0 auto;display:flex;gap:10px">
+        <input id="cid" placeholder="e.g. ITHR-1A2B3C4D-12" style="flex:1;padding:12px 16px;border:1.5px solid var(--line);border-radius:999px;font:inherit">
+        <button class="btn btn-primary" id="go">Verify</button>
+      </div>
+      <div id="result" style="margin-top:30px"></div>
+    </div>
+  </section>
+  <div id="site-footer"></div>
+  <script src="/js/app.js"></script>
+  <script>
+    async function verify(id) {
+      const r = $('#result');
+      r.innerHTML = '<div class="loading">Checking…</div>';
+      try {
+        const d = await api('/verify/' + encodeURIComponent(id));
+        r.innerHTML = `
+          <div class="cert">
+            <div class="seal">${icon('award',30)}</div>
+            <p class="muted" style="letter-spacing:.1em;text-transform:uppercase;font-size:13px">Verified Credential</p>
+            <h2>${esc(d.courseName)}</h2>
+            <p>This certifies that</p>
+            <div class="learner">${esc(d.learnerName)}</div>
+            <p>has successfully earned this <b>${esc(d.tier)}</b> certification from<br><b>${esc(d.issuer)}</b>.</p>
+            <p style="margin-top:18px"><span class="credid">${esc(d.credentialId)}</span></p>
+            <p class="muted" style="font-size:13px;margin-top:10px">Issued ${new Date(d.issuedAt).toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'})}</p>
+            <p style="margin-top:18px;color:var(--ok);font-weight:800">${icon('check',16)} Valid &amp; authentic</p>
+          </div>`;
+      } catch (err) {
+        r.innerHTML = `<div style="max-width:560px;margin:0 auto"><div class="alert alert-err">${esc(err.message)} — please check the ID and try again.</div></div>`;
+      }
+    }
+    $('#go').onclick = () => { if ($('#cid').value.trim()) verify($('#cid').value.trim()); };
+    $('#cid').onkeydown = (e) => { if (e.key === 'Enter') $('#go').click(); };
+    if (qs('id')) { $('#cid').value = qs('id'); verify(qs('id')); }
+  </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Certification — ITHR Technologies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <section class="course-hero">
+    <div class="container">
+      <div class="crumbs" id="crumbs"><a href="/index.html">Home</a> / <a href="/catalog.html">Certifications</a></div>
+      <h1 id="c-name">Loading…</h1>
+      <p id="c-short" style="color:#d4e1f5;max-width:62ch;font-size:18px"></p>
+      <div id="c-badges" style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap"></div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="container">
+      <div class="course-layout">
+        <div class="course-main" id="main"><div class="loading">Loading…</div></div>
+        <div class="course-aside" id="aside"></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+  <script src="/js/app.js"></script>
+  <script>
+    let course, enrollment;
+
+    async function init() {
+      const slug = qs('slug');
+      try { course = await api('/courses/' + encodeURIComponent(slug)); }
+      catch { $('#main').innerHTML = '<p class="muted">Certification not found.</p>'; return; }
+
+      document.title = course.name + ' — ITHR Technologies';
+      $('#c-name').textContent = course.name;
+      $('#c-short').textContent = course.shortDescription;
+      $('#crumbs').innerHTML = `<a href="/index.html">Home</a> / <a href="/catalog.html">Certifications</a> / <a href="/category.html?cat=${course.category}">${esc(course.category)}</a>`;
+      $('#c-badges').innerHTML = `
+        <span class="tag" style="background:rgba(255,255,255,.15);color:#fff">${esc(course.tier)}</span>
+        <span class="tag" style="background:rgba(255,255,255,.15);color:#fff">${esc(course.level)}</span>
+        <span class="tag" style="background:rgba(255,255,255,.15);color:#fff">${course.durationHours} hours</span>
+        <span class="tag" style="background:rgba(255,255,255,.15);color:#fff">★ ${course.rating}</span>`;
+
+      if (Auth.isAuthed) {
+        try { enrollment = (await api('/enrollments', { authed: true })).find((e) => e.courseId === course.id); }
+        catch {}
+      }
+      renderMain();
+      renderAside();
+    }
+
+    function renderMain() {
+      const done = new Set(enrollment ? enrollment.completedModules : []);
+      $('#main').innerHTML = `
+        <h2 style="font-size:24px">About this certification</h2>
+        <p>${esc(course.longDescription)}</p>
+
+        <h2 style="font-size:22px;margin-top:30px">Skills you'll gain</h2>
+        <div>${course.skills.map((s) => `<span class="skill-chip">${icon('check',14)} ${esc(s)}</span>`).join('')}</div>
+
+        <h2 style="font-size:22px;margin-top:30px">Curriculum · ${course.modules.length} modules</h2>
+        <div id="modules">
+          ${course.modules.map((m) => `
+            <div class="module ${done.has(m.order) ? 'done' : ''}" data-order="${m.order}">
+              <span class="num">${done.has(m.order) ? icon('check',15) : m.order}</span>
+              <div style="flex:1"><b>${esc(m.title)}</b></div>
+              ${enrollment ? `<button class="btn btn-ghost btn-sm toggle" data-order="${m.order}">${done.has(m.order) ? 'Completed' : 'Mark done'}</button>` : ''}
+            </div>`).join('')}
+        </div>
+
+        <h2 style="font-size:22px;margin-top:30px">Exam format</h2>
+        <p class="muted">${esc(course.exam.format)}. ${course.exam.questions} questions · ${course.exam.durationMinutes} minutes · pass mark ${course.exam.passPercent}%.</p>`;
+
+      $$('.toggle').forEach((b) => b.onclick = () => toggleModule(Number(b.dataset.order)));
+    }
+
+    function renderAside() {
+      const a = $('#aside');
+      if (!Auth.isAuthed) {
+        a.innerHTML = `
+          <div class="price">$${course.priceUsd}</div>
+          <p class="muted" style="margin:6px 0 18px">One-time. Includes exam &amp; credential.</p>
+          <a class="btn btn-primary btn-block" href="/register.html?next=${encodeURIComponent(location.pathname + location.search)}">Sign up to enroll</a>
+          <a class="btn btn-ghost btn-block" style="margin-top:10px" href="/login.html?next=${encodeURIComponent(location.pathname + location.search)}">I already have an account</a>
+          <ul style="list-style:none;padding:0;margin:20px 0 0;font-size:14px;color:var(--muted)">
+            <li style="padding:6px 0">✓ ${course.durationHours} hours of training</li>
+            <li style="padding:6px 0">✓ ${course.modules.length} hands-on modules</li>
+            <li style="padding:6px 0">✓ AI-proctored certification exam</li>
+            <li style="padding:6px 0">✓ Verifiable digital credential</li>
+          </ul>`;
+        return;
+      }
+      if (!enrollment) {
+        a.innerHTML = `
+          <div class="price">$${course.priceUsd}</div>
+          <p class="muted" style="margin:6px 0 18px">One-time. Includes exam &amp; credential.</p>
+          <button class="btn btn-primary btn-block" id="enroll-btn">Enroll now</button>`;
+        $('#enroll-btn').onclick = enroll;
+      } else {
+        a.innerHTML = `
+          <h3 style="margin:0 0 4px">Your progress</h3>
+          <div class="progress"><i style="width:${enrollment.progressPct}%"></i></div>
+          <p class="muted" style="font-size:13px">${enrollment.progressPct}% · ${enrollment.completedModules.length}/${course.modules.length} modules</p>
+          ${enrollment.status === 'completed'
+            ? `<p style="margin-top:14px;color:var(--ok);font-weight:700;font-size:14px">${icon('check',15)} Certified — exam passed</p>
+               <a class="btn btn-accent btn-block" style="margin-top:8px" href="/dashboard.html#certificates">View credential</a>`
+            : `<a class="btn btn-primary btn-block" style="margin-top:14px" href="/exam.html?slug=${course.slug}">Take certification exam</a>
+               <p style="margin-top:10px;font-size:13px" class="muted">Pass the ${course.exam.passPercent}% exam to earn your credential. We recommend finishing the modules first.</p>`}
+          <a class="btn btn-accent btn-block" style="margin-top:10px" href="/tutor.html?slug=${course.slug}">${icon('sparkles',15)} Ask your AI Tutor</a>
+          <a class="btn btn-ghost btn-block" style="margin-top:10px" href="/dashboard.html">Go to dashboard</a>`;
+      }
+    }
+
+    async function enroll() {
+      if (!requireAuth()) return;
+      await api('/enrollments', { method: 'POST', authed: true, body: { courseId: course.id } });
+      enrollment = (await api('/enrollments', { authed: true })).find((e) => e.courseId === course.id);
+      renderMain(); renderAside();
+    }
+
+    async function toggleModule(order) {
+      const res = await api(`/enrollments/${course.id}/progress`, { method: 'POST', authed: true, body: { moduleOrder: order } });
+      enrollment.completedModules = res.completedModules;
+      enrollment.progressPct = res.progressPct;
+      enrollment.status = res.status;
+      renderMain(); renderAside();
+    }
+
+    init();
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>All Certifications — ITHR Technologies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <section class="course-hero" style="padding:48px 0">
+    <div class="container">
+      <div class="crumbs"><a href="/index.html">Home</a> / Certifications</div>
+      <h1>All Certification Programs</h1>
+      <p style="color:#d4e1f5;max-width:60ch">Browse every ITHR Technologies AI &amp; Blockchain certification. Filter by track, level or search by name.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px;align-items:center">
+        <input id="search" placeholder="Search certifications…" style="flex:1;min-width:220px;padding:12px 16px;border:1.5px solid var(--line);border-radius:999px;font:inherit">
+        <select id="catSel" style="padding:12px 16px;border:1.5px solid var(--line);border-radius:999px;font:inherit"></select>
+        <select id="lvlSel" style="padding:12px 16px;border:1.5px solid var(--line);border-radius:999px;font:inherit">
+          <option value="">All levels</option><option>Beginner</option><option>Intermediate</option><option>Advanced</option>
+        </select>
+      </div>
+      <p class="muted" id="result-count" style="margin-bottom:18px"></p>
+      <div class="course-grid" id="grid"><div class="loading">Loading…</div></div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+  <script src="/js/app.js"></script>
+  <script src="/js/cards.js"></script>
+  <script>
+    const grid = $('#grid'), search = $('#search'), catSel = $('#catSel'), lvlSel = $('#lvlSel'), countEl = $('#result-count');
+    let timer;
+    async function init() {
+      await loadCategoryNames();
+      catSel.innerHTML = '<option value="">All tracks</option>' +
+        Object.entries(CAT_NAMES).map(([s, n]) => `<option value="${s}">${esc(n)}</option>`).join('');
+      catSel.value = qs('cat') || '';
+      lvlSel.value = qs('level') || '';
+      if (qs('q')) search.value = qs('q');
+      load();
+    }
+    async function load() {
+      grid.innerHTML = '<div class="loading">Loading…</div>';
+      const params = new URLSearchParams();
+      if (catSel.value) params.set('category', catSel.value);
+      if (lvlSel.value) params.set('level', lvlSel.value);
+      if (search.value.trim()) params.set('q', search.value.trim());
+      const courses = await api('/courses?' + params.toString());
+      countEl.textContent = `${courses.length} certification${courses.length === 1 ? '' : 's'}`;
+      grid.innerHTML = courses.length ? courses.map(courseCard).join('')
+        : '<p class="muted">No certifications match your filters.</p>';
+    }
+    search.oninput = () => { clearTimeout(timer); timer = setTimeout(load, 250); };
+    catSel.onchange = lvlSel.onchange = load;
+    init();
+  </script>
+</body>
+</html>

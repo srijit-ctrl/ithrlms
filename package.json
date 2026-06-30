@@ -1,0 +1,21 @@
+{
+  "name": "ithr-lms",
+  "version": "1.0.0",
+  "description": "ITHR Technologies Consulting LLC - AI & Blockchain Certification LMS",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "seed": "node server/seed.js",
+    "dev": "node server/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "license": "UNLICENSED",
+  "author": "ITHR Technologies Consulting LLC",
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard — ITHR Technologies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <div class="dash">
+    <aside>
+      <div class="who">
+        <span class="muted" style="font-size:12px">Signed in as</span>
+        <b id="who-name">—</b>
+        <span style="font-size:13px" id="who-email"></span>
+      </div>
+      <a href="#overview" class="active">${'•'} Overview</a>
+      <a href="#learning">My Learning</a>
+      <a href="#certificates">Credentials</a>
+      <a href="/catalog.html">Browse Catalog</a>
+      <a href="#" id="logout2">Sign out</a>
+    </aside>
+    <main>
+      <h1 style="font-size:30px">Your dashboard</h1>
+      <div class="dash-stats" id="stats"></div>
+
+      <h2 id="learning" style="margin-top:10px">My Learning</h2>
+      <div id="enrollments"><div class="loading">Loading…</div></div>
+
+      <h2 id="certificates" style="margin-top:34px">My Credentials</h2>
+      <div id="certs"><div class="loading">Loading…</div></div>
+    </main>
+  </div>
+  <div id="site-footer"></div>
+  <script src="/js/app.js"></script>
+  <script>
+    if (!Auth.isAuthed) location.href = '/login.html?next=/dashboard.html';
+    $('#logout2').onclick = (e) => { e.preventDefault(); Auth.clear(); location.href='/index.html'; };
+
+    async function load() {
+      const me = Auth.user;
+      $('#who-name').textContent = me.name;
+      $('#who-email').textContent = me.email;
+
+      const [enrolls, certs] = await Promise.all([
+        api('/enrollments', { authed: true }),
+        api('/certificates', { authed: true }),
+      ]);
+
+      const inProgress = enrolls.filter((e) => e.status !== 'completed').length;
+      const completed = enrolls.filter((e) => e.status === 'completed').length;
+      $('#stats').innerHTML = `
+        <div class="dash-stat"><b>${enrolls.length}</b><span>Enrollments</span></div>
+        <div class="dash-stat"><b>${inProgress}</b><span>In progress</span></div>
+        <div class="dash-stat"><b>${completed}</b><span>Completed</span></div>
+        <div class="dash-stat"><b>${certs.length}</b><span>Credentials earned</span></div>`;
+
+      $('#enrollments').innerHTML = enrolls.length ? enrolls.map((e) => `
+        <div class="enroll-row">
+          <div class="titleline">
+            <div>
+              <a href="/course.html?slug=${e.slug}" style="font-weight:800;font-size:16px;color:var(--ink)">${esc(e.name)}</a>
+              <div class="muted" style="font-size:13px">${esc(e.tier)} · ${e.completedModules.length}/${e.totalModules} modules · ${e.status === 'completed' ? '✅ Completed' : 'In progress'}</div>
+            </div>
+            <a class="btn btn-ghost btn-sm" href="/course.html?slug=${e.slug}">${e.status === 'completed' ? 'Review' : 'Continue'}</a>
+          </div>
+          <div class="progress"><i style="width:${e.progressPct}%"></i></div>
+          <span class="muted" style="font-size:12px">${e.progressPct}%</span>
+        </div>`).join('')
+        : `<p class="muted">You haven't enrolled yet. <a href="/catalog.html">Browse certifications →</a></p>`;
+
+      $('#certs').innerHTML = certs.length ? certs.map((c) => `
+        <div class="enroll-row">
+          <div class="titleline">
+            <div>
+              <b style="font-size:16px">${esc(c.courseName)}</b>
+              <div class="muted" style="font-size:13px">Credential ID: <span style="font-family:ui-monospace,monospace">${esc(c.credentialId)}</span> · Issued ${new Date(c.issuedAt).toLocaleDateString()}</div>
+            </div>
+            <a class="btn btn-accent btn-sm" href="/verify.html?id=${encodeURIComponent(c.credentialId)}">View &amp; verify</a>
+          </div>
+        </div>`).join('')
+        : `<p class="muted">Complete a certification to earn your first verifiable credential.</p>`;
+    }
+    load();
+  </script>
+</body>
+</html>

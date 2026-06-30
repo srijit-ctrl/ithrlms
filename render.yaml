@@ -1,0 +1,28 @@
+# Render Blueprint for the ITHR LMS.
+# In Render: New + > Blueprint, point at this repo, and Render reads this file.
+services:
+  - type: web
+    name: ithr-lms
+    runtime: node
+    plan: starter            # ~$7/mo, always-on. Use 'free' to trial (sleeps when idle).
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATA_DIR
+        value: /var/data      # matches the mounted disk below
+      - key: JWT_SECRET
+        generateValue: true   # Render generates a strong random secret
+      - key: ADMIN_EMAIL
+        value: admin@ithr360.com
+      - key: ADMIN_PASSWORD
+        sync: false           # set this yourself in the dashboard (kept secret)
+      - key: ANTHROPIC_API_KEY
+        sync: false           # set to enable live AI tutor; omit for demo mode
+    disk:
+      name: ithr-data
+      mountPath: /var/data    # persistent storage for server data.json
+      sizeGB: 1
