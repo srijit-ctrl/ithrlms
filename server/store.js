@@ -10,6 +10,8 @@ const fs = require('fs');
 const path = require('path');
 const { CATEGORIES, COURSES } = require('./data/catalog');
 const { generateForCourse } = require('./data/questions');
+let JOB_SEED = [];
+try { JOB_SEED = require('./data/jobs.seed'); } catch {}
 // Authored course content: legacy content.json (if present) merged with any
 // per-course files in data/content/*.json (per-course files take precedence).
 let CONTENT = {};
@@ -26,13 +28,15 @@ const DATA_DIR = process.env.DATA_DIR || __dirname;
 const DATA_PATH = path.join(DATA_DIR, 'data.json');
 
 const DEFAULT = {
-  seq: { users: 0, enrollments: 0, certificates: 0, courses: 0, questions: 0, attempts: 0 },
+  seq: { users: 0, enrollments: 0, certificates: 0, courses: 0, questions: 0, attempts: 0, jobs: 0, applications: 0 },
   users: [],
   enrollments: [],
   certificates: [],
   courses: [],
   questions: [],
   attempts: [],
+  jobs: [],
+  applications: [],
 };
 
 let data;
@@ -91,6 +95,18 @@ function applyContent() {
 
 load();
 applyContent();
+seedJobs();
+
+
+function jslug(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+function seedJobs() {
+  if ((data.jobs || []).length > 0) return;
+  for (const j of JOB_SEED) {
+    const id = nextId('jobs');
+    data.jobs.push({ id, slug: jslug(j.title) + '-' + id, postedAt: new Date().toISOString(), status: 'open', ...j });
+  }
+  save();
+}
 
 const api = {
   raw: () => data,
@@ -158,6 +174,45 @@ const api = {
   createCertificate(userId, courseId, credentialId) {
     const cert = { id: nextId('certificates'), userId, courseId, credentialId, issuedAt: new Date().toISOString() };
     data.certificates.push(cert); save(); return cert;
+  },
+
+  // ---- jobs ----
+  listJobs(filter = {}) {
+    let list = data.jobs.slice();
+    if (filter.openOnly) list = list.filter((j) => j.status === 'open');
+    if (filter.q) { const n = filter.q.toLowerCase(); list = list.filter((j) => (j.title + ' ' + j.summary + ' ' + j.department + ' ' + j.employer).toLowerCase().includes(n)); }
+    if (filter.type) list = list.filter((j) => j.type === filter.type);
+    if (filter.workMode) list = list.filter((j) => j.workMode === filter.workMode);
+    if (filter.department) list = list.filter((j) => j.department === filter.department);
+    return list.sort((a, b) => (b.postedAt || '').localeCompare(a.postedAt || ''));
+  },
+  findJobById(id) { return data.jobs.find((j) => j.id === id); },
+  findJobBySlug(slug) { return data.jobs.find((j) => j.slug === slug); },
+  createJob(job) {
+    const id = nextId('jobs');
+    const full = { id, slug: jslug(job.title || ('job-' + id)) + '-' + id, postedAt: new Date().toISOString(), status: job.status || 'open', ...job };
+    data.jobs.push(full); save(); return full;
+  },
+  updateJob(id, patch) {
+    const j = api.findJobById(id);
+    if (!j) return null;
+    Object.assign(j, patch, { id, slug: j.slug });
+    save(); return j;
+  },
+  deleteJob(id) {
+    data.jobs = data.jobs.filter((j) => j.id !== id);
+    data.applications = data.applications.filter((a) => a.jobId !== id);
+    save();
+  },
+
+  // ---- applications ----
+  listApplications(jobId) {
+    return data.applications.filter((a) => jobId == null || a.jobId === jobId)
+      .sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+  },
+  createApplication(app) {
+    const a = { id: nextId('applications'), createdAt: new Date().toISOString(), ...app };
+    data.applications.push(a); save(); return a;
   },
 };
 

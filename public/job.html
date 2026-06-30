@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Role — ITHR Recruit</title>
+  <link rel="icon" href="/assets/brand/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    .topbar { border-bottom:1px solid var(--line); background:#fff; }
+    .topbar .container { display:flex; align-items:center; height:70px; }
+    .topbar .logo-img { height:30px; }
+    .job-wrap { max-width:900px; margin:30px auto; padding:0 20px; display:grid; grid-template-columns:1fr 340px; gap:30px; align-items:start; }
+    .job-main { background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:30px; }
+    .job-main h1 { font-size:clamp(24px,3.2vw,32px); }
+    .job-main h3 { font-size:16px; text-transform:uppercase; letter-spacing:.04em; color:var(--brand-700); margin-top:24px; }
+    .job-main ul { padding-left:20px; } .job-main li { margin:7px 0; }
+    .aside { position:sticky; top:20px; background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow); }
+    .field { margin-bottom:14px; } .field label { display:block; font-size:13.5px; font-weight:700; margin-bottom:5px; }
+    .field input, .field textarea { width:100%; padding:11px 13px; border:1.5px solid var(--line); border-radius:10px; font:inherit; }
+    .field textarea { min-height:90px; resize:vertical; }
+    .chip { font-size:12px; font-weight:600; background:var(--bg-soft); color:var(--brand-600); padding:3px 10px; border-radius:999px; }
+    @media(max-width:820px){ .job-wrap{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="container">
+    <a class="logo" href="/"><img class="logo-img" src="/assets/brand/ITHR_Logo_FullColor.svg" alt="ITHR Technologies"></a>
+  </div></div>
+  <div class="job-wrap">
+    <main class="job-main" id="main"><div class="loading">Loading role…</div></main>
+    <aside class="aside" id="aside"></aside>
+  </div>
+  <div id="site-footer"></div>
+  <script src="/js/app.js"></script>
+  <script>
+    renderFooter();
+    const slug=qs('slug'); let job;
+    async function init(){
+      try{ job=await api('/jobs/'+encodeURIComponent(slug)); }
+      catch{ $('#main').innerHTML='<p class="muted">This role is no longer available. <a href="/">See open roles →</a></p>'; $('#aside').style.display='none'; return; }
+      document.title=job.title+' — ITHR Recruit';
+      $('#main').innerHTML=`
+        <div class="muted" style="font-size:13px"><a href="/">ITHR Recruit</a> / ${esc(job.department)}</div>
+        <h1>${esc(job.title)}</h1>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 4px">
+          <span class="chip">${esc(job.employer)}</span><span class="chip">${esc(job.location)}</span>
+          <span class="chip">${esc(job.type)}</span><span class="chip">${esc(job.workMode)}</span>
+        </div>
+        <h3>About the role</h3><p>${esc(job.description)}</p>
+        ${job.requirements&&job.requirements.length?`<h3>What you'll bring</h3><ul>${job.requirements.map((r)=>`<li>${esc(r)}</li>`).join('')}</ul>`:''}
+        ${job.certs&&job.certs.length?`<h3>Helpful ITHR certifications</h3><p class="muted">Stand out by holding a related credential: ${job.certs.map((c)=>`<a href="https://learn.ithr.tech/course.html?slug=${encodeURIComponent(c)}">${esc(c.replace(/-/g,' '))}</a>`).join(', ')}.</p>`:''}`;
+      renderForm();
+    }
+    function renderForm(){
+      $('#aside').innerHTML=`
+        <h3 style="margin:0 0 12px">Apply for this role</h3>
+        <div id="msg"></div>
+        <form id="f">
+          <div class="field"><label>Full name</label><input id="name" required></div>
+          <div class="field"><label>Email</label><input id="email" type="email" required></div>
+          <div class="field"><label>LinkedIn / portfolio (optional)</label><input id="linkedin"></div>
+          <div class="field"><label>ITHR credential ID (optional)</label><input id="cred" placeholder="ITHR-XXXX-..."><small class="muted">We'll verify it instantly.</small></div>
+          <div class="field"><label>Message (optional)</label><textarea id="message" placeholder="Why you're a great fit"></textarea></div>
+          <button class="btn btn-primary btn-block" type="submit">Submit application</button>
+        </form>`;
+      $('#f').onsubmit=async(e)=>{
+        e.preventDefault(); $('#msg').innerHTML='';
+        try{
+          const r=await api('/jobs/'+encodeURIComponent(slug)+'/apply',{method:'POST',body:{
+            name:$('#name').value,email:$('#email').value,linkedin:$('#linkedin').value,credentialId:$('#cred').value,message:$('#message').value}});
+          const verified=r.credentialVerified?`<div class="alert alert-ok" style="margin-top:10px">✓ Verified credential: ${esc(r.credentialCourse||'ITHR')}</div>`:'';
+          $('#aside').innerHTML=`<div class="alert alert-ok">Application submitted — thank you! The ITHR Recruit team will be in touch.</div>${verified}<a class="btn btn-ghost btn-block" style="margin-top:12px" href="/">Back to roles</a>`;
+        }catch(err){ $('#msg').innerHTML=`<div class="alert alert-err">${esc(err.message)}</div>`; }
+      };
+    }
+    init();
+  </script>
+</body>
+</html>

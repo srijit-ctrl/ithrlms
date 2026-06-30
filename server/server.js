@@ -395,6 +395,78 @@ app.post('/api/tutor/chat/stream', auth, async (req, res) => {
 });
 
 // ---------- static frontend ----------
+// ---------- ITHR Recruit: job board ----------
+function publicJob(j) {
+  return { id: j.id, slug: j.slug, title: j.title, department: j.department, employer: j.employer,
+    location: j.location, type: j.type, workMode: j.workMode, summary: j.summary,
+    description: j.description, requirements: j.requirements || [], certs: j.certs || [],
+    postedAt: j.postedAt, status: j.status };
+}
+function normalizeJob(b) {
+  const arr = (v) => Array.isArray(v) ? v.map((x) => String(x).trim()).filter(Boolean)
+    : String(v || '').split('\n').map((x) => x.trim()).filter(Boolean);
+  return {
+    title: (b.title || '').trim(), department: (b.department || '').trim(), employer: (b.employer || 'ITHR Technologies').trim(),
+    location: (b.location || '').trim(), type: b.type || 'Full-time', workMode: b.workMode || 'Remote',
+    summary: (b.summary || '').trim(), description: (b.description || '').trim(),
+    requirements: arr(b.requirements), certs: arr(b.certs), status: b.status === 'closed' ? 'closed' : 'open',
+  };
+}
+
+app.get('/api/jobs', (req, res) => {
+  const { q, type, workMode, department } = req.query;
+  res.json(store.listJobs({ openOnly: true, q, type, workMode, department }).map(publicJob));
+});
+app.get('/api/jobs/:slug', (req, res) => {
+  const j = store.findJobBySlug(req.params.slug);
+  if (!j || j.status !== 'open') return res.status(404).json({ error: 'Job not found' });
+  res.json(publicJob(j));
+});
+app.post('/api/jobs/:slug/apply', (req, res) => {
+  const j = store.findJobBySlug(req.params.slug);
+  if (!j || j.status !== 'open') return res.status(404).json({ error: 'Job not found or closed' });
+  const { name, email, message, linkedin, credentialId } = req.body || {};
+  if (!name || !email) return res.status(400).json({ error: 'Name and email are required' });
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return res.status(400).json({ error: 'Please enter a valid email' });
+  let credentialVerified = false, credentialCourse = null;
+  if (credentialId) {
+    const cert = store.findCertificateById(String(credentialId).trim());
+    if (cert) { credentialVerified = true; const c = store.findCourseById(cert.courseId); credentialCourse = c ? c.name : null; }
+  }
+  store.createApplication({
+    jobId: j.id, jobTitle: j.title, name: String(name).trim(), email: String(email).trim().toLowerCase(),
+    message: String(message || '').slice(0, 4000), linkedin: String(linkedin || '').trim(),
+    credentialId: credentialId ? String(credentialId).trim() : null, credentialVerified, credentialCourse,
+  });
+  res.json({ ok: true, credentialVerified, credentialCourse });
+});
+
+// admin
+app.get('/api/admin/jobs', auth, requireAdmin, (req, res) => {
+  res.json(store.listJobs().map((j) => ({ ...publicJob(j), applicationCount: store.listApplications(j.id).length })));
+});
+app.post('/api/admin/jobs', auth, requireAdmin, (req, res) => {
+  const payload = normalizeJob(req.body || {});
+  if (!payload.title) return res.status(400).json({ error: 'Title is required' });
+  res.json(store.createJob(payload));
+});
+app.put('/api/admin/jobs/:id', auth, requireAdmin, (req, res) => {
+  const id = Number(req.params.id);
+  if (!store.findJobById(id)) return res.status(404).json({ error: 'Job not found' });
+  res.json(store.updateJob(id, normalizeJob(req.body || {})));
+});
+app.delete('/api/admin/jobs/:id', auth, requireAdmin, (req, res) => {
+  const id = Number(req.params.id);
+  if (!store.findJobById(id)) return res.status(404).json({ error: 'Job not found' });
+  store.deleteJob(id); res.json({ ok: true });
+});
+app.get('/api/admin/jobs/:id/applications', auth, requireAdmin, (req, res) => {
+  res.json(store.listApplications(Number(req.params.id)));
+});
+app.get('/api/admin/applications', auth, requireAdmin, (req, res) => {
+  res.json(store.listApplications(null));
+});
+
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 // Host-based routing: each ITHR subdomain serves its own app from one deploy.
 function hostLanding(host) {

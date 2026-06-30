@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recruit Admin — ITHR</title>
+  <link rel="icon" href="/assets/brand/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    .topbar{border-bottom:1px solid var(--line);background:#fff;} .topbar .container{display:flex;align-items:center;height:70px;gap:14px;} .topbar .logo-img{height:28px;}
+    .admin{max-width:1120px;margin:26px auto;padding:0 20px;}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+    th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:14px;} th{background:var(--bg-soft);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);} tr:last-child td{border-bottom:0;}
+    .modal{position:fixed;inset:0;background:rgba(10,31,68,.55);display:none;place-items:center;z-index:100;padding:20px;overflow:auto;} .modal.open{display:grid;}
+    .sheet{background:#fff;border-radius:16px;width:100%;max-width:720px;max-height:92vh;overflow:auto;padding:26px;}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;} .field{margin-bottom:13px;} .field label{display:block;font-size:13px;font-weight:700;margin-bottom:5px;}
+    .field input,.field select,.field textarea{width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;font:inherit;} .field textarea{min-height:90px;resize:vertical;}
+    .pill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;} .pill.open{background:#e7f7ee;color:#0b7a5b;} .pill.closed{background:#fbe9e7;color:#c2410c;}
+    .appcard{border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:10px;} .verified{color:#0b7a5b;font-weight:700;font-size:12px;}
+    @media(max-width:680px){ .grid2{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="container">
+    <a class="logo" href="/"><img class="logo-img" src="/assets/brand/ITHR_Logo_FullColor.svg" alt="ITHR"></a>
+    <b style="margin-left:4px">Recruit Admin</b>
+    <div style="margin-left:auto;display:flex;gap:8px"><a class="btn btn-ghost btn-sm" href="/">View board</a><button class="btn btn-ghost btn-sm" id="out">Sign out</button></div>
+  </div></div>
+  <div class="admin">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+      <div><h1 style="font-size:26px;margin:0">Job postings</h1><p class="muted" style="margin:2px 0 0">Create roles, manage status, and review applicants.</p></div>
+      <button class="btn btn-primary" id="new">+ New role</button>
+    </div>
+    <div id="list"><div class="loading">Loading…</div></div>
+  </div>
+
+  <div class="modal" id="job-modal"><div class="sheet">
+    <div style="display:flex;justify-content:space-between;align-items:center"><h2 id="jm-title" style="margin:0">New role</h2><button class="btn btn-ghost btn-sm" onclick="close_('job-modal')">✕</button></div>
+    <div id="jm-msg"></div>
+    <form id="job-form" style="margin-top:12px">
+      <input type="hidden" id="f-id">
+      <div class="field"><label>Title</label><input id="f-title" required></div>
+      <div class="grid2">
+        <div class="field"><label>Department</label><input id="f-dept"></div>
+        <div class="field"><label>Employer</label><input id="f-emp" value="ITHR Technologies"></div>
+        <div class="field"><label>Location</label><input id="f-loc"></div>
+        <div class="field"><label>Type</label><select id="f-type"><option>Full-time</option><option>Contract</option><option>Part-time</option><option>Internship</option></select></div>
+        <div class="field"><label>Work mode</label><select id="f-mode"><option>Remote</option><option>Hybrid</option><option>On-site</option></select></div>
+        <div class="field"><label>Status</label><select id="f-status"><option value="open">Open</option><option value="closed">Closed</option></select></div>
+      </div>
+      <div class="field"><label>Summary (one line)</label><input id="f-summary"></div>
+      <div class="field"><label>Description</label><textarea id="f-desc"></textarea></div>
+      <div class="field"><label>Requirements (one per line)</label><textarea id="f-req"></textarea></div>
+      <div class="field"><label>Related ITHR cert slugs (one per line, optional)</label><textarea id="f-certs"></textarea></div>
+      <div style="display:flex;gap:10px"><button class="btn btn-primary" type="submit">Save role</button><button class="btn btn-ghost" type="button" onclick="close_('job-modal')">Cancel</button></div>
+    </form>
+  </div></div>
+
+  <div class="modal" id="app-modal"><div class="sheet">
+    <div style="display:flex;justify-content:space-between;align-items:center"><h2 id="am-title" style="margin:0">Applications</h2><button class="btn btn-ghost btn-sm" onclick="close_('app-modal')">✕</button></div>
+    <div id="app-list" style="margin-top:14px"></div>
+  </div></div>
+
+  <script src="/js/app.js"></script>
+  <script>
+    if(!Auth.isAuthed) location.href='/login.html?next=/recruit-admin.html';
+    $('#out').onclick=()=>{Auth.clear();location.href='/';};
+    let jobs=[];
+    async function loadJobs(){
+      try{ jobs=await api('/admin/jobs',{authed:true}); }
+      catch(e){ document.querySelector('.admin').innerHTML='<div class="alert alert-err">'+esc(e.message)+' — sign in as an admin.</div>'; return; }
+      $('#list').innerHTML=`<table><thead><tr><th>Role</th><th>Employer</th><th>Type</th><th>Status</th><th>Applicants</th><th></th></tr></thead><tbody>`+
+        jobs.map((j)=>`<tr>
+          <td><b>${esc(j.title)}</b><div class="muted" style="font-size:12px">${esc(j.location||'')}</div></td>
+          <td>${esc(j.employer||'')}</td><td>${esc(j.type)} · ${esc(j.workMode)}</td>
+          <td><span class="pill ${j.status}">${j.status}</span></td>
+          <td><a href="#" onclick="viewApps(${j.id});return false;">${j.applicationCount} →</a></td>
+          <td style="display:flex;gap:6px"><button class="btn btn-ghost btn-sm" onclick="editJob(${j.id})">Edit</button><button class="btn btn-ghost btn-sm" style="color:#c2410c" onclick="delJob(${j.id})">Delete</button></td>
+        </tr>`).join('')+`</tbody></table><p class="muted" style="margin-top:10px">${jobs.length} roles</p>`;
+    }
+    window.editJob=(id)=>{ const j=jobs.find(x=>x.id===id); $('#jm-title').textContent='Edit role'; $('#jm-msg').innerHTML='';
+      $('#f-id').value=j.id;$('#f-title').value=j.title;$('#f-dept').value=j.department||'';$('#f-emp').value=j.employer||'';$('#f-loc').value=j.location||'';
+      $('#f-type').value=j.type;$('#f-mode').value=j.workMode;$('#f-status').value=j.status;$('#f-summary').value=j.summary||'';$('#f-desc').value=j.description||'';
+      $('#f-req').value=(j.requirements||[]).join('\n');$('#f-certs').value=(j.certs||[]).join('\n'); open_('job-modal'); };
+    $('#new').onclick=()=>{ $('#jm-title').textContent='New role'; $('#job-form').reset(); $('#f-id').value=''; $('#f-emp').value='ITHR Technologies'; $('#jm-msg').innerHTML=''; open_('job-modal'); };
+    $('#job-form').onsubmit=async(e)=>{ e.preventDefault();
+      const body={title:$('#f-title').value,department:$('#f-dept').value,employer:$('#f-emp').value,location:$('#f-loc').value,type:$('#f-type').value,workMode:$('#f-mode').value,status:$('#f-status').value,summary:$('#f-summary').value,description:$('#f-desc').value,requirements:$('#f-req').value,certs:$('#f-certs').value};
+      try{ const id=$('#f-id').value;
+        if(id) await api('/admin/jobs/'+id,{method:'PUT',authed:true,body}); else await api('/admin/jobs',{method:'POST',authed:true,body});
+        close_('job-modal'); loadJobs();
+      }catch(err){ $('#jm-msg').innerHTML=`<div class="alert alert-err">${esc(err.message)}</div>`; } };
+    window.delJob=async(id)=>{ const j=jobs.find(x=>x.id===id); if(!confirm('Delete "'+j.title+'" and its applications?'))return; await api('/admin/jobs/'+id,{method:'DELETE',authed:true}); loadJobs(); };
+    window.viewApps=async(id)=>{ const j=jobs.find(x=>x.id===id); $('#am-title').textContent='Applications — '+j.title;
+      const apps=await api('/admin/jobs/'+id+'/applications',{authed:true});
+      $('#app-list').innerHTML= apps.length ? apps.map((a)=>`<div class="appcard">
+        <div style="display:flex;justify-content:space-between;gap:10px"><b>${esc(a.name)}</b><span class="muted" style="font-size:12px">${new Date(a.createdAt).toLocaleDateString()}</span></div>
+        <div style="font-size:13.5px"><a href="mailto:${esc(a.email)}">${esc(a.email)}</a>${a.linkedin?` · <a href="${esc(a.linkedin)}" target="_blank" rel="noopener">link</a>`:''}</div>
+        ${a.credentialId?`<div style="font-size:12.5px;margin-top:4px">${a.credentialVerified?`<span class="verified">✓ Verified: ${esc(a.credentialCourse||'ITHR credential')}</span>`:`<span class="muted">Credential ${esc(a.credentialId)} (unverified)</span>`}</div>`:''}
+        ${a.message?`<p style="font-size:13.5px;margin:8px 0 0;color:var(--body)">${esc(a.message)}</p>`:''}
+      </div>`).join('') : '<p class="muted">No applications yet.</p>';
+      open_('app-modal'); };
+    window.open_=(id)=>$('#'+id).classList.add('open'); window.close_=(id)=>$('#'+id).classList.remove('open');
+    loadJobs();
+  </script>
+</body>
+</html>
