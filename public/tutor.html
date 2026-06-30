@@ -29,6 +29,13 @@
     [dir=rtl] .msg.me { border-bottom-right-radius:14px;border-bottom-left-radius:4px; }
     .cursor::after { content:'▍'; color:var(--accent-500); animation: blink 1s steps(1) infinite; }
     @keyframes blink { 50% { opacity:0; } }
+
+    .voicebtn { width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);background:#fff;color:var(--brand-700);display:grid;place-items:center;cursor:pointer;flex:none;transition:.15s; }
+    .voicebtn:hover { border-color:var(--brand-500);color:var(--brand-600); }
+    .voicebtn.on { background:var(--accent-500);border-color:var(--accent-500);color:#fff; }
+    .voicebtn.listening { background:#dc2626;border-color:#dc2626;color:#fff;animation:pulse 1s infinite; }
+    @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.45);} 50%{box-shadow:0 0 0 7px rgba(220,38,38,0);} }
+    .voice-hint { font-size:12px;color:var(--muted);padding:4px 18px 0; }
   </style>
 </head>
 <body>
@@ -56,9 +63,12 @@
           <button class="chip" data-send="I'm a bit confused — can you slow down?">I'm confused</button>
         </div>
         <div class="composer">
-          <textarea id="input" rows="1" placeholder="Ask your tutor anything… (any language)"></textarea>
+          <button class="voicebtn" id="mic" title="Speak to the tutor" aria-label="Speak to the tutor"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><line x1="12" y1="18" x2="12" y2="22"/></svg></button>
+          <textarea id="input" rows="1" placeholder="Ask your tutor anything… (type or tap the mic)"></textarea>
+          <button class="voicebtn" id="speak" title="Read replies aloud" aria-label="Toggle voice replies"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8a5 5 0 0 1 0 8"/></svg></button>
           <button class="btn btn-primary" id="send">Send</button>
         </div>
+        <div class="voice-hint" id="voice-hint"></div>
       </div>
       <p class="muted" style="font-size:12.5px;margin-top:10px">Your AI tutor answers from this course's lessons and escalates to a human instructor when needed. It can make mistakes — verify anything critical.</p>
     </div>
@@ -110,7 +120,7 @@
       if (busy) return;
       text = (text || $('#input').value).trim();
       if (!text) return;
-      busy = true; $('#input').value = '';
+      busy = true; $('#input').value = ''; if (window.speechSynthesis) window.speechSynthesis.cancel();
       addMsg('me', text);
       history.push({ role: 'user', content: text });
       const el = bubble('bot'); el.classList.add('cursor'); el.textContent = '';
@@ -140,7 +150,7 @@
         } catch (e2) { acc = 'Sorry — ' + e2.message; el.textContent = acc; }
       }
       el.classList.remove('cursor');
-      if (acc) history.push({ role: 'assistant', content: acc });
+      if (acc) { history.push({ role: 'assistant', content: acc }); speak(acc); }
       busy = false;
     }
 
@@ -154,6 +164,41 @@
     document.addEventListener('change', (e) => {
       if (e.target.id === 'lang' && cfg) { const l = cfg.languages.find((x) => x.code === e.target.value); send('Continue in ' + l.name + ' from now on, please.'); }
     });
+
+    // ---- interactive voice (Web Speech API; no extra keys) ----
+    const SYNTH = window.speechSynthesis || null;
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+    const LANG_MAP = { en:'en-US', zh:'zh-CN', pt:'pt-BR', ar:'ar-SA', hi:'hi-IN', bn:'bn-IN', ta:'ta-IN', te:'te-IN', ja:'ja-JP', ko:'ko-KR', fr:'fr-FR', de:'de-DE', es:'es-ES', it:'it-IT', ru:'ru-RU', tr:'tr-TR', vi:'vi-VN', id:'id-ID', th:'th-TH', uk:'uk-UA', pl:'pl-PL', nl:'nl-NL', sv:'sv-SE', he:'he-IL', fa:'fa-IR', ur:'ur-PK' };
+    let recog = null, listening = false, voiceOn = false;
+    function speechLang(){ const c = ($('#lang') && $('#lang').value) || (cfg && cfg.profile.defaultLanguage) || 'en'; return LANG_MAP[c] || c; }
+    function speak(text){
+      if (!voiceOn || !SYNTH) return;
+      const clean = String(text).replace(/_\([^)]*\)_/g,'').replace(/[#*_`>]/g,'').trim();
+      if (!clean) return;
+      try { SYNTH.cancel(); const u = new SpeechSynthesisUtterance(clean); u.lang = speechLang();
+        const base = speechLang().slice(0,2).toLowerCase();
+        const v = (SYNTH.getVoices()||[]).find((x)=>x.lang && x.lang.toLowerCase().startsWith(base));
+        if (v) u.voice = v; SYNTH.speak(u);
+      } catch {}
+    }
+    function setupVoice(){
+      const mic = $('#mic'), spk = $('#speak'), hint = $('#voice-hint');
+      if (!SR && mic) { mic.style.display='none'; }
+      if (!SYNTH && spk) { spk.style.display='none'; }
+      if (hint) hint.textContent = (SR || SYNTH) ? 'Voice: tap the mic to speak, or the speaker to have replies read aloud. Best in Chrome, Edge or Safari.' : 'Tip: voice features need Chrome, Edge or Safari.';
+      if (spk) spk.onclick = () => { voiceOn = !voiceOn; spk.classList.toggle('on', voiceOn); if (!voiceOn && SYNTH) SYNTH.cancel(); };
+      if (mic && SR) mic.onclick = () => {
+        if (listening) { try { recog.stop(); } catch {} return; }
+        recog = new SR(); recog.lang = speechLang(); recog.interimResults = true; recog.continuous = false;
+        recog.onstart = () => { listening = true; mic.classList.add('listening'); };
+        recog.onresult = (e) => { let t=''; for (const r of e.results) t += r[0].transcript; $('#input').value = t; };
+        recog.onerror = () => {};
+        recog.onend = () => { listening = false; mic.classList.remove('listening'); const m = ($('#input').value||'').trim(); if (m) send(m); };
+        try { recog.start(); } catch {}
+      };
+    }
+    if (SYNTH && SYNTH.getVoices().length === 0) { try { SYNTH.onvoiceschanged = () => {}; } catch {} }
+    setupVoice();
     boot();
   </script>
 </body>
