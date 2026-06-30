@@ -395,10 +395,19 @@ app.post('/api/tutor/chat/stream', auth, async (req, res) => {
 });
 
 // ---------- static frontend ----------
-app.use(express.static(path.join(__dirname, '..', 'public')));
+const PUBLIC_DIR = path.join(__dirname, '..', 'public');
+// Host-based routing: each ITHR subdomain serves its own app from one deploy.
+function hostLanding(host) {
+  host = String(host || '').toLowerCase();
+  if (host.startsWith('apps.')) return 'apps.html';
+  if (host.startsWith('recruit.')) return 'recruit.html';
+  if (host.startsWith('verify.')) return 'verify.html';
+  return 'index.html'; // learn.ithr.tech, apex, and onrender.com -> LMS
+}
+app.use(express.static(PUBLIC_DIR, { index: false }));
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api/')) return res.status(404).json({ error: 'Not found' });
-  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+  res.sendFile(path.join(PUBLIC_DIR, hostLanding(req.hostname || req.headers.host)));
 });
 
 app.listen(PORT, () => console.log('ITHR LMS running at http://localhost:' + PORT));

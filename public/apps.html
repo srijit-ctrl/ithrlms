@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ITHR Apps — ITHR Technologies</title>
+  <link rel="icon" href="/assets/brand/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32x32.png">
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    .topbar { border-bottom:1px solid var(--line); background:#fff; }
+    .topbar .container { display:flex; align-items:center; height:70px; }
+    .topbar .logo-img { height:30px; }
+    .apps-hero { background: linear-gradient(180deg,#0f2647 0%, #16335E 100%); color:#fff; }
+    .apps-hero .container { padding:72px 24px 64px; text-align:center; }
+    
+    .apps-hero h1 { color:#fff; font-size:clamp(30px,4.5vw,50px); max-width:18ch; margin:14px auto 0; }
+    .apps-hero p { color:#d4e1f5; font-size:19px; max-width:54ch; margin:16px auto 0; }
+    .app-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .app-card { display:block; background:#fff; border:1px solid var(--line); border-radius:16px; padding:26px; transition:.18s; }
+    .app-card:hover { transform:translateY(-4px); box-shadow:var(--shadow); border-color:transparent; }
+    .app-card .ic { width:52px;height:52px;border-radius:14px;display:grid;place-items:center;color:#fff;margin-bottom:16px;background:linear-gradient(135deg,var(--brand-700),var(--accent-500)); }
+    .app-card h3 { font-size:19px; margin-bottom:6px; }
+    .app-card p { font-size:14px; color:var(--muted); margin:0 0 12px; }
+    .pill-live { font-size:11px;font-weight:700;color:#0b7a5b;background:#e7f7ee;padding:3px 9px;border-radius:999px; }
+    .pill-soon { font-size:11px;font-weight:700;color:#6e6e73;background:var(--bg-soft);padding:3px 9px;border-radius:999px; }
+    .app-card.soon { opacity:.72; }
+    @media(max-width:860px){ .app-grid{grid-template-columns:1fr 1fr;} }
+    @media(max-width:560px){ .app-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="container">
+    <a class="logo" href="/"><img class="logo-img" src="/assets/brand/ITHR_Logo_FullColor.svg" alt="ITHR Technologies"></a>
+  </div></div>
+
+  <section class="apps-hero"><div class="container">
+    <span class="eyebrow" style="color:#3FA9E0;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:13px">The ITHR Platform</span>
+    <h1>One platform. Every ITHR tool.</h1>
+    <p>Your hub for ITHR Technologies Consulting LLC — learning, credential verification, hiring and more, all in one place.</p>
+  </div></section>
+
+  <section class="block"><div class="container">
+    <div class="app-grid">
+      <a class="app-card" href="https://learn.ithr.tech">
+        <div class="ic">${'book'}</div>
+        <h3>ITHR Learn <span class="pill-live">Live</span></h3>
+        <p>Role-based AI &amp; Blockchain certifications with an AI tutor, exams and verifiable credentials.</p>
+        <span style="color:var(--brand-600);font-weight:700;font-size:14px">Open Learn →</span>
+      </a>
+      <a class="app-card" href="https://verify.ithr.tech">
+        <div class="ic">${'award'}</div>
+        <h3>ITHR Verify <span class="pill-live">Live</span></h3>
+        <p>Confirm any ITHR credential by its ID — public, instant verification.</p>
+        <span style="color:var(--brand-600);font-weight:700;font-size:14px">Verify a credential →</span>
+      </a>
+      <a class="app-card" href="https://recruit.ithr.tech">
+        <div class="ic">${'briefcase'}</div>
+        <h3>ITHR Recruit <span class="pill-live">Live</span></h3>
+        <p>Careers and AI-ready talent — explore roles and connect with ITHR.</p>
+        <span style="color:var(--brand-600);font-weight:700;font-size:14px">Open Recruit →</span>
+      </a>
+      <div class="app-card soon">
+        <div class="ic">${'target'}</div>
+        <h3>ITHR Assess <span class="pill-soon">Coming soon</span></h3>
+        <p>Skills assessments and role-readiness benchmarking for teams.</p>
+      </div>
+      <div class="app-card soon">
+        <div class="ic">${'sparkles'}</div>
+        <h3>ITHR Mentor <span class="pill-soon">Coming soon</span></h3>
+        <p>On-demand AI mentoring and guided learning paths.</p>
+      </div>
+      <div class="app-card soon">
+        <div class="ic">${'cpu'}</div>
+        <h3>ITHR Insights <span class="pill-soon">Coming soon</span></h3>
+        <p>Analytics on skills, training ROI and workforce capability.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <div id="site-footer"></div>
+  <script src="/js/app.js"></script>
+  <script>
+    renderFooter();
+    document.querySelectorAll('.app-card .ic').forEach((el)=>{ const n=el.textContent.trim().replace(/[${}']/g,''); el.innerHTML=icon(n,26); });
+  </script>
+</body>
+</html>

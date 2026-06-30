@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" role="img" aria-label="ITHR Certified badge">
+  <defs>
+    <linearGradient id="ring" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B3C6B"/>
+      <stop offset="1" stop-color="#0F2647"/>
+    </linearGradient>
+    <path id="topArc" d="M 78,540 A 462,462 0 0 1 1002,540" fill="none"/>
+  </defs>
+
+  <circle cx="540" cy="540" r="464" fill="none" stroke="url(#ring)" stroke-width="112"/>
+  <circle cx="540" cy="540" r="520" fill="none" stroke="#00A78B" stroke-width="5"/>
+  <circle cx="540" cy="540" r="410" fill="none" stroke="#3FA9E0" stroke-width="5"/>
+  <circle cx="540" cy="540" r="404" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-opacity="0.9"/>
+
+  <text font-family="Poppins, Montserrat, 'DejaVu Sans', sans-serif" font-size="41" font-weight="700" letter-spacing="5" fill="#FFFFFF">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">ITHR CERTIFIED &#183; AI &amp; BLOCKCHAIN</textPath>
+  </text>
+
+  <g fill="#00A78B">
+    <path transform="translate(78,540)" d="M 0,-22 L 5,-5 L 22,0 L 5,5 L 0,22 L -5,5 L -22,0 L -5,-5 Z"/>
+    <path transform="translate(1002,540)" d="M 0,-22 L 5,-5 L 22,0 L 5,5 L 0,22 L -5,5 L -22,0 L -5,-5 Z"/>
+  </g>
+
+  <g>
+    <circle cx="540" cy="1004" r="78" fill="#0F2647"/>
+    <circle cx="540" cy="1004" r="78" fill="none" stroke="#00A78B" stroke-width="6"/>
+    <circle cx="540" cy="1004" r="70" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.6"/>
+    <g transform="translate(540,1004) scale(0.165) translate(-314,-255)">
+      <polygon points="28,140.5 358,318 28,495.5" fill="#1C3E6E"/>
+      <polygon points="112,77.5 442,255 112,432.5" fill="#2E7FC1" fill-opacity="0.80"/>
+      <polygon points="196,14.5 526,192 196,369.5" fill="#00A78B" fill-opacity="0.86"/>
+      <circle cx="568" cy="186" r="33" fill="none" stroke="#00A78B" stroke-width="11"/>
+      <circle cx="568" cy="186" r="13" fill="#00A78B"/>
+    </g>
+  </g>
+</svg>

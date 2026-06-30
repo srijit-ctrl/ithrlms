@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ITHR Recruit — Careers &amp; AI-Ready Talent</title>
+  <link rel="icon" href="/assets/brand/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32x32.png">
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    .topbar { border-bottom:1px solid var(--line); background:#fff; position:sticky; top:0; z-index:20; }
+    .topbar .container { display:flex; align-items:center; height:70px; gap:20px; }
+    .topbar .logo-img { height:30px; }
+    .topbar nav { margin-left:auto; display:flex; gap:8px; }
+    .topbar nav a { color:var(--ink); font-weight:600; font-size:15px; padding:9px 13px; border-radius:8px; }
+    .topbar nav a:hover { background:var(--bg-soft); color:var(--brand-600); }
+    .rec-hero { background:linear-gradient(180deg,#0f2647 0%, #16335E 100%); color:#fff; }
+    .rec-hero .container { padding:80px 24px; }
+    .rec-hero h1 { color:#fff; font-size:clamp(32px,5vw,54px); max-width:20ch; }
+    .rec-hero p { color:#d4e1f5; font-size:19px; max-width:56ch; margin:18px 0 28px; }
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+    .feature{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;}
+    .feature .ic{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--brand-600),var(--accent-500));color:#fff;display:grid;place-items:center;margin-bottom:14px;}
+    .role{display:flex;justify-content:space-between;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:12px;flex-wrap:wrap;}
+    .role .meta{color:var(--muted);font-size:13.5px;}
+    @media(max-width:820px){ .feature-grid{grid-template-columns:1fr;} .topbar nav{display:none;} }
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="container">
+    <a class="logo" href="/"><img class="logo-img" src="/assets/brand/ITHR_Logo_FullColor.svg" alt="ITHR Technologies"></a>
+    <nav>
+      <a href="#roles">Open roles</a>
+      <a href="#employers">For employers</a>
+      <a href="https://learn.ithr.tech">Get certified</a>
+    </nav>
+  </div></div>
+
+  <section class="rec-hero"><div class="container">
+    <span style="color:#3FA9E0;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:13px">ITHR Recruit</span>
+    <h1>AI-ready talent, ready to hire.</h1>
+    <p>ITHR Recruit connects organizations with professionals who hold verifiable ITHR AI &amp; Blockchain credentials — and helps candidates turn certified skills into careers.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap">
+      <a class="btn btn-accent" href="#roles">View open roles</a>
+      <a class="btn btn-white" href="#employers">Hire certified talent</a>
+    </div>
+  </div></section>
+
+  <section class="block"><div class="container">
+    <div class="section-head"><span class="eyebrow" style="color:var(--accent-500);font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:.06em">Why ITHR Recruit</span>
+      <h2 style="font-size:clamp(24px,3vw,34px)">Skills you can verify, talent you can trust</h2></div>
+    <div class="feature-grid">
+      <div class="feature"><div class="ic">${'award'}</div><h3>Verified credentials</h3><p class="muted">Every candidate's ITHR certification is backed by a proctored exam and a public, verifiable credential ID.</p></div>
+      <div class="feature"><div class="ic">${'target'}</div><h3>Role-matched skills</h3><p class="muted">Certifications map to real job functions across AI and Blockchain, so capability is clear from day one.</p></div>
+      <div class="feature"><div class="ic">${'shield'}</div><h3>Responsible by design</h3><p class="muted">Talent trained in ethics, governance and secure, responsible AI practice.</p></div>
+    </div>
+  </div></section>
+
+  <section class="block soft" id="roles"><div class="container">
+    <div class="section-head"><h2 style="font-size:clamp(24px,3vw,34px)">Open roles</h2><p class="muted">Selected opportunities with ITHR and partner organizations.</p></div>
+    <div style="max-width:820px;margin:0 auto">
+      <div class="role"><div><b>AI Solutions Consultant</b><div class="meta">ITHR Technologies · Remote · Full-time</div></div><a class="btn btn-ghost btn-sm" href="#apply">Apply</a></div>
+      <div class="role"><div><b>AI Training Facilitator</b><div class="meta">ITHR Technologies · Hybrid · Full-time</div></div><a class="btn btn-ghost btn-sm" href="#apply">Apply</a></div>
+      <div class="role"><div><b>Blockchain Developer (Practitioner-certified)</b><div class="meta">Partner employer · Remote</div></div><a class="btn btn-ghost btn-sm" href="#apply">Apply</a></div>
+      <div class="role"><div><b>AI Project Manager</b><div class="meta">Partner employer · On-site</div></div><a class="btn btn-ghost btn-sm" href="#apply">Apply</a></div>
+      <p class="muted" style="text-align:center;margin-top:14px">More roles added regularly. Don't see a fit? <a href="#apply">Join the talent pool →</a></p>
+    </div>
+  </div></section>
+
+  <section class="block" id="employers"><div class="container">
+    <div class="cta-band">
+      <h2>Hire certified, AI-ready professionals</h2>
+      <p>Tell us what you're hiring for and we'll match you with ITHR-credentialed candidates.</p>
+      <div class="cta-row" style="justify-content:center">
+        <a class="btn btn-accent" id="apply" href="mailto:recruit@ithr360.com?subject=ITHR%20Recruit%20Inquiry">Contact ITHR Recruit</a>
+        <a class="btn btn-white" href="https://learn.ithr.tech">Become certified</a>
+      </div>
+    </div>
+  </div></section>
+
+  <div id="site-footer"></div>
+  <script src="/js/app.js"></script>
+  <script>
+    renderFooter();
+    document.querySelectorAll('.feature .ic').forEach((el)=>{ const n=el.textContent.trim().replace(/[${}']/g,''); el.innerHTML=icon(n,24); });
+  </script>
+</body>
+</html>
