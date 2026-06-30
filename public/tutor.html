@@ -152,7 +152,7 @@
       if (e.target.id === 'input' && e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
     });
     document.addEventListener('change', (e) => {
-      if (e.target.id === 'lang' && cfg) { const l = cfg.languages.find((x) => x.code === e.target.value); send('Let\\'s continue in ' + l.name + ' from now on, please.'); }
+      if (e.target.id === 'lang' && cfg) { const l = cfg.languages.find((x) => x.code === e.target.value); send('Continue in ' + l.name + ' from now on, please.'); }
     });
     boot();
   </script>
