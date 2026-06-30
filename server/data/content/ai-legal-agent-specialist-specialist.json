@@ -1,0 +1,292 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations: AI Agents in the Legal Workflow",
+      "objectives": [
+        "Define what an AI agent is and how it differs from a single prompt or chatbot",
+        "Map common legal tasks where agents add value without replacing professional judgment",
+        "Explain why a qualified lawyer remains accountable for all agent output"
+      ],
+      "body": [
+        "An AI agent is software that can plan a sequence of steps, call tools, retrieve documents, and produce work product toward a goal you define. Unlike a one-off prompt, an agent loops: it observes a result, decides what to do next, and continues until it reaches a stopping point. In legal settings this is powerful because tasks like research or contract review are multi-step. But the same autonomy that makes agents useful also widens the surface area for errors, so understanding the loop is the first step toward supervising it well.",
+        "Legal work breaks naturally into stages: gathering source material, analyzing it against a question, drafting an output, and reviewing that output. Agents can assist at each stage, yet they are most reliable when scoped tightly. A narrow agent that summarizes a single deposition transcript is easier to verify than a broad agent asked to handle an entire matter. As you design agents in this course, you will repeatedly choose smaller scopes that a human can check, rather than sprawling automations that hide their reasoning.",
+        "The central professional principle running through every module is accountability. An AI agent does not bear responsibility; the lawyer or supervised professional who relies on its work does. This means every fact, citation, and conclusion an agent produces must be treated as a draft to be verified, not as a settled answer. Throughout this course we teach habits that keep a competent human in control of judgment, scope, and final sign-off, regardless of how capable the underlying model appears to be.",
+        "We also distinguish teaching from advising. This course explains how to apply AI tools to legal workflows; it does not give legal advice, and it avoids stating jurisdiction-specific rules as settled fact. Professional conduct duties, confidentiality obligations, and the unauthorized practice of law vary by place and over time. When you deploy agents in real work, confirm the applicable obligations with qualified counsel and your own governing authorities, and treat the techniques here as a starting framework rather than a compliance guarantee."
+      ],
+      "keyPoints": [
+        "An agent plans, acts, observes, and loops, unlike a single prompt",
+        "Tightly scoped agents are far easier to verify than broad ones",
+        "The lawyer, not the agent, is accountable for the work product",
+        "Every agent output is a draft requiring human verification",
+        "This course teaches application of AI, not legal advice",
+        "Obligations vary by jurisdiction and should be confirmed independently"
+      ],
+      "example": "A litigation paralegal builds a narrow agent to summarize each exhibit in a production set into a two-sentence description. Because each summary maps to one source document, the supervising attorney can spot-check any entry against the underlying exhibit before the summaries feed a case chronology.",
+      "summary": "AI agents automate multi-step legal tasks through a plan-act-observe loop, but a qualified human remains accountable and must verify every output."
+    },
+    {
+      "order": 2,
+      "title": "Hallucination Risk and Citation Verification",
+      "objectives": [
+        "Explain why language models fabricate plausible but false facts and citations",
+        "Build a verification workflow that checks every authority against a source of record",
+        "Design agents that surface sources rather than asserting unsupported conclusions"
+      ],
+      "body": [
+        "Large language models generate text by predicting likely sequences, not by looking up verified facts. This makes them fluent and sometimes startlingly accurate, but it also means they can produce confident, well-formatted statements that are simply untrue. In legal work the most dangerous form is a fabricated citation: a case name, reporter number, or quotation that looks authentic but does not exist or does not say what the agent claims. Treating fluency as evidence of accuracy is the single most common and damaging mistake in legal AI use.",
+        "Verification is not optional polish; it is the core of the workflow. The practical rule is that no authority leaves the building until a human has confirmed it against a trusted source of record, such as an official reporter, a primary database, or the actual document on file. An agent may help by retrieving the source and quoting it, but the confirmation step belongs to a person who opens the cited material and checks that it exists, is current, and actually supports the proposition for which it is offered.",
+        "You can reduce risk by designing agents that retrieve before they reason. A retrieval-grounded agent pulls real documents into context and answers only from that material, with links back to each passage it relied on. This does not eliminate hallucination, because the model can still misread or overstate what a source says, but it makes verification dramatically faster because the human reviewer has the exact passage in front of them rather than a free-floating assertion to track down.",
+        "Build verification into the agent's output format. Require it to present claims and their supporting quotations side by side, to flag any statement it could not ground in a provided source, and to refuse to invent citations when it lacks support. Then add a human checkpoint where the reviewer initials each authority as confirmed. The goal is a process in which an unverified citation cannot silently flow into a filing or client deliverable, because the workflow itself makes the missing check visible."
+      ],
+      "keyPoints": [
+        "Models predict plausible text, so fabricated citations look authentic",
+        "Fluency is not evidence of accuracy and must never be trusted as such",
+        "No authority is used until a human confirms it against a source of record",
+        "Retrieval-grounded agents speed verification but do not remove the duty",
+        "Output formats should pair every claim with its supporting quotation",
+        "A human checkpoint must confirm each citation before it leaves the workflow"
+      ],
+      "example": "A research agent returns three cases supporting an argument. Before any draft cites them, the associate opens each case in the firm's primary database, confirms it exists and remains good law, and checks that the quoted language is accurate and in context, rejecting one case whose holding the agent had overstated.",
+      "summary": "Models can fabricate convincing citations, so every authority must be grounded in retrieved sources and confirmed by a human against a trusted source of record."
+    },
+    {
+      "order": 3,
+      "title": "Confidentiality, Privilege, and Data Handling",
+      "objectives": [
+        "Identify confidentiality and privilege risks when client data enters an AI system",
+        "Apply data-handling controls such as minimization, access limits, and vendor review",
+        "Recognize how careless tool use can threaten privilege protections"
+      ],
+      "body": [
+        "Client information is among the most sensitive data a professional handles, and feeding it into an AI tool raises immediate confidentiality questions: where does the data go, who can see it, is it retained, and is it used to train future models. Before any client material touches an agent, you must understand the tool's data flow and retention practices. Many enterprise offerings provide contractual commitments against training on your inputs and offer data isolation, but these protections must be verified in writing rather than assumed from marketing language.",
+        "Privilege adds a further dimension. Communications that would otherwise be protected can be jeopardized if confidential material is disclosed to a third party without appropriate safeguards. While the precise contours of privilege and waiver vary by jurisdiction and are not something this course states as fixed rules, the prudent posture is to treat AI vendors like any other outside service provider: assess their security, confirm confidentiality obligations, and limit exposure of privileged content unless you have a sound basis and appropriate agreements in place.",
+        "Data minimization is your strongest practical control. Give the agent only what it needs for the task and no more. Redact or pseudonymize names, account numbers, and identifiers where the analysis does not require them. Prefer tools that let you scope access to a single matter, that log who queried what, and that purge data on a defined schedule. These habits shrink the harm if something goes wrong and make it easier to demonstrate that you exercised reasonable care over client information.",
+        "Finally, govern the human side. Configure role-based access so staff see only the matters they work on, train everyone not to paste sensitive content into unapproved consumer tools, and maintain an approved-tools list with documented diligence. Confidentiality failures often come not from the model itself but from a well-meaning person using a convenient but unvetted app. A clear policy, reinforced by tooling that makes the safe path the easy path, prevents most of these incidents."
+      ],
+      "keyPoints": [
+        "Understand a tool's data flow, retention, and training practices before use",
+        "Verify confidentiality commitments in writing, not from marketing claims",
+        "Treat AI vendors as outside service providers requiring diligence",
+        "Apply data minimization: share only what the task genuinely requires",
+        "Use access controls, logging, and scheduled data purges",
+        "Most leaks come from unvetted consumer tools, so govern human behavior"
+      ],
+      "example": "Before using a drafting agent on a sensitive acquisition, the team confirms the vendor contractually agrees not to train on inputs, restricts the workspace to the deal team, and runs the agent on documents with party names replaced by placeholders until a final pass requires the real identities.",
+      "summary": "Protecting confidentiality and privilege requires verified vendor commitments, strict data minimization, access controls, and policies that keep client data out of unvetted tools."
+    },
+    {
+      "order": 4,
+      "title": "Agents for Legal Research",
+      "objectives": [
+        "Structure a research agent that retrieves authority before reasoning",
+        "Combine AI synthesis with mandatory verification against primary sources",
+        "Recognize the limits of model knowledge, including currency and coverage gaps"
+      ],
+      "body": [
+        "A research agent is most useful as a first-pass synthesizer that surfaces relevant material and organizes issues, not as an oracle that delivers final answers. A sound design connects the agent to a trusted legal database so it retrieves actual authorities, then asks it to summarize how those authorities bear on your question. The agent accelerates the orientation phase, helping you see the landscape quickly, while the human does the work of confirming, weighing, and applying the law that the agent merely gathered.",
+        "Currency and coverage are persistent limits. A model's built-in knowledge has a cutoff and may not reflect recent developments, and it cannot know authorities that were never in its training data or retrieval index. An agent may also miss controlling material simply because its search terms were imperfect. Treat the agent's research as necessarily incomplete: it can show you promising leads, but the absence of a result is never proof that no relevant authority exists, and a human must run independent searches to close gaps.",
+        "Design the output to make verification natural. Have the agent produce an issue list, the authorities it found for each issue with direct links, a short neutral summary of each authority, and an explicit note wherever it is uncertain or could not find support. This structure turns the agent into a research assistant whose work you audit, rather than a black box. The reviewer then confirms each authority is real, current, and on point before any of it informs an opinion or filing.",
+        "Keep professional judgment firmly with the human. Synthesizing conflicting authorities, predicting how they apply to specific facts, and deciding strategy are tasks that demand a qualified professional accountable for the result. The agent can draft a memo skeleton, but the analysis and conclusions must be owned, checked, and where necessary corrected by the lawyer. Used this way, research agents save time on the mechanical parts of research while preserving the human reasoning that legal work requires."
+      ],
+      "keyPoints": [
+        "Connect research agents to trusted databases so they retrieve real authority",
+        "Use the agent for orientation and synthesis, not for final answers",
+        "Model knowledge has currency cutoffs and coverage gaps",
+        "Absence of a result never proves no authority exists",
+        "Structure output as issues, linked authorities, summaries, and uncertainty flags",
+        "Synthesis, application, and strategy remain human responsibilities"
+      ],
+      "example": "An associate asks a research agent to map authorities on a contract-interpretation issue. The agent returns five linked sources with summaries and flags two areas of uncertainty. The associate verifies each source, runs independent searches that surface a recent authority the agent missed, and writes the analysis herself.",
+      "summary": "Research agents accelerate finding and organizing authority, but they have coverage limits and the human must verify every source and own the legal analysis."
+    },
+    {
+      "order": 5,
+      "title": "Agents for Contract Review and Drafting",
+      "objectives": [
+        "Apply agents to clause extraction, risk flagging, and first-draft generation",
+        "Use playbooks and standards to keep agent output consistent and reviewable",
+        "Build review checkpoints that catch omissions, overreach, and subtle errors"
+      ],
+      "body": [
+        "Contract work suits agents well because much of it is pattern-based: extracting key terms, comparing clauses against a standard, and assembling drafts from approved language. An extraction agent can pull parties, dates, termination rights, indemnities, and limits of liability into a structured summary far faster than manual reading. A drafting agent can produce a first cut from a template and a set of deal terms. In both cases the output is a starting point that a knowledgeable reviewer refines, never a finished instrument.",
+        "Playbooks make agents reliable. When you encode your organization's preferred positions, fallback options, and red-line triggers into the agent's instructions, it can flag deviations consistently and explain why a clause matters. This turns subjective review into a repeatable check and helps less experienced staff spot issues. The playbook also gives the reviewer a clear yardstick: rather than asking whether a clause is acceptable in the abstract, they confirm it against documented standards that a senior professional has already vetted.",
+        "The characteristic risks in contract automation are omission and overreach. An agent may miss a defined term that changes meaning, fail to notice that a deleted clause was load-bearing, or confidently summarize an obligation in reverse. It may also draft language that sounds appropriate but does not fit the deal or the governing framework. Because these errors hide inside fluent prose, the reviewer must read the actual contract text against the agent's summary, not rely on the summary alone, and must confirm cross-references and definitions resolve correctly.",
+        "Set explicit review checkpoints. Require the agent to list every clause it flagged and every clause it could not classify, to show the exact contract language behind each summary, and to mark anything it changed when drafting. A human then signs off clause by clause for high-stakes terms. This discipline captures the efficiency of automation while ensuring that the obligations the parties actually agreed to, and the lawyer is accountable for, have been read and understood by a person."
+      ],
+      "keyPoints": [
+        "Agents excel at extraction, comparison, and first-draft assembly",
+        "Encode playbooks so deviations are flagged consistently and explained",
+        "Omission and overreach are the signature contract-automation risks",
+        "Read actual contract text against summaries rather than trusting summaries",
+        "Confirm definitions and cross-references resolve correctly",
+        "Use clause-by-clause human sign-off for high-stakes terms"
+      ],
+      "example": "A transactional team runs a review agent that compares an incoming vendor agreement against their playbook. It flags an uncapped indemnity and a missing limitation of liability. The reviewer opens the cited clauses, confirms the flags, and rejects one agent suggestion that would have inadvertently weakened a confidentiality term.",
+      "summary": "Contract agents speed extraction, comparison, and drafting, but playbooks and clause-by-clause human review are essential to catch omissions, overreach, and subtle errors."
+    },
+    {
+      "order": 6,
+      "title": "Agents for E-Discovery Support and Client Intake",
+      "objectives": [
+        "Use agents to assist document review, classification, and intake screening",
+        "Maintain defensibility through sampling, audit trails, and human validation",
+        "Protect confidentiality and avoid premature legal conclusions during intake"
+      ],
+      "body": [
+        "In e-discovery, agents can help classify documents by relevance, cluster related material, identify potentially privileged content, and draft summaries of large volumes. These tools can compress weeks of review, but their value depends on defensibility. A process is defensible when you can explain how it worked, demonstrate that you validated it, and show that a human supervised key decisions. That means documenting your methodology, sampling the agent's classifications, and measuring error rates rather than trusting throughput alone.",
+        "Privilege screening deserves special caution. An agent that misses privileged material can cause inadvertent disclosure, and one that over-flags can bury reviewers in noise. Treat the agent's privilege calls as suggestions that a qualified reviewer confirms, especially for borderline documents. Keep humans in the loop on the categories that carry the most risk, and preserve an audit trail showing what the agent proposed and what the human decided, so the process can withstand scrutiny later.",
+        "Client intake is a different but equally sensitive use. An intake agent can collect facts, organize them, run conflict-check prompts, and route matters to the right team. It must be designed to gather information without giving the impression of legal advice, and to flag rather than resolve questions that require professional judgment. Confidentiality applies from the first contact, so intake data needs the same protection, minimization, and access controls as any other client material, even before an engagement is formalized.",
+        "Across both uses, the agent organizes and accelerates while the human validates and decides. Build in sampling so you can quote a measured accuracy rate, retain logs for defensibility, and define clear escalation points where uncertain or high-risk items go to a person. The recurring theme holds: automation handles volume and structure, but the professional remains accountable for the classifications, the privilege determinations, and any communication that could be mistaken for advice."
+      ],
+      "keyPoints": [
+        "Agents assist review, classification, privilege screening, and intake",
+        "Defensibility requires documented methodology, sampling, and audit trails",
+        "Privilege calls are agent suggestions a qualified reviewer must confirm",
+        "Intake agents gather facts without appearing to give legal advice",
+        "Confidentiality and minimization apply from first contact onward",
+        "Measure accuracy with sampling and define clear escalation points"
+      ],
+      "example": "A review team uses an agent to pre-classify a large production for relevance and possible privilege. They sample a statistically meaningful subset to measure accuracy, route every borderline privilege call to an attorney, and keep logs of agent proposals versus human decisions to support defensibility.",
+      "summary": "Agents can accelerate e-discovery and intake, but defensibility, privilege confirmation, confidentiality, and human validation must anchor the process."
+    },
+    {
+      "order": 7,
+      "title": "Supervision, Governance, and Human Oversight",
+      "objectives": [
+        "Design oversight structures that keep accountable humans in control of agents",
+        "Establish governance: approved tools, logging, training, and incident response",
+        "Define when an agent must stop and escalate to a qualified professional"
+      ],
+      "body": [
+        "Effective oversight is structural, not just attentive. It means designing workflows where the agent cannot complete a high-stakes step without a human decision, where its reasoning and sources are visible, and where the reviewer has the time and competence to check the work. Oversight that depends on a busy person noticing a buried error will fail. Instead, build checkpoints into the process so that verification is a required step rather than an optional one, and so the safe path is also the path of least resistance.",
+        "Governance turns good intentions into repeatable practice. Maintain an approved-tools list backed by documented diligence on security and confidentiality, log agent activity for accountability and defensibility, and train every user on hallucination risk, confidentiality, and the limits of the tools. Define clear ownership: who configures agents, who reviews their output, and who is accountable for a given deliverable. Periodically audit how agents are actually used, because real behavior drifts from policy and only monitoring reveals the gap.",
+        "Design explicit stop-and-escalate conditions. An agent should be configured to halt and hand off when it encounters uncertainty it cannot resolve, when a task crosses into legal judgment, when confidential or privileged material is at stake, or when stakes are high enough that an error would be costly. Escalation is not a failure of the system; it is the system working as intended. The aim is to capture efficiency on routine, verifiable work while reliably routing genuine judgment to a qualified, accountable professional.",
+        "Keep the professional principles in front of everyone. A qualified lawyer remains responsible for the work regardless of how the output was produced, AI assistance does not dilute duties of competence and confidentiality, and obligations differ across jurisdictions and evolve over time. This course gives you a framework for applying agents responsibly, but it is not legal advice and does not state any jurisdiction's rules as settled. Confirm your specific duties with qualified counsel, and revisit your governance as both the technology and the rules continue to change."
+      ],
+      "keyPoints": [
+        "Oversight must be built into workflows, not left to chance noticing",
+        "Governance needs approved tools, logging, training, and clear ownership",
+        "Audit actual agent use because behavior drifts from written policy",
+        "Configure explicit stop-and-escalate conditions for judgment and high stakes",
+        "Accountability stays with the qualified professional regardless of AI use",
+        "Duties vary by jurisdiction and evolve, so confirm them independently"
+      ],
+      "example": "A firm adopts a governance policy: agents may draft and summarize but must escalate any legal-judgment question, any privilege determination, and any filing-bound citation to a named attorney. Quarterly audits review logs to confirm staff follow the policy and to update the approved-tools list.",
+      "summary": "Responsible agent use rests on structural oversight, documented governance, clear escalation rules, and the enduring accountability of a qualified human professional."
+    }
+  ],
+  "questions": [
+    {
+      "text": "Why do AI language models sometimes produce citations to cases or authorities that do not exist?",
+      "options": [
+        "They intentionally deceive users to appear more helpful",
+        "They generate plausible-sounding text by predicting likely sequences rather than retrieving verified facts",
+        "They always copy citations directly from licensed legal databases",
+        "Fabricated citations only occur when the internet connection fails"
+      ],
+      "correctIndex": 1,
+      "explanation": "Models predict statistically likely text, so they can generate fluent, well-formatted citations that look authentic but are not grounded in any real source. This is why every authority must be verified against a source of record."
+    },
+    {
+      "text": "What is the correct standard before an agent-supplied citation is used in a filing or client deliverable?",
+      "options": [
+        "A human confirms the authority against a trusted source of record",
+        "The agent expresses high confidence in the citation",
+        "The citation is formatted correctly and looks professional",
+        "Another AI model agrees the citation is probably valid"
+      ],
+      "correctIndex": 0,
+      "explanation": "Fluency, confidence, and correct formatting are not evidence of accuracy. A person must open the cited material and confirm it exists, is current, and supports the proposition before it is relied upon."
+    },
+    {
+      "text": "When client data is entered into an AI tool, which practice best reflects responsible confidentiality handling?",
+      "options": [
+        "Assume the vendor protects data because their marketing says so",
+        "Share complete files so the agent has maximum context",
+        "Verify the vendor's data flow, retention, and training commitments in writing and minimize the data shared",
+        "Use any convenient consumer tool as long as it is fast"
+      ],
+      "correctIndex": 2,
+      "explanation": "Responsible handling means confirming confidentiality and retention commitments in writing rather than trusting marketing, and sharing only the data the task genuinely requires through approved, vetted tools."
+    },
+    {
+      "text": "Who bears accountability for work product that an AI agent helped produce?",
+      "options": [
+        "The AI vendor that built the model",
+        "The agent itself, since it generated the output",
+        "No one, because automation distributes responsibility",
+        "The qualified professional who relies on and signs off on the work"
+      ],
+      "correctIndex": 3,
+      "explanation": "An agent cannot bear professional responsibility. The accountable human who relies on the output must treat it as a draft to be verified and remains responsible for the final work."
+    },
+    {
+      "text": "A research agent returns no authority on an issue. What is the correct interpretation?",
+      "options": [
+        "It conclusively proves no relevant authority exists",
+        "It is a useful lead but not proof, so a human must run independent searches",
+        "The issue can safely be ignored in the analysis",
+        "The agent's coverage is always complete, so the search is finished"
+      ],
+      "correctIndex": 1,
+      "explanation": "Agents have coverage gaps, currency cutoffs, and imperfect search terms. An absence of results never proves no authority exists, so the human must close gaps with independent research."
+    },
+    {
+      "text": "Which output design best supports verification of a research agent's work?",
+      "options": [
+        "A single polished conclusion with no sources listed",
+        "An issue list with linked authorities, neutral summaries, and explicit uncertainty flags",
+        "A confident memo that omits any mention of doubt",
+        "A list of conclusions the reviewer is told to accept"
+      ],
+      "correctIndex": 1,
+      "explanation": "Pairing each claim with its linked source and flagging uncertainty turns the agent into an auditable assistant, letting the reviewer confirm each authority rather than trusting an opaque conclusion."
+    },
+    {
+      "text": "What are the signature risks when an agent reviews or drafts contracts?",
+      "options": [
+        "Only formatting and spelling errors",
+        "Slow processing and high cost",
+        "Omission of load-bearing terms and overreach in drafting, hidden inside fluent prose",
+        "Excessive caution that flags too few issues"
+      ],
+      "correctIndex": 2,
+      "explanation": "Agents may miss a definition or load-bearing clause, reverse an obligation, or draft language that does not fit the deal. Because these errors hide in fluent text, the reviewer must read the actual contract against the summary."
+    },
+    {
+      "text": "How does an organizational playbook improve contract-review agents?",
+      "options": [
+        "It lets the agent operate without any human review",
+        "It encodes preferred positions and triggers so deviations are flagged consistently against vetted standards",
+        "It guarantees the agent will never make a mistake",
+        "It replaces the need to read the contract text"
+      ],
+      "correctIndex": 1,
+      "explanation": "A playbook gives the agent and reviewer a documented yardstick, making review repeatable and helping flag deviations consistently. It supports, but does not replace, human reading and sign-off."
+    },
+    {
+      "text": "In e-discovery, what makes an agent-assisted review process defensible?",
+      "options": [
+        "Maximizing throughput and trusting the agent's speed",
+        "Documented methodology, sampling to measure accuracy, audit trails, and human validation of high-risk calls",
+        "Letting the agent make all privilege determinations automatically",
+        "Avoiding any record of how the agent classified documents"
+      ],
+      "correctIndex": 1,
+      "explanation": "Defensibility comes from being able to explain the method, validate it through sampling and measured error rates, preserve audit trails, and keep humans deciding high-risk and borderline calls such as privilege."
+    },
+    {
+      "text": "When should an AI agent be configured to stop and escalate to a qualified professional?",
+      "options": [
+        "Never, since escalation signals the system has failed",
+        "Only when the agent crashes or loses connectivity",
+        "When a task crosses into legal judgment, involves privilege, or carries high stakes or unresolved uncertainty",
+        "Only after the work product has already been delivered to the client"
+      ],
+      "correctIndex": 2,
+      "explanation": "Escalation is the system working as intended. Agents should halt and hand off on legal judgment, privilege determinations, high-stakes decisions, and uncertainty they cannot resolve, routing those to an accountable human."
+    }
+  ]
+}

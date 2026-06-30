@@ -32,7 +32,7 @@ async function anthropic(systemPrompt, messages) {
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: { 'content-type': 'application/json', 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-    body: JSON.stringify({ model: ANTHROPIC_MODEL, max_tokens: 1024, system: systemPrompt, messages: norm(messages) }),
+    body: JSON.stringify({ model: ANTHROPIC_MODEL, max_tokens: 1024, system: [{ type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } }], messages: norm(messages) }),
   });
   if (!res.ok) throw new Error('Anthropic ' + res.status + ': ' + (await res.text()).slice(0, 200));
   const data = await res.json();
@@ -89,7 +89,7 @@ async function anthropicStream(systemPrompt, messages, onDelta) {
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: { 'content-type': 'application/json', 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-    body: JSON.stringify({ model: ANTHROPIC_MODEL, max_tokens: 1024, system: systemPrompt, stream: true, messages: norm(messages) }),
+    body: JSON.stringify({ model: ANTHROPIC_MODEL, max_tokens: 1024, system: [{ type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } }], stream: true, messages: norm(messages) }),
   });
   if (!res.ok || !res.body) throw new Error('Anthropic ' + res.status + ': ' + (await res.text().catch(() => '')).slice(0, 200));
   await readSSE(res.body, (evt) => {

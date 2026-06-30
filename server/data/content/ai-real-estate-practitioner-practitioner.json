@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of AI in Real Estate Practice",
+      "objectives": [
+        "Describe how modern AI systems generate predictions and text relevant to real estate work",
+        "Distinguish between rule-based automation and machine learning approaches",
+        "Identify where AI adds value across the transaction lifecycle"
+      ],
+      "body": [
+        "Artificial intelligence in real estate is best understood as a set of tools that learn patterns from data rather than following fixed instructions written by a person. A pricing model studies thousands of past sales to estimate value, while a language model studies vast amounts of text to predict the next word in a sentence. Neither tool understands a property the way an agent does. They produce statistically likely outputs based on what they have seen before, which means their results reflect the quality and coverage of the data behind them.",
+        "It helps to separate two families of tools you will encounter daily. Rule-based automation follows explicit logic, such as sending a reminder when a contract date approaches. Machine learning instead infers relationships, such as which leads tend to convert. Generative AI, a recent branch, creates new content like listing descriptions or email drafts. Knowing which family you are using tells you how much to trust the output and how carefully you must review it before it reaches a client.",
+        "AI touches nearly every stage of a deal. During prospecting it can score and route leads. During listing it can draft marketing copy and suggest comparable properties. During negotiation and closing it can summarize documents and flag missing signatures. The practitioner who understands these touchpoints can choose the right tool for each task instead of forcing one system to do everything. The goal is augmentation: letting software handle repetitive analysis so you spend more time advising people.",
+        "A practical mindset matters more than technical depth. You do not need to build models, but you should ask three questions of any tool: what data trained it, how confident is it in a given answer, and who is accountable if it is wrong. Treating AI output as a first draft rather than a final verdict keeps you in control. Throughout this course we return to this principle, because responsible use begins with understanding what these systems can and cannot reliably do."
+      ],
+      "keyPoints": [
+        "AI learns patterns from data instead of following hand-written rules",
+        "Rule-based automation, machine learning, and generative AI serve different purposes",
+        "AI adds value at prospecting, listing, negotiation, and closing stages",
+        "Output quality depends directly on the data behind the tool",
+        "Treat AI results as drafts requiring human review and accountability"
+      ],
+      "example": "A brokerage adopts a lead-scoring model that ranks new inquiries by likely conversion. The model is machine learning, not a fixed rule, so agents learn to read its scores as guidance and still personally call high-value prospects rather than letting the software decide who is worth their time.",
+      "summary": "AI tools learn from data to support real estate work across the deal lifecycle, and practitioners stay effective by understanding each tool's type, limits, and review needs."
+    },
+    {
+      "order": 2,
+      "title": "Automated Valuation Models and AVMs",
+      "objectives": [
+        "Explain how an automated valuation model estimates property value",
+        "Interpret confidence scores and value ranges responsibly",
+        "Recognize the limits of AVMs in pricing and advising clients"
+      ],
+      "body": [
+        "An automated valuation model, or AVM, estimates a property's value by analyzing recent sales, property characteristics, and location data. It identifies comparable transactions and adjusts for differences such as square footage, lot size, condition, and neighborhood trends. The output is usually a single estimate accompanied by a confidence score or a value range. Understanding that the estimate is a statistical guess, not an appraisal, is the most important thing a practitioner can carry into a pricing conversation with a seller or buyer.",
+        "AVMs work well when an area has many recent, similar sales and when property records are accurate. They struggle in thin markets, with unique or renovated homes, and where public data lags behind reality. A model cannot see a stunning kitchen remodel or a cracked foundation unless that information reached its data sources. This is why confidence scores matter: a low score signals the model is extrapolating beyond solid evidence, and your local knowledge should weigh more heavily in those cases.",
+        "The right way to use an AVM is as a starting reference, not a final number. Pair the estimate with a comparative market analysis you understand, then explain the gap between them to your client in plain language. When an AVM and your own analysis disagree sharply, treat that as a prompt to investigate rather than a verdict. Clients often arrive having seen a consumer AVM figure online, so part of your value is explaining why those numbers move and what they do and do not capture.",
+        "Responsible practice also means transparency about what drives an estimate. If a client asks why a model values their home a certain way, you should be able to point to broad factors such as recent neighborhood sales and home size, while acknowledging you cannot see inside the model's exact calculations. Avoid presenting an AVM number as a guaranteed sale price. Setting that expectation early protects your relationship and keeps the conversation grounded in evidence you can actually defend."
+      ],
+      "keyPoints": [
+        "AVMs estimate value from comparable sales and property data, not inspection",
+        "Confidence scores and ranges signal how much to trust an estimate",
+        "Thin markets and unique homes reduce AVM accuracy",
+        "Use AVMs as a reference alongside your own market analysis",
+        "Never present an AVM figure as a guaranteed sale price"
+      ],
+      "example": "A seller cites an online AVM valuing their home at a figure well above local sales. The agent notes the low confidence score, shows three recent comparable sales the model underweighted, and explains that a recent renovation the model could not see partly closes the gap, leading to a realistic list price.",
+      "summary": "AVMs offer fast, data-driven value estimates that practitioners should read as starting references, weighing confidence scores and local knowledge before advising clients."
+    },
+    {
+      "order": 3,
+      "title": "Generating Listings and Marketing Copy",
+      "objectives": [
+        "Use generative AI to draft accurate, compelling listing descriptions",
+        "Edit and fact-check AI copy before publication",
+        "Apply fair-housing-aware language in marketing content"
+      ],
+      "body": [
+        "Generative AI can turn a few property details into a polished listing description in seconds, which is a genuine time saver for busy agents. You provide structured inputs such as bedrooms, features, and neighborhood highlights, and the tool produces fluent prose. The catch is that these systems sometimes invent details that sound plausible but are false, a behavior often called hallucination. A description claiming a wood-burning fireplace that does not exist is not just embarrassing; it can mislead buyers and create real problems.",
+        "The reliable workflow is to feed the model only verified facts and then review every claim it returns. Treat the draft as raw material: trim invented features, correct measurements, and align the tone with the property and audience. A luxury listing reads differently from a starter home. Good prompts help: telling the model the target buyer, the key selling points, and the desired length produces tighter copy and less guesswork. The agent remains the author and bears responsibility for accuracy.",
+        "Fair housing considerations apply directly to marketing language. Descriptions should focus on the property and its features rather than the type of person who might live there. Phrases that signal a preference for or against any group, or that describe an ideal resident, can raise serious concerns. AI tools do not reliably catch this on their own, so a human review for inclusive, property-focused wording is essential. When in doubt, describe the home and the neighborhood amenities, not the imagined buyer.",
+        "Beyond single listings, generative tools can draft social posts, email campaigns, and property brochures from the same source facts, keeping your messaging consistent. Maintain a simple checklist: every factual claim verified, tone matched to the audience, and language reviewed for fair-housing concerns. This turns AI from a risky shortcut into a dependable assistant. The efficiency gain is real, but it only holds when a knowledgeable person edits before anything goes public."
+      ],
+      "keyPoints": [
+        "Generative AI drafts listings quickly from structured property inputs",
+        "Models can invent false details, so every claim needs verification",
+        "Clear prompts about audience and length improve copy quality",
+        "Marketing language should describe the property, not an ideal resident",
+        "A human fair-housing review is essential before publishing"
+      ],
+      "example": "An agent prompts a tool with verified facts for a condo listing. The draft adds a non-existent rooftop pool and describes the unit as perfect for a young professional. The agent deletes the fictional pool and rewrites the line to highlight the building amenities instead, keeping the copy accurate and property-focused.",
+      "summary": "Generative AI speeds up listing and marketing copy, but practitioners must verify every claim and review for fair-housing-aware, property-focused language before publishing."
+    },
+    {
+      "order": 4,
+      "title": "Lead Qualification and Client Communication",
+      "objectives": [
+        "Apply AI scoring and chatbots to qualify and nurture leads",
+        "Balance automation with genuine human relationship building",
+        "Avoid bias and respect privacy in lead-handling systems"
+      ],
+      "body": [
+        "Lead qualification tools use AI to rank inquiries by how likely they are to become clients, drawing on signals such as engagement, budget indicators, and timeline. Chatbots can answer routine questions around the clock and capture details before an agent ever picks up the phone. Used well, these systems route your attention to the prospects most worth your time and ensure no inquiry sits ignored overnight. The benefit is speed and coverage, not replacement of the personal touch that closes deals.",
+        "The risk is over-automation. A lead score is a probability, not a certainty, and people do not always behave like the patterns a model learned. A first-time buyer who scores low today may be your best client next quarter. Treat scores as a prioritization aid, and keep enough human judgment in the loop to override them when context suggests the model is missing something. Chatbots should hand off smoothly to a person when conversations move beyond simple questions.",
+        "Bias deserves careful attention here. If a scoring model was trained on past data that reflected unequal treatment, it can quietly carry those patterns forward, steering attention away from certain groups. Practitioners should ask vendors what factors drive their scores and avoid systems that use or proxy for protected characteristics. Fair-housing principles apply to who gets called back and how, not just to listings. Monitoring whether your follow-up patterns are equitable is part of responsible adoption.",
+        "Communication automation also raises privacy and transparency questions. People generally appreciate quick replies but dislike feeling deceived by a bot posing as a human. Being upfront that an assistant is automated, and handling personal data carefully, builds trust rather than eroding it. Keep records of consent where required and avoid storing sensitive details you do not need. The aim is to use automation to start relationships faster, then let your human expertise carry them to a successful close."
+      ],
+      "keyPoints": [
+        "AI scores and chatbots prioritize leads and provide instant responses",
+        "Scores are probabilities and should not override sound human judgment",
+        "Biased training data can steer follow-up unfairly across groups",
+        "Fair-housing principles apply to who receives attention, not only listings",
+        "Be transparent about automated assistants and handle data responsibly"
+      ],
+      "example": "A team's chatbot greets website visitors, answers basic questions, and books showings, clearly identifying itself as an automated assistant. When a visitor asks a financing question, it hands off to an agent. The team also reviews monthly whether low-scored leads from certain neighborhoods are being neglected.",
+      "summary": "AI lead tools speed prioritization and response, but practitioners must keep human judgment central, watch for bias in follow-up, and stay transparent about automation."
+    },
+    {
+      "order": 5,
+      "title": "Market Analysis and Forecasting with AI",
+      "objectives": [
+        "Use AI tools to analyze market trends and absorption patterns",
+        "Interpret forecasts with appropriate skepticism and context",
+        "Communicate data-driven insights clearly to clients"
+      ],
+      "body": [
+        "AI tools can digest large volumes of market data, including sales velocity, inventory levels, price trends, and seasonal patterns, far faster than manual analysis. They can surface signals such as a neighborhood where days on market are falling or a price tier where supply is tightening. For a practitioner, this means richer, more current insight to bring into listing presentations and buyer consultations. The analysis is only as good as the data feeding it, so knowing the source and recency of inputs matters as much as the conclusions.",
+        "Forecasting is where caution becomes essential. Models extrapolate from history, and real estate markets are shaped by interest rates, policy, and local events that past data cannot fully anticipate. A forecast of continued price growth is a scenario based on assumptions, not a promise. Present projections as ranges with stated assumptions rather than precise predictions. When a model and your on-the-ground sense of the market diverge, that tension is useful information, not a reason to discard your own observations.",
+        "The practitioner's edge is translation. Clients do not want raw charts; they want to understand what the data means for their decision to buy, sell, or wait. AI can generate the analysis, but you frame it in terms of their goals and risk tolerance. Explaining that inventory has risen and bidding wars have cooled, in plain language, is far more valuable than reciting statistics. This is where domain expertise and AI output combine into advice a client can actually use.",
+        "Be transparent about uncertainty. Overstating confidence in a forecast can damage your credibility when the market moves differently, and it can lead clients into decisions they later regret. Acknowledge what the data shows, what it cannot show, and where reasonable people might disagree. Document the basis for your guidance so you can revisit it as conditions change. Used this way, AI-driven market analysis strengthens your advisory role rather than reducing it to data delivery."
+      ],
+      "keyPoints": [
+        "AI rapidly analyzes trends, inventory, and pricing patterns from large datasets",
+        "Forecasts are assumption-based scenarios, not guarantees",
+        "Present projections as ranges with stated assumptions",
+        "Translate data into plain language tied to client goals",
+        "Be transparent about uncertainty to protect credibility"
+      ],
+      "example": "An agent uses an analytics tool showing rising inventory and longer days on market in a submarket. Rather than promising prices will fall, she explains to a seller that conditions are softening, recommends pricing competitively now, and frames the forecast as one likely scenario among several.",
+      "summary": "AI accelerates market analysis and forecasting, but practitioners add value by treating projections as uncertain scenarios and translating data into clear, goal-focused advice."
+    },
+    {
+      "order": 6,
+      "title": "Document and Transaction Automation",
+      "objectives": [
+        "Apply AI to extract, summarize, and manage transaction documents",
+        "Verify AI-processed documents for accuracy and completeness",
+        "Maintain compliance and recordkeeping in automated workflows"
+      ],
+      "body": [
+        "Real estate transactions generate stacks of documents, and AI can read, classify, and summarize them quickly. Tools can extract key terms from a purchase agreement, flag missing signatures, populate disclosure forms from existing data, and track deadlines across a deal. This reduces the manual data entry that consumes hours and introduces errors. For transaction coordinators and agents alike, automation can mean fewer missed dates and smoother closings, provided the outputs are checked rather than trusted blindly.",
+        "Accuracy verification is non-negotiable with legal and financial documents. An AI that misreads a closing date, a dollar amount, or a contingency term can cause real harm. The safe practice is to use AI to draft and organize, then have a qualified person confirm critical fields against the source. Treat extraction as a way to speed your review, not skip it. Small errors in transaction documents compound quickly, so a quick human check on the figures that matter most is well worth the time.",
+        "Compliance and recordkeeping shape how these tools should be configured. Many jurisdictions and brokerages have requirements for how transaction records are stored, retained, and protected. When AI handles client documents, it often processes sensitive personal and financial information, so confirm that your tools store data securely and that access is limited to those who need it. This course does not give legal advice; consult your broker and applicable rules to confirm what your specific situation requires before relying on any automated workflow.",
+        "Disclosure obligations remain the practitioner's responsibility even when software prepares the paperwork. AI can help assemble disclosure documents and remind you of required items, but it cannot judge what must be disclosed in a given deal. Use the tools to reduce administrative burden while keeping yourself firmly in charge of substance. A well-configured automation pipeline frees you to focus on the parts of a transaction where your judgment and care genuinely protect your clients."
+      ],
+      "keyPoints": [
+        "AI extracts terms, flags missing items, and tracks transaction deadlines",
+        "Critical fields must be verified by a qualified person against the source",
+        "Sensitive client data requires secure storage and limited access",
+        "Compliance and retention rules vary, so confirm with your broker",
+        "Disclosure decisions remain a human responsibility, not the tool's"
+      ],
+      "example": "A transaction coordinator uses an AI tool to extract dates and amounts from a signed purchase agreement into a tracking sheet. Before relying on it, she confirms the closing date and earnest money figure against the contract itself, catching one transposed amount the tool misread.",
+      "summary": "AI streamlines document handling and deadline tracking, but practitioners must verify critical fields, protect sensitive data, and keep disclosure decisions in human hands."
+    },
+    {
+      "order": 7,
+      "title": "Responsible and Ethical AI Use",
+      "objectives": [
+        "Identify fair-housing and bias risks across AI real estate tools",
+        "Apply transparency and disclosure practices with clients",
+        "Build a personal framework for accountable AI adoption"
+      ],
+      "body": [
+        "Responsible AI use ties together every topic in this course. The central concern is fairness: AI systems learn from historical data that may reflect past discrimination, and without care they can reproduce unequal treatment in valuations, lead handling, and marketing. Fair-housing principles require that practitioners treat people equitably regardless of protected characteristics. Because an algorithm can introduce bias invisibly, the burden is on you to question how a tool works and to monitor whether its effects on your practice are even-handed across all clients.",
+        "Transparency builds trust and reduces risk. Clients increasingly want to know when AI shapes a recommendation, a valuation, or a communication they receive. Being open that a chatbot is automated, that a value estimate came from a model, or that copy was AI-assisted respects the relationship and avoids the appearance of deception. You do not need to expose technical detail, but you should be honest about the role automation played and ready to explain your reasoning in human terms when a client asks.",
+        "Accountability cannot be delegated to software. When an AI tool produces an error, the practitioner who relied on it is responsible to the client and bound by professional standards. This means choosing reputable vendors, understanding a tool's limits, reviewing outputs before they reach clients, and keeping records of how decisions were made. If you cannot explain or stand behind what a tool produced, you should not put your name on it. Treat AI as a capable assistant whose work you always sign off on.",
+        "A simple personal framework keeps adoption grounded. Before using a tool, ask what data it relies on and whether that data could embed bias. While using it, verify outputs and watch for fair-housing concerns. After using it, document your reasoning and revisit results as conditions change. This course offers general guidance, not legal advice, so confirm specific obligations with your broker and applicable rules. With this discipline, AI becomes a force multiplier that strengthens your service rather than a hidden source of risk."
+      ],
+      "keyPoints": [
+        "AI can reproduce historical bias, so fairness requires active monitoring",
+        "Fair-housing principles apply across valuation, leads, and marketing",
+        "Transparency about AI involvement builds client trust",
+        "Accountability stays with the practitioner, never the software",
+        "A check-before, verify-during, document-after framework guides safe use"
+      ],
+      "example": "Before adopting a new valuation tool, an agent asks the vendor what data trained it and whether outputs vary by neighborhood demographics. She discloses to clients that estimates are model-generated, reviews each result, and documents her pricing rationale so she can stand behind every recommendation.",
+      "summary": "Responsible AI use rests on monitoring for bias, being transparent with clients, and retaining personal accountability, supported by a simple before-during-after framework."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What is the most accurate way to describe how an automated valuation model produces a value estimate?",
+      "options": [
+        "It physically inspects the property and certifies its condition",
+        "It analyzes comparable sales and property data to generate a statistical estimate",
+        "It guarantees the price the home will sell for on the open market",
+        "It replaces the need for any human pricing judgment"
+      ],
+      "correctIndex": 1,
+      "explanation": "An AVM is a statistical tool that estimates value from comparable sales and recorded property data. It does not inspect the home, guarantee a sale price, or remove the need for human judgment."
+    },
+    {
+      "text": "A generative AI tool adds a wood-burning fireplace to a listing description, but the property has none. This is an example of what risk?",
+      "options": [
+        "A confidence score error in a valuation model",
+        "A model hallucination producing a false but plausible detail",
+        "A privacy violation involving client data",
+        "A correctly verified property feature"
+      ],
+      "correctIndex": 1,
+      "explanation": "Generative models can produce plausible-sounding but false details, often called hallucinations. This is why every factual claim in AI-drafted copy must be verified before publishing."
+    },
+    {
+      "text": "Why should marketing copy describe the property rather than an ideal resident?",
+      "options": [
+        "Because describing residents makes copy too long",
+        "Because property-focused language helps avoid fair-housing concerns",
+        "Because AI cannot generate descriptions of people",
+        "Because buyers prefer shorter descriptions"
+      ],
+      "correctIndex": 1,
+      "explanation": "Language describing the type of person who should live somewhere can raise fair-housing concerns. Focusing on the property and its features keeps marketing inclusive and appropriate."
+    },
+    {
+      "text": "How should a practitioner treat a lead-scoring model's output?",
+      "options": [
+        "As a guaranteed prediction of who will become a client",
+        "As a reason to ignore any lead with a low score",
+        "As a prioritization aid that human judgment can override",
+        "As a legally binding assessment of a prospect"
+      ],
+      "correctIndex": 2,
+      "explanation": "Lead scores are probabilities meant to help prioritize attention. They are not certainties, and practitioners should keep human judgment in the loop and override scores when context warrants."
+    },
+    {
+      "text": "A lead-scoring model trained on biased historical data may cause what problem?",
+      "options": [
+        "Faster closing of all transactions automatically",
+        "Quietly steering follow-up attention unfairly across groups",
+        "Improved accuracy of automated valuation models",
+        "Elimination of all human review requirements"
+      ],
+      "correctIndex": 1,
+      "explanation": "Models can carry forward bias present in their training data, potentially steering attention away from certain groups. Fair-housing principles apply to who receives follow-up, so this requires active monitoring."
+    },
+    {
+      "text": "When presenting an AI-generated market forecast to a client, the practitioner should:",
+      "options": [
+        "Present it as a precise guarantee of future prices",
+        "Hide the assumptions to keep the message simple",
+        "Frame it as one likely scenario with stated assumptions and uncertainty",
+        "Refuse to discuss any data with the client"
+      ],
+      "correctIndex": 2,
+      "explanation": "Forecasts extrapolate from history and depend on assumptions that may not hold. Presenting them as scenarios with stated assumptions and acknowledged uncertainty protects credibility and serves the client honestly."
+    },
+    {
+      "text": "What is the safe practice when AI extracts key terms from a purchase agreement?",
+      "options": [
+        "Trust the extracted data without checking it",
+        "Verify critical fields against the source document",
+        "Delete the original contract once extraction is done",
+        "Send the data to clients before any review"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI can misread dates, amounts, or terms in legal documents. A qualified person should confirm critical fields against the source so extraction speeds review rather than replacing it."
+    },
+    {
+      "text": "Who holds responsibility when an AI tool produces an error that affects a client?",
+      "options": [
+        "The software vendor alone, with no practitioner duty",
+        "No one, because automation removes accountability",
+        "The practitioner who relied on the tool and put their name on the work",
+        "The client who received the output"
+      ],
+      "correctIndex": 2,
+      "explanation": "Accountability cannot be delegated to software. The practitioner who relied on the tool remains responsible to the client and bound by professional standards, which is why outputs must be reviewed before use."
+    },
+    {
+      "text": "Which approach best reflects transparency in AI use with clients?",
+      "options": [
+        "Letting clients assume a chatbot is a human staff member",
+        "Disclosing when a value estimate is model-generated or copy is AI-assisted",
+        "Sharing the full technical source code of every tool",
+        "Never mentioning that any automation was involved"
+      ],
+      "correctIndex": 1,
+      "explanation": "Transparency means being honest about the role automation played, such as noting a value estimate is model-generated, without needing to expose technical detail. This builds trust and avoids the appearance of deception."
+    },
+    {
+      "text": "Which question best fits the check-before step of a responsible AI framework?",
+      "options": [
+        "How quickly can I publish the output without reviewing it?",
+        "What data trained this tool and could it embed bias?",
+        "How can I avoid telling clients that AI was used?",
+        "Which client is least likely to notice an error?"
+      ],
+      "correctIndex": 1,
+      "explanation": "Before using a tool, a practitioner should ask what data it relies on and whether that data could embed bias. This grounds adoption in fairness and helps anticipate where outputs may need extra scrutiny."
+    }
+  ]
+}

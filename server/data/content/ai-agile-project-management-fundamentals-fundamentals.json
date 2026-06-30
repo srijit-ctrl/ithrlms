@@ -1,0 +1,266 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Agile and AI: Foundations for Modern Delivery",
+      "objectives": [
+        "Explain core Agile values and the structure of the Scrum framework",
+        "Describe what generative AI assistants can and cannot do in a delivery context",
+        "Identify where AI fits naturally inside the Scrum cycle without disrupting roles"
+      ],
+      "body": [
+        "Agile is a mindset built on the 2001 Agile Manifesto, which prizes individuals and interactions, working software, customer collaboration, and responding to change. Scrum is the most widely adopted Agile framework. It organises work into short, fixed-length iterations called Sprints, supported by three accountabilities, the Product Owner, the Scrum Master, and the Developers, and by events such as Sprint Planning, the Daily Scrum, the Sprint Review, and the Sprint Retrospective. Understanding these basics matters before adding any tool, because AI should reinforce Agile principles rather than quietly replace the human conversations and inspection-and-adaptation loops that make Scrum effective.",
+        "Generative AI refers to systems trained on large amounts of text and code that can draft, summarise, classify, and suggest. In a delivery team these assistants are best understood as fast, tireless junior collaborators. They can produce a first draft of a user story, cluster retrospective feedback into themes, or surface risks hidden in a long requirements document. What they cannot do is hold accountability, understand your unspoken business context, or guarantee correctness. Treating AI output as a starting point that a skilled human reviews, rather than a final answer, is the single habit that separates teams who benefit from those who get burned.",
+        "AI augments Agile most safely when it accelerates preparation and synthesis, leaving decisions with people. A Product Owner might use AI to rephrase a vague stakeholder request into candidate stories, then exercise judgement to prioritise them. Developers might ask an assistant to explain an unfamiliar code path before estimating effort. The Scrum Master might use it to summarise retrospective notes so the team spends meeting time discussing actions rather than transcribing. In every case the Agile event, the accountability, and the decision authority remain unchanged. The tool simply removes friction from the low-value clerical parts of the work.",
+        "Beginning teams should adopt AI incrementally and transparently. Start with one low-risk use case, such as drafting acceptance criteria, agree as a team how outputs will be reviewed, and inspect the results in your next Retrospective. This experimental, evidence-based approach mirrors Agile itself: form a hypothesis, run a small experiment within a Sprint, gather feedback, and adapt. By treating AI adoption as just another backlog item subject to the same empirical scrutiny, the team keeps control and avoids the trap of bolting on tools that nobody trusts or actually uses."
+      ],
+      "keyPoints": [
+        "Scrum uses fixed Sprints, three accountabilities, and five events to deliver value empirically",
+        "Generative AI acts like a fast junior collaborator that drafts and summarises but holds no accountability",
+        "AI should reinforce Agile principles, never replace human inspection and adaptation",
+        "Keep decision authority with the Product Owner, Scrum Master, and Developers",
+        "Adopt AI one low-risk use case at a time and review results in the Retrospective"
+      ],
+      "example": "A new Scrum team agrees to trial AI for one task only: drafting acceptance criteria for stories already written by the Product Owner. They review every draft together during Backlog Refinement and discuss the experiment in their next Retrospective before expanding its use.",
+      "summary": "Agile and Scrum provide the structure for empirical delivery, while generative AI serves as a drafting and synthesis aid that must always defer to human judgement and existing accountabilities."
+    },
+    {
+      "order": 2,
+      "title": "AI for the Product Backlog and User Stories",
+      "objectives": [
+        "Write clear user stories and acceptance criteria using AI as a drafting partner",
+        "Apply the INVEST criteria and acceptance-criteria patterns to evaluate AI output",
+        "Recognise the Product Owner's ownership of backlog content and ordering"
+      ],
+      "body": [
+        "The Product Backlog is the single ordered list of everything that might be needed in the product, and the Product Owner is accountable for its content and priority. User stories are a common way to express backlog items, often following the template: as a type of user, I want some goal, so that some benefit. AI assistants are strong at expanding a one-line idea into this structured form, suggesting the user persona and the underlying benefit. The Product Owner remains responsible for confirming the story reflects real customer value and aligns with the Product Goal, since the assistant cannot know the actual business strategy.",
+        "Good stories follow the INVEST guideline: Independent, Negotiable, Valuable, Estimable, Small, and Testable. AI can act as a reviewer here, checking a draft story against each letter and flagging, for example, that a story is too large to fit in a Sprint or lacks a clear measure of value. This works well because the model recognises common patterns of weak stories. The team still decides whether to split, merge, or rewrite, but the assistant turns a blank-page problem into an editing problem, which is faster and less intimidating for newer Product Owners.",
+        "Acceptance criteria define when a story is done and are often written in the Given-When-Then format that describes a starting context, an action, and an expected outcome. AI is particularly useful for generating a comprehensive first set of these criteria, including edge cases a tired human might overlook, such as empty inputs or permission errors. The risk is over-generation: the assistant may invent criteria that do not match your domain. The Product Owner and Developers must prune and correct the list so it stays grounded in genuine requirements rather than plausible-sounding fiction.",
+        "AI can also help keep the backlog healthy over time. It can group similar items to reveal duplication, draft concise titles for cryptic entries, and summarise a large epic into candidate stories during refinement. These activities reduce the clerical burden of backlog hygiene so the team can spend Refinement discussing value and sequencing. Crucially, none of this changes who decides priority. The ordered backlog reflects business and customer judgement, which is a human responsibility, and any AI suggestion about ranking should be treated as input for discussion, never as an automatic decision."
+      ],
+      "keyPoints": [
+        "The Product Owner owns backlog content and ordering; AI only drafts and suggests",
+        "User stories follow the as-a, I-want, so-that template to capture user value",
+        "INVEST gives criteria for a good story, and AI can check drafts against each letter",
+        "Acceptance criteria in Given-When-Then form benefit from AI-generated edge cases",
+        "Always prune AI output to remove invented or off-domain criteria",
+        "AI supports backlog hygiene but never decides priority on its own"
+      ],
+      "example": "A Product Owner types a rough idea, customers want to save their cart, into an AI assistant. It returns a full user story with persona and benefit plus six Given-When-Then acceptance criteria. The team keeps four, deletes two that do not apply, and adds one the AI missed.",
+      "summary": "AI turns vague ideas into well-structured user stories and acceptance criteria, but the Product Owner retains ownership of backlog value, priority, and correctness."
+    },
+    {
+      "order": 3,
+      "title": "Sprint Planning and Estimation with AI Support",
+      "objectives": [
+        "Describe the purpose and outputs of Sprint Planning in Scrum",
+        "Use AI to inform relative estimation without surrendering team judgement",
+        "Protect estimation integrity against over-reliance on AI numbers"
+      ],
+      "body": [
+        "Sprint Planning opens each Sprint and answers three questions: why is this Sprint valuable, what can be done, and how will the chosen work get done. The Developers forecast how much they can complete, the Product Owner clarifies priorities and the Sprint Goal, and together they craft a plan. Estimation underpins the what question. Many teams use relative estimation with story points and techniques such as Planning Poker, where developers compare items to known reference stories rather than guessing exact hours. This relative approach captures complexity, effort, and uncertainty in a single comparative figure.",
+        "AI can support planning by quickly summarising the candidate stories, highlighting dependencies between them, and reminding the team of similar past work and how long it actually took. If the team keeps historical data, an assistant can point out that stories tagged with a certain integration have historically been underestimated. This context helps Developers make better-informed comparisons. The assistant is providing memory and pattern recognition, not authority. The forecast still belongs to the people who will do the work, because only they truly understand their current capacity, skills, and the technical unknowns involved.",
+        "A serious risk is anchoring. If an AI offers a confident point estimate before the team discusses, developers may unconsciously converge on that number and stop thinking critically. To avoid this, treat any AI estimate as a hidden hint revealed only after the team forms its own view, or skip AI estimates entirely and use the tool only for context and clarifying questions. Estimation in Agile is as much about building shared understanding through conversation as it is about producing a number, and an assistant that short-circuits that conversation undermines the very benefit estimation exists to create.",
+        "AI is also helpful for sanity-checking the resulting Sprint plan. It can flag that the forecast exceeds the team's typical velocity, that two selected stories conflict, or that the Sprint Goal is not clearly reflected in the chosen items. The team treats these flags as prompts to inspect, not as commands to obey. Used this way, AI strengthens the empirical heart of Scrum: the team commits to a realistic forecast, observes actual outcomes, and adapts both its planning and its trust in the tool during the Retrospective."
+      ],
+      "keyPoints": [
+        "Sprint Planning defines the Sprint Goal, the selected work, and the plan to deliver it",
+        "Relative estimation with story points captures complexity, effort, and uncertainty",
+        "AI provides historical context and dependency hints, but the forecast stays with Developers",
+        "Beware anchoring: reveal any AI estimate only after the team forms its own view",
+        "Estimation builds shared understanding through conversation, not just a number",
+        "Use AI to sanity-check the plan against velocity and the Sprint Goal as prompts to inspect"
+      ],
+      "example": "During Planning Poker, a team uses an AI assistant only to recall that past payment-gateway stories took longer than expected. Developers see this note after their first round of votes, discuss it, and revise two estimates upward, keeping their own judgement in control.",
+      "summary": "AI enriches Sprint Planning with historical context and plan checks, but Developers must own the forecast and guard against anchoring on AI-generated estimates."
+    },
+    {
+      "order": 4,
+      "title": "AI-Augmented Daily Scrums and Retrospectives",
+      "objectives": [
+        "State the purpose of the Daily Scrum and the Sprint Retrospective",
+        "Apply AI to summarise and synthesise team discussions and feedback",
+        "Preserve the human, collaborative nature of these events"
+      ],
+      "body": [
+        "The Daily Scrum is a short, fifteen-minute event for the Developers to inspect progress toward the Sprint Goal and adapt their plan for the next day. It is for the team, by the team, and is not a status report to managers. AI rarely belongs inside the meeting itself, but it can help around the edges. An assistant can summarise yesterday's updates, surface blockers that have lingered for several days, or draft a concise note of decisions for absent teammates. The aim is to protect the fifteen minutes for real conversation, not to automate the conversation away.",
+        "The Sprint Retrospective closes the Sprint and is where the team inspects how it worked and plans improvements. Teams often gather feedback under prompts such as what went well, what did not, and what to try next. When a team generates many sticky notes or comments, AI excels at clustering them into themes, removing duplicates, and producing a neutral summary. This frees the Scrum Master and team from tedious sorting and lets them spend their limited time discussing root causes and committing to concrete improvement actions, which is the entire point of the event.",
+        "There are important boundaries. Retrospectives depend on psychological safety, and feeding raw, candid comments into an external AI tool can breach confidentiality or discourage honesty if people fear their words leave the room. Teams should agree in advance what may be shared with a tool, anonymise inputs, and prefer assistants approved by their organisation. The Scrum Master facilitates the human dynamics, reads the mood, and ensures quieter voices are heard, none of which an assistant can do. AI handles the mechanical synthesis; the people handle the meaning and the trust.",
+        "A practical pattern is to use AI to prepare and to follow up. Before the Retrospective, an assistant can summarise Sprint metrics and the status of previous improvement actions so the team starts informed. Afterward, it can draft clear, owner-assigned action items and a short summary for the team's records. By bracketing the human discussion with AI-assisted preparation and documentation, the team raises the quality of its inspection and adaptation while keeping the conversation itself entirely human and safe."
+      ],
+      "keyPoints": [
+        "The Daily Scrum is a fifteen-minute team event to inspect progress and re-plan, not a status report",
+        "AI works around these events for summaries and follow-up, rarely inside them",
+        "AI clusters retrospective feedback into themes so the team focuses on actions",
+        "Psychological safety and confidentiality must guide what feedback reaches any tool",
+        "The Scrum Master facilitates human dynamics that AI cannot replace",
+        "Bracket discussions with AI preparation and documentation to raise quality safely"
+      ],
+      "example": "After a Retrospective produces forty anonymous comments, the Scrum Master pastes the anonymised text into an approved AI tool, which groups them into five themes. The team then spends its discussion time choosing two improvement actions and naming an owner for each.",
+      "summary": "AI augments Daily Scrums and Retrospectives by handling summarisation and follow-up, while the human conversation, facilitation, and psychological safety remain firmly with the team."
+    },
+    {
+      "order": 5,
+      "title": "AI Assistance for Quality and Testing",
+      "objectives": [
+        "Explain the role of testing and the Definition of Done in Agile quality",
+        "Use AI to generate test cases and review work while validating its output",
+        "Keep humans accountable for quality decisions and final verification"
+      ],
+      "body": [
+        "In Agile, quality is built in continuously rather than inspected at the end. The Definition of Done is the team's shared, explicit checklist of what makes an increment releasable, covering things like passing tests, code review, and documentation. Testing supports the Definition of Done by verifying that acceptance criteria are met. AI assistants can accelerate test creation by generating candidate test cases directly from a story's acceptance criteria, including boundary and negative scenarios. This helps less experienced teams achieve broader coverage faster, but the team must confirm the tests truly reflect intended behaviour.",
+        "Beyond generating tests, AI can review work products. It can read a pull request and suggest potential bugs, point out missing error handling, or note that a function lacks tests. It can also check whether a user story's implementation appears to satisfy its acceptance criteria. These reviews are valuable as a first pass that catches obvious issues, freeing human reviewers to focus on architecture, intent, and trade-offs. The assistant is a smoke detector, useful for early warning, but it does not replace the judgement of an engineer who understands the system as a whole.",
+        "The defining risk in AI-assisted testing is false confidence. An assistant can produce tests that pass while asserting the wrong thing, or that simply restate the implementation rather than verifying correct behaviour. Such tests give the comforting appearance of coverage without the substance. Teams must review generated tests as critically as production code, confirm each one would actually fail if the behaviour broke, and never let a green dashboard substitute for genuine understanding. Quality is a team responsibility embodied in the Definition of Done, not something that can be delegated to a tool.",
+        "Used well, AI shortens the feedback loop that Agile depends on. Faster test drafting and automated first-pass review mean defects surface earlier, when they are cheaper to fix, and Developers spend more time on the difficult, creative parts of quality. The healthy pattern is human-led, AI-assisted: people define what good looks like through the Definition of Done and acceptance criteria, AI helps produce and check artifacts against that standard, and people make the final call on whether the increment is genuinely done and safe to release."
+      ],
+      "keyPoints": [
+        "Agile builds quality in continuously, anchored by a shared Definition of Done",
+        "AI generates candidate test cases from acceptance criteria, including edge cases",
+        "AI offers a useful first-pass code and work-product review, not a replacement for engineers",
+        "Beware false confidence: generated tests can pass while asserting the wrong thing",
+        "Review AI tests as critically as production code and confirm they would fail on a real defect",
+        "The pattern is human-led and AI-assisted, with people owning the final release decision"
+      ],
+      "example": "A developer asks an AI tool to write tests for a login story's acceptance criteria. It produces ten tests covering valid logins, wrong passwords, and locked accounts. The developer keeps eight, rewrites one that asserted the wrong outcome, and adds a missing test for expired sessions.",
+      "summary": "AI speeds test creation and first-pass review, tightening Agile feedback loops, but humans must validate every artifact and remain accountable for the Definition of Done."
+    },
+    {
+      "order": 6,
+      "title": "Responsible Use and Team Adoption",
+      "objectives": [
+        "Identify key risks of AI use including privacy, bias, and hallucination",
+        "Establish team agreements and guardrails for responsible AI use",
+        "Plan an incremental, empirical rollout of AI within an Agile team"
+      ],
+      "body": [
+        "Responsible AI use begins with understanding the main risks. Hallucination means a model can state false information with total confidence, so every factual or technical output needs verification. Data privacy is a serious concern: pasting customer data, proprietary code, or confidential strategy into an external tool may violate policy or law, so teams must know what their approved tools do with inputs. Bias can creep into suggestions because models reflect their training data. Naming these risks plainly, rather than assuming the tool is neutral and correct, is the foundation of using AI safely in any delivery context.",
+        "Practical guardrails turn awareness into habit. Teams should agree on which tools are approved, what categories of information may never be entered, and how AI output will be reviewed before use. A simple rule of thumb is that a named human owns and verifies anything an assistant produces, just as they would for a junior colleague's work. Many organisations add a lightweight disclosure norm so reviewers know when content was AI-drafted. These agreements work best when the team writes them collaboratively and revisits them, because rules imposed from outside are quickly forgotten or quietly ignored.",
+        "Adoption itself should be treated empirically, the same way Scrum treats product development. Rather than mandating AI everywhere at once, the team picks one or two concrete use cases, agrees how to measure whether they help, and runs them for a Sprint or two. In the Retrospective the team inspects the results honestly: did the assistant save time, did quality hold, did anyone feel undermined or over-monitored. Based on that evidence the team expands, adjusts, or drops the practice. This keeps people in control and ensures AI earns its place through demonstrated value rather than hype.",
+        "Finally, adoption is a human and cultural change, not only a technical one. Some team members will be enthusiastic, others sceptical or anxious about job security, and both responses deserve respect. Framing AI as a tool that removes drudgery so people can focus on creative and collaborative work helps, as does giving everyone time to learn without judgement. Leaders and Scrum Masters should model curiosity and honesty about limitations. A team that adopts AI thoughtfully, with shared agreements and empirical review, gains a durable advantage; one that adopts it carelessly often creates rework, mistrust, and risk."
+      ],
+      "keyPoints": [
+        "Hallucination, data privacy, and bias are the core risks to manage with every AI use",
+        "Never enter confidential data into unapproved tools, and verify all factual output",
+        "A named human owns and verifies anything an assistant produces",
+        "Write team agreements collaboratively and revisit them regularly",
+        "Roll out AI empirically: trial a use case, inspect results in the Retrospective, then adapt",
+        "Treat adoption as cultural change and address scepticism and anxiety with respect"
+      ],
+      "example": "A team co-writes a one-page AI working agreement: only the company-approved assistant may be used, no customer data is ever pasted in, and the author verifies every AI-drafted item. They trial it for two Sprints, review honestly in the Retrospective, and decide to keep two practices and drop one.",
+      "summary": "Responsible AI use rests on naming risks, agreeing guardrails, and rolling out incrementally through empirical review, treating adoption as a human change that must earn the team's trust."
+    }
+  ],
+  "questions": [
+    {
+      "text": "Which statement best describes the appropriate role of a generative AI assistant on a Scrum team?",
+      "options": [
+        "It replaces the Product Owner in deciding backlog priority",
+        "It acts as a fast collaborator that drafts and summarises, with humans reviewing its output",
+        "It holds accountability for the Sprint outcome",
+        "It removes the need for the Daily Scrum and Retrospective"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI is best treated as a fast junior collaborator that drafts and synthesises. It holds no accountability, and humans must review its output. Scrum accountabilities and events remain unchanged."
+    },
+    {
+      "text": "A Product Owner uses AI to expand a one-line idea into a user story. Who remains responsible for confirming the story reflects real customer value?",
+      "options": [
+        "The AI assistant, since it wrote the story",
+        "The Scrum Master",
+        "The Product Owner",
+        "Nobody, because the story is already validated"
+      ],
+      "correctIndex": 2,
+      "explanation": "The Product Owner is accountable for the content and ordering of the Product Backlog. AI can draft a story, but only the Product Owner can confirm it reflects genuine customer value and aligns with the Product Goal."
+    },
+    {
+      "text": "What does the INVEST guideline help a team evaluate?",
+      "options": [
+        "The financial return of a Sprint",
+        "The quality of a user story across qualities like Independent, Valuable, and Testable",
+        "The number of story points a team can complete",
+        "Whether an AI tool is approved for use"
+      ],
+      "correctIndex": 1,
+      "explanation": "INVEST stands for Independent, Negotiable, Valuable, Estimable, Small, and Testable. It is a guideline for assessing whether a user story is well formed, and AI can check a draft against each letter."
+    },
+    {
+      "text": "Why is anchoring a risk when AI offers a story-point estimate before the team discusses?",
+      "options": [
+        "Because the AI estimate is always wrong",
+        "Because developers may unconsciously converge on the AI number and stop thinking critically",
+        "Because story points must be measured in hours",
+        "Because the Product Owner must approve every estimate"
+      ],
+      "correctIndex": 1,
+      "explanation": "Anchoring means an early confident number can pull the team toward it, short-circuiting the conversation that builds shared understanding. Reveal any AI estimate only after the team forms its own view, or skip it entirely."
+    },
+    {
+      "text": "What is the primary purpose of the Daily Scrum?",
+      "options": [
+        "To report status to managers",
+        "For Developers to inspect progress toward the Sprint Goal and adapt their plan",
+        "To let AI assign tasks to the team",
+        "To finalise the Product Backlog ordering"
+      ],
+      "correctIndex": 1,
+      "explanation": "The Daily Scrum is a fifteen-minute event for the Developers to inspect progress toward the Sprint Goal and adapt their plan. It is for the team, not a status report to management."
+    },
+    {
+      "text": "When using AI to summarise Retrospective feedback, what is the most important safeguard?",
+      "options": [
+        "Sharing all raw comments publicly to maximise transparency",
+        "Protecting psychological safety and confidentiality, for example by anonymising inputs and using approved tools",
+        "Letting the AI decide the improvement actions",
+        "Skipping the human discussion to save time"
+      ],
+      "correctIndex": 1,
+      "explanation": "Retrospectives depend on psychological safety. Teams should anonymise inputs, agree what may be shared, and use approved tools so honesty is preserved. AI handles synthesis; people own the meaning and the actions."
+    },
+    {
+      "text": "What is the Definition of Done in Agile?",
+      "options": [
+        "A list of AI tools approved for the team",
+        "The team's shared, explicit checklist of what makes an increment releasable",
+        "The Product Owner's personal preference for each story",
+        "A report generated automatically at the end of the Sprint"
+      ],
+      "correctIndex": 1,
+      "explanation": "The Definition of Done is the team's shared, explicit checklist of what makes an increment releasable, covering items such as passing tests, code review, and documentation. Quality is a team responsibility embodied in it."
+    },
+    {
+      "text": "What is the main danger of AI-generated tests?",
+      "options": [
+        "They take too long to write",
+        "They can pass while asserting the wrong thing, creating false confidence",
+        "They can never cover edge cases",
+        "They always replace the need for human reviewers"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI can produce tests that pass while asserting incorrect behaviour or merely restating the implementation. This false confidence is dangerous, so teams must review generated tests as critically as production code."
+    },
+    {
+      "text": "Which of these is a core risk that responsible AI use must manage?",
+      "options": [
+        "Hallucination, where a model states false information confidently",
+        "The model refusing to ever produce output",
+        "Story points being too small",
+        "The Sprint being too short"
+      ],
+      "correctIndex": 0,
+      "explanation": "Hallucination means an AI can state false information with full confidence, so outputs need verification. Alongside data privacy and bias, it is one of the core risks teams must actively manage."
+    },
+    {
+      "text": "What is the recommended approach to rolling out AI within an Agile team?",
+      "options": [
+        "Mandate AI for every activity immediately",
+        "Ban AI entirely to avoid all risk",
+        "Trial one or two use cases, inspect the results in the Retrospective, and adapt based on evidence",
+        "Let each member use any tool with any data without agreement"
+      ],
+      "correctIndex": 2,
+      "explanation": "Adoption should be empirical, like Scrum itself. The team trials concrete use cases, inspects honestly in the Retrospective, and expands, adjusts, or drops the practice based on evidence, keeping people in control."
+    }
+  ]
+}

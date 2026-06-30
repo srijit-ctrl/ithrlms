@@ -1,0 +1,292 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of Applied AI for Construction Projects",
+      "objectives": [
+        "Explain how machine learning, computer vision, and generative models map to common construction workflows",
+        "Distinguish between predictive, generative, and perception-based AI use cases on a project",
+        "Identify where human judgment must remain the final decision authority"
+      ],
+      "body": [
+        "Applied AI in construction is less about exotic algorithms and more about feeding reliable data into models that handle repetitive, pattern-heavy work at scale. A practitioner should think of AI as a capable but narrow assistant: it can flag a likely schedule slip, surface a probable defect in a photo, or draft an estimate, yet it has no understanding of contractual intent, site context, or worker safety. Knowing this boundary is the first skill. Throughout this course we treat every AI output as a recommendation that a qualified professional reviews before it influences money, sequence, or anyone's physical safety on the jobsite.",
+        "Three broad AI families dominate construction practice today. Predictive models learn from historical project data to forecast cost, duration, or risk. Computer vision interprets images and video from cameras, drones, and phones to detect progress, hazards, and defects. Generative models produce drafts of text, code, layouts, or design options from a prompt or set of constraints. Each family has a different failure mode, so a practitioner matches the tool to the problem rather than forcing one model to do everything. The wrong pairing usually wastes effort and, worse, can create false confidence in a flawed answer.",
+        "Data quality determines whether any of this works. A model trained on inconsistent cost codes, mislabeled photos, or incomplete schedules will produce confident nonsense. Before adopting an AI feature, a practitioner asks where the training data came from, whether it resembles the current project, and how the tool handles cases it has never seen. Construction projects are famously unique, so a model that excelled on highway work may stumble on a hospital fit-out. Treating data provenance as seriously as the model itself is what separates a disciplined practitioner from someone chasing vendor demos.",
+        "Finally, human oversight is not a courtesy add-on but a structural requirement. Regulatory frameworks, professional liability, and basic ethics all assume a named person stands behind decisions that affect safety and cost. AI can compress hours of analysis into seconds, but the practitioner remains accountable for the result. The goal across these modules is to use AI to expand what a competent team can review, not to replace the reviewer. When a tool and a human disagree, the safe default is to investigate, not to defer automatically to the machine."
+      ],
+      "keyPoints": [
+        "AI in construction is a narrow assistant, not a replacement for professional judgment",
+        "Predictive, computer-vision, and generative models each suit different problems and fail differently",
+        "Data provenance and project similarity decide whether a model output can be trusted",
+        "Every AI output is a recommendation that a qualified person must review",
+        "Human accountability for safety and cost decisions cannot be delegated to software",
+        "When a tool and a human disagree, investigate rather than defer to the machine"
+      ],
+      "example": "A general contractor pilots three tools at once: a predictive model forecasting a curtain-wall installation finishing two weeks late, a vision system flagging missing edge protection on a deck, and a generative assistant drafting an RFI. The project engineer treats all three as prompts for human review, confirming the late forecast against actual crew productivity before alerting the owner.",
+      "summary": "Practitioners use AI as a narrow, data-dependent assistant across prediction, perception, and generation, while keeping a qualified human accountable for every decision that touches cost or safety."
+    },
+    {
+      "order": 2,
+      "title": "AI-Assisted Cost Estimating and Quantity Takeoff",
+      "objectives": [
+        "Describe how AI accelerates quantity takeoff and conceptual cost estimating",
+        "Evaluate the reliability of AI-generated estimates against project conditions",
+        "Apply review controls that prevent automated estimates from going out unchecked"
+      ],
+      "body": [
+        "Estimating is one of the most data-rich activities in construction, which makes it a natural fit for AI. Computer-vision tools can read drawings and perform quantity takeoff far faster than manual counting, while predictive models compare a new project against a historical database to suggest unit costs and conceptual budgets. For a practitioner, the value is speed during early phases when many options must be priced quickly. The risk is that a polished number invites false trust. An AI takeoff that miscounts a repeated detail, or a cost model that ignores a remote site, can embed a costly error into the very first budget shared with an owner.",
+        "Conceptual and parametric estimating benefit most from predictive AI. By learning relationships between building attributes and final cost, these models generate early-stage budgets from minimal input such as gross area, building type, and location. This helps owners and design teams test feasibility before detailed drawings exist. The practitioner must remember that these estimates carry wide uncertainty and reflect the projects in the training set. A model built mostly on suburban warehouses will misprice a dense urban tower, and it cannot know about a buried utility or an unusual local labor agreement.",
+        "Detailed estimating still requires human structure even when AI does the counting. A practitioner organizes the estimate around a clear work breakdown, then uses AI to populate quantities and suggest pricing, reserving judgment for scope gaps, exclusions, and assumptions. The most reliable workflow is a comparison: run the AI takeoff, run a manual check on high-value or high-risk items, and reconcile differences before anything is finalized. This catches both model errors and drawing ambiguities that no tool can resolve on its own.",
+        "Governance around estimates protects the business. Because an estimate can commit a company to a fixed price, no AI-generated number should leave the office without a named estimator signing off and documenting which figures were machine-assisted. Practitioners should track model accuracy over time by comparing estimates to actual costs, retiring tools that drift and feeding verified outcomes back to improve future predictions. This closes the loop and keeps the human firmly in control of financial commitments."
+      ],
+      "keyPoints": [
+        "AI speeds quantity takeoff and conceptual estimating but can embed confident errors",
+        "Parametric models reflect their training data and carry wide early-stage uncertainty",
+        "A clear work breakdown structure should frame the estimate before AI fills in numbers",
+        "High-value and high-risk items deserve a manual cross-check against AI output",
+        "No AI-generated estimate should be issued without a named estimator signing off",
+        "Tracking estimate-versus-actual accuracy keeps tools honest and humans in control"
+      ],
+      "example": "An estimator uses a vision tool to take off 14,000 square feet of metal stud partition from a fit-out drawing in minutes. She manually spot-checks three high-cost zones, finds the tool double-counted a shared demising wall, corrects it, and only then releases the budget with a note flagging which quantities were AI-assisted.",
+      "summary": "AI greatly accelerates takeoff and conceptual estimating, but practitioners must frame estimates with a work breakdown, cross-check costly items, and require a named estimator to sign every number that leaves the office."
+    },
+    {
+      "order": 3,
+      "title": "AI in Scheduling and Project Controls",
+      "objectives": [
+        "Explain how AI supports schedule generation, risk forecasting, and progress tracking",
+        "Interpret AI-generated schedule risk forecasts with appropriate skepticism",
+        "Integrate AI insights into earned value and project controls without losing oversight"
+      ],
+      "body": [
+        "Scheduling combines logic, judgment, and a great deal of historical pattern. AI tools now draft critical-path schedules from a scope description, suggest realistic durations based on past projects, and forecast the probability that key milestones will slip. For a practitioner, the strongest use is risk forecasting: rather than treating the schedule as a single deterministic plan, AI can run thousands of scenarios and highlight which activities most threaten the completion date. This shifts the conversation from blind optimism to managing the handful of activities that actually drive the outcome.",
+        "Progress tracking is where AI and the field meet. Computer vision applied to site photos, drone imagery, or fixed cameras can estimate how much of a slab, facade, or fit-out is complete and compare it against the planned schedule. This gives project controls a more objective progress measure than a superintendent's estimate alone. The practitioner should treat these readings as inputs, not verdicts, because lighting, occlusion, and staged materials can fool a vision model into reporting work that is staged but not installed.",
+        "Project controls tie schedule and cost together through earned value, and AI can strengthen both forecasting and early warning. By correlating current performance trends with historical outcomes, a model can flag a project trending toward overrun weeks before traditional indices make it obvious. The practitioner uses this as a prompt to investigate root causes, not as an automatic trigger for contractual action. A forecast is only as good as the assumptions feeding it, and construction has too many site-specific variables for any model to capture them all.",
+        "Disciplined integration matters more than any single feature. AI schedule and controls outputs should flow into the same review rhythm the team already trusts, with planners validating logic, durations, and risk drivers before updates are baselined. Over-automating updates can quietly drift a schedule away from reality, eroding the credibility of the whole controls function. The aim is to give planners sharper early warning and free them from manual data crunching, while leaving the professional firmly responsible for what the schedule commits the project to deliver."
+      ],
+      "keyPoints": [
+        "AI excels at schedule risk forecasting by simulating many scenarios rather than one plan",
+        "Vision-based progress tracking is an objective input but can mistake staged work for installed work",
+        "AI can flag overrun trends earlier than traditional earned value indices",
+        "Forecasts are prompts to investigate root causes, not automatic triggers for action",
+        "AI outputs should enter the team's existing, trusted review and baselining rhythm",
+        "Over-automated schedule updates can quietly drift the plan away from reality"
+      ],
+      "example": "On a mid-rise residential build, an AI controls tool flags that the project is trending six percent over budget and that elevator installation has a 70 percent chance of delaying handover. The planner investigates, finds a procurement bottleneck the model could not see, and adjusts logic and recovery actions before re-baselining with the project manager's approval.",
+      "summary": "AI sharpens schedule risk forecasting, vision-based progress measurement, and early overrun warnings, but planners must validate logic and root causes before any AI insight reshapes the baseline or triggers action."
+    },
+    {
+      "order": 4,
+      "title": "AI for Design and BIM Assistance",
+      "objectives": [
+        "Describe how generative design and AI tools support design exploration and BIM coordination",
+        "Assess AI-generated design options against code, constructability, and safety requirements",
+        "Apply review gates so AI design assistance never bypasses professional engineering judgment"
+      ],
+      "body": [
+        "Generative design lets a team define goals and constraints, such as floor area, daylight, structural span, and cost, and then have AI propose many layout or system options that satisfy them. Paired with BIM, these tools can rapidly explore alternatives that a human team would never have time to model by hand. For the practitioner, the benefit is breadth of exploration early, when changes are cheap. The danger is that an attractive AI option may violate a code requirement, ignore a constructability reality, or assume a structural performance that has not been verified by a qualified engineer.",
+        "BIM coordination is a strong, practical AI use case. Machine learning can detect and prioritize clashes between disciplines, predict which conflicts are most likely to cause field problems, and suggest routing changes for mechanical, electrical, and plumbing systems. This turns a flood of thousands of raw clashes into a ranked list the coordination team can actually work through. The practitioner still owns the resolution decisions, because the model does not understand maintenance access, installation sequence, or the trade agreements that often dictate which system moves.",
+        "AI can also assist with model quality and information management, checking that elements carry required data, naming follows standards, and the model is complete enough for its intended use. These checks save tedious manual auditing and reduce the risk of a downstream team relying on missing or wrong information. As always, the practitioner confirms that the rules the AI enforces match the project's actual BIM execution plan, since a tool tuned to one standard can wrongly flag or pass a model built to another.",
+        "The non-negotiable principle in design assistance is that AI proposes and licensed professionals dispose. Any AI-generated geometry, structural assumption, or system layout must pass through the normal engineering review and code-compliance process before it informs construction. This protects life-safety systems most of all: egress, fire protection, and structure cannot rely on an unverified generative suggestion. Used within these gates, AI dramatically expands the design space a team can consider while keeping accountability exactly where law and ethics require it."
+      ],
+      "keyPoints": [
+        "Generative design explores many code- and cost-aware options faster than manual modeling",
+        "AI clash detection ranks conflicts by likely field impact, taming thousands of raw clashes",
+        "Models lack awareness of maintenance access, sequence, and trade agreements that drive resolution",
+        "AI can audit model data, naming, and completeness against a standard it is configured for",
+        "AI-generated geometry and assumptions must pass normal engineering and code review",
+        "Life-safety systems must never rely on unverified generative suggestions"
+      ],
+      "example": "A coordination team runs an AI clash tool across a hospital model, which ranks 8,000 clashes down to 300 high-risk conflicts and proposes ductwork reroutes. The BIM coordinator accepts most reroutes but overrides several that would block valve access, and the structural engineer separately verifies any framing change before it reaches the field.",
+      "summary": "AI broadens design exploration and prioritizes BIM coordination work, but licensed professionals must verify every geometry, assumption, and especially life-safety system before AI assistance influences construction."
+    },
+    {
+      "order": 5,
+      "title": "AI-Powered Site Safety Monitoring",
+      "objectives": [
+        "Explain how computer vision and sensors support proactive jobsite safety monitoring",
+        "Evaluate the accuracy and privacy implications of automated safety detection",
+        "Design a safety-monitoring workflow that augments rather than replaces human supervision"
+      ],
+      "body": [
+        "Site safety is the area where AI carries both the greatest promise and the heaviest responsibility. Computer vision applied to site cameras can detect missing hard hats or harnesses, people entering exclusion zones near equipment, and proximity between workers and moving machinery. Wearable sensors and equipment telematics add data on fatigue, location, and near-misses. For the practitioner, the goal is to spot hazardous conditions earlier and more consistently than periodic human inspection can, creating a layer of continuous vigilance across a busy and changing site.",
+        "These systems are powerful but imperfect, and treating them as infallible is itself a safety risk. A vision model can miss a hazard in poor light, behind an obstruction, or in a situation it was never trained on, and it can raise false alarms that, if frequent, lead crews to ignore alerts entirely. A practitioner therefore measures detection performance honestly, tunes alerts to reduce noise, and ensures that a missed detection never becomes an excuse to reduce on-site supervision. AI safety monitoring is an additional set of eyes, not a replacement for a competent safety professional walking the site.",
+        "Privacy and worker trust are central to making safety AI sustainable. Continuous camera and sensor monitoring can feel like surveillance, and a program that workers resent or try to defeat will fail. The practitioner involves the workforce early, is transparent about what is captured and why, limits use of the data to safety purposes, and complies with applicable labor and privacy rules. Framing the system as protecting people rather than policing them, and acting on its insights to fix conditions, builds the cooperation that makes it effective.",
+        "The most important design choice is keeping a qualified human in the loop for response. AI can detect and alert, but a person must verify the hazard and decide on action, especially anything that stops work or moves equipment. Automated alerts should reach the right supervisor quickly, with enough context to act, and every serious event should be reviewed to improve both the system and site procedures. Used this way, AI extends the reach of safety leadership across the whole site while leaving the duty of care squarely with accountable people."
+      ],
+      "keyPoints": [
+        "Vision and sensor systems give continuous, consistent detection of common site hazards",
+        "Models miss hazards in poor conditions and can generate alert fatigue if poorly tuned",
+        "AI safety monitoring augments, and never replaces, on-site human supervision",
+        "Worker privacy, transparency, and trust are essential to a sustainable program",
+        "A qualified human must verify hazards and authorize any work stoppage or action",
+        "Serious events should be reviewed to improve both the system and site procedures"
+      ],
+      "example": "A camera system on a high-rise core alerts that a worker has stepped past a leading-edge barrier without fall protection. The alert reaches the safety officer within seconds; he confirms via the feed, radios the foreman to stop the activity, and the incident is logged and reviewed weekly to refine both barrier placement and the detection zone.",
+      "summary": "AI safety monitoring adds continuous detection of jobsite hazards, but it must be accurate, privacy-respecting, and always paired with a qualified human who verifies hazards and holds the duty of care."
+    },
+    {
+      "order": 6,
+      "title": "AI for Quality Control and Defect Detection",
+      "objectives": [
+        "Describe how computer vision automates inspection and defect detection in construction",
+        "Judge when AI defect detection is reliable enough to inform quality decisions",
+        "Build a quality workflow that combines AI screening with expert verification"
+      ],
+      "body": [
+        "Quality control generates enormous volumes of visual evidence, and AI is well suited to screening it. Computer-vision models can scan photos and video of concrete, welds, finishes, and installations to flag cracks, spalling, misalignment, surface defects, and missing components. On infrastructure and large buildings, drone and robotic inspection extends this to facades, roofs, and confined spaces that are slow or dangerous for people to reach. For the practitioner, AI turns inspection from occasional sampling into broad, repeatable screening, catching issues earlier when they are cheaper and safer to correct.",
+        "The honest limit of defect detection is that models are only as good as the defects they were trained to recognize. A tool tuned on hairline concrete cracks may overlook honeycombing or a rebar cover problem it has never seen, and it can confuse stains or shadows for real defects. A practitioner treats AI findings as a prioritized screening layer: the tool decides what a human should look at first, not whether a defect truly exists or how serious it is. Critical and structural elements always warrant expert verification regardless of what the model reports.",
+        "Integrating defect detection into a quality program means connecting it to records and accountability. Flagged items should flow into the inspection and punch-list process with location, photo evidence, and status, creating a traceable record of detection and resolution. This documentation is valuable for both quality assurance and dispute avoidance. The practitioner ensures that AI-flagged and human-found items are handled in one consistent system, so nothing falls through a gap between the automated screen and the manual inspection.",
+        "Closing the loop improves both the work and the tool. By tracking which AI flags proved to be genuine defects and which were false alarms, a team can tune the system and decide where it is trustworthy enough to lean on. Verified defect data also reveals recurring problems, pointing to root causes in a crew, supplier, or method that deserve attention upstream. Throughout, the qualified inspector remains the authority on whether work is acceptable, with AI serving as a tireless first pass that widens coverage and sharpens focus."
+      ],
+      "keyPoints": [
+        "Vision models screen large volumes of inspection imagery for common defects quickly",
+        "Drones and robots extend AI inspection to unsafe or hard-to-reach areas",
+        "Models only catch defect types they were trained on and can flag false positives",
+        "AI prioritizes what a human inspects first; it does not confirm severity",
+        "Flagged items must flow into the existing inspection and punch-list record system",
+        "Tracking true versus false flags tunes the tool and reveals recurring root causes"
+      ],
+      "example": "A drone surveys a precast facade and an AI model flags 40 possible defects across 600 panels. The quality engineer reviews the flags, confirms 28 real issues including three sealant failures the model ranked highest, dismisses the rest as shadowing, and logs every confirmed defect into the punch list with photos and panel locations.",
+      "summary": "AI defect detection broadens inspection coverage and prioritizes attention, but qualified inspectors must verify severity, especially on structural elements, and feed results back to tune the tool."
+    },
+    {
+      "order": 7,
+      "title": "Implementation, Governance, and Responsible Use",
+      "objectives": [
+        "Plan a responsible AI pilot that proves value before scaling across projects",
+        "Establish data governance, vendor evaluation, and human-oversight controls",
+        "Apply ethical and legal principles to AI use in construction practice"
+      ],
+      "body": [
+        "Turning AI capability into reliable practice depends far more on implementation discipline than on the tools themselves. A practitioner starts with a clear problem worth solving, runs a small pilot on a real project, and defines in advance what success looks like in measurable terms such as time saved, errors caught, or rework avoided. Comparing AI-assisted results against the existing process on the same work reveals whether the tool genuinely helps. Pilots also surface integration friction, workflow changes, and training needs that a vendor demonstration will never show, so the team can decide to scale, adjust, or abandon with evidence rather than hype.",
+        "Data governance is the backbone of trustworthy AI. The practitioner establishes where project data lives, who can access it, how it is labeled and secured, and what a vendor may do with it. Construction data can include sensitive commercial terms, personal information from site cameras and wearables, and proprietary client material, all of which carry legal and contractual obligations. Clear rules on retention, sharing, and security protect the company and the workforce, and they are far easier to set before deployment than to retrofit after a tool is embedded in daily work.",
+        "Choosing and managing vendors is a practitioner skill in its own right. Beyond features, the evaluation should cover how a model was trained, how it performs on work similar to the company's, how it handles unfamiliar cases, and what support and accountability the vendor provides when it fails. Contracts should address data ownership, liability, and the ability to export information if the relationship ends. A healthy program avoids lock-in, keeps a clear record of which decisions were AI-assisted, and never lets the convenience of a tool obscure who is responsible for outcomes.",
+        "Above all, responsible use keeps human oversight and ethics at the center. AI in construction touches money, safety, and people's livelihoods, so the practitioner ensures a named, qualified person stands behind every consequential decision, that the workforce understands how tools affect their work, and that monitoring respects privacy and labor rights. Models should be checked for bias that could disadvantage workers or skew estimates, and outputs should remain explainable enough to justify. Used within this framework, AI becomes a durable advantage that strengthens, rather than quietly undermines, professional accountability and trust."
+      ],
+      "keyPoints": [
+        "Start with a defined problem and a measurable pilot before scaling AI across projects",
+        "Compare AI-assisted results to the existing process on the same real work",
+        "Data governance must cover access, labeling, security, retention, and vendor use",
+        "Vendor evaluation should probe training data, failure handling, liability, and lock-in",
+        "Keep a clear record of which decisions were AI-assisted and who is accountable",
+        "Responsible use centers human oversight, privacy, fairness, and explainable outputs"
+      ],
+      "example": "A contractor pilots an AI estimating tool on three completed projects, comparing its budgets to actual costs and to the original human estimates before any live use. The results, plus a data agreement limiting the vendor's use of the firm's cost history, give leadership the evidence to roll it out with an estimator sign-off rule and a quarterly accuracy review.",
+      "summary": "Responsible AI adoption rests on measurable pilots, strong data governance, careful vendor management, and an unwavering commitment to human oversight, privacy, and accountability across every consequential decision."
+    }
+  ],
+  "questions": [
+    {
+      "text": "A predictive cost model built mostly from suburban warehouse projects is used to budget a dense urban high-rise. What is the most appropriate practitioner response?",
+      "options": [
+        "Trust the output because the model has a large training dataset",
+        "Treat the estimate as highly uncertain and cross-check it against more relevant data and judgment",
+        "Use the number directly since AI removes human bias",
+        "Reject all AI estimating tools as unreliable for construction"
+      ],
+      "correctIndex": 1,
+      "explanation": "Parametric models reflect their training data. A model trained on dissimilar projects carries wide uncertainty for an urban tower, so the practitioner treats it as a rough input and validates it with more relevant data and professional judgment rather than trusting or discarding AI outright."
+    },
+    {
+      "text": "A computer-vision progress tool reports a concrete deck is 90 percent complete, but materials are only staged on it. Why might the reading be wrong?",
+      "options": [
+        "Vision models can mistake staged or stored materials for installed work",
+        "The model is always correct and the superintendent is mistaken",
+        "Progress tools only work on steel structures",
+        "The schedule must be rebaselined immediately to match the tool"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lighting, occlusion, and staged materials can fool a vision model into reporting work that is positioned but not installed. Such readings are useful inputs but must be verified by a human before they change the schedule, not treated as verdicts."
+    },
+    {
+      "text": "An AI clash-detection tool proposes rerouting ductwork to resolve a high-priority conflict in a hospital model. What should the BIM coordinator do?",
+      "options": [
+        "Accept the reroute automatically since it is high priority",
+        "Review the proposal for maintenance access, sequence, and trade impacts before deciding",
+        "Ignore all AI clash suggestions as untrustworthy",
+        "Forward it directly to the field without coordination"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI ranks and proposes resolutions but does not understand maintenance access, installation sequence, or trade agreements. The coordinator owns the resolution decision and must review constructability factors, overriding suggestions that would, for example, block valve access."
+    },
+    {
+      "text": "Which statement best describes the role of AI in jobsite safety monitoring?",
+      "options": [
+        "It replaces the need for on-site safety supervision",
+        "It is an additional layer of vigilance that augments, not replaces, human supervision",
+        "It eliminates all jobsite hazards automatically",
+        "It should run without informing workers to avoid changing behavior"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI safety monitoring adds continuous detection but misses hazards in poor conditions and can produce false alarms. It must augment a competent safety professional, never replace supervision, and workers should be informed for trust and effectiveness."
+    },
+    {
+      "text": "A vision safety system generates frequent false alarms. Why is this a safety concern, not just a nuisance?",
+      "options": [
+        "False alarms improve worker alertness over time",
+        "Frequent false alarms cause alert fatigue, leading crews to ignore real warnings",
+        "False alarms have no effect on safety outcomes",
+        "It means the cameras should be removed entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": "If alerts are noisy and often wrong, workers and supervisors start ignoring them, so a genuine hazard alert may be dismissed. Practitioners must tune detection to reduce noise while never letting alerts reduce on-site supervision."
+    },
+    {
+      "text": "An AI defect-detection model trained on hairline concrete cracks is used to inspect a structural element. What is the key limitation to remember?",
+      "options": [
+        "It will reliably detect every type of structural defect",
+        "It may overlook defect types it was never trained on, so critical elements still need expert verification",
+        "It can certify the element as structurally sound on its own",
+        "It removes the need for any human inspection of structure"
+      ],
+      "correctIndex": 1,
+      "explanation": "Models only catch defect types in their training data and can miss issues like honeycombing or rebar cover problems. AI prioritizes what to inspect first, but critical and structural elements always warrant expert verification of whether and how serious a defect is."
+    },
+    {
+      "text": "Before scaling an AI estimating tool across all projects, what is the most responsible first step?",
+      "options": [
+        "Deploy it on every live bid immediately to maximize value",
+        "Run a measurable pilot comparing its results to the existing process on real work",
+        "Adopt it because a competitor uses it",
+        "Replace the estimating team to cut costs"
+      ],
+      "correctIndex": 1,
+      "explanation": "Responsible adoption starts with a defined problem and a small pilot with success defined in advance, comparing AI-assisted results to the current process on the same work. This surfaces integration and accuracy realities a vendor demo never shows."
+    },
+    {
+      "text": "Why is data governance critical before deploying AI tools that use site camera and wearable data?",
+      "options": [
+        "Because such data is never sensitive and needs no rules",
+        "Because it can include personal and commercial information carrying legal, privacy, and contractual obligations",
+        "Because governance only matters after a data breach occurs",
+        "Because AI vendors are always legally responsible for all data"
+      ],
+      "correctIndex": 1,
+      "explanation": "Camera and wearable data can include personal information and sensitive commercial terms. Clear rules on access, security, retention, and vendor use protect the company and workforce and are far easier to set before deployment than to retrofit afterward."
+    },
+    {
+      "text": "An AI project-controls tool forecasts a 70 percent chance that a milestone will slip. How should the planner treat this?",
+      "options": [
+        "As an automatic trigger for contractual action against subcontractors",
+        "As a prompt to investigate root causes before deciding on action",
+        "As a guaranteed outcome requiring no further analysis",
+        "As irrelevant because schedules are always uncertain"
+      ],
+      "correctIndex": 1,
+      "explanation": "Forecasts are only as good as their assumptions and cannot capture every site-specific variable, such as a procurement bottleneck. The planner uses the forecast as early warning to investigate root causes, not as an automatic trigger for action."
+    },
+    {
+      "text": "What is the overarching principle for using AI on decisions that affect cost and safety in construction?",
+      "options": [
+        "AI outputs should be implemented automatically to save time",
+        "A named, qualified human must review AI recommendations and remain accountable for the decision",
+        "Accountability transfers to the software vendor once a tool is adopted",
+        "Human oversight is optional once a model is proven accurate in a pilot"
+      ],
+      "correctIndex": 1,
+      "explanation": "Across estimating, scheduling, design, safety, and quality, AI provides recommendations but a named, qualified person must review consequential outputs and remain accountable. Liability, regulation, and ethics all require human oversight that cannot be delegated to software."
+    }
+  ]
+}

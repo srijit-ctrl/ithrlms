@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of the AI-Augmented PMO",
+      "objectives": [
+        "Define what distinguishes an AI-augmented PMO from a traditional one",
+        "Identify the operating capabilities where AI delivers the most value",
+        "Map the human-in-the-loop responsibilities that remain non-negotiable"
+      ],
+      "body": [
+        "An AI-augmented PMO keeps the same mandate as a traditional one, namely to give leadership a trustworthy view of the portfolio and to help projects deliver. What changes is the operating model underneath. Routine synthesis, status rollups, variance detection, and first-draft narratives are handled by AI assistants, while practitioners shift their attention toward judgment, exception handling, and stakeholder conversations. The PMO stops being a place where people manually assemble slides and starts being a place where people interrogate machine-generated insight before it reaches decision makers.",
+        "The value of AI in a PMO is concentrated in a few repeatable patterns. The first is summarisation, turning sprawling status updates and meeting notes into concise rollups. The second is anomaly detection, surfacing the schedule slip or budget burn that a busy portfolio manager would otherwise miss. The third is forecasting, projecting completion dates and spend from historical and current signals. The fourth is drafting, producing first-pass reports, risk descriptions, and stakeholder messages. Recognising these patterns helps you decide where to invest first rather than chasing every shiny capability at once.",
+        "Augmentation is deliberately different from automation. Automation removes a human from a process; augmentation gives a human better inputs and faster drafts while leaving the decision with a person. In a PMO this distinction matters because most outputs, such as a portfolio recommendation or a red status, carry consequences for funding and careers. The practitioner remains accountable for what is published. AI accelerates the path to a decision, but the sign-off, the framing, and the ownership of the message stay firmly with the human leading the function.",
+        "Adopting AI in the PMO is as much a change-management effort as a technical one. Project managers may fear that AI status reporting is a step toward replacing them, and sponsors may distrust numbers they did not see assembled by hand. The practitioner sets expectations early, explains where AI fits and where it does not, and demonstrates value on a contained pilot before scaling. Trust is earned by showing that AI-assisted outputs are at least as accurate as manual ones and are produced with a clear, inspectable trail back to the source data."
+      ],
+      "keyPoints": [
+        "An AI-augmented PMO retains its mandate but changes its operating model",
+        "AI value clusters around summarisation, anomaly detection, forecasting, and drafting",
+        "Augmentation supports human decisions rather than replacing the decision maker",
+        "Practitioners remain accountable for every published output",
+        "Adoption succeeds through change management, pilots, and demonstrated accuracy"
+      ],
+      "example": "A 40-project portfolio PMO pilots an AI assistant on weekly status synthesis. Instead of analysts spending two days collating updates into a deck, the assistant drafts a rollup in minutes; analysts then spend that time validating three flagged anomalies and preparing the sponsor conversation, reducing report cycle time from two days to half a day.",
+      "summary": "An AI-augmented PMO keeps its core mandate but reshapes how work gets done, concentrating AI on summarisation, detection, forecasting, and drafting while practitioners stay accountable for decisions."
+    },
+    {
+      "order": 2,
+      "title": "Data Foundations and Tool Integration",
+      "objectives": [
+        "Assess the data readiness required before AI can support PMO work",
+        "Describe how PMO tools and AI assistants connect through integrations",
+        "Establish data quality and access controls that make AI outputs trustworthy"
+      ],
+      "body": [
+        "AI in a PMO is only as good as the data it can reach. Before any forecasting or reporting use case is attempted, the practitioner audits where portfolio data lives, how current it is, and how consistently it is structured. Status fields filled in differently by every project manager, milestone dates that are never updated, and financials trapped in spreadsheets all degrade AI output. Data readiness is rarely glamorous work, but it is the single biggest determinant of whether AI-assisted reporting will be trusted or quietly ignored.",
+        "Most AI capability in a PMO arrives through integration rather than a single monolithic tool. Project and portfolio management platforms hold schedules and tasks, finance systems hold budgets and actuals, and collaboration tools hold the unstructured updates and meeting notes. AI assistants connect to these through connectors, APIs, or exports, then reason across the combined picture. The practitioner does not need to build these pipelines personally, but must understand what is connected, what is refreshed in real time, and what is a stale snapshot, because that shapes how much confidence to place in any answer.",
+        "Data quality controls turn raw connectivity into reliable insight. Standardised status taxonomies, required fields, validation rules, and update cadences reduce the noise that AI would otherwise amplify. A useful discipline is to define a small set of canonical fields, such as RAG status, percent complete, forecast finish date, and committed spend, and to enforce them across the portfolio. When these are clean and current, AI summaries and forecasts become dependable. When they are not, the PMO ends up debating the data rather than the decision it should inform.",
+        "Access and permissions deserve explicit attention because AI assistants can surface information far faster than a human browsing folders. A connector that can read finance data may expose salary-sensitive or commercially confidential figures to anyone who can prompt the assistant. The practitioner works with security and data owners to scope what each AI capability can read and who can query it, mirroring existing role-based access rather than bypassing it. Getting this right early prevents the kind of inadvertent disclosure that can permanently undermine confidence in an AI-augmented PMO."
+      ],
+      "keyPoints": [
+        "AI output quality is bounded by the quality and freshness of PMO data",
+        "Capability usually arrives through integration across PPM, finance, and collaboration tools",
+        "A small set of clean canonical fields drives dependable summaries and forecasts",
+        "Practitioners must know what is live versus a stale snapshot",
+        "AI access should mirror existing role-based permissions, not bypass them"
+      ],
+      "example": "A PMO standardises four canonical fields across all projects and connects its PPM tool and finance system to an AI assistant. Forecast accuracy improves once stale milestone dates are caught by a validation rule, and the team scopes the finance connector so only the finance lead and PMO director can query spend by resource.",
+      "summary": "Trustworthy AI support depends on ready, well-governed data integrated across PMO tools, with clean canonical fields and access controls that match existing permissions."
+    },
+    {
+      "order": 3,
+      "title": "AI-Driven Portfolio Reporting",
+      "objectives": [
+        "Build a reporting workflow that combines AI drafting with human validation",
+        "Apply prompting techniques that produce accurate, audience-ready rollups",
+        "Detect and correct common failure modes in AI-generated reports"
+      ],
+      "body": [
+        "Portfolio reporting is the most common entry point for AI in a PMO because the manual effort is high and the inputs are reasonably structured. A well-designed workflow has AI produce the first draft of a rollup from current status data, then routes it to a practitioner who validates the figures, adjusts the narrative, and approves it for distribution. The goal is not a fully automatic report but a dramatically faster path from raw updates to a leadership-ready view, with the human acting as editor and quality gate rather than as data clerk.",
+        "Prompting is a practitioner skill, not a developer one. Effective report prompts specify the audience, the level of detail, the period, the format, and the tone, and they instruct the assistant to cite which projects drive each conclusion. Asking for the three projects most likely to slip next month, with the evidence behind each, yields something a sponsor can act on. Vague prompts yield vague, padded prose. The practitioner builds a small library of reusable prompt templates so that reporting is consistent across cycles and across whoever happens to be running the report that week.",
+        "AI reports fail in characteristic ways, and recognising them is core to the role. The assistant may fabricate a plausible-sounding figure when the underlying data is missing, blend two projects with similar names, or state a trend with more confidence than the data supports. The practitioner reviews every quantitative claim against the source, treats narrative as a draft to be challenged, and never publishes a number that cannot be traced. Building a habit of spot-checking the most consequential figures catches the majority of errors before they reach an audience.",
+        "Tailoring output to the audience is where AI reporting earns its reputation. A steering committee wants a one-page exception view with clear asks; a delivery team wants task-level detail; an executive sponsor wants a confidence-weighted forecast and the top risks. The same underlying data can be rendered into all three with different prompts, saving hours of reformatting. The practitioner curates these audience views and ensures the message stays consistent across them, so that a project shown as amber to the team is not quietly upgraded to green for the board."
+      ],
+      "keyPoints": [
+        "AI drafts the report; the practitioner validates and approves it",
+        "Strong prompts specify audience, scope, format, and require source citations",
+        "Reusable prompt templates keep reporting consistent across cycles",
+        "Watch for fabricated figures, conflated projects, and overconfident trends",
+        "Tailor views to each audience while keeping the underlying message consistent"
+      ],
+      "example": "A PMO uses a prompt template to generate a steering-committee one-pager that lists the five projects with the largest negative variance and the evidence for each. The practitioner spot-checks those five figures against the PPM tool, corrects one conflated project name, and approves the page, cutting preparation from three hours to forty minutes.",
+      "summary": "AI-driven reporting pairs fast machine drafting with disciplined human validation, strong prompting, and audience-tailored views to deliver trustworthy rollups quickly."
+    },
+    {
+      "order": 4,
+      "title": "Governance, Compliance, and Responsible AI",
+      "objectives": [
+        "Establish governance guardrails for AI use within the PMO",
+        "Identify confidentiality, bias, and accountability risks in AI outputs",
+        "Define an audit trail and approval model for AI-assisted decisions"
+      ],
+      "body": [
+        "Governance is what separates a credible AI-augmented PMO from a risky experiment. The practitioner defines which decisions AI may inform, which it may only draft, and which must never touch an external model at all. These guardrails are written down, shared, and revisited as capability matures. A clear policy prevents both the timid under-use that wastes the investment and the reckless over-use that exposes the organisation. Governance here is not bureaucracy for its own sake; it is the mechanism that lets the PMO move quickly without losing the trust of its stakeholders.",
+        "Confidentiality is the most immediate risk. Portfolio data often contains commercially sensitive figures, personal information about resources, and strategic plans that must not leak into a public model or be retained for training. The practitioner ensures AI tools used in the PMO operate under enterprise terms that prohibit training on the organisation's data, and educates the team on what may and may not be pasted into a prompt. A single careless prompt containing confidential financials can create a disclosure incident, so prevention through clear rules is far cheaper than remediation.",
+        "Bias and accountability are subtler but equally important. An AI forecast trained on historical project data can quietly carry forward past biases, for example always rating projects led by a particular team as higher risk. The practitioner treats AI output as advisory, looks for patterns that do not make sense, and ensures a named human owns every decision the AI informs. Accountability cannot be delegated to a model. When a portfolio call turns out to be wrong, the answer to who decided must always be a person, not the assistant that drafted the recommendation.",
+        "An audit trail makes governance real rather than aspirational. For consequential outputs the PMO records what data the AI used, what prompt produced the result, who reviewed it, and what was changed before publication. This trail supports compliance reviews, lets the team learn from errors, and reassures auditors and sponsors that AI is being used responsibly. The practitioner designs this lightly enough that it does not negate the speed benefit, capturing provenance for high-stakes outputs while letting routine drafts flow with less ceremony."
+      ],
+      "keyPoints": [
+        "Written guardrails define where AI may inform, draft, or must not be used",
+        "Enterprise terms must prevent confidential data from training external models",
+        "AI output is advisory; a named human owns every decision",
+        "Watch for historical bias carried into AI risk and forecast outputs",
+        "Maintain a provenance trail for consequential AI-assisted decisions"
+      ],
+      "example": "A PMO publishes a one-page AI usage policy: project narratives may be AI-drafted, resource personal data may never be entered into prompts, and any AI-influenced funding recommendation must record its prompt, source data, reviewer, and edits. An auditor later confirms compliance by inspecting the trail for a cancelled project.",
+      "summary": "Responsible AI governance in the PMO combines clear guardrails, confidentiality controls, bias vigilance, named human accountability, and a proportionate audit trail."
+    },
+    {
+      "order": 5,
+      "title": "AI-Enabled Forecasting and Predictive Insight",
+      "objectives": [
+        "Explain how AI generates schedule and cost forecasts from portfolio data",
+        "Interpret forecast confidence and communicate uncertainty to stakeholders",
+        "Combine predictive output with practitioner judgment for credible projections"
+      ],
+      "body": [
+        "Forecasting is where AI moves from describing the present to anticipating the future, and it is among the highest-value PMO use cases. By learning from historical delivery patterns and current burn rates, AI can project completion dates, final costs, and the probability that a project hits its committed targets. These projections are most useful at the portfolio level, where leadership wants to know which initiatives are trending toward trouble while there is still time to intervene. The practitioner frames forecasting as an early-warning system rather than a crystal ball.",
+        "Every forecast carries uncertainty, and communicating it honestly is part of the practitioner's craft. A projected finish date is really a range with a confidence level, and presenting it as a single hard date invites false precision. AI tools can express this as ranges or probabilities, and the practitioner translates that into language a sponsor understands, such as a seventy percent chance of finishing within two weeks of the target. Hiding uncertainty to look decisive erodes trust the moment a confidently stated date is missed.",
+        "AI forecasts are inputs to judgment, not replacements for it. The model does not know that a key supplier just went into administration, that a regulatory change is imminent, or that the most experienced engineer is about to take leave. The practitioner overlays this contextual knowledge on the machine projection, adjusting where reality differs from what the data captures. The best forecasts emerge from a dialogue between the model's pattern recognition and the practitioner's situational awareness, with the human owning the final figure that goes to leadership.",
+        "Forecasts must be revisited and the model's track record monitored. A forecast made at the start of a quarter should be compared to what actually happened, and persistent over-optimism or pessimism should prompt recalibration. The practitioner treats forecasting as a learning loop, feeding outcomes back so projections improve over time and so the team builds an evidence-based sense of how much to trust them. A forecast that is never checked against reality is a guess dressed in numbers, and stakeholders quickly learn to discount it."
+      ],
+      "keyPoints": [
+        "AI projects finish dates, costs, and target probabilities from historical and current data",
+        "Forecasts are ranges with confidence levels, not single hard dates",
+        "Communicate uncertainty honestly to preserve stakeholder trust",
+        "Practitioners overlay context the model cannot know",
+        "Compare forecasts to actuals and recalibrate as a learning loop"
+      ],
+      "example": "An AI tool forecasts that a delivery program has a 65 percent chance of finishing within its committed quarter. The practitioner knows a critical vendor contract is unsigned, lowers the communicated confidence, and flags it to the sponsor; when the program slips, the honest framing protects the PMO's credibility.",
+      "summary": "AI forecasting acts as an early-warning system that, when paired with honest uncertainty communication and practitioner context, produces credible and improving projections."
+    },
+    {
+      "order": 6,
+      "title": "AI in Resource Management and Capacity Planning",
+      "objectives": [
+        "Use AI to surface capacity conflicts and over-allocation across the portfolio",
+        "Evaluate AI-suggested resource assignments against fairness and feasibility",
+        "Balance optimisation recommendations with team wellbeing and morale"
+      ],
+      "body": [
+        "Resource management is one of the hardest PMO problems because demand and capacity shift constantly across many projects. AI helps by continuously analysing assignments, skills, and timelines to surface conflicts a human would struggle to track, such as a specialist booked at 140 percent across three initiatives next month. Instead of discovering over-allocation when someone burns out or a deadline slips, the PMO sees it forming weeks ahead. The practitioner uses this visibility to rebalance proactively rather than firefight after the fact.",
+        "AI can go further and suggest assignments, matching people to upcoming work based on skills, availability, and cost. These suggestions are valuable starting points but must be evaluated, not accepted blindly. An algorithm optimising purely for utilisation may load the most capable people until they break, ignore development opportunities for junior staff, or repeatedly assign the same person to undesirable work. The practitioner reviews suggestions for fairness and feasibility, knowing that the model optimises the objective it was given, which is rarely the full picture of a healthy team.",
+        "Capacity planning at the portfolio level benefits enormously from AI scenario modelling. The practitioner can ask what happens to delivery if a new high-priority project is approved, or if a team loses two members, and receive a rapid view of the knock-on effects across timelines and other initiatives. This turns resourcing debates from opinion into evidence and lets leadership make trade-offs with eyes open. The speed of these what-if analyses is a genuine step change from the manual spreadsheets that previously took days to assemble and were stale by the time they were finished.",
+        "Wellbeing must temper pure optimisation. A plan that is theoretically efficient but leaves people chronically over-committed will produce attrition, mistakes, and missed dates that no model predicted. The practitioner reads AI capacity output through a human lens, protecting slack for the unexpected, distributing stretch and routine work fairly, and treating sustained over-allocation as a risk to be resolved rather than a number to be maximised. The aim is a portfolio that delivers reliably over time, not one that looks fully loaded on a chart this week."
+      ],
+      "keyPoints": [
+        "AI surfaces over-allocation and conflicts weeks before they cause damage",
+        "Treat AI assignment suggestions as starting points, not decisions",
+        "Pure utilisation optimisation can harm fairness and development",
+        "Scenario modelling turns resourcing trade-offs into evidence-based choices",
+        "Protect slack and wellbeing rather than maximising loading"
+      ],
+      "example": "An AI capacity view flags that a lead data architect is booked at 135 percent across three projects in the same sprint. The practitioner runs a what-if removing one assignment, sees the downstream slip is acceptable, reassigns the work to a developing engineer for growth, and protects the architect's capacity for the critical initiative.",
+      "summary": "AI strengthens resource management by surfacing conflicts early and modelling scenarios, while the practitioner safeguards fairness, development, and wellbeing against blind optimisation."
+    },
+    {
+      "order": 7,
+      "title": "Implementation, Adoption, and Continuous Improvement",
+      "objectives": [
+        "Plan a phased rollout of AI capabilities within the PMO",
+        "Drive adoption through training, quick wins, and stakeholder confidence",
+        "Measure value and run a continuous-improvement loop for AI use"
+      ],
+      "body": [
+        "Bringing AI into a PMO succeeds through phased rollout rather than a big-bang launch. The practitioner starts with a contained, high-value use case such as status synthesis, proves it works, then expands to forecasting, resourcing, and beyond. Each phase has clear success criteria and a fallback to the previous way of working if something goes wrong. This sequencing builds organisational muscle and credibility, so that by the time more consequential use cases arrive, the team and its stakeholders already trust the foundations on which they are built.",
+        "Adoption is ultimately about people, not technology. Project managers and analysts need training not only on the tools but on the new judgment-led role they play, validating and challenging AI output rather than assembling it. Early quick wins, where AI visibly saves someone a tedious afternoon, build enthusiasm faster than any mandate. The practitioner identifies champions, addresses fears about job security honestly, and ensures that using AI is the easier path, because capability that sits unused delivers no value regardless of how impressive it is on paper.",
+        "Value must be measured to justify continued investment and to guide where to expand. The practitioner tracks concrete metrics such as reporting cycle time, forecast accuracy against actuals, hours returned to higher-value work, and stakeholder satisfaction with PMO outputs. Baselining these before rollout makes the improvement visible and defensible. Without measurement the PMO cannot tell whether AI is genuinely helping or merely feeling modern, and it cannot make the case for further investment when leadership inevitably asks what the return has been.",
+        "Continuous improvement keeps the AI-augmented PMO from stagnating. Models, prompts, data sources, and use cases all need periodic review as tools evolve and as the team learns what works. The practitioner runs a regular retrospective on AI use, retiring prompts that underperform, tightening governance where near-misses occurred, and adopting new capability deliberately rather than reactively. Treating the AI-augmented PMO as a living system, refined cycle by cycle, is what sustains its value long after the initial novelty and the launch enthusiasm have worn off."
+      ],
+      "keyPoints": [
+        "Roll out AI in phases with clear success criteria and fallbacks",
+        "Adoption depends on training, champions, and visible quick wins",
+        "Address job-security fears honestly to build trust",
+        "Measure cycle time, forecast accuracy, hours saved, and satisfaction",
+        "Run regular retrospectives to refine prompts, governance, and use cases"
+      ],
+      "example": "A PMO baselines its three-hour reporting cycle, pilots AI synthesis on one program, and proves a 70 percent time saving. It then expands to forecasting, trains analysts on validation, names two champions, and runs a quarterly retrospective that retires two weak prompts and tightens the confidentiality rule after a near-miss.",
+      "summary": "Sustained AI value in the PMO comes from phased rollout, people-focused adoption, measured outcomes, and a continuous-improvement loop that keeps the practice current."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What best describes the difference between AI augmentation and AI automation in a PMO context?",
+      "options": [
+        "Augmentation supports human decisions with better inputs and drafts, while automation removes the human from a process",
+        "Augmentation is faster than automation in every case",
+        "Automation always requires more data than augmentation",
+        "There is no meaningful difference between the two terms"
+      ],
+      "correctIndex": 0,
+      "explanation": "Augmentation gives a human faster, better inputs while leaving the decision with a person, which matters in a PMO where outputs carry funding and career consequences. Automation removes the human from the process entirely."
+    },
+    {
+      "text": "Why is data readiness considered the biggest determinant of whether AI-assisted PMO reporting will be trusted?",
+      "options": [
+        "Because AI tools refuse to run without perfect data",
+        "Because inconsistent fields, stale dates, and trapped financials degrade AI output and lead to debate about the data instead of the decision",
+        "Because data readiness reduces software licensing costs",
+        "Because clean data eliminates the need for human review"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI output is bounded by the quality and freshness of its inputs. Inconsistent status fields, un-updated milestones, and spreadsheet-bound financials produce unreliable output, causing stakeholders to argue about data rather than act on decisions."
+    },
+    {
+      "text": "In an AI-driven reporting workflow, what is the practitioner's primary role?",
+      "options": [
+        "To manually assemble the report from raw data",
+        "To approve any output the AI produces without changes",
+        "To act as editor and quality gate, validating figures and approving the report for distribution",
+        "To write the underlying integration code"
+      ],
+      "correctIndex": 2,
+      "explanation": "The goal is a faster path from raw updates to a leadership-ready view, with AI drafting and the human validating figures, adjusting narrative, and approving for distribution rather than acting as a data clerk."
+    },
+    {
+      "text": "A confidently stated single finish date from an AI forecast is problematic primarily because it",
+      "options": [
+        "Takes too long for the model to compute",
+        "Creates false precision by hiding the underlying range and confidence level",
+        "Cannot be displayed in a status report",
+        "Is always less accurate than a manual estimate"
+      ],
+      "correctIndex": 1,
+      "explanation": "A forecast is really a range with a confidence level. Presenting it as a single hard date invites false precision and erodes trust the moment that date is missed; honest uncertainty communication preserves credibility."
+    },
+    {
+      "text": "Which risk is most directly associated with an AI assistant connected to PMO finance data?",
+      "options": [
+        "The assistant will run more slowly over time",
+        "Salary-sensitive or confidential figures could be surfaced to anyone able to prompt the assistant",
+        "Finance data cannot be summarised by AI",
+        "The integration will automatically delete historical records"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI can surface information far faster than manual browsing. A finance connector may expose sensitive figures to anyone who can query it, so access must be scoped to mirror existing role-based permissions."
+    },
+    {
+      "text": "When an AI tool suggests resource assignments optimised purely for utilisation, the practitioner should",
+      "options": [
+        "Accept them automatically to maximise efficiency",
+        "Reject all AI resourcing input as unreliable",
+        "Evaluate them for fairness and feasibility, since the model optimises only its given objective",
+        "Forward them directly to each resource without review"
+      ],
+      "correctIndex": 2,
+      "explanation": "Pure utilisation optimisation can overload the most capable people, ignore development opportunities, and assign undesirable work unfairly. Suggestions are starting points that the practitioner must evaluate for fairness and feasibility."
+    },
+    {
+      "text": "What is a characteristic failure mode of AI-generated portfolio reports that practitioners must watch for?",
+      "options": [
+        "Reports are always too short to be useful",
+        "The assistant may fabricate a plausible figure when data is missing or conflate similarly named projects",
+        "Reports can only be produced in one language",
+        "The assistant refuses to cite any sources"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI may invent a plausible-sounding figure when underlying data is absent, blend projects with similar names, or overstate a trend. Practitioners must trace every consequential number to its source before publishing."
+    },
+    {
+      "text": "Why should a named human own every decision an AI informs in the PMO?",
+      "options": [
+        "Because models legally cannot process data",
+        "Because accountability cannot be delegated to a model, and when a call is wrong the answer to who decided must be a person",
+        "Because humans are always more accurate than models",
+        "Because it reduces the cost of the AI tool"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI output is advisory. Accountability for portfolio decisions cannot be handed to a model, so a named human must own each decision; when a recommendation turns out wrong, a person, not the assistant, is responsible."
+    },
+    {
+      "text": "What is the recommended approach to rolling out AI capabilities in a PMO?",
+      "options": [
+        "Launch all capabilities simultaneously to maximise impact",
+        "A phased rollout starting with a contained high-value use case, with clear success criteria and a fallback",
+        "Wait until every possible use case is fully built before any release",
+        "Deploy only to executives and never to analysts"
+      ],
+      "correctIndex": 1,
+      "explanation": "Phased rollout starting with a contained, high-value use case such as status synthesis builds organisational muscle and credibility, with clear success criteria and a fallback to the prior way of working if something fails."
+    },
+    {
+      "text": "Which set of metrics best supports demonstrating the value of an AI-augmented PMO?",
+      "options": [
+        "Number of AI tools purchased and total prompts run",
+        "Reporting cycle time, forecast accuracy against actuals, hours returned to higher-value work, and stakeholder satisfaction",
+        "Lines of integration code and server uptime",
+        "Count of meetings held about AI adoption"
+      ],
+      "correctIndex": 1,
+      "explanation": "Concrete outcome metrics such as reporting cycle time, forecast accuracy versus actuals, hours returned to higher-value work, and stakeholder satisfaction make improvement visible and defensible, and guide where to expand."
+    }
+  ]
+}

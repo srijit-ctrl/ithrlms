@@ -1,0 +1,292 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of AI Agents in Finance Workflows",
+      "objectives": [
+        "Define what an AI agent is and how it differs from a single-shot model call",
+        "Map common finance workflows where agents add value",
+        "Recognize the boundaries of appropriate agent use in regulated finance"
+      ],
+      "body": [
+        "An AI agent is a system that can perceive context, plan a sequence of steps, call tools, and act toward a goal with some autonomy. Unlike a single prompt that returns one answer, an agent loops: it observes, decides, acts, and checks results. In finance, this loop is powerful because many tasks are multi-step, such as pulling a ledger extract, matching it against bank data, flagging exceptions, and drafting a summary. Understanding this loop is the first step to building agents that are useful rather than unpredictable, and to knowing where a simpler tool would be safer and cheaper.",
+        "Finance is attractive for agents because the work is structured, repetitive, and document-heavy, yet it also demands precision that casual chat applications do not. Typical targets include financial planning and analysis support, period-end reporting, account reconciliation, anomaly detection, and invoice or contract document processing. In each case the agent acts as a tireless assistant that prepares work for a human, not as a replacement for professional judgment. The specialist role is to scope these workflows narrowly so the agent has a clear job, measurable success, and a defined point where a person takes over.",
+        "Autonomy in finance must be earned, not assumed. A well-designed agent starts with read-only access and suggestion-only output, then expands only after it proves reliable. Every action it can take should be reversible or gated by approval, especially anything that posts entries, moves money, or sends external communications. The cost of an error in finance is not just a wrong sentence; it can be a misstated balance, a missed control, or a regulatory finding. Treating autonomy as a privilege that scales with demonstrated accuracy keeps the system safe while still capturing efficiency gains.",
+        "It is essential to frame agents as decision support, never as financial advice. The content here is educational. A finance agent can summarize data, surface patterns, and prepare analysis, but it does not tell anyone what to invest in or guarantee outcomes. Keeping this distinction sharp protects users, the organization, and the integrity of the profession. Throughout this course we emphasize verification, controls, segregation of duties, auditability, data privacy, and human accountability as the non-negotiable foundations on which any finance agent must be built."
+      ],
+      "keyPoints": [
+        "An agent loops through observe, plan, act, and check, unlike a one-shot model call",
+        "Strong finance targets are multi-step, structured, document-heavy tasks",
+        "Autonomy should start read-only and expand only after proven reliability",
+        "Money-moving or posting actions must be gated or reversible",
+        "Agents provide decision support, never financial advice",
+        "Verification and human accountability are foundational, not optional"
+      ],
+      "example": "A mid-size company deploys an agent to assist month-end close. It reads the trial balance, lists accounts with unusual swings, and drafts a variance commentary. It posts nothing on its own; the controller reviews each flag, edits the commentary, and approves before anything enters the close package.",
+      "summary": "AI agents are multi-step systems suited to structured finance work, but their autonomy must be earned, gated, and always positioned as decision support rather than advice."
+    },
+    {
+      "order": 2,
+      "title": "Designing Agent Workflows for FP&A and Reporting",
+      "objectives": [
+        "Break an FP&A or reporting task into agent-suitable steps",
+        "Choose appropriate tools and data sources for each step",
+        "Define explicit handoff points where humans review and approve"
+      ],
+      "body": [
+        "Good agent design begins by decomposing a workflow into discrete, inspectable steps rather than asking the agent to do everything at once. For an FP&A budget-versus-actual report, the steps might be: retrieve actuals from the general ledger, retrieve the approved budget, compute variances by cost center, identify material variances against a threshold, and draft narrative commentary. Each step has a clear input and output, which makes the agent easier to test, debug, and audit. Decomposition also lets you decide which steps the agent performs and which a person must confirm.",
+        "Tool selection matters as much as the prompt. An agent should pull numbers from authoritative systems through controlled connectors rather than guessing from memory, because language models are not reliable calculators or sources of record. Use deterministic tools for arithmetic, query systems for data, and the model mainly for orchestration and drafting prose. Where the agent must compute a figure, have it call a calculation tool and show its work. This separation keeps the precise, numeric parts of finance under deterministic control while reserving the model for language and coordination.",
+        "Reporting agents are especially useful for the repetitive drafting that consumes analyst time: assembling recurring management packs, writing first-draft variance explanations, and reconciling figures across slides and tables. The agent can flag inconsistencies, such as a revenue number that differs between two pages, faster than a tired human at month-end. But the agent should present these as candidates for review, with sources cited, so the analyst can verify each one. The goal is to shorten the path to a correct, signed-off report, not to remove the sign-off.",
+        "Every workflow needs explicit handoff points. Define, in writing, what the agent may finalize and what requires human approval before release. A common pattern is that the agent prepares and a named person reviews and owns the output. Document the threshold logic, the approver, and the evidence the approver should check. This makes the workflow repeatable across periods and gives auditors a clear picture of who did what. Clear handoffs also prevent the quiet drift where an assistive tool gradually starts making decisions no one intended it to make."
+      ],
+      "keyPoints": [
+        "Decompose workflows into discrete, inspectable, testable steps",
+        "Pull figures from authoritative systems, not model memory",
+        "Use deterministic tools for arithmetic; reserve the model for orchestration and prose",
+        "Reporting agents excel at first drafts and cross-document consistency checks",
+        "Define written handoff points specifying what needs human approval",
+        "A named human reviews and owns every released output"
+      ],
+      "example": "An FP&A agent builds the monthly board pack draft by querying the ledger for actuals, comparing to budget, and writing variance notes for any line over a five percent threshold. It cites the source query for each figure. The finance manager reviews flagged items, corrects two commentary errors, and approves the pack for distribution.",
+      "summary": "Effective FP&A and reporting agents decompose tasks into discrete steps, source numbers from authoritative systems via deterministic tools, and route every output through a defined human approval point."
+    },
+    {
+      "order": 3,
+      "title": "Reconciliation, Anomaly Detection, and Document Processing",
+      "objectives": [
+        "Apply agents to reconciliation and exception handling safely",
+        "Design anomaly detection that surfaces, rather than acts on, suspicious items",
+        "Process financial documents with extraction confidence and validation"
+      ],
+      "body": [
+        "Reconciliation is a natural fit for agents because it is rule-driven matching at scale: comparing ledger entries to bank statements, supplier statements, or subledgers and isolating the differences. An agent can perform the bulk matching, then present the unmatched and partially matched items as an exception queue for a human to clear. The discipline here is that the agent resolves nothing it cannot fully justify. Auto-clearing a difference because it is small is exactly the shortcut that hides errors and fraud, so tolerance rules must be explicit, conservative, and logged.",
+        "Anomaly detection agents flag transactions or balances that deviate from expected patterns, such as a duplicate payment, an out-of-hours posting, or a vendor whose invoices suddenly jump. The crucial design principle is that the agent surfaces anomalies for investigation; it does not block, reverse, or accuse on its own. Models produce false positives and can miss novel patterns, so their output is a prioritized lead list, not a verdict. Tuning thresholds, explaining why each item was flagged, and tracking the hit rate over time turn anomaly detection into a trusted early-warning tool rather than noise.",
+        "Document processing covers invoices, receipts, contracts, and statements where the agent extracts structured fields from unstructured files. Quality depends on validation: cross-checking extracted totals against line items, confirming vendor details against a master file, and routing low-confidence extractions to a human. A specialist configures confidence thresholds so that clear documents flow through while ambiguous ones are escalated. Never let extracted figures feed a payment or posting without a validation gate, because a misread decimal or transposed digit can become a real financial loss in seconds.",
+        "Across all three areas, the same safeguard applies: the agent prepares and explains, and a person decides on anything consequential. Keep a record of what was matched, what was flagged, and what was extracted, along with confidence scores and the human disposition. This evidence trail is what lets the organization trust automation at volume. It also lets you measure accuracy honestly, retrain or retune when performance drifts, and demonstrate to auditors that the controls operate as designed rather than on faith."
+      ],
+      "keyPoints": [
+        "Agents do bulk matching; humans clear the exception queue",
+        "Tolerance and auto-clear rules must be explicit, conservative, and logged",
+        "Anomaly detection surfaces leads for investigation, never acts as a verdict",
+        "Document extraction requires validation gates and confidence thresholds",
+        "Low-confidence or ambiguous items must be escalated to a person",
+        "Record matches, flags, extractions, confidence, and human disposition"
+      ],
+      "example": "A reconciliation agent matches ninety-two percent of bank lines to the ledger automatically within a one-cent tolerance and routes the remaining items to an analyst. For an invoice batch, three documents with a confidence below the set threshold are held for manual review; one turns out to have a transposed amount that would have overpaid a supplier.",
+      "summary": "In reconciliation, anomaly detection, and document processing, agents handle volume and surface exceptions with confidence scores, while conservative tolerances, validation gates, and human disposition keep consequential decisions with people."
+    },
+    {
+      "order": 4,
+      "title": "Verification, Accuracy, and Guarding Against Hallucination",
+      "objectives": [
+        "Explain why language models hallucinate and where the risk is highest in finance",
+        "Build verification steps that check agent output against ground truth",
+        "Measure and monitor agent accuracy over time"
+      ],
+      "body": [
+        "Language models generate plausible text, which means they can produce confident, well-formatted answers that are simply wrong. In finance this is dangerous because a fabricated figure, an invented account, or a misremembered policy can look entirely credible. Hallucination risk is highest when the agent is asked to recall specific numbers, cite regulations, or perform arithmetic from memory. The specialist mitigates this by grounding the agent in retrieved source data and by forbidding it from inventing values. If the data is not available, the correct behavior is to say so, not to guess.",
+        "Verification means systematically checking the agent against ground truth rather than trusting fluency. Practical techniques include requiring the agent to cite the source row or document for every figure, recomputing totals with a deterministic tool, cross-footing tables so columns and rows agree, and comparing results to the prior period for sanity. Where feasible, run the same task two ways and reconcile the difference. These checks catch the errors that a quick human glance would miss, and they make the agent output something a reviewer can audit rather than merely believe.",
+        "Accuracy is not a one-time property; it drifts as data, prompts, models, and source systems change. Treat agent quality like a controlled process: define metrics such as extraction accuracy, false-positive rate, and reconciliation match rate, then track them over time against a known-good sample. Investigate regressions before they reach production reports. A small, labeled test set that you rerun whenever something changes is one of the highest-value investments a finance agent team can make, because it converts vague confidence into evidence.",
+        "Verification also protects accountability. When a reviewer signs off on agent-prepared work, they need enough visible evidence to genuinely verify it, not a black box. Design outputs so the chain from source to figure to narrative is traceable. This respects the principle that a human remains responsible for the result. It also discourages over-reliance, where staff rubber-stamp output because it looks polished. The aim is informed approval: the agent does the heavy lifting, and the person confirms correctness with the evidence in front of them."
+      ],
+      "keyPoints": [
+        "Models can produce confident, well-formatted, wrong answers",
+        "Risk peaks when recalling numbers, citing rules, or doing arithmetic from memory",
+        "Ground the agent in retrieved sources; if data is missing, it must say so",
+        "Verify via citations, deterministic recomputation, cross-footing, and prior-period checks",
+        "Track accuracy metrics against a labeled test set to detect drift",
+        "Make the source-to-figure chain traceable so reviewers can truly verify"
+      ],
+      "example": "A reporting agent states that quarterly revenue rose eight percent. The verification step recomputes the figure from the cited ledger query, cross-foots the revenue table, and compares to last quarter. The recomputation shows seven percent; investigation reveals the agent had pulled a draft figure, and the corrected number is used instead.",
+      "summary": "Because models can hallucinate convincing but false outputs, finance agents must ground answers in sources, verify figures through deterministic recomputation and cross-checks, and monitor accuracy metrics so reviewers approve on evidence, not appearance."
+    },
+    {
+      "order": 5,
+      "title": "Controls, Segregation of Duties, and Approval Workflows",
+      "objectives": [
+        "Apply traditional financial controls to agent-driven workflows",
+        "Preserve segregation of duties when an agent participates in a process",
+        "Design approval and authorization gates around agent actions"
+      ],
+      "body": [
+        "The control principles that govern human finance teams apply just as firmly to agents. Segregation of duties means no single party should initiate, approve, and record the same transaction, because that concentration enables error and fraud. When an agent enters the picture, it must not collapse these separated roles. An agent that both prepares a payment and approves it would defeat the control entirely. The specialist maps each control point in the existing process and ensures the agent occupies only one role, with humans or independent systems holding the others.",
+        "Authorization gates determine what an agent may do without a person and what requires explicit approval. A sound default is that the agent proposes and a human authorizes anything that creates an obligation, moves money, posts to the ledger, or communicates externally. Approval should be meaningful, not a reflex click: the approver sees what will happen, why, and the supporting evidence. Limits and thresholds can tier the gates, so routine low-risk drafts flow quickly while high-value or unusual actions demand senior review. The point is that consequential authority always rests with an accountable person.",
+        "Least privilege keeps agents from doing more than their job requires. Grant the agent read access where reading suffices, and write access only to the narrow systems and fields it genuinely needs. Service accounts for agents should be scoped, monitored, and revocable. Avoid sharing one all-powerful credential across many agents or tasks, because that makes misuse hard to trace and contain. Reviewing and tightening these permissions periodically is part of operating an agent responsibly, just as access reviews are standard for human staff.",
+        "Controls must be designed in, not bolted on after an incident. Before deployment, walk the workflow with the same lens an internal auditor would use: where could a wrong action occur, who catches it, and what stops it from causing harm. Build preventive controls such as approval gates and detective controls such as exception reports and reconciliations. Test that the controls actually fire, for example by feeding the agent a transaction that should be blocked and confirming that it is. Demonstrable, tested controls are what make agent automation acceptable in a finance function."
+      ],
+      "keyPoints": [
+        "Segregation of duties still applies; an agent must occupy only one role",
+        "An agent must never both initiate and approve the same transaction",
+        "Money-moving, posting, and external actions require meaningful human authorization",
+        "Apply least privilege with scoped, monitored, revocable agent credentials",
+        "Use preventive gates and detective reports together",
+        "Test that controls actually fire before deployment"
+      ],
+      "example": "An accounts payable agent prepares payment runs by matching invoices to purchase orders and receipts. It can stage payments but cannot release them. A treasury officer reviews the staged batch, checks the three-way match evidence, and authorizes release. The agent and the approver are distinct roles, preserving segregation of duties.",
+      "summary": "Agents must fit within established financial controls: they occupy a single role, never self-approve consequential actions, operate under least privilege, and sit behind tested preventive and detective controls."
+    },
+    {
+      "order": 6,
+      "title": "Auditability, Logging, and Data Privacy",
+      "objectives": [
+        "Capture audit trails that explain what an agent did and why",
+        "Apply data privacy and minimization principles to finance agents",
+        "Handle sensitive data and retention in a defensible way"
+      ],
+      "body": [
+        "Auditability means that for any agent action, you can reconstruct what happened, when, on what data, and on whose authority. A useful log captures the inputs the agent received, the tools and queries it called, the outputs it produced, the confidence or evidence attached, and the human who reviewed or approved. This record is not bureaucratic overhead; it is what lets the organization investigate an error, satisfy an auditor, and improve the system. Without it, an agent is a black box, and a black box has no place in a controlled finance environment.",
+        "Logs should be tamper-evident and retained according to policy. Treat the agent like any other actor in the system of record: its actions are attributable, time-stamped, and stored where they cannot be quietly altered. Capture enough detail to reproduce a decision, but avoid storing sensitive data you do not need. When something goes wrong, the difference between a quick root-cause analysis and a painful investigation is almost entirely down to whether the logging was designed thoughtfully in advance rather than reconstructed under pressure afterward.",
+        "Data privacy is central because finance data is among the most sensitive an organization holds, often including personal, payroll, customer, and vendor information. Apply data minimization: give the agent only the fields it needs, mask or tokenize identifiers where possible, and avoid sending confidential data to systems or models that are not approved for it. Understand where data flows, including any third-party model provider, and confirm that contracts and configurations prevent unauthorized use or training on your data. Privacy by design protects individuals and keeps the organization on the right side of regulation.",
+        "Retention and access deserve explicit rules. Keep audit logs and processed data only as long as policy and law require, then dispose of them securely. Restrict who can read agent logs, since they may contain sensitive content. Be ready to honor data subject rights and regulatory requests, which means knowing what the agent stored and being able to locate or delete it. Handling privacy and retention deliberately turns a potential liability into a sign of a mature, trustworthy automation program that customers and regulators can rely on."
+      ],
+      "keyPoints": [
+        "Log inputs, tool calls, outputs, evidence, and the approving human",
+        "Make logs tamper-evident, attributable, and time-stamped",
+        "Apply data minimization: only the fields the agent truly needs",
+        "Mask or tokenize identifiers and restrict data sent to external models",
+        "Confirm third-party providers do not reuse or train on your data",
+        "Set explicit retention, secure disposal, and restricted log access"
+      ],
+      "example": "When an agent processes vendor invoices, each run logs the source file reference, extracted fields, confidence scores, validation results, and the clerk who approved or corrected it. Bank account numbers are tokenized in the log, raw documents are retained for the required period, and only the finance and audit teams can access the records.",
+      "summary": "Finance agents require complete, tamper-evident audit trails and disciplined data privacy, including minimization, masking, controlled external data flows, and clear retention and access rules."
+    },
+    {
+      "order": 7,
+      "title": "Deployment, Monitoring, and Human Accountability",
+      "objectives": [
+        "Roll out finance agents through staged, low-risk deployment",
+        "Monitor agents in production and respond to incidents",
+        "Establish clear human accountability and governance for agent outcomes"
+      ],
+      "body": [
+        "Responsible deployment is gradual. Begin in a shadow or sandbox mode where the agent runs alongside the existing process and its output is compared to human work without affecting real results. Promote it to assistive use only after it meets accuracy and control targets, and even then keep humans firmly in the loop for consequential steps. A pilot on a narrow, well-understood workflow beats a broad rollout, because it limits blast radius if something is wrong and produces real evidence about reliability before the agent touches more of the business.",
+        "Monitoring does not stop at launch. Track operational metrics such as accuracy, exception rates, processing time, and the frequency with which humans override the agent, since a rising override rate is an early signal that something has drifted. Set alerts for anomalies in the agent's own behavior, like a sudden spike in auto-cleared items or unusually low extraction confidence. Schedule periodic reviews of logs and outcomes. Treat the agent as a system that needs ongoing care, not a finished product, because models, data, and source systems all change underneath it over time.",
+        "Incidents will happen, so plan for them. Define how to pause or roll back the agent quickly, who is notified, and how to triage whether an output was wrong and what it affected. A kill switch that lets a human stop the agent immediately is essential for any workflow with real consequences. After an incident, run a blameless review to find the root cause, fix the control or the prompt, and update the test set so the same failure is caught next time. Preparation is what separates a contained hiccup from a reportable loss.",
+        "Ultimately, a human is accountable for what the agent does. Tools do not bear responsibility; the people and the organization deploying them do. Governance should name owners for each agent, define escalation paths, and require periodic sign-off that the agent still operates within policy. Staff must understand that approving agent output makes them responsible for it, which keeps review meaningful. And the agent must never be presented as giving financial advice or guaranteed outcomes. Clear human accountability, paired with the verification, controls, auditability, and privacy practices throughout this course, is what makes agentic AI trustworthy in finance."
+      ],
+      "keyPoints": [
+        "Deploy in stages: shadow mode, then assistive use, then wider rollout",
+        "Pilot narrow workflows to limit blast radius and gather evidence",
+        "Monitor accuracy, exceptions, and override rates as drift signals",
+        "Maintain a kill switch and a clear incident response plan",
+        "Run blameless post-incident reviews and update the test set",
+        "Name accountable owners; humans, not tools, bear responsibility"
+      ],
+      "example": "A new reconciliation agent runs in shadow mode for two close cycles, matching results against the team. Once its match rate and exception handling meet targets, it moves to assistive use with a kill switch. Three months later, an override-rate spike triggers a review that finds a changed bank file format, which the team fixes and adds to the regression test set.",
+      "summary": "Trustworthy finance agents are deployed gradually, monitored continuously for drift, backed by incident response and a kill switch, and governed by named humans who remain accountable for every outcome."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What most distinguishes an AI agent from a single-shot model call in a finance workflow?",
+      "options": [
+        "It loops through observing, planning, acting, and checking results across multiple steps",
+        "It is always more accurate than a human analyst",
+        "It removes the need for any human review",
+        "It can legally provide investment advice"
+      ],
+      "correctIndex": 0,
+      "explanation": "An agent operates in a loop of observe, plan, act, and check, enabling multi-step work. It is not inherently more accurate, does not remove human review, and must never provide investment advice."
+    },
+    {
+      "text": "Why should a finance agent pull figures from authoritative systems rather than recalling them from the model?",
+      "options": [
+        "Because authoritative systems are slower and that improves caution",
+        "Because language models are not reliable sources of record or calculators and can fabricate values",
+        "Because connectors are cheaper than prompts",
+        "Because it removes the need for verification"
+      ],
+      "correctIndex": 1,
+      "explanation": "Models can produce confident but fabricated figures and are unreliable for arithmetic, so numbers must come from systems of record via controlled tools. This does not remove the need for verification."
+    },
+    {
+      "text": "In a reconciliation agent, what is the safest way to handle small unmatched differences?",
+      "options": [
+        "Auto-clear anything under a round number to save time",
+        "Let the agent decide case by case without logging",
+        "Apply explicit, conservative, logged tolerance rules and route exceptions to a human",
+        "Ignore them since small amounts are immaterial"
+      ],
+      "correctIndex": 2,
+      "explanation": "Auto-clearing small differences hides errors and fraud. Tolerances must be explicit, conservative, and logged, with unresolved items sent to a person to clear."
+    },
+    {
+      "text": "How should an anomaly detection agent treat the suspicious items it identifies?",
+      "options": [
+        "Block or reverse the transactions automatically",
+        "Surface them as a prioritized list of leads for human investigation",
+        "Report the responsible employee to management as confirmed fraud",
+        "Delete them from the ledger to prevent harm"
+      ],
+      "correctIndex": 1,
+      "explanation": "Anomaly detection produces false positives and misses novel patterns, so its output is a prioritized lead list for investigation, not a verdict or an action that blocks, reverses, or accuses."
+    },
+    {
+      "text": "What is the correct behavior when a document processing agent has low confidence in an extracted invoice amount?",
+      "options": [
+        "Post the payment anyway to keep throughput high",
+        "Escalate the item to a human through a validation gate before any payment or posting",
+        "Round the figure to the nearest sensible value",
+        "Re-run the same extraction until confidence happens to rise"
+      ],
+      "correctIndex": 1,
+      "explanation": "Low-confidence extractions must be held at a validation gate and escalated to a person. Letting them flow to payment risks real loss from misread digits."
+    },
+    {
+      "text": "Which verification technique best catches a hallucinated revenue figure in an agent-drafted report?",
+      "options": [
+        "Checking that the sentence is grammatically correct",
+        "Trusting it because the report looks professionally formatted",
+        "Recomputing the figure with a deterministic tool from the cited source and cross-footing",
+        "Asking the model whether it is confident in the number"
+      ],
+      "correctIndex": 2,
+      "explanation": "Fluency and formatting do not indicate correctness, and a model self-rating its confidence is unreliable. Recomputing from the cited source with deterministic tools and cross-footing catches the error."
+    },
+    {
+      "text": "How does segregation of duties constrain an agent in an accounts payable process?",
+      "options": [
+        "The agent may both stage and release payments if it is accurate enough",
+        "The agent should occupy only one role, for example staging payments while a separate person authorizes release",
+        "Segregation of duties does not apply to software",
+        "One shared admin credential should run all payment agents"
+      ],
+      "correctIndex": 1,
+      "explanation": "Segregation of duties applies to agents too. An agent must not both initiate and approve the same transaction; it occupies one role while an accountable person holds the approving role."
+    },
+    {
+      "text": "Which practice best reflects least privilege for a finance agent?",
+      "options": [
+        "Granting broad write access to all systems for flexibility",
+        "Sharing one powerful credential across every agent and task",
+        "Granting only the narrow read or write access the task requires, with scoped, revocable credentials",
+        "Disabling logging to reduce overhead"
+      ],
+      "correctIndex": 2,
+      "explanation": "Least privilege means granting only the access the task needs, using scoped, monitored, revocable credentials. Broad access, shared credentials, and disabled logging all increase risk and reduce traceability."
+    },
+    {
+      "text": "What should a finance agent audit log capture to support investigation and review?",
+      "options": [
+        "Only the final approved output",
+        "Inputs, tool and query calls, outputs, confidence or evidence, and the approving human, in a tamper-evident form",
+        "Nothing, to protect privacy",
+        "Only errors that reached production"
+      ],
+      "correctIndex": 1,
+      "explanation": "A useful, tamper-evident log records inputs, tool and query calls, outputs, attached evidence or confidence, and who reviewed or approved, so any action can be reconstructed and audited."
+    },
+    {
+      "text": "Why is a kill switch and named human ownership important when deploying a finance agent?",
+      "options": [
+        "Because the agent is legally accountable for its own outcomes",
+        "Because it lets the agent run fully autonomously without oversight",
+        "Because a human can stop the agent immediately during an incident, and people, not tools, remain accountable for outcomes",
+        "Because it guarantees the agent will never make an error"
+      ],
+      "correctIndex": 2,
+      "explanation": "Tools are not accountable; people and the organization are. A kill switch allows immediate human intervention during incidents, and named ownership keeps accountability and meaningful review with humans."
+    }
+  ]
+}

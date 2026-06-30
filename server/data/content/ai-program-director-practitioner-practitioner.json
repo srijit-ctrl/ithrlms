@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of AI-Enabled Program Direction",
+      "objectives": [
+        "Distinguish program direction from project management in an AI context",
+        "Identify where AI augments portfolio-level decisions versus individual projects",
+        "Define the operating model that connects projects to program outcomes"
+      ],
+      "body": [
+        "An AI program director sits above individual projects and is accountable for outcomes that no single project can deliver alone. While a project manager optimizes scope, schedule, and cost for one deliverable, the program director coordinates many interdependent efforts toward a shared strategic goal. AI changes this role by surfacing patterns across projects that a human reviewing dashboards manually would miss, such as correlated delays, drifting budgets, or shared bottleneck resources. The practitioner learns to treat AI as an analytical partner that compresses signal from dozens of data sources into prioritized, explainable insight.",
+        "The first discipline is establishing an operating model. This defines how projects report into the program, what data flows upward, the cadence of reviews, and the decision rights at each level. Without a clear model, AI tooling simply produces more noise. The program director specifies which metrics matter, benefits, dependencies, and risk exposure, and ensures every project feeds comparable, trustworthy data. A consistent taxonomy of statuses, milestones, and risk categories is what allows AI to compare projects fairly rather than mixing incompatible definitions.",
+        "AI augments three program activities especially well: aggregation, anticipation, and allocation. Aggregation rolls granular project data into a portfolio view. Anticipation uses historical and current signals to forecast where problems will emerge before they surface in a status report. Allocation helps reason about scarce resources across competing demands. In each case the director remains the decision maker; AI provides evidence and options, not verdicts. Understanding this boundary keeps governance sound and accountability clear throughout the program lifecycle.",
+        "Finally, the practitioner must understand the limits of AI at program scale. Models reflect the quality and completeness of the data fed to them, and program data is notoriously messy: inconsistent reporting, optimistic self-assessment, and missing fields. A capable director treats AI output as a hypothesis to be validated, not a fact. Building the habit of asking why the model reached a conclusion, and whether the underlying data supports it, is the single most important professional behavior at this level."
+      ],
+      "keyPoints": [
+        "Program direction is accountable for cross-project outcomes, not single deliverables",
+        "A clear operating model and consistent data taxonomy are prerequisites for useful AI",
+        "AI excels at aggregation, anticipation, and allocation at portfolio scale",
+        "The director decides; AI supplies evidence and options",
+        "AI output is a hypothesis to validate against underlying data quality"
+      ],
+      "example": "A director overseeing eight related digital-transformation projects standardizes status reporting into five fields, then uses an AI summarizer to roll daily updates into one portfolio brief. The brief flags that three projects share the same integration team, a dependency no individual project report had highlighted.",
+      "summary": "AI-enabled program direction sits above projects, depends on a clear operating model and clean data, and uses AI to aggregate, anticipate, and allocate while the director retains decision authority."
+    },
+    {
+      "order": 2,
+      "title": "Portfolio Insight and Cross-Project Visibility",
+      "objectives": [
+        "Build a portfolio view that compares projects on common dimensions",
+        "Use AI to detect anomalies and emerging trends across the portfolio",
+        "Translate raw insight into prioritized management attention"
+      ],
+      "body": [
+        "Portfolio insight is the ability to see the whole estate of projects at once and understand how each contributes to or threatens program goals. The practitioner constructs a portfolio view organized around the dimensions that drive decisions: benefit contribution, health, resource demand, and risk exposure. AI assists by normalizing heterogeneous inputs such as narrative status notes, financial figures, and milestone dates into comparable measures, and by ranking projects so the director spends attention where it matters most rather than reviewing everything equally.",
+        "Anomaly detection is a core AI capability here. By learning what normal looks like across the portfolio, models can flag a project whose burn rate suddenly diverges from its progress, or whose sentiment in status narratives has quietly turned negative. These early signals often precede formal red flags by weeks. The director configures sensitivity carefully: too aggressive and the portfolio drowns in false alarms; too lax and real problems slip through. Tuning this threshold is a judgment skill informed by the program risk appetite.",
+        "Trend analysis complements anomaly detection. Rather than reacting to a single data point, the director watches trajectories: is average schedule slippage growing month over month, is a particular vendor consistently late, is a benefit category systematically over-forecast. AI can surface these slow-moving patterns that humans miss because each monthly change looks small in isolation. Presenting trends visually, with the underlying drivers explained, turns abstract data into a narrative leadership can act on.",
+        "Insight only has value when it changes behavior. The practitioner closes the loop by converting AI-surfaced findings into a ranked agenda for steering reviews, complete with recommended actions and the evidence behind them. Each item should answer three questions: what is happening, why it matters to the program outcome, and what decision is being requested. This discipline prevents the common failure where rich dashboards generate admiration but no action."
+      ],
+      "keyPoints": [
+        "A portfolio view compares projects on benefit, health, demand, and risk",
+        "Anomaly detection surfaces early signals before formal red flags appear",
+        "Sensitivity tuning balances false alarms against missed problems",
+        "Trend analysis reveals slow-moving patterns invisible month to month",
+        "Insight must convert into a ranked, decision-oriented agenda"
+      ],
+      "example": "An AI portfolio monitor notices that two of twelve projects show rising negative language in weekly narratives while their RAG status stays green. The director investigates, finds both teams quietly absorbing scope creep, and escalates before either turns red.",
+      "summary": "Portfolio insight uses AI to normalize, rank, and watch projects across common dimensions, surfacing anomalies and trends early and converting them into prioritized decisions."
+    },
+    {
+      "order": 3,
+      "title": "Managing Cross-Project Dependencies at Scale",
+      "objectives": [
+        "Map and classify dependencies across a program",
+        "Use AI to predict cascade effects when one project slips",
+        "Design coordination mechanisms that keep dependencies visible"
+      ],
+      "body": [
+        "Dependencies are the connective tissue of a program and the most common source of cross-project failure. The practitioner first builds a dependency map: which projects rely on outputs, resources, decisions, or infrastructure from others, and on what timeline. Dependencies are classified by type and criticality, because a shared design decision behaves very differently from a shared specialist engineer. AI helps maintain this map by parsing project plans and status updates to detect implied dependencies that teams never formally declared, which are often the riskiest.",
+        "Once dependencies are mapped, the value of AI is predicting cascade effects. When one project announces a two-week slip, the director needs to know instantly which downstream projects are affected and by how much. Models that understand the dependency network can simulate the ripple, estimating knock-on delays and identifying which downstream commitments are now at risk. This shifts the director from reactive firefighting to proactive renegotiation of sequencing before the cascade actually lands.",
+        "Coordination mechanisms keep dependencies from becoming surprises. The practitioner establishes regular dependency reviews, shared milestone calendars, and clear ownership for each cross-project handoff. AI supports this by continuously reconciling the plans of connected projects and alerting when two teams hold incompatible assumptions about a shared date. The goal is to make the invisible visible: most dependency failures happen not because the dependency was unknown, but because no one was watching the seam between two teams.",
+        "Finally, the director must manage the politics of dependencies. A project that becomes a bottleneck for several others gains leverage and attention it may not want, while dependent teams may resent waiting. The practitioner uses transparent, AI-supported evidence to mediate, showing objectively where the constraint sits and what the program-level cost of delay is. Grounding these conversations in shared data rather than competing anecdotes is what keeps cross-team coordination collaborative rather than adversarial."
+      ],
+      "keyPoints": [
+        "Dependencies are classified by type and criticality, not treated uniformly",
+        "AI can detect implied, undeclared dependencies from plans and updates",
+        "Cascade prediction turns reactive firefighting into proactive renegotiation",
+        "Coordination mechanisms make the seams between teams continuously visible",
+        "Shared evidence keeps dependency negotiations collaborative"
+      ],
+      "example": "A platform project slips its API release by ten days. An AI dependency model immediately flags that three consuming projects will miss their own demos, quantifies the combined benefit delay, and the director rebrokers a partial early release to protect the most critical downstream milestone.",
+      "summary": "Managing dependencies at scale means mapping and classifying them, using AI to predict cascades, and building coordination mechanisms and evidence-based mediation that keep cross-team seams visible."
+    },
+    {
+      "order": 4,
+      "title": "Benefits Realization and Value Tracking",
+      "objectives": [
+        "Define a benefits map linking project outputs to program outcomes",
+        "Use AI to monitor leading indicators of benefit realization",
+        "Distinguish delivered output from realized value"
+      ],
+      "body": [
+        "Programs exist to realize benefits, not merely to deliver outputs, and confusing the two is the most expensive mistake a director can make. A finished system that no one adopts delivers output but no benefit. The practitioner builds a benefits map that traces a clear line from each project deliverable, through the capability it enables, to the measurable outcome the organization actually wants. AI assists by analyzing whether the assumptions in this chain still hold as the program progresses, flagging when a planned benefit has lost its rationale.",
+        "Benefit realization usually lags delivery, sometimes by months, so the director cannot wait for final outcomes to know whether the program is on track. Instead the practitioner identifies leading indicators, early measurable signals that benefit is beginning to accrue, such as adoption rates, cycle-time reductions, or error declines. AI continuously monitors these indicators against expected trajectories and alerts when realization is falling behind plan, giving the director time to intervene with adoption support or scope adjustment.",
+        "Attribution is a persistent challenge. When several projects and external factors all influence the same outcome, deciding how much benefit to credit to the program requires careful reasoning. The practitioner uses baselines, comparison groups where feasible, and transparent assumptions rather than claiming all improvement for the program. AI can help isolate the program contribution by modeling the counterfactual, what the metric would likely have done without the intervention, though the director must always state the uncertainty honestly to maintain credibility with stakeholders.",
+        "Benefits tracking must remain live throughout the program, not a closeout formality. The practitioner maintains a benefits dashboard that pairs each forecast with actuals as they arrive, and revisits the business case when reality diverges. This sometimes means recommending that a project be stopped because its expected benefit has evaporated, an unpopular but essential discipline. Honest, AI-supported value tracking protects the program from sustaining work that no longer earns its place in the portfolio."
+      ],
+      "keyPoints": [
+        "Output is delivered capability; benefit is realized measurable outcome",
+        "A benefits map traces deliverables through capabilities to outcomes",
+        "Leading indicators give early warning before final benefits materialize",
+        "Attribution requires baselines, counterfactual reasoning, and honest uncertainty",
+        "Live benefits tracking can justify stopping projects that no longer pay off"
+      ],
+      "example": "A program forecasts a 20 percent reduction in customer handling time. AI tracks weekly handling-time data against the curve and detects realization stalling at 8 percent because agents are bypassing the new tool. The director funds targeted training rather than declaring premature success.",
+      "summary": "Benefits realization links outputs to outcomes through a benefits map, uses AI to watch leading indicators and reason about attribution, and keeps value tracking live enough to stop work that stops paying off."
+    },
+    {
+      "order": 5,
+      "title": "Stakeholder Engagement and AI Governance",
+      "objectives": [
+        "Segment stakeholders and tailor AI-supported communication",
+        "Establish governance for responsible AI use within the program",
+        "Maintain transparency and explainability in AI-informed decisions"
+      ],
+      "body": [
+        "Programs succeed or fail on stakeholder alignment, and AI both helps and complicates this. The practitioner begins by segmenting stakeholders by influence and interest, then tailoring engagement to each group. AI accelerates communication by drafting audience-specific summaries from the same underlying program data; an executive sponsor wants outcomes and risk, while a delivery lead wants dependencies and resourcing. The director reviews and personalizes these drafts; AI handles the repetitive synthesis, freeing time for the relationship work that only a human can do well.",
+        "Governing AI use within the program is now part of the director role. The practitioner establishes principles for where AI may inform decisions, what data it may use, and how its outputs are reviewed before acting on them. This includes guarding against over-reliance, where teams accept AI recommendations without scrutiny, and against feeding sensitive or non-compliant data into models. A lightweight governance framework, documented and agreed with sponsors, keeps AI adoption responsible without smothering its usefulness in bureaucracy.",
+        "Transparency is the currency of trust in AI-informed programs. When the director presents an AI-derived insight or recommendation to a steering committee, stakeholders will reasonably ask how the conclusion was reached. The practitioner ensures that AI outputs are explainable: the data sources, the logic, and the confidence level are all available. Decisions framed as the model said so erode credibility quickly. Decisions framed as here is the evidence the analysis surfaced and here is my judgment build durable confidence in both the director and the tooling.",
+        "Stakeholder communication must also manage expectations about AI itself. Sponsors may either overestimate AI as infallible or distrust it entirely. The practitioner sets a realistic narrative: AI improves the speed and breadth of insight while humans remain accountable for decisions. By demonstrating consistent, honest reporting, including when AI got something wrong and how it was caught, the director builds the institutional trust needed for AI to be genuinely useful rather than a source of anxiety or false comfort."
+      ],
+      "keyPoints": [
+        "Segment stakeholders and tailor AI-drafted communication to each audience",
+        "Govern where AI informs decisions, what data it uses, and how outputs are reviewed",
+        "Guard against over-reliance and improper data use",
+        "Keep AI insights explainable: sources, logic, and confidence",
+        "Set realistic expectations that humans remain accountable for decisions"
+      ],
+      "example": "Before a quarterly board review, the director uses AI to draft three tailored briefings from one dataset, then adds context for each audience. When the board questions a risk forecast, the director shows the contributing signals and stated confidence rather than defending an opaque score.",
+      "summary": "Effective stakeholder engagement pairs AI-assisted tailored communication with a governance framework that keeps AI use responsible, explainable, and honestly bounded by human accountability."
+    },
+    {
+      "order": 6,
+      "title": "Risk Management at Program Scale",
+      "objectives": [
+        "Aggregate and prioritize risk across many projects",
+        "Use AI to detect emerging and correlated risks early",
+        "Design escalation and response paths proportionate to exposure"
+      ],
+      "body": [
+        "Risk at program scale is more than the sum of project risks. The practitioner aggregates individual risk registers into a program view, then looks for correlation: several projects exposed to the same vendor, the same scarce skill, or the same regulatory change represent a concentrated exposure no single register reveals. AI helps by clustering similar risks across projects and computing aggregate exposure, so the director can see that what looks minor in five places is in fact one large systemic threat to the program outcome.",
+        "Early detection is where AI adds the most program value. By scanning status narratives, schedule data, and external sources, models can flag emerging risks before they are formally logged: a supplier showing financial stress, a recurring quality issue, sentiment turning across multiple teams. These weak signals are exactly what overloaded human reviewers miss. The director configures the system to surface candidate risks for human assessment, not to auto-register them, preserving judgment about what genuinely threatens the program.",
+        "Prioritization keeps the program from treating all risks equally. The practitioner ranks risks by their effect on program outcomes, not merely on individual projects, weighing likelihood against the benefit and dependencies at stake. AI supports consistent scoring across a large register and can model how risks interact, where one materializing raises the probability of another. This produces a focused top-risk list that leadership can actually engage with, rather than a sprawling register that no one reads.",
+        "Finally, response must be proportionate and pre-planned. The practitioner designs escalation paths so that exposure of a given size reaches the right decision level automatically, and maintains response options, mitigate, transfer, accept, or avoid, ready for the most significant risks. AI assists by tracking whether agreed mitigations are actually being executed and by re-estimating exposure as conditions change. The discipline is to treat the risk picture as a living model the program steers by, not a document compiled for audit and then ignored."
+      ],
+      "keyPoints": [
+        "Program risk includes correlations invisible in individual registers",
+        "AI clusters risks and computes aggregate, concentrated exposure",
+        "Weak-signal detection surfaces emerging risks before formal logging",
+        "Prioritize by effect on program outcomes, not just single projects",
+        "Escalation and response must be proportionate, pre-planned, and tracked"
+      ],
+      "example": "AI clustering reveals that six of fifteen projects depend on one cloud vendor whose status pages show rising incident frequency. Individually each project rated the risk low; aggregated, it is the program top exposure. The director commissions a contingency plan and a second-source assessment.",
+      "summary": "Program-scale risk management aggregates and correlates risk, uses AI for early weak-signal detection and consistent prioritization, and runs proportionate, tracked escalation and response as a living model."
+    },
+    {
+      "order": 7,
+      "title": "Resource Optimization Across the Program",
+      "objectives": [
+        "Model resource demand and capacity across competing projects",
+        "Use AI to optimize allocation against program priorities",
+        "Balance optimization with team sustainability and flexibility"
+      ],
+      "body": [
+        "Resources, especially skilled people, are the scarcest currency in most programs, and allocating them well across competing projects is a defining director skill. The practitioner builds a demand-and-capacity model that shows, by skill and time period, where projects collectively need more than the program has. AI helps by reconciling project resource plans, detecting double-booking where two projects assume the same specialist, and forecasting future pinch points from current trajectories. Seeing the contention clearly is the first step to resolving it deliberately rather than by whoever shouts loudest.",
+        "Optimization means allocating finite resources to maximize program value, not keeping every project equally happy. The practitioner ties allocation to program priorities: the projects carrying the most critical benefits or sitting on the critical dependency path get first claim on contested resources. AI can propose allocation scenarios, showing the trade-offs of moving a scarce engineer from one project to another in terms of benefit delay and dependency risk. The director chooses among these evidence-based options, making the reasoning transparent to affected teams.",
+        "Optimization has limits that the practitioner must respect. A schedule that allocates people to 100 percent utilization is brittle: it leaves no slack for the inevitable surprises that programs generate, and it burns people out. The mature director deliberately preserves buffer capacity and resists the temptation to optimize away all redundancy. AI models can be tuned to recommend sustainable utilization targets and to flag when reallocation would push a team past healthy limits, keeping efficiency and resilience in balance.",
+        "Resource decisions also have a human dimension that no model captures fully. Moving people between projects affects morale, learning, and team cohesion, and the best technical allocation is not always the best overall choice. The practitioner uses AI recommendations as input while weighing factors like development opportunities, relationships, and fatigue. Communicating allocation decisions with clear rationale, and acknowledging the trade-offs imposed on teams that lose resources, preserves the trust on which future flexibility depends."
+      ],
+      "keyPoints": [
+        "Model demand and capacity by skill and time to expose contention",
+        "AI detects double-booking and forecasts future pinch points",
+        "Allocate to program priorities, not equal satisfaction across projects",
+        "Preserve buffer capacity; full utilization is brittle and unsustainable",
+        "Weigh human factors AI cannot capture and communicate rationale clearly"
+      ],
+      "example": "An AI capacity model shows two projects both relying on the program only data architect in the same sprint. The director reviews scenarios, assigns the architect to the project on the critical benefits path, brings in a contractor for the other, and explains the trade-off to both teams.",
+      "summary": "Resource optimization models demand and capacity, uses AI to expose contention and propose priority-aligned allocations, and balances efficiency against sustainability and the human factors no model fully captures."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What most fundamentally distinguishes program direction from project management?",
+      "options": [
+        "Program directors write more detailed schedules than project managers",
+        "Program directors are accountable for cross-project outcomes that no single project delivers alone",
+        "Program directors only review finished deliverables",
+        "Program directors never interact with individual project teams"
+      ],
+      "correctIndex": 1,
+      "explanation": "Program direction is accountable for strategic outcomes spanning many interdependent projects, whereas a project manager optimizes scope, schedule, and cost for one deliverable. The difference is the level of accountability, not the level of scheduling detail."
+    },
+    {
+      "text": "Why is a consistent data taxonomy a prerequisite before applying AI at portfolio scale?",
+      "options": [
+        "It makes dashboards more colorful",
+        "It allows AI to compare projects fairly instead of mixing incompatible definitions",
+        "It removes the need for any human review",
+        "It guarantees every project will succeed"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI can only compare projects fairly when statuses, milestones, and risk categories mean the same thing across the portfolio. Without consistent definitions, aggregation produces misleading noise rather than reliable insight."
+    },
+    {
+      "text": "When an AI anomaly detector is tuned too aggressively, what is the likely consequence?",
+      "options": [
+        "Real problems are always caught with no downside",
+        "The portfolio drowns in false alarms and signal is lost",
+        "The model stops working entirely",
+        "Project data becomes more accurate automatically"
+      ],
+      "correctIndex": 1,
+      "explanation": "Overly aggressive sensitivity generates many false positives, burying genuine signals in noise. Setting the threshold is a judgment task informed by the program risk appetite, balancing missed problems against alarm fatigue."
+    },
+    {
+      "text": "What is the primary value of AI in managing cross-project dependencies?",
+      "options": [
+        "Eliminating all dependencies automatically",
+        "Predicting cascade effects so the director can renegotiate sequencing proactively",
+        "Preventing teams from ever communicating directly",
+        "Removing the need for a dependency map"
+      ],
+      "correctIndex": 1,
+      "explanation": "By understanding the dependency network, AI can simulate the ripple effect of a slip and identify affected downstream commitments instantly, shifting the director from reactive firefighting to proactive renegotiation before the cascade lands."
+    },
+    {
+      "text": "A finished system that no one adopts is best described as which of the following?",
+      "options": [
+        "A realized benefit",
+        "Delivered output without realized benefit",
+        "A successful program outcome",
+        "An attribution baseline"
+      ],
+      "correctIndex": 1,
+      "explanation": "Output is delivered capability; benefit is the measurable outcome the organization actually wanted. A system delivered but unadopted produces output but no realized benefit, which is why benefits maps trace deliverables through capabilities to outcomes."
+    },
+    {
+      "text": "Why does a program director rely on leading indicators for benefits realization?",
+      "options": [
+        "Because final outcomes are never measurable",
+        "Because benefit realization typically lags delivery, so early signals give time to intervene",
+        "Because leading indicators replace the business case entirely",
+        "Because they remove the need for attribution reasoning"
+      ],
+      "correctIndex": 1,
+      "explanation": "Benefits often accrue months after delivery. Leading indicators such as adoption or cycle-time reductions give early, measurable evidence that realization is on or off track, allowing the director to intervene before final outcomes are due."
+    },
+    {
+      "text": "When presenting an AI-derived recommendation to a steering committee, the most credible framing is which of the following?",
+      "options": [
+        "The model said so, therefore we should act",
+        "Here is the evidence the analysis surfaced, its confidence level, and my judgment",
+        "We cannot explain it but the AI is usually right",
+        "We should hide the data sources to keep the message simple"
+      ],
+      "correctIndex": 1,
+      "explanation": "Transparency builds trust. Exposing the data sources, logic, and confidence alongside the director judgment maintains credibility, whereas opaque the model said so framing erodes confidence in both the director and the tooling."
+    },
+    {
+      "text": "What makes risk at program scale more than the sum of individual project risks?",
+      "options": [
+        "Program risks are always smaller than project risks",
+        "Correlated exposures, such as many projects sharing one vendor, concentrate into systemic threats",
+        "Programs have no risk registers",
+        "Individual registers already capture all aggregate exposure"
+      ],
+      "correctIndex": 1,
+      "explanation": "Several projects exposed to the same vendor, skill, or regulatory change form a concentrated exposure no single register reveals. AI clusters similar risks and computes aggregate exposure so a threat that looks minor in many places is recognized as one large systemic risk."
+    },
+    {
+      "text": "Why should a program director deliberately avoid allocating people to 100 percent utilization?",
+      "options": [
+        "Because full utilization is illegal",
+        "Because it leaves no slack for surprises and burns people out, making the program brittle",
+        "Because AI cannot calculate full utilization",
+        "Because projects prefer to be understaffed"
+      ],
+      "correctIndex": 1,
+      "explanation": "A fully optimized schedule has no buffer for the inevitable surprises programs generate and risks burnout. Mature directors preserve buffer capacity, keeping efficiency and resilience in balance rather than optimizing away all redundancy."
+    },
+    {
+      "text": "What is the correct relationship between AI output and director decision-making in a well-governed program?",
+      "options": [
+        "AI makes the final decisions to remove human bias",
+        "AI supplies evidence and options as hypotheses to validate, while the director remains accountable",
+        "The director ignores AI to preserve independence",
+        "AI and the director have equal accountability for outcomes"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI excels at aggregation, anticipation, and allocation, providing evidence and options, but its output reflects data quality and must be validated. The director retains decision authority and accountability, treating AI conclusions as hypotheses rather than verdicts."
+    }
+  ]
+}
