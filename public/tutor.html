@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI Tutor — ITHR Technologies</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css">
   <style>
     .tutor-wrap { max-width: 920px; margin: 24px auto; padding: 0 16px; }
@@ -13,14 +12,13 @@
     .tutor-top .meta { flex:1; min-width:180px; }
     .tutor-top .meta b { font-size:17px; color:var(--ink); }
     .tutor-top select { padding:9px 12px;border:1.5px solid var(--line);border-radius:999px;font:inherit; }
-    .provider-pill { font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:#e8f0fe;color:#1853b6; }
+    .provider-pill { font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:#e8f0fe;color:#16335E; }
     .chat { background:#fff;border:1px solid var(--line);border-radius:var(--radius);margin-top:14px;display:flex;flex-direction:column;height:60vh;min-height:420px; }
     .msgs { flex:1;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:12px; }
     .msg { max-width:78%;padding:11px 15px;border-radius:14px;font-size:15px;line-height:1.55;white-space:pre-wrap; }
     .msg.bot { background:var(--bg-soft);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px; }
     .msg.me { background:linear-gradient(135deg,var(--brand-600),var(--brand-500));color:#fff;align-self:flex-end;border-bottom-right-radius:4px; }
     .msg.bot em { color:var(--muted);font-size:12.5px; }
-    .typing { align-self:flex-start;color:var(--muted);font-size:14px;padding:4px 8px; }
     .chips { display:flex;gap:8px;flex-wrap:wrap;padding:0 18px 12px; }
     .chip { border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font:inherit;font-size:13px;cursor:pointer;color:var(--brand-600);font-weight:600; }
     .chip:hover { border-color:var(--brand-500);background:var(--bg-soft); }
@@ -29,6 +27,8 @@
     .picker { background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin-top:14px; }
     .picker select { width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font:inherit;margin:10px 0 14px; }
     [dir=rtl] .msg.me { border-bottom-right-radius:14px;border-bottom-left-radius:4px; }
+    .cursor::after { content:'▍'; color:var(--accent-500); animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity:0; } }
   </style>
 </head>
 <body>
@@ -60,9 +60,8 @@
           <button class="btn btn-primary" id="send">Send</button>
         </div>
       </div>
-      <p class="muted" style="font-size:12.5px;margin-top:10px">Your AI tutor stays focused on this course and escalates to a human instructor when needed. It can make mistakes — verify anything critical.</p>
+      <p class="muted" style="font-size:12.5px;margin-top:10px">Your AI tutor answers from this course's lessons and escalates to a human instructor when needed. It can make mistakes — verify anything critical.</p>
     </div>
-    <!-- course picker shown when no ?slug= -->
     <div id="picker" class="picker" style="display:none">
       <h2 style="margin:0 0 4px">Choose a course</h2>
       <p class="muted" style="margin:0">Pick a course and your dedicated AI tutor will open.</p>
@@ -74,7 +73,7 @@
   <script src="/js/app.js"></script>
   <script>
     if (!Auth.isAuthed) location.href = '/login.html?next=' + encodeURIComponent(location.pathname + location.search);
-    let cfg, history = [], slug = qs('slug');
+    let cfg, history = [], slug = qs('slug'), busy = false;
 
     async function boot() {
       if (!slug) return showPicker();
@@ -96,33 +95,53 @@
       $('#open-course').onclick = () => location.href = '/tutor.html?slug=' + encodeURIComponent($('#course-select').value);
     }
 
-    function addMsg(who, text) {
+    function fmtBot(t) { return esc(t).replace(/_\(([^)]+)\)_/g, '<em>($1)</em>'); }
+    function bubble(who) {
       const el = document.createElement('div');
       el.className = 'msg ' + (who === 'me' ? 'me' : 'bot');
       const lang = cfg && cfg.languages.find((l) => l.code === $('#lang').value);
       if (who === 'bot' && lang && lang.rtl) el.setAttribute('dir', 'rtl');
-      // render the demo footnote in italics
-      el.innerHTML = esc(text).replace(/_\(([^)]+)\)_/g, '<em>($1)</em>');
-      $('#msgs').appendChild(el);
-      $('#msgs').scrollTop = $('#msgs').scrollHeight;
+      $('#msgs').appendChild(el); $('#msgs').scrollTop = $('#msgs').scrollHeight;
+      return el;
     }
+    function addMsg(who, text) { const el = bubble(who); el.innerHTML = who === 'bot' ? fmtBot(text) : esc(text); }
 
     async function send(text) {
+      if (busy) return;
       text = (text || $('#input').value).trim();
       if (!text) return;
-      $('#input').value = '';
+      busy = true; $('#input').value = '';
       addMsg('me', text);
       history.push({ role: 'user', content: text });
-      const typing = document.createElement('div');
-      typing.className = 'typing'; typing.textContent = cfg.profile.tutorName + ' is thinking…';
-      $('#msgs').appendChild(typing); $('#msgs').scrollTop = $('#msgs').scrollHeight;
+      const el = bubble('bot'); el.classList.add('cursor'); el.textContent = '';
+      let acc = '';
       try {
-        const res = await api('/tutor/chat', { method: 'POST', authed: true, body: { slug, messages: history, language: $('#lang').value } });
-        typing.remove();
-        addMsg('bot', res.reply);
-        history.push({ role: 'assistant', content: res.reply });
-        $('#provider').textContent = res.provider === 'demo' ? 'Demo mode' : 'Live · ' + res.provider;
-      } catch (e) { typing.remove(); addMsg('bot', 'Sorry — ' + e.message); }
+        const resp = await fetch('/api/tutor/chat/stream', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + Auth.token },
+          body: JSON.stringify({ slug, messages: history, language: $('#lang').value }),
+        });
+        if (!resp.ok || !resp.body) throw new Error('stream unavailable');
+        const prov = resp.headers.get('X-Tutor-Provider');
+        if (prov) $('#provider').textContent = prov === 'demo' ? 'Demo mode' : 'Live · ' + prov;
+        const reader = resp.body.getReader(); const dec = new TextDecoder();
+        for (;;) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          acc += dec.decode(value, { stream: true });
+          el.innerHTML = fmtBot(acc);
+          $('#msgs').scrollTop = $('#msgs').scrollHeight;
+        }
+      } catch (e) {
+        try {
+          const res = await api('/tutor/chat', { method: 'POST', authed: true, body: { slug, messages: history, language: $('#lang').value } });
+          acc = res.reply; if (res.provider) $('#provider').textContent = res.provider === 'demo' ? 'Demo mode' : 'Live · ' + res.provider;
+          el.innerHTML = fmtBot(acc);
+        } catch (e2) { acc = 'Sorry — ' + e2.message; el.textContent = acc; }
+      }
+      el.classList.remove('cursor');
+      if (acc) history.push({ role: 'assistant', content: acc });
+      busy = false;
     }
 
     document.addEventListener('click', (e) => {
@@ -133,10 +152,7 @@
       if (e.target.id === 'input' && e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
     });
     document.addEventListener('change', (e) => {
-      if (e.target.id === 'lang' && cfg) {
-        const l = cfg.languages.find((x) => x.code === e.target.value);
-        send('Let\'s continue in ' + l.name + ' from now on, please.');
-      }
+      if (e.target.id === 'lang' && cfg) { const l = cfg.languages.find((x) => x.code === e.target.value); send('Let\\'s continue in ' + l.name + ' from now on, please.'); }
     });
     boot();
   </script>

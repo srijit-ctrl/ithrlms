@@ -369,6 +369,31 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', courses: store.listCourses().length, llm: llm.activeProvider(), time: new Date().toISOString() });
 });
 
+// Streaming tutor chat: writes the reply token-by-token for an instant feel.
+app.post('/api/tutor/chat/stream', auth, async (req, res) => {
+  const { slug, messages, language } = req.body || {};
+  const course = store.findCourseBySlug(slug);
+  if (!course) return res.status(404).json({ error: 'Course not found' });
+  if (!Array.isArray(messages) || messages.length === 0) return res.status(400).json({ error: 'messages[] is required' });
+  const profile = tutor.buildProfileFromCourse(course, categoryName(course.category));
+  let systemPrompt = tutor.buildSystemPrompt(profile);
+  if (language) systemPrompt += `\n\n== ACTIVE LANGUAGE ==\nThe learner selected language code "${language}". Reply in that language unless they clearly switch.`;
+  const clean = messages.slice(-20)
+    .filter((m) => m && typeof m.content === 'string' && (m.role === 'user' || m.role === 'assistant'))
+    .map((m) => ({ role: m.role, content: m.content.slice(0, 4000) }));
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.setHeader('Cache-Control', 'no-cache, no-transform');
+  res.setHeader('X-Accel-Buffering', 'no');
+  res.setHeader('X-Tutor-Name', profile.tutorName);
+  res.setHeader('X-Tutor-Provider', llm.activeProvider());
+  try {
+    await llm.chatStream({ systemPrompt, messages: clean, onDelta: (t) => { try { res.write(t); } catch {} } });
+  } catch (e) {
+    try { res.write('\n\n[tutor unavailable: ' + e.message + ']'); } catch {}
+  }
+  res.end();
+});
+
 // ---------- static frontend ----------
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.get('*', (req, res) => {

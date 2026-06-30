@@ -148,6 +148,7 @@ function buildProfileFromCourse(course, categoryName, overrides = {}) {
       ? ['Working knowledge of the fundamentals in this domain']
       : ['Curiosity and a willingness to practice']),
     syllabusOutline: (course.modules || []).map((m) => m.title),
+    courseKnowledge: (course.modules || []).map((m) => ({ title: m.title, objectives: m.objectives || [], keyPoints: m.keyPoints || [], summary: m.summary || '' })),
     keyConcepts: overrides.keyConcepts || (course.skills || []).slice(0, 8),
     learningObjectives: (course.skills || []).map((s) => s),
     assessmentCriteria: course.exam
@@ -216,6 +217,21 @@ function buildSystemPrompt(profile) {
   };
   let out = MASTER_TEMPLATE;
   for (const [k, v] of Object.entries(map)) out = out.split(k).join(v);
+
+  // Ground the tutor in the course's actual lessons so it answers as this
+  // course's own expert, accurately and within scope.
+  const km = (profile.courseKnowledge || []).filter((m) => (m.keyPoints && m.keyPoints.length) || m.summary);
+  if (km.length) {
+    let kb = '\n\n== COURSE MATERIAL (your single source of truth for this course) ==\n';
+    kb += 'Base your explanations and answers on the following lessons from this exact course. Stay consistent with this material. If a learner asks something beyond it, you may use sound general knowledge but keep it within the course scope and never invent course-specific facts, figures, or policies.\n';
+    km.forEach((m, i) => {
+      kb += `\nModule ${i + 1}: ${m.title}\n`;
+      if (m.objectives && m.objectives.length) kb += `Objectives: ${m.objectives.join('; ')}\n`;
+      if (m.keyPoints && m.keyPoints.length) kb += `Key points: ${m.keyPoints.join('; ')}\n`;
+      if (m.summary) kb += `Summary: ${m.summary}\n`;
+    });
+    out += kb;
+  }
   return out;
 }
 
