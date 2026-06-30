@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of AI-Assisted Customer Service",
+      "objectives": [
+        "Explain how AI augments rather than replaces human support agents",
+        "Identify the core AI capabilities used across the modern support stack",
+        "Map common customer journeys to the right blend of automated and human service"
+      ],
+      "body": [
+        "AI-assisted customer service blends automation with human judgment to resolve issues faster and at lower cost. Rather than replacing agents, well-designed systems handle repetitive, low-risk requests automatically and route complex or sensitive cases to people. The practitioner mindset treats AI as a teammate that drafts, suggests, classifies, and summarizes while humans own empathy, accountability, and final decisions. Understanding this division of labor is the foundation for every later topic, because it determines where you invest in automation and where you protect the human touch.",
+        "The modern support stack combines several capabilities. Natural language understanding interprets what a customer means, not just the words they typed. Retrieval pulls relevant answers from a knowledge base. Classification tags and routes tickets by topic, urgency, and sentiment. Generation drafts replies for agents to review. These capabilities rarely work alone; they are chained together so that a single customer message can be understood, matched to knowledge, prioritized, and answered through one coordinated flow that feels seamless to the customer.",
+        "Channels matter as much as capability. Customers arrive through chat widgets, email, social media, messaging apps, and voice lines, and each channel sets different expectations for speed and tone. A practitioner designs AI behavior per channel: instant deflection in self-service chat, careful drafting in email, and tight guardrails on voice. The goal is consistency of answer with sensitivity to context, so a customer gets the same accurate resolution regardless of where they reach out, while the experience still fits the medium they chose.",
+        "Success is measured in business and human terms together. Metrics like deflection rate, first-contact resolution, average handle time, and cost per contact show efficiency, while customer satisfaction, effort scores, and retention show quality. A practitioner resists optimizing one number at the expense of others; deflecting a ticket that should have reached a human is a false economy. Throughout this course you will learn to balance these signals so that automation genuinely helps customers rather than simply hiding them from support."
+      ],
+      "keyPoints": [
+        "AI augments agents by handling repetitive work, not by removing human accountability",
+        "Core capabilities are understanding, retrieval, classification, generation, and summarization",
+        "Each channel needs tailored AI behavior and guardrails",
+        "Balance efficiency metrics against satisfaction and effort to avoid false savings",
+        "The right answer is the same across channels even when the experience differs"
+      ],
+      "example": "A telecom routes simple balance and plan questions to an automated chat assistant while sending billing disputes straight to a human agent, cutting wait times without trapping frustrated customers in a bot loop.",
+      "summary": "AI-assisted service pairs automation for routine work with humans for judgment, measured by both efficiency and customer experience."
+    },
+    {
+      "order": 2,
+      "title": "Designing Chatbots and Virtual Agents",
+      "objectives": [
+        "Distinguish scripted bots, intent-based assistants, and generative virtual agents",
+        "Design conversation flows with clear fallback and handoff paths",
+        "Apply guardrails that keep automated answers safe and on-brand"
+      ],
+      "body": [
+        "Chatbots fall on a spectrum. Rule-based bots follow fixed decision trees and are predictable but brittle. Intent-based assistants use machine learning to map varied phrasing to a defined set of intents, handling more natural language. Generative virtual agents use large language models to compose flexible answers grounded in your content. Practitioners often combine these: a generative core for understanding and phrasing, with structured flows and rules wrapped around high-stakes actions like refunds, account changes, or anything that touches money or personal data.",
+        "Good conversation design starts with the jobs customers actually try to do, not with the technology. Map the top intents by volume, write the ideal resolution for each, and only then decide what the bot says. Every flow needs a graceful fallback for when the assistant is unsure, and a clear handoff to a human that carries the full conversation context forward. Customers forgive a bot that admits uncertainty and transfers smoothly far more readily than one that loops, guesses, or pretends to understand.",
+        "Guardrails keep automation trustworthy. Constrain the assistant to approved knowledge so it does not invent policies, set explicit topics it must refuse or escalate, and require confirmation before any irreversible action. Tone and brand voice should be defined and tested, because an assistant that is technically correct but cold can damage the relationship. Logging every automated decision is essential so the team can review failures, spot drift, and continuously tighten the boundaries around what the assistant is allowed to say and do.",
+        "Launch is the beginning, not the end. Start with a narrow scope, a small set of well-understood intents, and a low confidence threshold that escalates readily. Watch real transcripts daily, label where the assistant succeeded or failed, and expand coverage only as quality holds. This measured rollout protects customers from a half-trained bot while giving the team the evidence needed to widen automation safely. Treating the virtual agent as a product that is continuously tuned beats a big-bang release that erodes trust."
+      ],
+      "keyPoints": [
+        "Bots range from rigid rule trees to flexible generative agents, often combined",
+        "Design around customer jobs and top intents before choosing technology",
+        "Every flow needs a fallback and a context-preserving human handoff",
+        "Guardrails restrict answers to approved knowledge and require confirmation for risky actions",
+        "Roll out narrowly and expand based on real transcript review"
+      ],
+      "example": "A retailer launches a virtual agent for order tracking and returns only, grounding it in shipping policy, and transfers any payment dispute to an agent with the chat history attached.",
+      "summary": "Effective virtual agents combine flexible understanding with strict guardrails, graceful fallbacks, and a staged rollout driven by transcript review."
+    },
+    {
+      "order": 3,
+      "title": "Knowledge Bases and Retrieval-Augmented Answers",
+      "objectives": [
+        "Explain why grounding AI answers in a knowledge base reduces errors",
+        "Structure knowledge content so it is easy for both humans and AI to retrieve",
+        "Maintain knowledge freshness and measure retrieval quality"
+      ],
+      "body": [
+        "A knowledge base is the single most important asset behind reliable AI answers. When an assistant generates replies from its own training alone, it can produce confident but wrong statements. Retrieval-augmented generation fixes this by first searching your approved content, then composing an answer grounded in what it found. The quality of automated support therefore depends less on the model and more on whether your articles, policies, and product facts are accurate, complete, and written so they can be retrieved.",
+        "Structure determines retrievability. Break content into focused articles that answer one question each, use clear titles that match how customers phrase problems, and add tags and metadata for product, region, and audience. Short, self-contained chunks retrieve better than long mixed documents, because the system can surface exactly the passage that answers the question. Avoid burying the key fact in the middle of a wall of text; lead with the answer, then add context, so retrieval returns something immediately useful.",
+        "Freshness is a discipline, not a one-time project. Outdated articles are worse than missing ones because the assistant will repeat stale policies with full confidence. Assign owners to each knowledge domain, set review dates, and trigger updates whenever pricing, policy, or product changes ship. A practitioner builds a feedback loop where gaps surfaced by failed retrievals and low-confidence answers become a prioritized backlog of articles to write or fix, so the knowledge base improves in step with real customer questions.",
+        "Measure retrieval, not just deflection. Track whether the retrieved passages actually contained the answer, how often the assistant said it could not find anything, and which questions repeatedly fail. These signals reveal whether problems come from missing content or weak search. Pairing retrieval metrics with customer feedback on answer helpfulness tells you where to invest. Over time this turns the knowledge base into a living system that gets measurably better rather than a static library nobody trusts."
+      ],
+      "keyPoints": [
+        "Grounding answers in approved content prevents confident but false replies",
+        "Write focused, single-question articles with titles matching customer phrasing",
+        "Lead with the answer and use tags so passages retrieve cleanly",
+        "Assign owners and review dates to keep content fresh",
+        "Measure retrieval accuracy and failed searches, not deflection alone"
+      ],
+      "example": "A software firm rewrites a long setup guide into ten focused articles, and its assistant immediately starts answering installation questions correctly instead of quoting an outdated step.",
+      "summary": "Reliable AI answers come from a well-structured, freshly maintained knowledge base that the system retrieves from before generating a response."
+    },
+    {
+      "order": 4,
+      "title": "Ticket Triage, Routing, and Deflection",
+      "objectives": [
+        "Use AI classification to tag, prioritize, and route incoming tickets",
+        "Design deflection that genuinely resolves issues rather than hiding them",
+        "Balance automation thresholds against the risk of misrouting"
+      ],
+      "body": [
+        "Triage is where AI delivers fast, low-risk value. As tickets arrive, classification models tag them by topic, product, language, and urgency, then route each to the right queue or agent skill group. Sentiment and priority signals push angry or high-value customers to the front. Done well, this removes the manual sorting that delays responses and frustrates both customers and agents. Triage automation is attractive because mistakes are usually recoverable, a misrouted ticket can be reassigned, unlike a wrong answer sent to a customer.",
+        "Deflection means resolving a request before it becomes a human ticket, ideally through self-service. When a customer starts to open a ticket, the system can suggest relevant articles or an automated resolution. Genuine deflection solves the problem; false deflection simply makes the customer give up. The difference shows in follow-up behavior: if deflected customers return angrier or churn, the deflection was hollow. Practitioners track repeat contacts and post-deflection satisfaction to confirm that automation is helping rather than just suppressing demand.",
+        "Routing accuracy depends on thresholds and feedback. Set confidence levels so that uncertain classifications go to a general queue or a human reviewer rather than a wrong specialist. Capture agent corrections when they reassign a ticket, and feed those corrections back to improve the model. A practitioner monitors misroute rates by category, because a single badly classified topic can quietly add delay across thousands of tickets. Transparency about why a ticket was routed a certain way also helps agents trust and refine the system.",
+        "Triage and deflection should work together as one funnel. At the top, self-service and automated answers resolve the simplest requests. What remains is classified, prioritized, and routed to the best-suited human. Summaries generated at intake save agents from re-reading long threads. Designed as a connected flow rather than isolated features, this funnel shortens resolution time while ensuring the cases that truly need a person reach the right one quickly, with context already assembled and the urgency correctly understood."
+      ],
+      "keyPoints": [
+        "Classification tags tickets by topic, language, urgency, and sentiment for routing",
+        "Triage errors are usually recoverable, making automation lower risk than answering",
+        "Genuine deflection resolves issues; false deflection just suppresses contact",
+        "Set confidence thresholds and feed agent reassignments back into the model",
+        "Combine self-service, classification, and routing into one resolution funnel"
+      ],
+      "example": "An airline's system detects an angry tone and the word stranded in a message, flags it urgent, and routes it directly to a senior agent instead of the standard queue.",
+      "summary": "AI triage tags and routes tickets accurately while deflection resolves simple cases, but both must be measured to ensure customers are helped, not hidden."
+    },
+    {
+      "order": 5,
+      "title": "Agent Assist and Real-Time Support Augmentation",
+      "objectives": [
+        "Describe how agent-assist tools support humans during live interactions",
+        "Apply suggested replies, summaries, and knowledge surfacing responsibly",
+        "Keep the human agent in control of every customer-facing decision"
+      ],
+      "body": [
+        "Agent assist puts AI alongside a human during a live conversation rather than in place of them. As the customer types, the system can surface relevant knowledge articles, suggest a draft reply, recommend next steps, and flag account details the agent might need. This keeps experienced agents fast and helps new agents perform like veterans. The defining principle is that the agent reviews and decides; the AI proposes. The customer interacts with a person who is simply better informed and quicker to respond.",
+        "Suggested replies are powerful but must be used with judgment. A good assist tool drafts an answer grounded in current knowledge that the agent edits for tone and accuracy before sending. Agents should never paste a suggestion blindly, because a confident draft can carry subtle errors or the wrong policy. Training agents to treat suggestions as starting points, not finished answers, preserves quality. The best implementations make editing effortless and make the source of each suggestion visible so agents can verify it instantly.",
+        "Real-time summarization reduces the hidden cost of context switching. AI can summarize a long ticket thread when an agent picks it up, capture the key facts of a call, and draft the wrap-up notes afterward. This frees agents from re-reading and retyping, letting them focus on the customer. Accurate summaries also improve handoffs between shifts and tiers. Because notes feed future interactions, a practitioner verifies that automated summaries are faithful, since a wrong summary can mislead the next agent who relies on it.",
+        "Augmentation must respect the agent's authority and the customer's data. The agent stays accountable for what is said, so tools should make it easy to override or ignore suggestions without friction. Sensitive information surfaced to assist must follow the same access rules as any other system. A practitioner measures whether assist tools actually improve resolution time and quality, and removes features that distract more than they help. The goal is a calmer, faster, more confident agent, not a screen cluttered with ignored prompts."
+      ],
+      "keyPoints": [
+        "Agent assist proposes; the human agent reviews, edits, and decides",
+        "Suggested replies are drafts to verify, never answers to paste blindly",
+        "Real-time summaries cut context-switching cost and improve handoffs",
+        "Surface the source of suggestions so agents can verify them quickly",
+        "Measure whether assist features genuinely improve speed and quality"
+      ],
+      "example": "While a customer describes a failed payment, the assist panel surfaces the refund policy and drafts a reply, which the agent edits to add a personal apology before sending.",
+      "summary": "Agent assist makes humans faster and more consistent by suggesting knowledge, replies, and summaries while leaving every customer-facing decision with the agent."
+    },
+    {
+      "order": 6,
+      "title": "Sentiment Analysis and Automated Quality Assurance",
+      "objectives": [
+        "Use sentiment and emotion signals to prioritize and improve interactions",
+        "Apply AI to score quality across far more conversations than manual review",
+        "Recognize the limits and biases of automated sentiment and scoring"
+      ],
+      "body": [
+        "Sentiment analysis reads the emotional tone of a customer message and turns it into a signal the support system can act on. A sharply negative message can be escalated, a frustrated repeat contact can be prioritized, and rising negativity across many tickets can warn of a product problem before it floods the queue. Sentiment is most useful as one input among several, not a verdict on its own. Sarcasm, cultural differences, and short messages all make tone hard to read, so practitioners treat scores as directional, not absolute.",
+        "Automated quality assurance scales review far beyond what managers can do by hand. Traditional QA samples a tiny fraction of interactions; AI can score every conversation against criteria like greeting, accuracy, empathy, and resolution. This surfaces coaching opportunities consistently and spots systemic issues such as a policy agents keep getting wrong. The value is not to police agents but to find patterns, celebrate what works, and direct training where it matters. Comprehensive scoring also reduces the perception that QA is arbitrary or unfairly sampled.",
+        "Automated scoring needs human calibration to stay fair and credible. Models can misjudge a great interaction that broke a script for good reason, or miss context that justified an agent's choice. A practitioner reviews a sample of AI scores against human judgment, adjusts the criteria, and keeps agents informed about how scoring works. Disputed scores should reach a human reviewer. When agents understand and trust the rubric, automated QA becomes a development tool rather than a source of anxiety and gaming.",
+        "Sentiment and QA together create a feedback loop for the whole operation. Trends in tone reveal which issues hurt customers most, and quality scores reveal whether the team handles those issues well. Linking the two shows where to improve knowledge, scripts, or training. A practitioner watches for bias, since models can score some dialects, languages, or accents differently, and corrects for it. Used carefully, these tools turn thousands of conversations into clear, actionable insight instead of a pile of unread transcripts."
+      ],
+      "keyPoints": [
+        "Sentiment is a directional signal for prioritizing and escalating, not a verdict",
+        "Automated QA scores every interaction, far beyond manual sampling",
+        "Use scoring to coach and find patterns, not merely to police agents",
+        "Calibrate AI scores against human judgment and allow disputes",
+        "Watch for bias across dialects, languages, and accents"
+      ],
+      "example": "Automated QA flags that agents consistently skip an empathy statement on cancellation calls, prompting a short coaching session that lifts satisfaction scores the next month.",
+      "summary": "Sentiment and automated QA scale emotional awareness and quality review across all interactions, provided they are calibrated, fair, and treated as guidance rather than absolute truth."
+    },
+    {
+      "order": 7,
+      "title": "Escalation, Governance, and Responsible Deployment",
+      "objectives": [
+        "Design escalation paths that move cases to humans at the right moment",
+        "Apply governance for privacy, transparency, and accountability in AI support",
+        "Monitor deployed systems and improve them through structured feedback"
+      ],
+      "body": [
+        "Escalation is the safety valve of any AI support system, and designing it well is a mark of the practitioner. Clear triggers should hand a case to a human when the assistant is uncertain, when a customer asks for a person, when emotion runs high, or when the request touches money, safety, or legal matters. Escalation must carry full context so the customer never repeats themselves. A system that escalates smoothly earns trust; one that traps people in automation to protect deflection numbers destroys it.",
+        "Governance keeps AI support lawful, fair, and accountable. Customers should know when they are talking to an automated system, and sensitive data must be handled under the same privacy rules as any other channel, with access limited and retention controlled. Decisions that affect customers should be explainable, and a human must own accountability for outcomes. A practitioner documents what the AI is allowed to do, what it must refuse, and who reviews failures, so the organization can answer for its automation when regulators or customers ask.",
+        "Monitoring turns a launched system into a managed one. Track resolution quality, escalation rates, retrieval accuracy, and customer satisfaction continuously, and watch for drift as products and language change. Review real transcripts regularly, especially the failures and the cases the assistant was unsure about. Set alerts for spikes in negative sentiment or escalations that may signal an outage or a broken flow. Without active monitoring, an AI support system silently degrades, and the first sign is often a wave of frustrated customers.",
+        "Responsible deployment is continuous improvement, not a finish line. Feedback from agents, customers, and QA should flow into a prioritized backlog of knowledge fixes, flow changes, and threshold adjustments. Roll out changes gradually and measure their effect before expanding. Keep humans meaningfully in the loop for high-stakes decisions, and be willing to pull back automation that harms experience. The practitioner's job is to make AI support genuinely better for customers over time, balancing efficiency with the trust that keeps people coming back."
+      ],
+      "keyPoints": [
+        "Escalate on uncertainty, customer request, high emotion, or high-stakes topics",
+        "Carry full context into every handoff so customers never repeat themselves",
+        "Disclose automation and handle data under strict privacy and access rules",
+        "Monitor quality, escalations, and drift continuously, reviewing real transcripts",
+        "Treat deployment as ongoing improvement with humans in the loop for high stakes"
+      ],
+      "example": "When a customer mentions a billing charge they did not authorize, the assistant immediately escalates to a human with the chat summary attached, rather than attempting a refund itself.",
+      "summary": "Responsible AI support depends on clear escalation, strong governance, continuous monitoring, and a commitment to keep improving the system with humans accountable for outcomes."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What is the central principle of AI-assisted customer service?",
+      "options": [
+        "AI should replace human agents entirely to cut costs",
+        "AI augments agents by handling routine work while humans keep accountability and judgment",
+        "AI should only be used for marketing, not support",
+        "AI must answer every question without human involvement"
+      ],
+      "correctIndex": 1,
+      "explanation": "The practitioner mindset treats AI as a teammate that handles repetitive, low-risk work while humans own empathy, accountability, and final decisions."
+    },
+    {
+      "text": "Why is retrieval-augmented generation preferred for automated answers?",
+      "options": [
+        "It makes responses longer and more detailed",
+        "It removes the need to maintain a knowledge base",
+        "It grounds answers in approved content, reducing confident but false replies",
+        "It lets the assistant answer without understanding the question"
+      ],
+      "correctIndex": 2,
+      "explanation": "Retrieval first searches your approved content and then composes an answer from it, preventing the model from inventing policies or facts."
+    },
+    {
+      "text": "What distinguishes genuine deflection from false deflection?",
+      "options": [
+        "Genuine deflection actually resolves the issue, while false deflection just makes the customer give up",
+        "Genuine deflection always uses a generative model",
+        "False deflection costs more than genuine deflection",
+        "There is no measurable difference between them"
+      ],
+      "correctIndex": 0,
+      "explanation": "False deflection suppresses contact without solving the problem, shown by repeat contacts or churn, whereas genuine deflection truly resolves the request."
+    },
+    {
+      "text": "When a virtual agent is unsure of an answer, the best design choice is to",
+      "options": [
+        "Guess the most likely answer to keep deflection high",
+        "Repeat the question until the customer rephrases it",
+        "Provide a graceful fallback and hand off to a human with full context",
+        "End the conversation to avoid giving a wrong answer"
+      ],
+      "correctIndex": 2,
+      "explanation": "Customers forgive a bot that admits uncertainty and transfers smoothly far more than one that loops or guesses, and the handoff must carry context forward."
+    },
+    {
+      "text": "How should an agent treat an AI-suggested reply in an agent-assist tool?",
+      "options": [
+        "Paste it directly to save time",
+        "Treat it as a draft to verify and edit before sending",
+        "Ignore it because suggestions are never accurate",
+        "Send it only if the customer requests it"
+      ],
+      "correctIndex": 1,
+      "explanation": "Suggestions are starting points; a confident draft can carry subtle errors, so agents must verify accuracy and tone before sending."
+    },
+    {
+      "text": "Why is AI ticket triage generally considered lower risk than AI answering?",
+      "options": [
+        "Triage never makes mistakes",
+        "Triage does not involve customers at all",
+        "A misrouted ticket can be reassigned, while a wrong answer reaches the customer",
+        "Answering is always automated and triage is always manual"
+      ],
+      "correctIndex": 2,
+      "explanation": "Triage errors are usually recoverable through reassignment, whereas a wrong generated answer is delivered directly to the customer."
+    },
+    {
+      "text": "What is a key limitation of automated sentiment analysis?",
+      "options": [
+        "It can only analyze voice, not text",
+        "Sarcasm, cultural differences, and short messages make tone hard to read",
+        "It always agrees with human judgment",
+        "It cannot be used to prioritize tickets"
+      ],
+      "correctIndex": 1,
+      "explanation": "Sentiment is a directional signal, not a verdict, because factors like sarcasm and short messages make emotional tone difficult to interpret reliably."
+    },
+    {
+      "text": "What is the main advantage of automated quality assurance over traditional QA?",
+      "options": [
+        "It eliminates the need for any human review",
+        "It scores every interaction instead of a tiny sample, surfacing patterns",
+        "It guarantees every agent passes",
+        "It only reviews the shortest conversations"
+      ],
+      "correctIndex": 1,
+      "explanation": "Manual QA samples a small fraction of interactions, while AI can score all of them to reveal systemic issues and coaching opportunities consistently."
+    },
+    {
+      "text": "Which situation should trigger escalation to a human?",
+      "options": [
+        "Any question about store hours",
+        "A customer asking to track an order",
+        "A request involving an unauthorized billing charge",
+        "A customer greeting the assistant"
+      ],
+      "correctIndex": 2,
+      "explanation": "High-stakes topics touching money, safety, or legal matters should escalate to a human rather than be handled automatically."
+    },
+    {
+      "text": "Which governance practice is essential for responsible AI support deployment?",
+      "options": [
+        "Hiding from customers that they are talking to an automated system",
+        "Keeping all decisions unexplained to protect the model",
+        "Disclosing automation, controlling data access, and keeping a human accountable for outcomes",
+        "Removing all human oversight once the system is live"
+      ],
+      "correctIndex": 2,
+      "explanation": "Responsible deployment requires transparency about automation, strict privacy and access controls, explainable decisions, and human accountability for outcomes."
+    }
+  ]
+}

@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Ideation and Research with AI",
+      "objectives": [
+        "Use AI to generate and cluster content ideas tied to audience needs",
+        "Build research prompts that surface angles, gaps, and supporting evidence",
+        "Separate AI-generated hypotheses from verified facts before drafting"
+      ],
+      "body": [
+        "Strong content begins long before the first sentence. At the practitioner level, you treat AI as a tireless brainstorming partner rather than an oracle. You feed it the audience, the goal, and the constraints, then ask for a spread of angles you can evaluate. The skill is not collecting more ideas; it is generating enough variety that you can recognize the one idea worth developing and discard the rest with confidence.",
+        "Effective ideation prompts give the model a role, a reader, and a job to be done. Instead of asking for blog topics, you ask for angles that solve a specific reader frustration, ranked by how underserved each angle is online. This framing pushes the model past the obvious and toward differentiated territory. You can then ask it to cluster overlapping ideas, expose assumptions, and flag where evidence will be needed.",
+        "Research with AI is where discipline matters most. A model can summarize a topic fluently while inventing names, dates, and statistics. Practitioners use AI to map the shape of a subject, list questions to investigate, and draft an outline of what credible sources should confirm. Every factual claim it offers is treated as a lead, not a citation, and is routed to verification before it earns a place in the draft.",
+        "Finally, capture your ideation in a reusable structure. A short brief that records the audience, the chosen angle, the key questions, and the claims still needing proof becomes the backbone of everything downstream. This brief keeps the draft focused, makes editing faster, and gives anyone reviewing the work a clear view of what the piece intends to accomplish and why."
+      ],
+      "keyPoints": [
+        "Frame ideation prompts around reader problems, not generic topic lists",
+        "Ask the model to cluster, rank, and expose assumptions in its ideas",
+        "Treat every AI-supplied fact as a lead requiring verification",
+        "Capture decisions in a brief covering audience, angle, and open questions",
+        "Use AI to map a topic and list research questions, not to source citations"
+      ],
+      "example": "Prompt: Act as a content strategist for first-time home buyers. List eight article angles that address fears about hidden costs, rank each by how rarely it is covered well online, and note one claim in each that we must verify.",
+      "summary": "Use AI to widen and sharpen ideation while keeping factual claims unverified until proven, and record decisions in a brief that guides the whole piece."
+    },
+    {
+      "order": 2,
+      "title": "Drafting at Scale",
+      "objectives": [
+        "Convert a content brief into structured AI drafting prompts",
+        "Generate first drafts that follow a defined outline and intent",
+        "Maintain consistency and momentum across high-volume drafting"
+      ],
+      "body": [
+        "Drafting at scale means turning a clear brief into a usable first draft quickly, then repeating that reliably across many pieces. The practitioner mindset is that the first AI draft is raw material, not a finished product. Your job is to give the model enough structure that the draft lands close to your intent, reducing the editing burden rather than creating new cleanup work.",
+        "The most reliable technique is to draft section by section against an outline. When you ask a model to produce an entire article in one pass, it often drifts, repeats itself, or flattens into generic prose. Feeding it one section at a time with the heading, the purpose of that section, and the key point to land keeps each block tight and on message. It also makes problems easy to spot and fix early.",
+        "Scale also depends on consistency. Provide the model with the same brief elements every time: the reader, the goal, the tone, the required structure, and any terms to use or avoid. Reusing a stable prompt scaffold means your drafts arrive in a predictable shape, which is what makes a high-volume workflow manageable. Variation should come from the content itself, not from accidental differences in how you prompt.",
+        "Watch for the failure modes that appear under volume. Models pad thin sections with filler, default to safe generalities, and recycle the same transitions. Build prompts that demand specificity, ask for concrete examples, and forbid empty phrasing. When a draft still comes back weak, the fix is usually a sharper brief rather than a longer prompt, because the model can only be as focused as the instructions you give it."
+      ],
+      "keyPoints": [
+        "Treat the first AI draft as raw material that lowers editing effort",
+        "Draft section by section against an outline to prevent drift",
+        "Reuse a stable prompt scaffold so drafts arrive in a predictable shape",
+        "Demand specificity and concrete examples to fight generic filler",
+        "Fix weak drafts by sharpening the brief, not by lengthening the prompt"
+      ],
+      "example": "For a section headed Why renewal pricing surprises customers, prompt: Write 120 words for this section. Purpose: explain the gap between sign-up and renewal rates. Land this point: customers rarely re-read terms. Use one concrete example. No filler phrases.",
+      "summary": "Scale drafting by feeding the model structured, section-level prompts from a stable brief, treating output as raw material to refine rather than publish."
+    },
+    {
+      "order": 3,
+      "title": "Editing and Self-Critique Loops",
+      "objectives": [
+        "Apply structured editing passes to AI-generated drafts",
+        "Use the model as a critic without surrendering editorial judgment",
+        "Tighten clarity, flow, and accuracy before human review"
+      ],
+      "body": [
+        "Editing is where AI-assisted writing earns its quality. A practitioner runs deliberate passes rather than one vague cleanup. A useful sequence is structure first, then argument, then sentences, then proofreading. Each pass has a single focus, which prevents the common mistake of polishing wording in a paragraph that should be deleted. Separating concerns makes editing faster and the result more coherent.",
+        "AI can serve as a sharp critic if you direct it well. Ask the model to identify the weakest paragraph and explain why, to flag unsupported claims, or to point out where the logic jumps. Critique prompts that demand reasons rather than rewrites keep you in control of the decisions. You decide which suggestions to accept, because the model has no stake in your reader, your brand, or your accuracy.",
+        "Beware of editing loops that drift. Repeatedly asking a model to improve a passage can smooth it into blandness, strip out your voice, or introduce new errors with each rewrite. Set a clear target for each pass and stop when it is met. If a sentence is already clear and correct, leave it alone. Knowing when to stop editing is as important as knowing how to edit.",
+        "The final pass before human review is a fact and consistency check. Confirm that names, numbers, and claims match your verified sources, that terminology is used consistently, and that the piece delivers what the brief promised. A clean handoff respects the reviewer's time and signals that AI assistance raised quality rather than shifting cleanup work downstream to a colleague."
+      ],
+      "keyPoints": [
+        "Edit in separate passes: structure, argument, sentences, proofreading",
+        "Use AI critique prompts that demand reasons, not automatic rewrites",
+        "Stop editing when each pass meets its target to avoid blandness",
+        "Keep editorial decisions with the human, not the model",
+        "End with a fact and consistency check before any human review"
+      ],
+      "example": "Critique prompt: Read this draft and name the two weakest paragraphs. For each, explain in one sentence what is wrong: vague claim, missing evidence, or broken logic. Do not rewrite anything.",
+      "summary": "Edit AI drafts through focused, single-purpose passes and use the model as a reason-giving critic while retaining all editorial judgment yourself."
+    },
+    {
+      "order": 4,
+      "title": "Brand Voice and Style Control",
+      "objectives": [
+        "Define brand voice in terms a model can apply consistently",
+        "Build reusable style references that steer AI output",
+        "Detect and correct voice drift across a body of content"
+      ],
+      "body": [
+        "Brand voice is the personality a reader hears in your words, and it is the first thing generic AI output erases. Practitioners make voice explicit so the model can reproduce it. That means describing tone in concrete, contrastive terms: confident but not boastful, plain but not casual, warm but not chatty. Vague adjectives like professional give the model nothing to act on, so it defaults to bland averages.",
+        "The strongest steering tool is examples. Provide the model with two or three short passages that exemplify your voice and one or two that violate it, labeled clearly. Examples encode rhythm, word choice, and attitude that descriptions cannot fully capture. Pair them with a compact style sheet covering sentence length, formality, perspective, and banned phrases, and you give the model a reliable template to match.",
+        "Voice drift is the silent failure of scaled content. Across dozens of pieces, small deviations accumulate until the brand sounds inconsistent. Build a habit of checking output against your reference examples, and ask the model to rate how closely a draft matches your style sheet and where it diverges. Catching drift early is far cheaper than rewriting a backlog of off-brand material later.",
+        "Remember that voice serves the reader and the brand, not the model's preferences. AI tends toward hedging, throat-clearing, and inflated vocabulary. If your brand is direct, you must actively suppress those tendencies in your prompts and edits. The goal is content that sounds unmistakably like your organization wrote it, even when a model produced the first draft."
+      ],
+      "keyPoints": [
+        "Describe voice with concrete contrasts, not vague labels like professional",
+        "Steer the model with labeled examples of good and off-brand writing",
+        "Maintain a style sheet covering tone, length, perspective, and banned phrases",
+        "Audit drafts for voice drift across large volumes of content",
+        "Actively suppress AI defaults like hedging and inflated vocabulary"
+      ],
+      "example": "Style note: Our voice is direct and reassuring. Say We will fix this today, not We are committed to working toward a resolution. Avoid the words leverage, robust, and seamless. Keep sentences under twenty words.",
+      "summary": "Make brand voice explicit through concrete descriptions, labeled examples, and a style sheet, then audit output regularly to catch and correct drift."
+    },
+    {
+      "order": 5,
+      "title": "Fact-Checking and Verification",
+      "objectives": [
+        "Identify which AI claims carry the highest verification risk",
+        "Apply a practical workflow for confirming facts against sources",
+        "Document verification so accuracy is auditable"
+      ],
+      "body": [
+        "Fact-checking is the non-negotiable discipline of AI-assisted writing. Models generate fluent text that can be confidently wrong, a behavior often called hallucination. The fluency is the danger: a fabricated statistic reads exactly like a real one. Practitioners assume that any specific claim a model produces may be invented and treat verification as a required step, not an optional safeguard for high-stakes pieces only.",
+        "Not all claims carry equal risk, so triage your effort. Names, dates, numbers, quotes, citations, legal or medical statements, and superlatives like first or largest are high-risk and must be confirmed against primary sources. General background that any informed reader would accept needs lighter scrutiny. Spending your verification time where errors do the most damage is what makes thorough checking sustainable at scale.",
+        "The workflow is straightforward but must be followed. For each high-risk claim, locate an authoritative source, confirm the exact figure or wording, and record where you found it. Never let the model cite itself, and be skeptical of URLs it produces, since these are frequently fabricated. When a claim cannot be verified, you either cut it, soften it to what you can support, or mark it clearly for an expert to confirm.",
+        "Documentation turns verification into a trustworthy process. Keep a simple record linking each claim to its source so reviewers and clients can audit the work. This habit protects your organization from publishing errors, builds credibility with readers, and makes you faster over time as you reuse vetted sources. In regulated or reputation-sensitive fields, this trail is often the difference between acceptable and unacceptable use of AI."
+      ],
+      "keyPoints": [
+        "Assume any specific AI claim may be fabricated until verified",
+        "Triage verification toward high-risk claims: numbers, quotes, citations, superlatives",
+        "Confirm against primary sources and never let the model cite itself",
+        "Distrust AI-generated URLs, which are often invented",
+        "Document each claim and its source so the work is auditable"
+      ],
+      "example": "A draft states that the program cut onboarding time by 43 percent. Before publishing, you trace the figure to the original internal report, confirm it reads 43 percent and not a rounded estimate, and note the report name and date beside the claim.",
+      "summary": "Treat every specific AI claim as unverified, triage checking toward high-risk facts, confirm against primary sources, and document each verification."
+    },
+    {
+      "order": 6,
+      "title": "SEO Basics for AI-Assisted Content",
+      "objectives": [
+        "Apply core on-page SEO principles to AI-generated drafts",
+        "Use AI for keyword and intent research without keyword stuffing",
+        "Balance search optimization with genuine reader value"
+      ],
+      "body": [
+        "Search optimization helps the right readers find your content, and AI can accelerate the groundwork. Practitioners use models to brainstorm related search terms, group them by the intent behind them, and identify the questions real readers ask. The aim is to understand what someone is trying to accomplish when they search, then build content that satisfies that intent better than the competing results.",
+        "On-page basics still apply regardless of how the draft was produced. A clear, descriptive title and a compelling meta description earn the click. Logical headings organized around subtopics help both readers and search engines understand structure. Internal links connect related pieces, and the primary topic should appear naturally in the title, early body, and a heading. None of this requires forcing awkward phrasing.",
+        "The biggest risk with AI and SEO is over-optimization. Models will happily stuff a keyword into every sentence if you ask them to, producing text that repels readers and can be penalized by search engines. Modern search rewards content that genuinely answers the query with depth and clarity. Write for the person first, then check that the obvious terms appear where they belong. Quality and relevance outperform mechanical repetition.",
+        "Use AI to support SEO, not to fake expertise. Search engines increasingly reward content that demonstrates real experience and trustworthiness, and thin AI text rarely competes. Combine the model's research speed with your verified facts, original examples, and clear point of view. The strongest AI-assisted content reads as authoritative because a knowledgeable human shaped it, with optimization applied as a finishing layer rather than the foundation."
+      ],
+      "keyPoints": [
+        "Use AI to research related terms and the intent behind searches",
+        "Apply on-page basics: clear title, meta description, logical headings, internal links",
+        "Place the primary topic naturally in title, early body, and a heading",
+        "Avoid keyword stuffing, which repels readers and risks penalties",
+        "Write for the reader first and apply optimization as a finishing layer"
+      ],
+      "example": "Prompt: For the topic small business invoicing, list ten related search phrases grouped by intent: informational, comparison, and ready to buy. Suggest three article angles that match informational intent without repeating the same keyword.",
+      "summary": "Use AI to research search intent and related terms, apply on-page fundamentals naturally, and prioritize genuine reader value over keyword repetition."
+    },
+    {
+      "order": 7,
+      "title": "Workflows, Originality, and Ethics",
+      "objectives": [
+        "Design a repeatable end-to-end AI content workflow",
+        "Protect originality and avoid plagiarism in AI-assisted work",
+        "Apply ethical and disclosure standards to AI use"
+      ],
+      "body": [
+        "A repeatable workflow is what separates occasional AI use from professional practice. The practitioner pipeline runs from brief to ideation, drafting, editing, fact-checking, optimization, and human approval. Each stage has a defined input and output, so work moves predictably and nothing is skipped. Documenting this pipeline lets a team produce consistent quality at volume and makes it easy to find where a problem entered the process.",
+        "Originality is both a quality and a legal concern. Models recombine patterns from training data and can occasionally reproduce phrasing close to existing sources. Practitioners safeguard originality by adding genuine insight, fresh examples, and a distinct point of view, and by checking that output is not unintentionally derivative. The standard is content that contributes something, not a reshuffled summary of what already ranks online.",
+        "Ethics extends beyond plagiarism. Be honest about AI involvement where your audience or client expects disclosure, and never present unverified claims as fact. Respect privacy by keeping sensitive or confidential information out of prompts, since data entered into some tools may be stored or reused. Avoid using AI to impersonate real people or to manufacture fake reviews and testimonials, which damages trust and may break the law.",
+        "Finally, keep a human accountable for every published piece. AI is a tool that amplifies a writer's capacity, not a replacement for editorial responsibility. The person who approves the content owns its accuracy, tone, and impact. Holding that line protects your readers, your organization, and your own credibility, and it is the principle that makes scaled AI content sustainable rather than a liability waiting to surface."
+      ],
+      "keyPoints": [
+        "Run a defined pipeline from brief through to human approval",
+        "Protect originality with genuine insight, fresh examples, and a clear point of view",
+        "Disclose AI use where audiences or clients expect it",
+        "Keep confidential information out of prompts to protect privacy",
+        "Keep a human accountable for the accuracy and impact of every published piece"
+      ],
+      "example": "Workflow checklist for one article: brief approved, three angles generated, outline set, draft built by section, edited in four passes, all numbers verified to sources, title and headings optimized, and a named editor signs off before publishing.",
+      "summary": "Build a documented end-to-end workflow, safeguard originality and privacy, disclose AI use appropriately, and keep a human accountable for every piece."
+    }
+  ],
+  "questions": [
+    {
+      "text": "At the practitioner level, how should you treat a factual statistic that an AI model produces during research?",
+      "options": [
+        "As a verified citation ready to use",
+        "As a lead that must be confirmed against a primary source",
+        "As proof the topic is well documented",
+        "As a reason to skip further research"
+      ],
+      "correctIndex": 1,
+      "explanation": "Models can state fabricated figures fluently, so any specific claim is treated as a lead requiring verification against an authoritative source before use."
+    },
+    {
+      "text": "Why is drafting an article section by section against an outline preferred over generating the whole piece in one pass?",
+      "options": [
+        "It uses fewer words overall",
+        "It guarantees perfect grammar",
+        "It keeps each block on message and makes problems easy to catch early",
+        "It removes the need for any editing"
+      ],
+      "correctIndex": 2,
+      "explanation": "Whole-article generation tends to drift and repeat, while section-level prompts keep each block tight to its purpose and surface issues early."
+    },
+    {
+      "text": "What is the recommended order of editing passes for an AI-generated draft?",
+      "options": [
+        "Proofreading, then sentences, then structure",
+        "Structure, then argument, then sentences, then proofreading",
+        "Sentences first, then delete everything else",
+        "A single combined cleanup pass"
+      ],
+      "correctIndex": 1,
+      "explanation": "Working from structure down to proofreading keeps each pass focused and prevents polishing wording in a paragraph that should be removed."
+    },
+    {
+      "text": "Which description gives a model the most useful guidance on brand voice?",
+      "options": [
+        "Write professionally",
+        "Sound nice and engaging",
+        "Be confident but not boastful, plain but not casual",
+        "Use advanced vocabulary"
+      ],
+      "correctIndex": 2,
+      "explanation": "Concrete, contrastive descriptions give the model something to act on, whereas vague labels like professional push it toward bland averages."
+    },
+    {
+      "text": "Which type of claim carries the highest verification risk and should always be checked?",
+      "options": [
+        "General background most informed readers accept",
+        "A specific statistic, quote, or superlative like largest",
+        "An opinion clearly framed as the author's view",
+        "A transitional sentence between sections"
+      ],
+      "correctIndex": 1,
+      "explanation": "Specific numbers, quotes, citations, and superlatives are high-risk because fabricated versions read just like real ones and cause real damage."
+    },
+    {
+      "text": "How should you handle a URL that an AI model provides as a source?",
+      "options": [
+        "Trust it because models cite reliable sites",
+        "Distrust it and verify, since AI-generated URLs are often fabricated",
+        "Publish it without checking to save time",
+        "Assume it points to the model's training data"
+      ],
+      "correctIndex": 1,
+      "explanation": "Models frequently invent plausible-looking URLs, so links must be independently verified rather than accepted as genuine sources."
+    },
+    {
+      "text": "What is the main danger of asking AI to optimize content for search engines?",
+      "options": [
+        "It cannot produce headings",
+        "It refuses to mention keywords",
+        "It will stuff keywords until the text repels readers and risks penalties",
+        "It always shortens content too much"
+      ],
+      "correctIndex": 2,
+      "explanation": "Models readily over-optimize by repeating keywords, which harms readability and can trigger search penalties; writing for the reader first is safer."
+    },
+    {
+      "text": "When using AI as an editorial critic, which prompt approach keeps the human in control?",
+      "options": [
+        "Ask it to rewrite the whole draft repeatedly",
+        "Ask it to name weaknesses and explain why, without rewriting",
+        "Ask it to approve the draft automatically",
+        "Ask it to add more words to every paragraph"
+      ],
+      "correctIndex": 1,
+      "explanation": "Critique prompts that demand reasons rather than automatic rewrites leave the editorial decisions with the human, who knows the reader and brand."
+    },
+    {
+      "text": "What best protects the originality of AI-assisted content?",
+      "options": [
+        "Generating the longest possible draft",
+        "Adding genuine insight, fresh examples, and a distinct point of view",
+        "Copying the top-ranking competitor closely",
+        "Repeating the target keyword more often"
+      ],
+      "correctIndex": 1,
+      "explanation": "Models recombine existing patterns, so original insight, new examples, and a clear viewpoint are what make the work contribute rather than merely summarize."
+    },
+    {
+      "text": "Which practice reflects sound ethics in a scaled AI content workflow?",
+      "options": [
+        "Entering confidential client data into any tool for better results",
+        "Presenting unverified AI claims as established fact",
+        "Keeping a named human accountable for each published piece",
+        "Using AI to generate fake customer testimonials"
+      ],
+      "correctIndex": 2,
+      "explanation": "Sustainable AI use keeps a human responsible for accuracy and impact, while protecting privacy and avoiding deception like fabricated testimonials."
+    }
+  ]
+}

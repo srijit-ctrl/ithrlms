@@ -1,0 +1,245 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Getting Started with AI as Your Project Assistant",
+      "objectives": [
+        "Explain what an AI assistant can and cannot do for a project manager",
+        "Identify everyday PM tasks where AI saves time",
+        "Set realistic expectations about AI accuracy and the need for human review"
+      ],
+      "body": [
+        "An AI assistant is a tool that understands plain language and produces written drafts, summaries, and suggestions in seconds. For a project manager, it works like a tireless junior teammate who never gets tired of rewriting a status update or reorganizing a messy list of tasks. You type a request in normal words, and the AI responds with a draft you can edit. No coding, formulas, or special training is required to begin, which is why busy PMs can adopt it quickly.",
+        "The strength of AI is speed and structure. It can turn a wall of meeting notes into clean action items, suggest a starting task list for a project, or rephrase a blunt email into a polite one. Used well, it removes the blank-page problem so you spend your energy on judgment rather than typing. Think of it as a head start, not a finished product, because the first draft almost always needs your review before it goes to a client or stakeholder.",
+        "AI also has clear limits that every PM must respect. It does not truly know your project, your team, or your contract unless you tell it. It can sound confident while being wrong, a problem often called a hallucination. It has no awareness of last week's hallway conversation or a decision made in a private channel. Because of this, you stay the decision-maker. The AI proposes; you verify, correct, and approve before anything becomes official.",
+        "A simple way to start is to treat AI like a smart intern. You would never forward an intern's first draft to a customer without reading it, and the same rule applies here. Give the AI clear context, review what comes back, and keep ownership of the final result. With that mindset, you get the time savings without the risks, and you build trust in the tool one small task at a time."
+      ],
+      "keyPoints": [
+        "AI assistants respond to plain language; no coding is needed",
+        "Best uses are drafting, summarizing, and reorganizing information",
+        "AI can sound confident but still be wrong, so always review output",
+        "The AI lacks private context unless you provide it",
+        "Treat AI like a junior teammate whose work you always check",
+        "You remain the decision-maker and owner of the final result"
+      ],
+      "example": "A PM pastes 20 lines of rough kickoff notes into an AI tool and asks for a tidy list of action items with owners; the AI returns a clean list in seconds, and the PM edits two owner names before sharing it.",
+      "summary": "AI is a fast, plain-language assistant for drafting and organizing PM work, but it has real limits, so the project manager always reviews and owns the final output."
+    },
+    {
+      "order": 2,
+      "title": "Writing Clear Prompts to Get Useful Results",
+      "objectives": [
+        "Describe the parts of a clear, effective prompt",
+        "Provide context, format, and tone so the AI returns usable drafts",
+        "Refine a weak result through follow-up requests"
+      ],
+      "body": [
+        "A prompt is simply the instruction you give the AI. The quality of what you get back depends heavily on how clearly you ask. A vague prompt like write a status update produces a generic, shallow result. A strong prompt tells the AI who it is helping, what you need, and how you want it presented. Spending an extra thirty seconds on the request usually saves you several minutes of cleanup later, so clear prompting is one of the highest-value skills a PM can build.",
+        "Four ingredients make a prompt strong: context, task, format, and tone. Context is the background the AI needs, such as the project name and audience. Task is the specific thing you want done. Format is the shape of the answer, like a bulleted list or a three-sentence paragraph. Tone is the voice, such as formal or friendly. When you include these four parts, the AI has enough to give you a draft that fits your situation instead of a one-size-fits-all reply.",
+        "You do not have to get the perfect prompt on the first try. AI tools are conversational, so you can refine results by replying with corrections. If a summary is too long, ask it to cut the length in half. If the tone feels stiff, ask for a warmer voice. Each follow-up builds on the previous answer, which means you can steer the output step by step rather than rewriting your whole request. This back-and-forth is normal and expected.",
+        "Be careful what you put into a prompt, because the words you provide shape both quality and safety. Including real names, deadlines, and goals makes the answer more accurate and relevant. At the same time, avoid pasting sensitive items like passwords or confidential client data into tools your company has not approved. Good prompting is a balance: give enough detail for a useful result, while protecting information that should stay private."
+      ],
+      "keyPoints": [
+        "A prompt is the instruction you give the AI",
+        "Strong prompts include context, task, format, and tone",
+        "Vague requests produce generic, low-value answers",
+        "Refine results with follow-up replies instead of starting over",
+        "More relevant detail usually means a more accurate draft",
+        "Never paste passwords or unapproved confidential data into prompts"
+      ],
+      "example": "Instead of asking summarize this meeting, a PM writes: You are helping me prepare a client update for the Riverside app project; summarize these notes into five short bullet points in a friendly, professional tone. The result needs almost no editing.",
+      "summary": "Clear prompts that include context, task, format, and tone produce far better drafts, and PMs can refine results through simple follow-up requests while protecting sensitive information."
+    },
+    {
+      "order": 3,
+      "title": "Planning Projects and Breaking Down Tasks with AI",
+      "objectives": [
+        "Use AI to draft an initial project plan and task breakdown",
+        "Turn a large goal into smaller, assignable tasks",
+        "Apply human judgment to validate AI-generated estimates and dependencies"
+      ],
+      "body": [
+        "One of the most useful PM tasks for AI is breaking a big goal into manageable pieces. Faced with a broad objective like launch the new onboarding portal, a PM can ask the AI to suggest the major phases and the tasks under each. In moments you get a starting structure: discovery, design, build, testing, and launch, each with example tasks. This gives you a scaffold to react to, which is much easier than building a plan from nothing.",
+        "AI is also helpful for drafting task details. You can ask it to add a suggested owner role, a rough duration, and a short description for each task. It can flag likely dependencies, such as testing cannot start until the build is mostly complete. These suggestions are a thinking aid, not a final schedule. The AI does not know your team's real capacity or holidays, so its time estimates are guesses that you must replace with realistic numbers.",
+        "When using AI for planning, work in small loops. Start with a high-level phase list, review it, then ask the AI to expand one phase at a time into detailed tasks. This keeps the output focused and easy to check. If a phase is missing something obvious, add it yourself and ask the AI to continue from there. The goal is a plan you understand and trust, built faster with AI help rather than handed to you fully formed.",
+        "Always apply your own judgment before the plan becomes real. Look for tasks the AI invented that do not apply, dependencies it missed, and estimates that feel unrealistic. Check that the breakdown matches your actual scope and team. A polished-looking plan can still be wrong, so your review is what turns an AI draft into a dependable project plan. Used this way, AI shortens planning from hours to minutes without sacrificing quality."
+      ],
+      "keyPoints": [
+        "AI quickly turns a big goal into phases and smaller tasks",
+        "It can suggest owners, durations, and dependencies as a starting point",
+        "AI time estimates are guesses and need real-world adjustment",
+        "Expand the plan one phase at a time for easier review",
+        "Watch for invented tasks and missed dependencies",
+        "Human validation turns an AI draft into a trustworthy plan"
+      ],
+      "example": "A PM asks AI to break down build a customer feedback survey into tasks; the AI returns drafting questions, getting stakeholder approval, building the form, testing, and sending it, and the PM adjusts the durations to match the team's real availability.",
+      "summary": "AI accelerates project planning by breaking goals into phases and tasks with draft estimates, but the PM must validate scope, dependencies, and timelines before the plan is finalized."
+    },
+    {
+      "order": 4,
+      "title": "Status Updates, Meeting Notes, and Communication",
+      "objectives": [
+        "Use AI to draft status updates tailored to different audiences",
+        "Convert raw meeting notes into clear summaries and action items",
+        "Adjust tone and length for stakeholders, teams, and clients"
+      ],
+      "body": [
+        "Status updates and meeting notes consume a surprising amount of a PM's week, and this is where AI shines. You can paste your rough notes or a few bullet points about progress and ask the AI to produce a polished update. Because you can specify the audience, the same underlying information can become a one-line executive summary, a detailed team update, or a friendly client note. This lets you communicate the right level of detail to each group without rewriting everything by hand.",
+        "Meeting notes are another strong fit. After a call, you can give the AI your messy notes and ask it to extract decisions, action items with owners, and open questions. The AI organizes the chaos into clear sections you can scan in seconds. This is especially helpful for long meetings where important commitments can otherwise get buried. You still confirm that the AI captured each item correctly, but the heavy lifting of structuring the notes is done for you.",
+        "Tone and length are easy to control. If a draft sounds too formal for your team channel, ask for a more casual version. If an update is too long for a busy sponsor, ask for a three-sentence version. You can even ask the AI to highlight risks or wins separately. This flexibility means one set of facts can be reshaped for many readers, helping you keep everyone informed in the way that suits them best.",
+        "The same review discipline applies here. AI may slightly misstate a status, soften a problem too much, or assign an action item to the wrong person. Read every draft before sending, especially anything going to a client or executive. Communication mistakes can damage trust quickly, so the few seconds you spend checking are well worth it. With careful review, AI turns communication from a time sink into a quick, repeatable routine."
+      ],
+      "keyPoints": [
+        "AI reshapes one set of facts for different audiences",
+        "It extracts decisions, action items, and open questions from notes",
+        "Tone and length can be adjusted with a simple follow-up request",
+        "Long meetings benefit most from AI-structured summaries",
+        "Always verify owners and status accuracy before sending",
+        "Reviewing drafts protects stakeholder trust"
+      ],
+      "example": "After a 45-minute project call, a PM pastes their notes and asks the AI for a summary with decisions, action items and owners, and open questions; the AI returns three tidy sections, and the PM corrects one owner before posting it.",
+      "summary": "AI quickly turns rough notes into tailored status updates and structured meeting summaries, while the PM verifies accuracy and tone before sharing with each audience."
+    },
+    {
+      "order": 5,
+      "title": "Spotting Risks and Solving Problems with AI",
+      "objectives": [
+        "Use AI to brainstorm potential project risks early",
+        "Ask AI for mitigation ideas and trade-off options",
+        "Combine AI suggestions with team knowledge to make decisions"
+      ],
+      "body": [
+        "Risk spotting is about asking what could go wrong before it does, and AI is a strong brainstorming partner for this. If you describe your project and timeline, the AI can list common risks such as unclear requirements, dependency delays, or resource shortages. It draws on patterns from many similar projects, so it often surfaces risks you might overlook when you are deep in the daily work. This early list gives you a head start on planning your responses.",
+        "Beyond naming risks, AI can suggest mitigation ideas. For each risk, you can ask what steps might reduce its likelihood or soften its impact. The AI might recommend adding a buffer to a tight deadline, confirming a dependency in writing, or scheduling an early test. These are starting suggestions, not guarantees. Some will fit your situation and some will not, but having options on the table makes your risk conversations with the team more productive.",
+        "AI can also help when a problem has already appeared. You can describe the situation and ask for possible causes or a few different ways to respond, along with the trade-offs of each. This is useful when you feel stuck, because the AI can widen your view past the first solution that came to mind. It helps you think through choices, even though the final call depends on facts only you and your team know.",
+        "The key limitation is that AI does not know your specific context, so its risk and solution ideas must be filtered through human knowledge. Your team understands the client's history, the politics, and the technical realities that the AI cannot see. Use AI to generate a wide list of possibilities, then rely on people to judge which ones are real and which actions make sense. This pairing of broad AI brainstorming with focused human judgment leads to better, faster decisions."
+      ],
+      "keyPoints": [
+        "AI surfaces common risks you might overlook day to day",
+        "It can suggest mitigation steps for each identified risk",
+        "AI offers multiple response options with trade-offs for active problems",
+        "Suggestions are starting points, not guarantees",
+        "Team knowledge of context decides which ideas are realistic",
+        "Broad AI brainstorming plus human judgment drives better decisions"
+      ],
+      "example": "Before a tight product launch, a PM asks the AI to list likely risks and mitigations; it flags an untested vendor integration, so the PM schedules an early test with the team that catches a problem two weeks ahead of go-live.",
+      "summary": "AI is a valuable brainstorming partner for spotting risks and generating solution options, but the project manager and team apply real-world context to decide what is genuine and what to act on."
+    },
+    {
+      "order": 6,
+      "title": "Responsible and Ethical Use of AI in Projects",
+      "objectives": [
+        "Recognize what information should never be shared with AI tools",
+        "Verify AI output for accuracy, bias, and confidentiality",
+        "Apply company and client guidelines for trustworthy AI use"
+      ],
+      "body": [
+        "Using AI responsibly starts with protecting information. Many AI tools process your text on outside servers, so anything you type could leave your control. As a rule, do not paste passwords, financial account details, personal data about individuals, or confidential client material into tools your organization has not approved. When in doubt, leave it out or remove identifying details first. Protecting data is not just polite; it can be a legal and contractual obligation that a PM is responsible for upholding.",
+        "Accuracy is the next pillar of responsible use. Because AI can produce confident but incorrect statements, you should verify any fact, number, or claim before acting on it or sharing it. This is especially important for figures in a status report, dates in a plan, or statements made to a client. Treat AI output as a draft from a source that is helpful but not authoritative. A quick check against your real records keeps small AI errors from turning into real project mistakes.",
+        "Fairness and transparency also matter. AI can reflect biases present in the data it learned from, so review suggestions for anything that seems unfair or one-sided, particularly in writing about people or performance. Be honest about your use of AI when it is appropriate, following your team's norms. You stay accountable for everything you send, regardless of whether AI helped write it. Hiding heavy AI involvement where transparency is expected can damage trust as much as a factual error.",
+        "Finally, follow the rules that apply to you. Many companies and clients now have AI usage policies that define approved tools and prohibited data. Learn yours and stay within them, and ask when something is unclear. Responsible AI use is not about avoiding the technology; it is about using it in a way that protects people, data, and trust. A PM who combines AI's speed with strong judgment and clear ethics gets the benefits while avoiding the pitfalls."
+      ],
+      "keyPoints": [
+        "Never share passwords, personal data, or confidential material with unapproved tools",
+        "Verify facts, numbers, and dates before acting or sharing",
+        "Watch for bias, especially in writing about people",
+        "You remain accountable for all AI-assisted output",
+        "Be transparent about AI use according to team norms",
+        "Follow company and client AI policies and ask when unsure"
+      ],
+      "example": "A PM wants AI help drafting a vendor performance note but removes the vendor's name and contract figures first, uses an approved tool, verifies the dates against records, and reviews the wording for fairness before sending.",
+      "summary": "Responsible AI use means protecting sensitive data, verifying accuracy, watching for bias, staying transparent, and following company and client policies while remaining fully accountable for the result."
+    }
+  ],
+  "questions": [
+    {
+      "text": "Which statement best describes how a project manager should treat an AI assistant's output?",
+      "options": [
+        "As a finished product ready to send to clients immediately",
+        "As a draft from a helpful junior teammate that must be reviewed",
+        "As an authoritative source that rarely needs checking",
+        "As a replacement for the project manager's own judgment"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI produces useful drafts but can be wrong and lacks private context, so the PM reviews and owns the final result, much like checking an intern's work."
+    },
+    {
+      "text": "What are the four ingredients of a strong AI prompt described in the course?",
+      "options": [
+        "Speed, length, color, and font",
+        "Context, task, format, and tone",
+        "Budget, scope, schedule, and quality",
+        "Names, passwords, dates, and goals"
+      ],
+      "correctIndex": 1,
+      "explanation": "Including context, task, format, and tone gives the AI enough to produce a draft that fits your situation instead of a generic answer."
+    },
+    {
+      "text": "Why should a PM be cautious about AI-generated time estimates in a project plan?",
+      "options": [
+        "The AI always overestimates every task",
+        "The AI does not know your team's real capacity, so estimates are guesses",
+        "Time estimates are illegal to generate with AI",
+        "The AI refuses to provide any durations"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI has no knowledge of your team's actual availability or holidays, so its durations are starting guesses that the PM must replace with realistic numbers."
+    },
+    {
+      "text": "A PM has messy notes from a long meeting. What is a good way to use AI?",
+      "options": [
+        "Ask it to delete the notes to save space",
+        "Ask it to extract decisions, action items with owners, and open questions",
+        "Ask it to make the meeting longer next time",
+        "Avoid AI because meeting notes are too complex"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI excels at structuring chaotic notes into clear sections like decisions, action items with owners, and open questions, which the PM then verifies."
+    },
+    {
+      "text": "Which is the safest practice when using an AI tool for project work?",
+      "options": [
+        "Paste client passwords so the AI has full context",
+        "Use any tool you find and share all confidential data",
+        "Avoid pasting passwords or confidential data into unapproved tools",
+        "Share personal data because AI keeps everything private"
+      ],
+      "correctIndex": 2,
+      "explanation": "AI tools may process text on outside servers, so sensitive items like passwords and confidential data should never be entered into tools the organization has not approved."
+    },
+    {
+      "text": "How can AI best support risk management on a project?",
+      "options": [
+        "By making the final decision on which risks to ignore",
+        "By brainstorming possible risks and mitigation ideas for the team to judge",
+        "By guaranteeing that no risks will ever occur",
+        "By hiding risks from stakeholders to avoid worry"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI is a strong brainstorming partner that surfaces common risks and suggests mitigations, but the team applies real-world context to decide what is genuine and what to act on."
+    },
+    {
+      "text": "A status update draft from AI looks polished. What should the PM do before sending it to an executive?",
+      "options": [
+        "Send it immediately since polished drafts are always correct",
+        "Verify the facts, numbers, and owners, and check the tone",
+        "Add more jargon to make it sound advanced",
+        "Forward it without reading to save time"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI can misstate status, soften problems, or assign the wrong owner, so the PM verifies accuracy and tone before sending, especially to executives or clients."
+    },
+    {
+      "text": "Which approach reflects responsible and ethical AI use by a project manager?",
+      "options": [
+        "Ignoring company AI policies because they slow you down",
+        "Claiming AI-assisted work was fully your own when transparency is expected",
+        "Verifying output, protecting data, watching for bias, and following policies",
+        "Trusting all AI claims without checking any facts"
+      ],
+      "correctIndex": 2,
+      "explanation": "Responsible use combines verifying accuracy, protecting sensitive data, watching for bias, staying transparent, and following company and client AI policies while remaining accountable."
+    }
+  ]
+}

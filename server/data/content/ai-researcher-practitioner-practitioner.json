@@ -1,0 +1,286 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of AI-Assisted Research",
+      "objectives": [
+        "Explain how generative AI tools fit into a credible research workflow",
+        "Distinguish tasks AI accelerates from tasks that demand human judgment",
+        "Identify the core risks of fabrication and overreliance early"
+      ],
+      "body": [
+        "AI-assisted research means using language models and retrieval tools to speed up discovery, summarization, and analysis while keeping a human firmly in charge of judgment. The model is a drafting and triage partner, not an authority. A practitioner treats every output as a hypothesis to be checked against primary sources rather than a finished answer. This framing matters because the same tool that compresses a week of reading into an hour can also invent a citation that never existed. Knowing where the value lies, and where the danger lies, is the first skill.",
+        "The strongest gains come from breadth and speed. AI can scan a sprawling literature, propose search terms you had not considered, cluster themes across dozens of papers, and rewrite dense passages into plain language. These are accelerators for the parts of research that are mechanical or exploratory. They lower the cost of casting a wide net so that you spend your limited attention on the sources that genuinely matter.",
+        "The weakest gains, and the biggest hazards, appear wherever truth and attribution are at stake. Models predict plausible text, so they can produce confident statements with no grounding, misattribute findings, or smooth over contradictions that a careful reader would flag. Anything that will appear in a published claim, a citation, or a number must be verified at the source. Treat unverified model output as a lead, never as evidence.",
+        "A practitioner mindset rests on a simple division of labor. Let the AI handle volume, first drafts, and reformatting. Reserve for yourself the decisions about what is true, what is relevant, and what to cite. This division keeps the efficiency without surrendering the rigor that makes research trustworthy. The rest of this course turns that principle into concrete, repeatable workflows."
+      ],
+      "keyPoints": [
+        "AI is a drafting and triage partner, not a source of authority",
+        "The best gains are breadth, speed, and reformatting of existing material",
+        "The biggest risks involve truth, attribution, and numbers",
+        "Every claim destined for publication must be verified at the primary source",
+        "Keep humans in charge of relevance, truth, and citation decisions"
+      ],
+      "example": "A graduate student uses an AI tool to surface twenty candidate papers on remote-work productivity in under an hour, then personally reads and verifies the five most relevant before citing any of them.",
+      "summary": "AI accelerates the exploratory and mechanical parts of research, but truth, attribution, and citation always remain the practitioner's responsibility."
+    },
+    {
+      "order": 2,
+      "title": "Literature Discovery and Search Strategy",
+      "objectives": [
+        "Design effective AI-assisted search queries for a research question",
+        "Combine AI suggestions with traditional academic databases",
+        "Recognize the limits of an AI tool's knowledge and coverage"
+      ],
+      "body": [
+        "Literature discovery is where AI earns its keep, but only when paired with disciplined search strategy. Begin by stating your research question in one clear sentence, then ask the AI to expand it into alternative phrasings, synonyms, and adjacent concepts. A query about employee burnout might surface related terms like emotional exhaustion, disengagement, or psychological safety. These variations widen your net across databases that index by different vocabularies, catching relevant work you would have missed with a single phrase.",
+        "AI suggestions are a starting layer, not the search itself. Run the expanded terms through established databases such as PubMed, Scopus, Web of Science, or your field's equivalents, where indexing and coverage are known and stable. General chat models often lack access to recent or paywalled literature and may not know what they do not cover. Use the AI to brainstorm and cluster, then let the indexed databases do the authoritative retrieval and provide verifiable records.",
+        "Watch for coverage gaps and recency limits. A model trained with a fixed cutoff cannot know last month's preprint, and a retrieval tool only sees what its index contains. Ask the tool directly what time range and sources it draws from, and treat any gap as a blind spot you must close manually. Confirm that key recent works in your area actually appear, because absence in an AI result is not evidence of absence in the field.",
+        "Keep a transparent search log. Record the queries you ran, the tools used, the dates, and which results you kept or discarded. This log makes your discovery process reproducible, lets a reviewer retrace your steps, and protects you if a claimed source later proves shaky. Reproducibility is not optional in research, and AI does not change that standard."
+      ],
+      "keyPoints": [
+        "State the research question precisely before generating search terms",
+        "Use AI to expand vocabulary, then retrieve through indexed databases",
+        "Confirm the tool's coverage, recency limits, and sources explicitly",
+        "Absence of a source in AI results is not evidence it does not exist",
+        "Maintain a reproducible search log of queries, tools, and dates"
+      ],
+      "example": "A health researcher asks an AI tool to generate synonyms for telehealth adoption, then runs that term cluster through PubMed and Scopus, logging each query and confirming that recent 2025 trials appear in the results.",
+      "summary": "AI is excellent for expanding search vocabulary, but authoritative retrieval and a reproducible search log must come from indexed databases and careful record-keeping."
+    },
+    {
+      "order": 3,
+      "title": "Summarization and Synthesis",
+      "objectives": [
+        "Produce accurate AI summaries that preserve a source's meaning",
+        "Synthesize multiple sources into themes without losing nuance",
+        "Detect distortion, omission, and false consensus in AI outputs"
+      ],
+      "body": [
+        "Summarization is one of the most useful and most deceptive AI capabilities. A good summary compresses a paper into its claims, methods, and limits while preserving meaning. The danger is that models tend to smooth and simplify, sometimes dropping the qualifications and caveats that define a finding's real scope. A study that held under narrow conditions can be summarized as a sweeping conclusion. Always summarize from the actual text, and check that hedges, sample sizes, and boundary conditions survive the compression.",
+        "Synthesis goes beyond summarizing one source to integrating many into coherent themes. Ask the AI to group findings by topic, method, or stance, and to surface where studies agree and where they conflict. This thematic clustering is genuinely valuable for organizing a literature review. But the model may manufacture a tidy consensus that the evidence does not support, papering over real disagreement. Push it to name the dissenting studies and the contested points rather than accepting a smooth narrative.",
+        "Distortion creeps in through omission as much as through error. A summary that leaves out a study's main limitation is misleading even if every sentence is technically true. Compare the AI summary against the source's abstract, results, and discussion, and add back anything material that was cut. The practitioner's job is to ensure the compressed version would not surprise the original author.",
+        "Treat synthesis as a draft scaffold you then verify and rewrite. The AI can give you a structure and a first pass, but the interpretive claims, the weighting of evidence, and the final framing must be yours. Read enough of each underlying source to defend every sentence of the synthesis in your own voice. If you cannot defend a claim from the source, it does not belong in your work."
+      ],
+      "keyPoints": [
+        "Good summaries preserve claims, methods, limits, and caveats",
+        "Models tend to over-simplify and drop boundary conditions",
+        "Synthesis can manufacture false consensus that hides real conflict",
+        "Omission is a form of distortion, even when sentences are true",
+        "Verify every synthesized claim against the underlying source",
+        "Final interpretation and framing must be the practitioner's own"
+      ],
+      "example": "A reviewer asks an AI to synthesize ten studies on intermittent fasting; the tool reports broad agreement, but on checking the sources the reviewer finds two trials with null results and rewrites the synthesis to reflect the genuine disagreement.",
+      "summary": "AI summarization and synthesis save time but routinely flatten nuance and invent consensus, so every compressed claim must be checked against its source."
+    },
+    {
+      "order": 4,
+      "title": "Note-Taking and Knowledge Management",
+      "objectives": [
+        "Build an AI-assisted note system that preserves source links",
+        "Separate verbatim quotes, paraphrases, and personal interpretation",
+        "Prevent provenance loss as notes move toward a final draft"
+      ],
+      "body": [
+        "A research project lives or dies by its notes, and AI can both help and quietly corrupt them. The central rule is provenance: every note must carry a verifiable link back to its source, including the document, page or section, and the date you captured it. When you ask AI to summarize a paper into notes, attach that citation immediately. A brilliant insight with no traceable origin is useless in research, because you cannot cite it or defend it later.",
+        "Keep three layers strictly separate in your notes. Verbatim quotes belong in quotation marks with exact location. Paraphrases restate the source in your words but still point to it. Your own interpretation and ideas form a third layer that must never be confused with what the source actually said. AI output blurs these layers easily, so label clearly which sentences came from the model, which from the source, and which are your analysis.",
+        "Provenance loss is the silent failure mode. As text gets copied from a summary into an outline and then into a draft, the citation often falls away, and a paraphrase hardens into an apparent fact with no source attached. Build your system so the link travels with the text at every step. Tagging, consistent reference keys, and a single source-of-truth reference manager all help the citation survive the journey to the final document.",
+        "Use AI to organize, tag, and cross-reference notes rather than to generate the underlying facts. It can cluster related notes, suggest tags, and draft a structure. What it must not do is invent the substance you record as evidence. Treat the AI as a librarian for your own verified material, keeping the human as the author of every claim that the notes will eventually support."
+      ],
+      "keyPoints": [
+        "Every note must carry a verifiable link back to its source",
+        "Keep quotes, paraphrases, and your own ideas in separate layers",
+        "Label which sentences came from the model versus the source",
+        "Provenance is most often lost when copying between documents",
+        "Use AI to organize notes, not to generate the underlying facts"
+      ],
+      "example": "An analyst captures AI-generated notes on a market report and tags each with the report title, page number, and capture date, marking model-paraphrased lines distinctly so no claim reaches the final brief without a traceable source.",
+      "summary": "Sound AI-assisted note-taking depends on preserving provenance and clearly separating quotes, paraphrases, and personal interpretation at every step."
+    },
+    {
+      "order": 5,
+      "title": "Citation Integrity and Avoiding Fabrication",
+      "objectives": [
+        "Explain why language models fabricate plausible citations",
+        "Verify every reference against an authoritative bibliographic record",
+        "Apply a repeatable citation-checking routine before publishing"
+      ],
+      "body": [
+        "Fabricated citations are the signature failure of AI in research. Because language models generate text that looks like a citation rather than retrieving a real record, they can produce references with realistic author names, plausible titles, and even believable DOIs that point to nothing. These are not rare glitches; they follow directly from how the technology works. A practitioner must assume that any citation a model produces is unverified until checked, no matter how authentic it appears.",
+        "Verification means matching each reference to an authoritative record. Look up the title in a real database, confirm the authors, journal, year, volume, and pages, and check that the DOI resolves to the actual paper. If you cannot find the source in a trustworthy index, treat it as fabricated and remove it. Never cite a work you have not located and at least confirmed exists; ideally you have read the relevant section yourself.",
+        "Watch for subtler corruptions beyond pure invention. A model may attach a real-looking citation to a claim the cited paper never made, blend two papers into one reference, or assign a finding to the wrong author. These errors pass a casual glance because the reference is partly real. Confirm not only that the source exists but that it actually supports the specific claim you are attaching to it.",
+        "Adopt a fixed citation-checking routine and run it before any work goes out. For each reference, confirm existence, confirm metadata, and confirm that it supports the claim. Use a reference manager to store verified entries so you never re-trust an unchecked one. This discipline is non-negotiable: a single fabricated citation can destroy the credibility of an entire piece of research and the trust placed in its author."
+      ],
+      "keyPoints": [
+        "Models generate citation-shaped text and routinely fabricate references",
+        "Verify existence, metadata, and a resolving DOI for every reference",
+        "Check that the source actually supports the specific claim made",
+        "Watch for misattribution and blended references, not just invention",
+        "Run a fixed citation-checking routine before anything is published"
+      ],
+      "example": "A writer drafts a paper with AI help and finds three of the suggested references do not exist in any database and a fourth is real but never made the claim attributed to it, so all four are removed before submission.",
+      "summary": "Language models fabricate and misattribute citations as a matter of course, so every reference must be verified against an authoritative record before use."
+    },
+    {
+      "order": 6,
+      "title": "Data Analysis Support",
+      "objectives": [
+        "Use AI to assist with analysis code, methods, and interpretation",
+        "Validate AI-generated statistics and calculations independently",
+        "Guard against subtle errors in reasoning and computed results"
+      ],
+      "body": [
+        "AI is a capable assistant for data analysis, helping you write code, choose appropriate methods, and interpret output in plain language. It can scaffold an analysis pipeline, explain what a regression coefficient means, or suggest a suitable test for your data structure. Used this way, it lowers the barrier to sound methods and frees you to think about the research question. The catch is that fluent explanations and runnable code can both be confidently wrong.",
+        "Never trust an AI-computed number on faith. Models frequently make arithmetic and statistical mistakes, apply a test whose assumptions your data violate, or report results that the actual computation would not produce. When AI suggests an analysis, run it yourself in a real statistical environment and confirm the numbers independently. The AI can propose the approach; your own verified computation provides the result you report.",
+        "Scrutinize the reasoning, not just the output. An analysis can be technically executed yet conceptually wrong if it confuses correlation with causation, ignores confounders, or selects a method that does not match the data. Ask the AI to state its assumptions explicitly and then test those assumptions against your dataset. A sound result requires both correct computation and a defensible analytical design behind it.",
+        "Keep a clear boundary between assistance and authorship of findings. Use AI to draft and explain, but make the analytical decisions yourself and document them so the work is reproducible. Save your code, your data versions, and your reasoning so another analyst could reach the same conclusion. The interpretation you publish must rest on computations you have personally verified, not on numbers a model asserted."
+      ],
+      "keyPoints": [
+        "AI helps with code, method selection, and plain-language interpretation",
+        "Independently recompute every statistic an AI produces",
+        "Check method assumptions against the actual data",
+        "Watch for correlation-causation and confounding errors in reasoning",
+        "Document code, data versions, and decisions for reproducibility"
+      ],
+      "example": "An economist uses AI to draft a regression in Python, then reruns it in a verified environment and discovers the AI had reported an inflated coefficient and ignored a violated normality assumption, prompting a corrected model.",
+      "summary": "AI is a useful analysis assistant, but every statistic, method, and interpretation must be independently verified before it informs a research conclusion."
+    },
+    {
+      "order": 7,
+      "title": "Verification, Ethics, and Responsible Practice",
+      "objectives": [
+        "Apply a layered verification routine across the research workflow",
+        "Disclose AI use transparently and follow relevant guidelines",
+        "Balance efficiency gains against integrity and accountability"
+      ],
+      "body": [
+        "Verification is the connective tissue of responsible AI-assisted research, and it works best as a layered routine rather than a final spot-check. At each stage, ask a simple question: what here is unverified model output, and how do I confirm it? Discovery results get confirmed against databases, summaries against sources, citations against bibliographic records, and statistics against your own computation. Building these checks into the workflow, rather than bolting them on at the end, is what separates rigorous practice from risky shortcuts.",
+        "Transparency about AI use is now an ethical and often institutional requirement. Many journals, universities, and funders expect you to disclose how AI tools were used, whether for drafting, analysis, or editing. Follow the specific guidelines that apply to your venue, and when in doubt, disclose more rather than less. Crucially, AI cannot be an author and cannot be held accountable, so the human researcher remains fully responsible for every claim, citation, and number in the work.",
+        "Be mindful of privacy, confidentiality, and bias. Do not paste confidential, personal, or unpublished sensitive data into tools that may retain or train on it, and check your provider's data terms. Be aware too that models can reflect biases in their training data, which may skew which sources or framings they surface. Responsible practice means protecting your data and actively questioning whether the AI has narrowed your view of the evidence.",
+        "Finally, weigh efficiency against integrity deliberately. AI can compress months of routine work, but speed that bypasses verification is not a gain; it is a liability waiting to surface. The mature practitioner accepts the time cost of checking as the price of trustworthy research. Done well, AI lets you do more rigorous work, not less rigorous work faster, and the verification discipline is what makes that promise real."
+      ],
+      "keyPoints": [
+        "Build layered verification into each stage of the workflow",
+        "Disclose AI use per the guidelines of your venue or institution",
+        "AI cannot be an author; the human is fully accountable",
+        "Protect confidential data and watch for model and source bias",
+        "Efficiency without verification is a liability, not a gain"
+      ],
+      "example": "A team submitting to a journal includes a methods note disclosing that AI assisted with literature search and editing, confirms no confidential data was entered into the tool, and verifies every citation and statistic before submission.",
+      "summary": "Responsible AI-assisted research combines layered verification, transparent disclosure, data protection, and the unwavering principle that the human remains accountable for the work."
+    }
+  ],
+  "questions": [
+    {
+      "text": "In an AI-assisted research workflow, what is the most accurate way to describe the role of a language model?",
+      "options": [
+        "An authoritative source whose outputs can be cited directly",
+        "A drafting and triage partner whose outputs must be verified",
+        "A replacement for indexed academic databases",
+        "A neutral tool that never introduces errors"
+      ],
+      "correctIndex": 1,
+      "explanation": "The model accelerates drafting and triage, but its outputs are hypotheses to be checked against primary sources, not authoritative evidence."
+    },
+    {
+      "text": "Why should AI-generated search terms be run through indexed databases like PubMed or Scopus rather than relied on alone?",
+      "options": [
+        "Databases generate more synonyms than AI tools can",
+        "AI tools cannot produce alternative phrasings",
+        "Indexed databases provide known coverage and verifiable, authoritative records",
+        "Databases are always free while AI tools are not"
+      ],
+      "correctIndex": 2,
+      "explanation": "AI is good for expanding vocabulary, but indexed databases offer stable, known coverage and verifiable records that general models may lack."
+    },
+    {
+      "text": "When an AI summary reports broad agreement across studies, what should a careful practitioner do?",
+      "options": [
+        "Accept the consensus since the AI reviewed all the studies",
+        "Check the sources for dissenting findings the model may have smoothed over",
+        "Discard the summary entirely as unusable",
+        "Cite the summary as evidence of consensus"
+      ],
+      "correctIndex": 1,
+      "explanation": "Models can manufacture a tidy consensus that papers over real disagreement, so the underlying sources must be checked for dissent."
+    },
+    {
+      "text": "Which practice best preserves provenance in AI-assisted note-taking?",
+      "options": [
+        "Storing insights without sources to save time",
+        "Merging quotes, paraphrases, and personal ideas into one layer",
+        "Attaching a verifiable source link to every note and keeping layers separate",
+        "Relying on memory to reconstruct citations later"
+      ],
+      "correctIndex": 2,
+      "explanation": "Every note needs a traceable source, and quotes, paraphrases, and interpretation must stay clearly separated so provenance survives to the final draft."
+    },
+    {
+      "text": "Why do language models frequently produce fabricated citations?",
+      "options": [
+        "They deliberately deceive researchers",
+        "They generate citation-shaped text rather than retrieving real records",
+        "They only cite paywalled sources that cannot be checked",
+        "They lack any training on academic writing"
+      ],
+      "correctIndex": 1,
+      "explanation": "Models predict plausible citation-like text instead of retrieving verified records, so realistic-looking references may point to nothing."
+    },
+    {
+      "text": "Beyond confirming a citation exists, what additional check is essential?",
+      "options": [
+        "That the reference uses the newest citation style",
+        "That the source actually supports the specific claim attributed to it",
+        "That the author has a high publication count",
+        "That the journal has a paywall"
+      ],
+      "correctIndex": 1,
+      "explanation": "Models can attach a real reference to a claim the source never made, so you must confirm the source genuinely supports the specific claim."
+    },
+    {
+      "text": "What is the correct way to treat a statistic that an AI tool computes for you?",
+      "options": [
+        "Report it directly if the explanation sounds confident",
+        "Independently recompute it in a verified statistical environment",
+        "Trust it only if it matches your expectation",
+        "Round it and publish without checking"
+      ],
+      "correctIndex": 1,
+      "explanation": "Models make arithmetic and statistical errors, so any AI-computed number must be independently recomputed before it is reported."
+    },
+    {
+      "text": "An AI suggests an analysis that is correctly coded but confuses correlation with causation. What does this illustrate?",
+      "options": [
+        "That correct computation alone guarantees a valid result",
+        "That analytical design must be sound, not just the computation",
+        "That AI cannot write any usable code",
+        "That causation and correlation are interchangeable in research"
+      ],
+      "correctIndex": 1,
+      "explanation": "A result requires both correct computation and a defensible design; flawless code can still rest on a conceptually wrong analytical approach."
+    },
+    {
+      "text": "Regarding authorship and accountability in AI-assisted research, which statement is correct?",
+      "options": [
+        "AI tools can be listed as co-authors when heavily used",
+        "AI shares responsibility for any errors in the work",
+        "The human researcher remains fully accountable for all claims and citations",
+        "Disclosure of AI use is never required by journals"
+      ],
+      "correctIndex": 2,
+      "explanation": "AI cannot be an author or be held accountable; the human researcher is fully responsible for every claim, citation, and number."
+    },
+    {
+      "text": "Why is verification best built into each stage of the workflow rather than added only at the end?",
+      "options": [
+        "Because end-stage checks are faster and equally reliable",
+        "Because layered checks catch unverified outputs where they enter and prevent compounding errors",
+        "Because journals forbid final review",
+        "Because AI outputs never contain errors mid-workflow"
+      ],
+      "correctIndex": 1,
+      "explanation": "Layered verification confirms outputs at each stage, stopping unverified discovery results, summaries, citations, and statistics from compounding into the final work."
+    }
+  ]
+}

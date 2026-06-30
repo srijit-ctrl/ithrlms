@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations: Applying AI Across the Sales Workflow",
+      "objectives": [
+        "Map where AI adds the most leverage across the sales cycle",
+        "Distinguish generative, predictive, and retrieval-based AI use cases",
+        "Adopt a human-in-the-loop mindset for every AI output"
+      ],
+      "body": [
+        "Modern sales tooling now embeds AI at nearly every stage, from finding accounts to forecasting revenue. As a practitioner, your job is not to chase every shiny feature but to identify where AI removes friction without removing judgment. The highest-value applications tend to cluster around research, drafting, summarization, and pattern detection. These are tasks where the model accelerates a first pass that you then refine. Treating AI as a tireless junior analyst, rather than a decision-maker, keeps you in control of quality and accountability.",
+        "It helps to separate three families of AI use. Generative AI drafts text such as emails, call notes, and proposals. Predictive AI scores leads, estimates deal health, and forecasts close dates. Retrieval AI surfaces relevant facts from your CRM, call recordings, or knowledge base. Knowing which family a tool belongs to sets your expectations. A generative tool can sound confident yet be wrong, while a predictive model is only as good as the historical data behind it. Matching the tool to the task prevents both over-trust and underuse.",
+        "Every AI output in sales should pass through a human checkpoint before it reaches a buyer or a forecast. The reason is simple: you carry the relationship and the accountability, not the model. A practical habit is to ask three questions of any output. Is it accurate? Is it appropriate for this specific buyer? Would I be comfortable if the prospect saw how it was made? If any answer is no, you edit or discard. This discipline turns AI from a liability into a dependable multiplier.",
+        "Finally, treat your own time as the scarce resource AI is meant to protect. Reps often spend more than half their week on non-selling activity such as data entry, research, and admin. Pointing AI at those tasks frees hours for conversations that actually move revenue. The goal of this course is to build repeatable, responsible workflows so that the time you reclaim is reinvested in selling, not in fixing sloppy automation."
+      ],
+      "keyPoints": [
+        "AI adds the most value in research, drafting, summarization, and pattern detection",
+        "Generative, predictive, and retrieval AI each carry different reliability expectations",
+        "Keep a human checkpoint before any AI output reaches a buyer or forecast",
+        "Ask: is it accurate, appropriate, and defensible if the buyer saw how it was made",
+        "Point AI at non-selling admin so reclaimed time is reinvested in selling"
+      ],
+      "example": "A rep uses a retrieval tool to pull a prospects recent funding news, a generative tool to draft a tailored opener, and her own judgment to rewrite the opener in her voice before sending.",
+      "summary": "AI delivers the most leverage on research and drafting tasks, but every output needs a human checkpoint for accuracy, fit, and accountability."
+    },
+    {
+      "order": 2,
+      "title": "AI-Assisted Prospecting and Lead Targeting",
+      "objectives": [
+        "Build a sharper ideal customer profile using AI-driven signals",
+        "Use AI to prioritize accounts and reduce list bloat",
+        "Validate AI-suggested prospects before committing outreach effort"
+      ],
+      "body": [
+        "Prospecting fails most often from poor targeting, not poor effort. AI helps by analyzing your closed-won history to surface the firmographic and behavioral traits that correlate with wins. Feed it your best accounts and ask it to describe the common patterns: industry, size, tech stack, growth signals, and triggers like hiring or funding. The output sharpens your ideal customer profile beyond gut feel. The practitioner skill is treating these patterns as hypotheses to test, not laws, because correlation in past deals can reflect old market conditions rather than future opportunity.",
+        "Once your profile is sharper, AI-powered databases and intent platforms can score and rank accounts so you work the most promising ones first. Rather than a flat list of a thousand names, you get a prioritized queue with reasons attached, such as recent leadership changes or a spike in research activity. This shifts prospecting from volume to precision. The risk to manage is over-reliance on a single score; intent data is probabilistic, and a high score is an invitation to investigate, never a guarantee of readiness to buy.",
+        "AI also expands lists through lookalike modeling, finding accounts that resemble your best customers. This is powerful but prone to drift, where the model keeps suggesting near-duplicates and narrows your market unhelpfully. Counter this by periodically reviewing suggestions for diversity and by feeding back which AI-sourced leads actually converted. That feedback loop is what separates a practitioner from a passive consumer of lists. The model improves only when you tell it which of its bets paid off.",
+        "Before investing real outreach time, validate AI-suggested prospects with a quick human pass. Confirm the account is active, the contact still holds the role, and the trigger event is genuine rather than stale. A two-minute check protects your sender reputation and your credibility. Prospecting is the top of the funnel, so errors here multiply downstream. Disciplined validation keeps your pipeline clean and your messages relevant."
+      ],
+      "keyPoints": [
+        "Use closed-won analysis to refine your ideal customer profile with real signals",
+        "Treat AI account scores as prioritized hypotheses, not guarantees of intent",
+        "Watch for lookalike drift that narrows your market to near-duplicates",
+        "Feed conversion outcomes back so the model learns which bets paid off",
+        "Validate role, account activity, and trigger events before outreach"
+      ],
+      "example": "An SDR feeds 40 closed-won logos into an AI tool, learns that mid-market SaaS firms hiring RevOps roles convert best, and builds a 60-account priority queue she manually verifies before sequencing.",
+      "summary": "AI sharpens targeting and prioritizes accounts using win patterns and intent signals, but practitioners must validate suggestions and feed outcomes back to keep targeting accurate."
+    },
+    {
+      "order": 3,
+      "title": "Account and Buyer Research at Scale",
+      "objectives": [
+        "Use AI to compress hours of account research into minutes",
+        "Cross-check AI research outputs against primary sources",
+        "Turn research into actionable buyer insights, not raw facts"
+      ],
+      "body": [
+        "Deep research is where AI earns its keep for sellers. A generative model can synthesize a companys recent news, leadership, strategic priorities, and likely pain points from public information in a fraction of the time manual reading would take. The practitioner uses this as a briefing, then digs into the specifics that matter for the conversation. The aim is not to know everything but to know enough to ask a sharp, relevant question that proves you did your homework. Synthesis is the value; raw fact dumps are not.",
+        "The central risk in AI research is fabrication, often called hallucination, where the model states plausible but false details such as a wrong executive name or an invented partnership. Because these errors arrive with confident phrasing, they are dangerous in a sales context where a single wrong fact can end your credibility. The discipline is to verify anything load-bearing against a primary source: the companys own site, a filing, or a reputable news outlet. Treat the AI summary as a map, and confirm the landmarks before you navigate by them.",
+        "Good research connects company-level findings to the specific buyer you will speak with. AI can help by drafting a stakeholder view: what this role typically cares about, how the persons priorities likely differ from a peers, and what objections to anticipate. You then layer in anything you know from prior calls or mutual connections. This buyer-centric framing turns generic company facts into a tailored conversation plan. The output should answer one question: why should this person care about us right now?",
+        "Scale matters because reps research many accounts a week. Build a repeatable prompt template that asks for the same structured output every time: recent triggers, strategic priorities, relevant pain points, and three smart discovery questions. Consistency makes the research comparable across accounts and faster to review. Over time you refine the template based on which insights actually helped in calls, turning ad hoc lookups into a reliable, auditable research process."
+      ],
+      "keyPoints": [
+        "AI compresses account research into a fast, structured briefing",
+        "Verify any load-bearing fact against a primary source to avoid hallucinations",
+        "Translate company findings into buyer-specific priorities and likely objections",
+        "Aim for a sharp discovery question, not an exhaustive fact dump",
+        "Use a repeatable prompt template for consistent, comparable research"
+      ],
+      "example": "Before a discovery call, a rep prompts an AI assistant for a structured brief on a retail prospect, verifies the named CFO against the investor page, and walks in with three tailored questions about their expansion plans.",
+      "summary": "AI turns hours of account research into a fast structured briefing, but practitioners must verify key facts and convert findings into buyer-specific, actionable insight."
+    },
+    {
+      "order": 4,
+      "title": "Personalized Outreach Without Losing Authenticity",
+      "objectives": [
+        "Draft personalized outreach faster while keeping a human voice",
+        "Avoid the generic AI tone that buyers now recognize and ignore",
+        "Apply responsible standards to AI-assisted messaging at scale"
+      ],
+      "body": [
+        "Personalization at scale is the promise that first drew sellers to AI, and it is real when done well. A model can take your research and draft an opener that references a specific trigger, ties it to a relevant outcome, and ends with a low-friction ask. The trap is sending these drafts unedited. Buyers have learned to spot formulaic AI phrasing, and a message that screams automation lands worse than a plain one. The practitioner uses AI for the first draft and the heavy lifting of structure, then rewrites in their own voice so it reads like a person wrote it for one reader.",
+        "Effective AI-assisted outreach blends two ingredients: a genuine, specific hook and brevity. AI is good at generating options for the hook, such as connecting a prospects recent product launch to a problem you solve. It is also good at trimming bloated drafts to a tight, scannable message. Ask the model for three variations, then pick and refine the strongest rather than accepting the first. Variation prevents your whole sequence from sounding identical, which is a common giveaway when teams share the same prompts.",
+        "Authenticity is not just a style preference; it is a trust issue. If you claim to have read a prospects article but the reference is a hallucinated summary, the relationship starts on a falsehood. Verify any specific claim your message makes, just as you would in research. The responsible standard is simple: every personalized detail should be true, and the message should be one you would be comfortable defending if the buyer asked how you wrote it. That comfort test is your guardrail against crossing from helpful automation into deceptive automation.",
+        "At scale, governance matters. Avoid mass-sending AI drafts without review, respect opt-outs and regional rules on unsolicited contact, and never spoof a level of familiarity you do not have. Quality beats volume: a smaller number of genuinely tailored messages outperforms a flood of near-identical ones and protects your domain reputation. Build a workflow where AI drafts, a human edits, and a final check confirms accuracy and tone before anything sends."
+      ],
+      "keyPoints": [
+        "Use AI for first drafts and structure, then rewrite in your own voice",
+        "Generate multiple hook variations so sequences do not sound identical",
+        "Verify every specific claim; a hallucinated reference breaks trust instantly",
+        "Apply the comfort test: would you defend how the message was written",
+        "Respect opt-outs and regional rules; quality outreach beats volume blasts"
+      ],
+      "example": "A rep asks AI for three openers referencing a prospects new sustainability report, picks the strongest, confirms the report exists, and rewrites it in plain language before sending one tailored email rather than a templated blast.",
+      "summary": "AI accelerates personalized outreach, but practitioners must edit for voice, verify every claim, and keep messages honest and compliant to preserve trust."
+    },
+    {
+      "order": 5,
+      "title": "CRM Hygiene and Data Enrichment with AI",
+      "objectives": [
+        "Use AI to automate data entry, enrichment, and deduplication",
+        "Set guardrails so AI does not propagate bad or stale data",
+        "Improve forecast and reporting reliability through cleaner records"
+      ],
+      "body": [
+        "A CRM is only as useful as its data is clean, and data hygiene is exactly the dull, repetitive work AI handles well. AI can transcribe and summarize calls into structured notes, auto-log activities, enrich records with firmographic details, and flag duplicates for merging. This removes the friction that causes reps to skip updates in the first place. The practitioner positions AI as the assistant that captures what happened so the rep can focus on what to do next. Clean data is not an end in itself; it is the foundation for every downstream forecast and report.",
+        "Enrichment is a common AI win but carries a quiet risk. Pulling in company size, industry, or contact details from third-party sources speeds setup, yet that data can be outdated or wrong, and once written into the CRM it spreads into segments, scores, and forecasts. Set guardrails: prefer enrichment sources with freshness indicators, spot-check a sample of enriched records, and avoid overwriting human-verified fields automatically. Treat enrichment as a draft layer that a person confirms for important accounts, not as gospel for every field.",
+        "AI-generated call summaries are a major hygiene upgrade, but they need review. A summary might miss a nuance, misattribute a commitment, or smooth over an objection that actually matters. Skim every AI summary before it becomes the record of truth, because future you and your manager will trust it. Correcting a small error now prevents a misremembered deal later. The same applies to auto-suggested next steps; accept them only when they match what you actually agreed with the buyer.",
+        "The payoff of disciplined hygiene is reliability everywhere else. Forecasts, pipeline analysis, and territory planning all depend on accurate stage data, close dates, and amounts. When AI keeps records current and consistent, your analytics become trustworthy and your manager stops chasing you for updates. Build a light weekly routine: let AI flag stale or incomplete records, then spend a focused block confirming or fixing the ones that matter. Small, consistent maintenance beats a painful quarterly cleanup."
+      ],
+      "keyPoints": [
+        "AI automates note capture, activity logging, enrichment, and dedupe detection",
+        "Enriched data can be stale; spot-check and avoid overwriting verified fields",
+        "Review AI call summaries before they become the trusted record",
+        "Clean stage, date, and amount data underpins reliable forecasts",
+        "Run a light weekly hygiene routine instead of a painful quarterly cleanup"
+      ],
+      "example": "After a call, an AI tool logs a structured summary and suggests updating the deal to proposal stage; the rep skims it, corrects the close date the model guessed, and confirms the next step matches what the buyer agreed.",
+      "summary": "AI removes the friction of CRM upkeep through automated capture and enrichment, but practitioners must review outputs and set guardrails so clean data powers reliable analytics."
+    },
+    {
+      "order": 6,
+      "title": "AI-Powered Call Preparation and Coaching",
+      "objectives": [
+        "Use AI to prepare tailored agendas, questions, and objection responses",
+        "Leverage conversation intelligence for post-call review and coaching",
+        "Keep buyer trust by using recording and analysis tools responsibly"
+      ],
+      "body": [
+        "Walking into a call prepared is a competitive advantage, and AI makes thorough prep fast. From your research and CRM history, an assistant can draft a call agenda, suggest discovery questions aligned to the buyers role, and prepare responses to the objections this type of account usually raises. The practitioner reviews and personalizes this, dropping anything that does not fit. The value is starting from a strong scaffold rather than a blank page, which means more mental energy for listening during the actual conversation instead of scrambling for the next question.",
+        "Conversation intelligence tools record, transcribe, and analyze calls, then surface patterns like talk-to-listen ratio, topics covered, competitor mentions, and next steps. Used well, this is a powerful self-coaching loop: you see where you talked too much, missed a buying signal, or forgot to confirm next steps. Review a few calls weekly with specific questions in mind rather than passively skimming transcripts. The goal is one or two concrete behavior changes per week, not a flood of metrics you never act on.",
+        "These tools also enable scalable coaching. Managers and AI can flag moments worth reviewing, compare a reps approach to top performers, and recommend targeted skills to practice. As a practitioner, lean into this rather than resisting it, because the feedback is specific and grounded in real calls. Pair AI suggestions with your own judgment about context the model cannot see, such as a buyers tone or an off-the-record comment. The combination of data and human read produces better coaching than either alone.",
+        "Recording and analysis raise real trust and legal duties. Many regions require consent before recording, and even where you can record, it is good practice to tell the buyer. Be transparent, follow your companys policy and local law, and store recordings securely. Buyers who feel surveilled disengage, so frame recording around shared benefit, such as accurate follow-up notes. Responsible use protects both the relationship and the organization while still capturing the insight that makes you better."
+      ],
+      "keyPoints": [
+        "AI drafts tailored agendas, discovery questions, and objection responses",
+        "Conversation intelligence reveals talk ratios, missed signals, and next steps",
+        "Aim for one or two concrete behavior changes per call review, not metric overload",
+        "Combine AI coaching cues with human read of context the model cannot see",
+        "Obtain consent and follow recording laws; transparency protects trust"
+      ],
+      "example": "Before a renewal call, a rep has AI prepare three discovery questions and likely pricing objections; afterward, a conversation tool flags that he spoke 70 percent of the time, so he plans to ask more and listen on the next call.",
+      "summary": "AI strengthens call prep and provides a data-driven coaching loop, but practitioners must add human context and handle recording consent responsibly to keep buyer trust."
+    },
+    {
+      "order": 7,
+      "title": "Forecasting, Pipeline Analysis, and Responsible Use",
+      "objectives": [
+        "Interpret AI forecasts and deal-health scores critically",
+        "Use AI to spot pipeline risks and prioritize manager attention",
+        "Apply ethics, privacy, and bias safeguards across all AI sales work"
+      ],
+      "body": [
+        "AI forecasting models analyze historical deals, current pipeline signals, and rep behavior to estimate what will close and when. Done well, this is more objective than gut-feel commits and can catch deals slipping before a rep notices. The practitioner skill is interpretation: understand that a forecast is a probability based on patterns, not a promise. When the model and your intuition disagree, treat it as a prompt to investigate the deal, not as a contest to win. The best forecasts blend the models pattern recognition with the reps frontline knowledge of each opportunity.",
+        "Pipeline analysis is where AI shines for managers and reps alike. Models can flag deals with no recent activity, single-threaded relationships, or stage durations that exceed healthy norms, then rank where attention is most needed. This turns a sprawling pipeline into a short list of at-risk deals to work first. Use these flags as questions rather than verdicts: a quiet deal might be progressing offline, and a fast-moving one might be unqualified. The flags direct your focus; your judgment decides the action.",
+        "Every AI sales workflow carries responsibilities that compound at the forecasting layer because decisions about people and resources ride on the output. Watch for bias, where a model trained on past wins may unfairly deprioritize segments that simply had less historical investment. Watch for privacy, ensuring buyer and prospect data is handled within consent and regulation. And watch for over-automation, where reps stop thinking because the dashboard tells them what to do. Responsible practitioners keep humans accountable for decisions that affect customers and colleagues.",
+        "The throughline of this course is that AI is a powerful assistant whose value depends entirely on the judgment of the person using it. Verify facts, edit drafts, review summaries, interpret scores, and protect data. Build repeatable workflows where AI handles speed and scale while you own accuracy, relationships, and ethics. Practitioners who master this balance sell more and build trust, while those who outsource their judgment to the model eventually pay for it in credibility. Let AI do the heavy lifting, and keep your hands on the wheel."
+      ],
+      "keyPoints": [
+        "Read AI forecasts as probabilities to investigate, not promises to defend",
+        "Use pipeline flags to prioritize attention, then apply human judgment to act",
+        "Guard against bias from models trained on uneven historical investment",
+        "Handle buyer and prospect data within consent and privacy regulation",
+        "Keep humans accountable for decisions affecting customers and colleagues"
+      ],
+      "example": "An AI model lowers a deals win probability because activity stalled; instead of accepting the cut, the rep checks in, learns procurement is simply slow, updates the close date, and notes the offline context the model could not see.",
+      "summary": "AI improves forecasting and pipeline triage by surfacing probabilities and risks, but practitioners must interpret outputs critically and uphold bias, privacy, and accountability standards."
+    }
+  ],
+  "questions": [
+    {
+      "text": "Which set of tasks generally offers the highest-value, lowest-risk place to apply AI in the sales workflow?",
+      "options": [
+        "Research, drafting, summarization, and pattern detection",
+        "Final pricing approvals and signing contracts on the reps behalf",
+        "Deciding which customers to fire without review",
+        "Replacing the rep entirely in live buyer conversations"
+      ],
+      "correctIndex": 0,
+      "explanation": "AI excels at accelerating research, first-draft writing, summarizing, and spotting patterns, while final decisions and relationships stay with the human."
+    },
+    {
+      "text": "A generative AI tool returns a prospect brief that names a CFO and a recent acquisition. What should the practitioner do before using these details on a call?",
+      "options": [
+        "Use them immediately since the model sounded confident",
+        "Verify the load-bearing facts against a primary source",
+        "Add even more AI-generated detail to seem thorough",
+        "Forward the brief unedited to the prospect"
+      ],
+      "correctIndex": 1,
+      "explanation": "Generative models can hallucinate confident but false details, so any fact you will rely on should be confirmed against a primary source like the company site or a filing."
+    },
+    {
+      "text": "When an AI account-scoring tool ranks a prospect as high intent, the correct interpretation is that the score is:",
+      "options": [
+        "A guarantee the account is ready to buy now",
+        "Proof you can skip qualification entirely",
+        "An invitation to investigate, not a certainty",
+        "Irrelevant and safe to ignore"
+      ],
+      "correctIndex": 2,
+      "explanation": "Intent and scoring data are probabilistic. A high score should prompt investigation and prioritization, but never replaces qualification."
+    },
+    {
+      "text": "What is the main reason to rewrite AI-drafted outreach in your own voice before sending?",
+      "options": [
+        "It is required by every email provider",
+        "Buyers recognize generic AI phrasing and disengage from it",
+        "Rewriting makes the message longer, which performs better",
+        "It removes the need to verify any claims in the message"
+      ],
+      "correctIndex": 1,
+      "explanation": "Formulaic AI tone is now easy to spot and lands poorly, so editing for an authentic human voice improves response while you still verify all claims."
+    },
+    {
+      "text": "Which practice best prevents AI data enrichment from corrupting your CRM?",
+      "options": [
+        "Automatically overwrite all fields, including human-verified ones",
+        "Enrich every record once and never check it again",
+        "Spot-check enriched data and avoid overwriting verified fields",
+        "Disable enrichment and enter everything manually forever"
+      ],
+      "correctIndex": 2,
+      "explanation": "Enriched data can be stale or wrong, so treating it as a draft layer that is spot-checked, without overwriting human-verified fields, protects data integrity."
+    },
+    {
+      "text": "Why should AI-generated call summaries be reviewed before they become the official record?",
+      "options": [
+        "They are always completely accurate and need no review",
+        "They may miss nuance, misattribute commitments, or smooth over objections",
+        "Reviewing them is only a legal requirement, not a quality one",
+        "Managers prefer summaries that no one has read"
+      ],
+      "correctIndex": 1,
+      "explanation": "Summaries can omit or distort important details, and since they become the trusted record, a quick review prevents costly misremembered deals."
+    },
+    {
+      "text": "A conversation intelligence tool shows a rep spoke 70 percent of a discovery call. The best response is to:",
+      "options": [
+        "Ignore it because metrics do not reflect real selling",
+        "Make one concrete change, such as asking more and listening more",
+        "Stop recording calls to avoid seeing the data",
+        "Increase talk time further to show expertise"
+      ],
+      "correctIndex": 1,
+      "explanation": "The coaching value comes from acting on one or two specific behavior changes, such as shifting toward more listening, rather than ignoring or overreacting to the metric."
+    },
+    {
+      "text": "Before recording a sales call with a conversation intelligence tool, a responsible practitioner should:",
+      "options": [
+        "Record silently because buyers never need to know",
+        "Obtain consent and follow recording laws and company policy",
+        "Record only competitors and hide it from everyone",
+        "Skip security and store recordings on a personal device"
+      ],
+      "correctIndex": 1,
+      "explanation": "Many regions require consent to record, and transparency plus secure storage protects both buyer trust and the organization."
+    },
+    {
+      "text": "How should a practitioner treat an AI forecast or deal-health score that disagrees with their own read of a deal?",
+      "options": [
+        "Always defer to the model since it is data-driven",
+        "Always trust intuition and dismiss the model",
+        "Use the disagreement as a prompt to investigate the deal",
+        "Delete the deal to remove the conflict"
+      ],
+      "correctIndex": 2,
+      "explanation": "A forecast is a probability, not a promise. Disagreement between model and rep is a signal to investigate, blending pattern recognition with frontline knowledge."
+    },
+    {
+      "text": "Which is a genuine bias risk when using AI models trained on historical sales wins?",
+      "options": [
+        "The model may unfairly deprioritize segments that simply had less past investment",
+        "The model becomes more accurate the less data it sees",
+        "Bias is impossible once a model is automated",
+        "Historical data is always perfectly representative of the future"
+      ],
+      "correctIndex": 0,
+      "explanation": "Models learn from past patterns, so segments that received less historical investment can be unfairly scored down, which practitioners must watch for and correct."
+    }
+  ]
+}

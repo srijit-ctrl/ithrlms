@@ -1,0 +1,292 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of AI Across the People Lifecycle",
+      "objectives": [
+        "Explain how AI and machine learning differ from traditional HR automation",
+        "Map common AI use cases to each stage of the employee lifecycle",
+        "Identify where AI adds value versus where human judgment must remain"
+      ],
+      "body": [
+        "Artificial intelligence in HR refers to systems that learn patterns from data to make predictions, recommendations, or generate content, rather than simply following fixed rules. Traditional HR automation moves a known process faster, such as routing an approval. AI goes further by inferring outcomes, for example predicting which candidates resemble past successful hires or which employees may be at risk of leaving. Understanding this distinction matters because learned systems carry the assumptions and imbalances of their training data, which is why responsible practitioners treat AI outputs as informed suggestions rather than final verdicts about people.",
+        "The people lifecycle spans attraction, sourcing, screening, selection, onboarding, engagement, learning and development, performance, and offboarding. AI now touches nearly every stage. Sourcing tools surface passive candidates, screening models rank applicants, chatbots answer onboarding questions, sentiment tools read engagement signals, and adaptive platforms personalize learning. Seeing the lifecycle as a whole helps practitioners avoid optimizing one stage at the expense of fairness or experience elsewhere, and it clarifies where data flows between systems in ways that create both efficiency and risk.",
+        "A useful framing is to ask what kind of task the AI performs: prediction, ranking, classification, generation, or retrieval. Each carries different stakes. A retrieval chatbot answering policy questions is low risk, while a model that ranks applicants or flags performance concerns is high risk because it shapes consequential decisions about a person. Practitioners should match oversight to stakes, applying lighter governance to low risk assistive tools and rigorous review, testing, and human sign off to anything that influences hiring, pay, promotion, or termination.",
+        "Generative AI has accelerated adoption because it lowers the skill barrier. An HR team can draft job descriptions, summarize interview notes, or build training outlines in minutes. Yet generative tools can fabricate facts, reproduce stereotypes, and leak confidential inputs. The practitioner role is to capture the productivity gains while installing guardrails: verifying outputs, protecting sensitive data, and keeping a human accountable for every decision that affects an employee or applicant."
+      ],
+      "keyPoints": [
+        "AI learns from data and predicts; automation follows fixed rules",
+        "AI now touches every lifecycle stage from sourcing to offboarding",
+        "Match oversight to stakes: higher risk tasks need stronger human review",
+        "Classify tools by task type to judge their risk and required controls",
+        "Generative AI boosts productivity but can fabricate, bias, and leak data",
+        "A human must remain accountable for consequential people decisions"
+      ],
+      "example": "A mid sized employer maps its hiring funnel and finds an AI resume ranker feeding interview shortlists. Because the tool influences who gets hired, it is classified as high risk and assigned monthly bias testing plus mandatory recruiter review, while the onboarding FAQ chatbot is treated as low risk with lighter monitoring.",
+      "summary": "AI spans the entire people lifecycle, and practitioners must distinguish learned prediction from simple automation and match governance to the stakes of each use case."
+    },
+    {
+      "order": 2,
+      "title": "AI in Sourcing and Candidate Screening",
+      "objectives": [
+        "Describe how AI sourcing and screening tools work and where they fail",
+        "Recognize sources of bias in candidate matching and ranking models",
+        "Apply practical safeguards to keep AI assisted screening defensible"
+      ],
+      "body": [
+        "AI sourcing tools scan resumes, profiles, and internal talent pools to surface candidates who match a role. Screening models then score or rank applicants, often by learning what past hires looked like. The convenience is real: recruiters can review larger pools faster. The danger is that learning from historical hiring data teaches the model to favor whoever was hired before. If past hiring skewed toward a particular gender, school, or demographic, the model can quietly perpetuate that pattern while appearing neutral and data driven.",
+        "Bias enters through several doors. Training data reflects historical decisions that may have been biased. Proxy variables such as zip code, hobbies, or graduation year can stand in for protected characteristics like race or age. Feature selection can overweight credentials that correlate with privilege rather than performance. Even resume parsing can disadvantage non standard career paths or names. Practitioners should assume bias is present until tested, rather than trusting a vendor claim that an algorithm is objective because it uses math.",
+        "Defensible screening rests on a few habits. Validate that the traits the model rewards actually predict job performance, not just resemblance to past hires. Test outcomes across demographic groups to detect adverse impact, commonly using a four fifths style comparison of selection rates. Keep humans reviewing borderline and rejected candidates rather than auto rejecting. Document the tool, its purpose, and its monitoring so the process can withstand scrutiny from candidates, auditors, or regulators who may ask how a decision was reached.",
+        "Transparency with candidates is increasingly expected and sometimes required. Several jurisdictions now mandate notice when automated tools assess applicants, and some require bias audits before use. Beyond compliance, clear communication builds trust: telling candidates that AI assists screening, offering a path to human review, and avoiding intrusive video or voice analysis that lacks validation. The goal is a process that is faster and fairer, not one that simply hides human bias behind an opaque score."
+      ],
+      "keyPoints": [
+        "Screening models trained on past hires can replicate historical bias",
+        "Proxy variables can encode protected traits even without using them directly",
+        "Validate that rewarded traits predict performance, not similarity to past hires",
+        "Test selection rates across groups to detect adverse impact",
+        "Keep human review for borderline and rejected candidates",
+        "Provide candidate notice and a route to human review where required"
+      ],
+      "example": "A recruiting team adopts an AI ranker and runs a quarterly adverse impact check. They find female applicants are selected at sixty percent of the male rate, below the four fifths threshold. They pause auto shortlisting, retrain on validated competencies, and add recruiter review before any candidate is rejected.",
+      "summary": "AI screening can expand reach but easily inherits historical bias, so practitioners must validate predictive relevance, test for adverse impact, retain human review, and inform candidates."
+    },
+    {
+      "order": 3,
+      "title": "AI for Onboarding and the Early Employee Experience",
+      "objectives": [
+        "Identify effective AI applications in onboarding and early tenure",
+        "Balance personalization and efficiency with privacy and inclusion",
+        "Design onboarding chatbots and workflows that escalate to humans appropriately"
+      ],
+      "body": [
+        "Onboarding is where new hires form lasting impressions, and AI can make it smoother. Chatbots answer common questions about benefits, policies, and first week logistics around the clock. Workflow tools provision accounts, schedule training, and nudge managers to complete tasks. Personalization engines tailor onboarding paths by role, location, or experience level. Done well, these tools reduce administrative load on HR and give new employees faster, more consistent answers, freeing human attention for the relational parts of welcoming someone into a team.",
+        "Personalization must not become exclusion. If onboarding content assumes fluent reading of one language, full mobility, or familiarity with corporate norms, AI driven personalization can widen gaps for employees with disabilities, newcomers, or non native speakers. Practitioners should ensure chatbots offer accessible formats, plain language, and multilingual support, and that automated paths do not quietly steer groups toward different opportunities. Inclusive onboarding treats personalization as a way to meet diverse needs, not as a way to sort people into narrower experiences.",
+        "Privacy deserves early attention because onboarding collects sensitive information: identity documents, banking details, emergency contacts, and sometimes health or accommodation data. When AI tools ingest this data, practitioners must confirm what is stored, who can access it, how long it is retained, and whether it trains vendor models. New hires should receive clear notice of how their data is used. Minimizing collection and restricting downstream use protects both the employee and the organization from avoidable exposure and regulatory risk.",
+        "Good design keeps humans in the loop. Chatbots should recognize their limits and escalate emotional, ambiguous, or high stakes questions to a person, such as concerns about pay errors, harassment, or accommodation needs. A new hire who feels stuck with an unhelpful bot disengages quickly. Clear escalation paths, a named human contact, and prompt follow up signal that automation supports the relationship rather than replacing it, which is essential during the fragile first weeks of employment."
+      ],
+      "keyPoints": [
+        "AI smooths onboarding through chatbots, provisioning, and personalized paths",
+        "Personalization must include accessible, plain language, multilingual options",
+        "Onboarding data is sensitive; confirm storage, access, retention, and training use",
+        "Give new hires clear notice of how their data is handled",
+        "Chatbots should escalate emotional or high stakes questions to humans",
+        "A named human contact reassures new hires during early tenure"
+      ],
+      "example": "A company deploys an onboarding chatbot that handles benefits and policy questions in three languages. When a new hire types that their first paycheck looks wrong, the bot stops guessing and routes the conversation to a payroll specialist within the hour, logging the issue for follow up.",
+      "summary": "AI can make onboarding faster and more consistent, but only when personalization stays inclusive, sensitive data is protected, and chatbots escalate the human moments to people."
+    },
+    {
+      "order": 4,
+      "title": "AI for Employee Engagement and Sentiment",
+      "objectives": [
+        "Explain how AI measures engagement and sentiment from employee signals",
+        "Weigh the benefits of continuous listening against surveillance concerns",
+        "Establish ethical boundaries for monitoring and sentiment analysis"
+      ],
+      "body": [
+        "AI engagement tools move beyond annual surveys toward continuous listening. Natural language processing reads open ended survey comments at scale, clustering themes and flagging shifts in tone. Pulse platforms analyze response patterns to predict morale or turnover risk. Some tools attempt sentiment analysis on internal communications. The promise is earlier insight: spotting a struggling team before attrition spikes. The peril is that the same techniques can drift into surveillance, eroding the trust that genuine engagement depends on in the first place.",
+        "Sentiment analysis is imperfect and should be handled with humility. Models misread sarcasm, cultural expression, and context, and they can mislabel candid feedback as negativity. Aggregating signals across a team is generally safer than scoring individuals, because individual sentiment scoring invites misuse and chills honest speech. Practitioners should treat AI sentiment output as a prompt for human conversation, not as a verdict on a person, and should validate that the tool actually reflects employee experience rather than noise.",
+        "The line between listening and surveillance is set by consent, transparency, and proportionality. Employees should know what is analyzed, why, and how results are used. Monitoring private messages, keystrokes, or location without clear justification damages trust and may breach law in many regions. Responsible practice favors voluntary, anonymized, aggregate feedback over covert tracking. When in doubt, ask whether employees would feel respected if they saw exactly what the tool does, and design accordingly rather than retrofitting consent afterward.",
+        "Acting on engagement data is where value is realized or lost. Collecting sentiment without visible follow up breeds cynicism and lowers future participation. Practitioners should close the loop by sharing themes, explaining actions taken, and protecting anonymity so small teams cannot be deanonymized. The aim is a listening system that strengthens the relationship between people and the organization, using AI to surface patterns humans then interpret, discuss, and address with genuine intent."
+      ],
+      "keyPoints": [
+        "AI enables continuous listening through NLP and pulse analytics",
+        "Sentiment models misread context; prefer aggregate over individual scoring",
+        "Consent, transparency, and proportionality separate listening from surveillance",
+        "Covert monitoring of messages or keystrokes erodes trust and may breach law",
+        "Protect anonymity, especially in small teams that are easy to deanonymize",
+        "Close the loop by sharing themes and acting, or participation will fall"
+      ],
+      "example": "An HR team uses NLP to cluster comments from a quarterly pulse survey and notices rising frustration about workload in one department. Rather than scoring individuals, they share the aggregate theme with leaders, hold listening sessions, and report back on changes, which lifts the next survey response rate.",
+      "summary": "AI engagement tools offer earlier insight but risk becoming surveillance, so practitioners must favor consent, aggregation, and transparent action over covert individual monitoring."
+    },
+    {
+      "order": 5,
+      "title": "AI in Learning and Development",
+      "objectives": [
+        "Describe how AI personalizes learning and identifies skill gaps",
+        "Evaluate risks of bias and narrowing in recommendation driven development",
+        "Use AI to support reskilling without undermining equity of opportunity"
+      ],
+      "body": [
+        "AI is reshaping learning and development by personalizing content and surfacing skill gaps. Adaptive platforms adjust difficulty and sequence to each learner, recommendation engines suggest courses based on role and history, and generative tools draft training materials and quizzes quickly. Skills inference engines analyze work and credentials to build skills profiles, helping organizations see capability gaps and plan reskilling. For practitioners facing rapid change, AI offers a way to scale development that once required heavy manual curation and one size fits all programs.",
+        "Recommendation systems carry a quiet risk of narrowing opportunity. If a model recommends learning mainly based on a person current role or past behavior, it can lock people into existing tracks and steer development along demographic lines that mirror historical patterns. An employee never shown leadership content is less likely to pursue it. Practitioners should audit recommendations for equity, ensure stretch and cross functional options remain visible to everyone, and avoid letting algorithmic personalization quietly ration access to growth.",
+        "Skills inference is powerful but only as good as its data and definitions. If the system infers skills from job titles or activity that vary by team, it may undervalue capabilities of people in less visible roles or those who took career breaks. Generative content can also embed outdated or biased examples. Practitioners should validate skills models against real performance, let employees correct their own profiles, and review generated material for accuracy and inclusion before it reaches learners as authoritative.",
+        "Used well, AI supports reskilling at the scale modern workforces need. It can map an employee from a declining role toward adjacent growing roles, recommend a concrete learning path, and track progress. The practitioner adds judgment: confirming the target roles are genuinely available, ensuring access is equitable across the workforce, and pairing AI guidance with human coaching and managerial support. Technology identifies the path; people provide the motivation, context, and opportunity that make development actually happen."
+      ],
+      "keyPoints": [
+        "AI personalizes learning and infers skills to target development",
+        "Recommendation engines can narrow opportunity and reinforce existing tracks",
+        "Keep stretch and cross functional learning visible to all employees",
+        "Validate skills inference against performance and let employees correct profiles",
+        "Review generated training content for accuracy and inclusion",
+        "Pair AI guidance with human coaching and real opportunity for reskilling"
+      ],
+      "example": "A retailer uses AI to map cashiers toward growing inventory analyst roles, generating a learning path for each. HR audits the recommendations and finds older workers were rarely shown the analyst track, so they adjust the model and promote the path equally, broadening who reskills.",
+      "summary": "AI scales personalized learning and reskilling, but practitioners must guard against recommendation systems narrowing opportunity and validate skills models for fairness."
+    },
+    {
+      "order": 6,
+      "title": "People Analytics, Bias, and Fairness",
+      "objectives": [
+        "Interpret common people analytics outputs and their limitations",
+        "Define key fairness concepts and methods for detecting bias",
+        "Apply governance practices that make predictive HR models defensible"
+      ],
+      "body": [
+        "People analytics applies data to workforce questions: who is likely to leave, which factors predict performance, where pay gaps exist. AI extends this with predictive models that forecast outcomes such as attrition risk. These insights can guide retention and planning, but they also describe people probabilistically, which demands care. A model that labels an employee high flight risk should inform a supportive conversation, not a self fulfilling decision to disinvest in that person. Correlation in workforce data is rarely the same as cause.",
+        "Fairness has multiple, sometimes competing definitions. Demographic parity asks whether outcomes are equal across groups; equal opportunity asks whether qualified people are treated equally regardless of group. A model cannot always satisfy every fairness criterion at once, so practitioners must choose definitions that fit the context and legal frame, and document the choice. Detecting bias involves comparing model outcomes and errors across protected groups, testing for adverse impact, and probing whether features act as proxies for characteristics like race, age, or sex.",
+        "Several pitfalls recur in predictive HR. Small or skewed datasets produce unstable, unreliable predictions. Target variables can be biased, for example training on past promotions that reflected favoritism. Models can be accurate overall yet unfair to a subgroup. Practitioners should insist on validation, subgroup error analysis, and clear limits on how predictions are used. A prediction should never be the sole basis for a consequential decision about pay, promotion, discipline, or termination without human review and a documented rationale.",
+        "Governance turns good intentions into defensible practice. This means inventorying models, documenting their purpose, data, and known limitations, assigning human accountability, monitoring for drift, and enabling individuals to contest decisions. Emerging regulation increasingly requires impact assessments and bias audits for high risk HR systems. Building these habits before they are mandated protects employees from harm and the organization from legal and reputational damage, while keeping the analytics genuinely useful rather than a black box no one can explain."
+      ],
+      "keyPoints": [
+        "Predictive HR models describe probability, not destiny, and need careful use",
+        "Fairness definitions can conflict; choose and document the right one",
+        "Detect bias via subgroup outcome and error analysis and proxy checks",
+        "Biased target variables and small datasets undermine model reliability",
+        "Never base a consequential decision solely on a prediction",
+        "Govern models with inventory, documentation, monitoring, and contestability"
+      ],
+      "example": "An analytics team builds an attrition model and tests it by subgroup, finding it flags employees returning from parental leave as high risk because of a biased target. They remove the misleading feature, document the fix, and route any flag to a manager conversation rather than an automated action.",
+      "summary": "People analytics offers powerful workforce insight, but practitioners must navigate competing fairness definitions, test for bias, and govern models so predictions never drive decisions unchecked."
+    },
+    {
+      "order": 7,
+      "title": "Responsible, Compliant, and Practical AI Adoption",
+      "objectives": [
+        "Summarize key privacy and AI regulations relevant to HR",
+        "Build an AI governance and vendor due diligence approach for HR",
+        "Develop responsible use practices employees and HR can follow daily"
+      ],
+      "body": [
+        "Responsible AI in HR sits within a thickening web of regulation. Data protection laws such as the GDPR grant rights to notice, access, and contesting automated decisions, and restrict processing of sensitive data. Equal employment laws prohibit discriminatory outcomes regardless of whether a human or algorithm produced them. Newer rules, including the EU AI Act and local measures requiring bias audits for hiring tools, treat many HR uses as high risk. Practitioners need not be lawyers, but they must know which obligations apply and involve legal counsel early.",
+        "Vendor due diligence is a core practitioner skill because most HR AI is bought, not built. Before adoption, ask how the model was trained, what data it uses, whether it has been tested for bias, how outputs are explained, where data is stored, and whether inputs train the vendor model. Require contractual commitments on data protection, audit support, and accountability. A confident sales claim that a tool is unbiased or fully compliant is not evidence; documentation, independent testing, and clear data terms are.",
+        "Internal governance gives the organization a backbone for responsible use. A practical structure includes an AI use inventory, a risk classification process, defined human oversight for high risk uses, privacy and impact assessments, and a channel for employees to raise concerns or contest decisions. Cross functional ownership across HR, legal, IT, and security prevents gaps. Governance should be proportionate, lighter for low risk assistive tools and rigorous for anything affecting hiring, pay, or jobs, so it protects people without paralyzing useful innovation.",
+        "Day to day responsible use comes down to clear habits everyone can follow. Never paste confidential employee or candidate data into public generative tools. Verify AI generated content for accuracy and bias before relying on it. Keep a human accountable for every consequential decision. Be transparent with candidates and employees about where AI is used. Document decisions so they can be explained later. These simple practices, repeated consistently, are what turn responsible AI from a policy statement into a lived reality across the HR function."
+      ],
+      "keyPoints": [
+        "HR AI must satisfy privacy, anti discrimination, and emerging AI laws",
+        "Many HR uses are treated as high risk and may require bias audits",
+        "Vendor due diligence demands evidence on training, testing, and data terms",
+        "Maintain an AI inventory with risk classification and human oversight",
+        "Never paste confidential data into public generative tools",
+        "Verify outputs, keep humans accountable, and be transparent and documented"
+      ],
+      "example": "Before buying an AI interview tool, an HR leader requests the vendor bias audit, asks where candidate data is stored and whether it trains the vendor model, and loops in legal. The vendor cannot show testing evidence, so the company declines and chooses a tool with documented audits and a no training clause.",
+      "summary": "Responsible HR AI combines awareness of privacy and anti discrimination law, rigorous vendor due diligence, proportionate governance, and simple daily habits that keep humans accountable and data protected."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What most clearly distinguishes AI from traditional HR automation?",
+      "options": [
+        "AI learns patterns from data to make predictions, while automation follows fixed rules",
+        "AI is always faster than automation in every task",
+        "Automation can only run overnight, while AI runs continuously",
+        "AI never requires any human oversight once deployed"
+      ],
+      "correctIndex": 0,
+      "explanation": "AI infers outcomes by learning from data, whereas automation executes predefined rules. This is why AI can carry hidden bias from its training data and needs oversight."
+    },
+    {
+      "text": "Why can an AI screening model trained on past successful hires perpetuate bias?",
+      "options": [
+        "Because it learns to favor whoever was hired before, replicating historical patterns",
+        "Because it always ignores candidate qualifications entirely",
+        "Because mathematical models are inherently incapable of ranking people",
+        "Because it can only process resumes written in one language"
+      ],
+      "correctIndex": 0,
+      "explanation": "Learning from historical hiring data teaches the model to reward resemblance to past hires, so any prior skew is reproduced even though the output looks objective."
+    },
+    {
+      "text": "What is a proxy variable in the context of biased screening?",
+      "options": [
+        "A neutral seeming feature like zip code that stands in for a protected characteristic",
+        "A backup server used when the main model fails",
+        "A variable that always improves model accuracy",
+        "A field that candidates fill in on behalf of recruiters"
+      ],
+      "correctIndex": 0,
+      "explanation": "Proxy variables such as zip code or graduation year can correlate with race, age, or other protected traits, encoding bias even when the trait itself is not used."
+    },
+    {
+      "text": "When an onboarding chatbot receives an emotional or high stakes question, what is best practice?",
+      "options": [
+        "Escalate the conversation to a human and log it for follow up",
+        "Guess the best answer to avoid bothering staff",
+        "Tell the employee to search the policy site alone",
+        "Close the chat to save the interaction time"
+      ],
+      "correctIndex": 0,
+      "explanation": "Chatbots should recognize their limits and route emotional or consequential issues, like pay errors or harassment, to a named human, preserving trust during early tenure."
+    },
+    {
+      "text": "Why is aggregate sentiment analysis generally safer than scoring individuals?",
+      "options": [
+        "Individual scoring invites misuse and chills honest employee speech",
+        "Aggregation is the only method that any software supports",
+        "Individual scores are always perfectly accurate and so unnecessary",
+        "Aggregation removes the need for any employee consent"
+      ],
+      "correctIndex": 0,
+      "explanation": "Sentiment models misread context, and scoring individuals encourages misuse and discourages candor. Aggregate themes prompt human conversation without targeting people."
+    },
+    {
+      "text": "What separates legitimate continuous listening from surveillance?",
+      "options": [
+        "Consent, transparency, and proportionality in what is analyzed and why",
+        "The brand of software used to collect the data",
+        "Whether the data is stored in the cloud or on premises",
+        "How quickly leaders read the resulting dashboards"
+      ],
+      "correctIndex": 0,
+      "explanation": "Listening becomes surveillance without consent, transparency, and proportionality. Covert monitoring of messages or keystrokes erodes trust and may breach law."
+    },
+    {
+      "text": "How can AI learning recommendation engines unintentionally harm equity?",
+      "options": [
+        "By narrowing opportunity and locking people into their existing tracks",
+        "By making every course available to absolutely everyone at once",
+        "By eliminating the need for any human coaching",
+        "By only ever recommending leadership content to new hires"
+      ],
+      "correctIndex": 0,
+      "explanation": "If recommendations rest on current role and past behavior, they can steer development along existing lines, hiding growth options from some groups and rationing opportunity."
+    },
+    {
+      "text": "Why should a high flight risk attrition prediction not drive an automatic decision?",
+      "options": [
+        "It is probabilistic and may be wrong or based on a biased target variable",
+        "Attrition models are illegal in every jurisdiction",
+        "Predictions are always correct so no action is ever needed",
+        "Employees cannot legally be retained once flagged"
+      ],
+      "correctIndex": 0,
+      "explanation": "Predictions describe probability, not destiny, and can rest on biased targets. They should inform a supportive human conversation, never a sole basis for consequential action."
+    },
+    {
+      "text": "Two fairness definitions, demographic parity and equal opportunity, sometimes conflict. What should a practitioner do?",
+      "options": [
+        "Choose the definition that fits the context and legal frame and document it",
+        "Ignore fairness metrics since they cannot all be satisfied",
+        "Always pick demographic parity regardless of context",
+        "Let the vendor decide fairness without any documentation"
+      ],
+      "correctIndex": 0,
+      "explanation": "Because a model cannot satisfy every fairness criterion at once, practitioners must select the appropriate definition for the context and legal frame and document the choice."
+    },
+    {
+      "text": "Which is a sound daily responsible use habit for HR staff using generative AI?",
+      "options": [
+        "Never paste confidential employee or candidate data into public generative tools",
+        "Trust all AI output without verification to save time",
+        "Remove humans from consequential decisions for speed",
+        "Hide from candidates that AI is used in the process"
+      ],
+      "correctIndex": 0,
+      "explanation": "Confidential data can leak or train vendor models, so it should never go into public tools. Verifying outputs, keeping humans accountable, and transparency are core habits."
+    }
+  ]
+}

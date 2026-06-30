@@ -1,0 +1,291 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of AI in Legal Practice",
+      "objectives": [
+        "Distinguish generative AI from traditional rules-based legal technology",
+        "Map common legal workflows where AI delivers measurable value",
+        "Recognize the core risks that frame every AI legal use case"
+      ],
+      "body": [
+        "Artificial intelligence in legal practice spans a spectrum. On one end sit deterministic, rules-based tools such as document assembly templates and clause libraries that behave predictably every time. On the other end sit large language models that generate fluent text by predicting likely word sequences rather than retrieving verified facts. A practitioner must understand which type of system is producing an output, because the failure modes differ sharply. Rules-based tools fail visibly when a rule is missing, while generative models can fail invisibly by producing confident but fabricated content.",
+        "Generative AI earns its place in legal work because it compresses time on tasks that are language-heavy and pattern-rich. Summarizing a long agreement, drafting a first-pass clause, clustering thousands of documents by theme, and surfacing relevant authority are all activities where a model accelerates the human. The value is in the draft and the triage, not the final judgment. Treating model output as a starting point rather than an answer is the single most important mental habit an intermediate practitioner can build.",
+        "Every legal AI use case sits on top of three persistent risks: accuracy, confidentiality, and accountability. Accuracy is threatened by hallucination, where a model invents citations or misstates holdings. Confidentiality is threatened when privileged or sensitive material is sent to systems that may log, train on, or expose it. Accountability is threatened when a lawyer cannot explain or stand behind the work product. These three risks recur in every later module, so understanding them now creates a stable foundation.",
+        "Professional responsibility rules do not change because a machine drafted the text. Duties of competence, confidentiality, and candor to the tribunal continue to bind the lawyer who signs the work. Competence now includes a reasonable understanding of the benefits and limits of the technology used. This means a practitioner cannot delegate judgment to a tool and disclaim responsibility for the result. The human remains the accountable author of anything produced with AI assistance."
+      ],
+      "keyPoints": [
+        "Rules-based tools fail visibly; generative models can fail invisibly with confident fabrication",
+        "AI excels at drafting, summarizing, clustering, and triage, not final judgment",
+        "Three recurring risks frame every use case: accuracy, confidentiality, accountability",
+        "Duties of competence, confidentiality, and candor apply unchanged to AI-assisted work",
+        "Model output is a starting point, never a finished answer"
+      ],
+      "example": "A litigation associate uses a generative model to produce a first-draft summary of a sixty-page deposition transcript, then verifies every cited line against the original before relying on the summary in a case memo.",
+      "summary": "AI in legal practice ranges from predictable rules-based tools to generative models prone to invisible failure, and its value lies in accelerating drafting and triage while the lawyer retains accountability for accuracy and confidentiality."
+    },
+    {
+      "order": 2,
+      "title": "AI-Assisted Contract Review and Drafting",
+      "objectives": [
+        "Apply AI to clause extraction, risk flagging, and first-draft generation",
+        "Build a verification routine that catches model errors before they reach a counterparty",
+        "Calibrate when AI assistance is appropriate versus when human-only drafting is required"
+      ],
+      "body": [
+        "Contract review is one of the strongest fits for AI because contracts are structured, repetitive, and full of recognizable patterns. A model can extract key terms such as governing law, term length, renewal mechanics, limitation of liability, and indemnification, then present them in a comparison table. It can also flag clauses that deviate from a firm playbook or that are missing entirely. This turns a slow manual scan into a guided review where the lawyer spends attention on the deviations that matter rather than re-reading boilerplate.",
+        "On the drafting side, generative models can produce first-pass clauses from a plain-language instruction, propose alternative phrasings, and tighten verbose language. The practical workflow is to draft against a known-good template or playbook, then let the model adapt language to the deal facts. The danger is that fluent output can mask substantive gaps. A confidently worded indemnity may omit a carve-out, invert a cap, or import a standard from the wrong jurisdiction, and none of these errors announce themselves on the page.",
+        "A disciplined verification routine is what separates safe use from negligent use. Every extracted term should be checked against the source clause, every drafted provision should be read against the playbook position, and every defined term should be traced to ensure consistency. Numbers, dates, party names, and cross-references deserve special scrutiny because models are weak at arithmetic and at maintaining internal references across a long document. Verification is not optional polish; it is the substantive legal work.",
+        "Some drafting tasks should remain human-led. Novel deal structures, heavily negotiated bespoke provisions, and clauses with significant tail risk benefit from human authorship because the model has no real understanding of the parties commercial intent. AI is best deployed on the high-volume, lower-variance portions of an agreement, freeing the lawyer to concentrate judgment where it changes outcomes. Knowing where to draw that line is a core practitioner skill."
+      ],
+      "keyPoints": [
+        "AI excels at clause extraction, playbook-deviation flagging, and first-draft generation",
+        "Fluent output can hide missing carve-outs, inverted caps, and wrong-jurisdiction standards",
+        "Verify every term against source, every clause against the playbook, every cross-reference",
+        "Models are weak at arithmetic, dates, and internal references across long documents",
+        "Reserve novel structures and high-tail-risk provisions for human-led drafting",
+        "Use AI on high-volume, low-variance contract work to free human judgment"
+      ],
+      "example": "Reviewing a vendor master services agreement, a practitioner has the model extract liability caps and indemnities into a comparison grid against the firm playbook, then manually confirms each flagged deviation against the actual clause text before redlining.",
+      "summary": "Contracts suit AI because they are structured and repetitive, but fluent drafts can hide substantive gaps, so a disciplined verification routine against source and playbook is the real legal work."
+    },
+    {
+      "order": 3,
+      "title": "Legal Research and the Hallucination Problem",
+      "objectives": [
+        "Explain why language models fabricate citations and misstate authority",
+        "Differentiate open-web models from retrieval-grounded legal research tools",
+        "Adopt a citation-verification protocol that prevents reliance on fabricated authority"
+      ],
+      "body": [
+        "Hallucination is the most consequential risk in AI legal research. A language model generates text by predicting plausible sequences, not by consulting an authoritative database, so it can produce case names, citations, and quotations that look perfectly formatted yet do not exist. Courts have sanctioned lawyers who filed briefs containing fabricated cases generated by AI. The lesson is blunt: a citation that has not been independently confirmed in a primary source has not been verified, regardless of how authentic it appears on the screen.",
+        "Not all legal AI tools carry the same hallucination risk. Retrieval-augmented systems ground their answers in a curated corpus of actual cases, statutes, and regulations, then cite the specific documents they drew from. These tools reduce, but do not eliminate, fabrication risk because the model can still mischaracterize a real source or stitch together passages misleadingly. A general open-web chatbot with no grounding is far riskier for legal research and should never be the basis for an authority cited to a tribunal.",
+        "A practitioner needs a fixed verification protocol rather than ad hoc spot-checks. Every case must be confirmed to exist in a recognized reporter or database, its holding must be read in the original, and its current status must be checked to ensure it has not been reversed, overruled, or superseded. Quotations must be matched character for character against the source. This protocol applies even when the tool claims to be grounded, because the duty to verify rests with the lawyer, not the vendor.",
+        "Used well, AI still transforms research productivity. It can rapidly surface candidate authorities, summarize doctrinal landscapes, and suggest search avenues a researcher might miss. The correct posture is to treat the model as a fast but unreliable junior assistant whose every factual assertion must be checked. This combination of speed in discovery and rigor in verification delivers the genuine benefit while closing off the catastrophic failure of citing authority that does not exist."
+      ],
+      "keyPoints": [
+        "Models predict plausible text, so they can fabricate realistic but nonexistent citations",
+        "Courts have sanctioned lawyers for filing AI-generated fake cases",
+        "Retrieval-grounded tools lower but do not eliminate fabrication and mischaracterization risk",
+        "Confirm every case exists, read the holding, and check it is still good law",
+        "Match quotations character for character against the primary source",
+        "The duty to verify authority rests with the lawyer, never the vendor"
+      ],
+      "example": "Before citing three cases an AI tool surfaced for a summary judgment brief, an attorney pulls each opinion from a primary database, reads the holdings, runs a citator to confirm none were overruled, and verifies the quoted language word for word.",
+      "summary": "Language models can fabricate convincing but nonexistent authority, so legal research requires retrieval-grounded tools plus a fixed protocol that confirms existence, holding, current status, and quotations in primary sources."
+    },
+    {
+      "order": 4,
+      "title": "Confidentiality, Privilege, and Data Governance",
+      "objectives": [
+        "Identify how AI tools can expose privileged and confidential client information",
+        "Evaluate vendor data handling terms against professional confidentiality duties",
+        "Implement intake controls that keep sensitive material out of unsafe systems"
+      ],
+      "body": [
+        "Confidentiality is where careless AI use can quietly cause the most damage. When a lawyer pastes client material into a consumer AI service, that text may be transmitted to third-party servers, logged, retained, reviewed by human moderators, or used to train future models. Each of these possibilities can breach the duty of confidentiality and, in some configurations, risk waiving attorney-client privilege by disclosing protected information to an outside party. The convenience of a quick query can carry consequences that are difficult to reverse.",
+        "Privilege deserves separate attention because its protection depends on confidentiality being maintained. Privilege can be waived when privileged content is shared with a third party who is not within the circle of confidentiality. Whether a given AI vendor counts as such a third party depends on the contract, the data flows, and the jurisdiction. A practitioner cannot assume a tool is safe simply because it is marketed to lawyers; the governing terms and the actual technical handling of data determine the exposure.",
+        "Vendor evaluation is therefore a substantive compliance task. Key questions include whether inputs are used for training, how long data is retained, whether data is encrypted in transit and at rest, where servers are located, who can access the data, and whether the vendor offers contractual confidentiality and a zero-retention or no-training option. Enterprise legal-grade offerings frequently provide these protections, while consumer tiers often do not. The answers should be documented and matched to the sensitivity of the matter.",
+        "Practical governance turns these principles into routine controls. Firms should classify data by sensitivity, restrict which tools may touch privileged material, and train staff to anonymize or redact identifiers before using lower-assurance tools. An intake checklist that asks what is being entered, into which system, and under what terms prevents the most common breaches. Governance is not bureaucracy for its own sake; it is the operational expression of a duty that predates the technology."
+      ],
+      "keyPoints": [
+        "Consumer AI services may log, retain, train on, or expose pasted client material",
+        "Disclosing privileged content to an outside party can waive privilege",
+        "A tool being marketed to lawyers does not by itself make it confidentiality-safe",
+        "Evaluate training use, retention, encryption, access, location, and contractual terms",
+        "Classify data by sensitivity and restrict which tools may touch privileged matter",
+        "An intake checklist on what, where, and under what terms prevents common breaches"
+      ],
+      "example": "A firm configures an enterprise legal AI platform with a no-training and zero-retention agreement for privileged work, while a separate policy bars staff from entering any client-identifying information into free consumer chatbots.",
+      "summary": "Pasting client material into unvetted AI tools can breach confidentiality and waive privilege, so practitioners must evaluate vendor data handling and enforce intake controls matched to data sensitivity."
+    },
+    {
+      "order": 5,
+      "title": "AI in Due Diligence and E-Discovery",
+      "objectives": [
+        "Deploy AI to accelerate document review across large diligence and discovery sets",
+        "Understand technology-assisted review, predictive coding, and defensibility",
+        "Maintain human oversight and proportionality in high-volume review workflows"
+      ],
+      "body": [
+        "Due diligence and e-discovery share a defining feature: enormous document volumes that no team can read line by line within realistic deadlines. AI addresses this by clustering similar documents, surfacing key provisions, detecting anomalies, and ranking material by likely relevance. In a corporate acquisition, a model can rapidly identify change-of-control clauses, assignment restrictions, and unusual terms across hundreds of contracts, letting the team focus human review on the items that bear on deal value and risk.",
+        "Technology-assisted review, often called predictive coding, is the established practice in e-discovery. A reviewer trains the system by coding a sample of documents as relevant or not, the model generalizes from those decisions, and the population is prioritized accordingly. Courts in many jurisdictions have accepted these methods as reasonable and proportionate. Their defensibility, however, depends on a sound process: representative training, validation through sampling, measurable recall, and documentation that the methodology can withstand challenge.",
+        "Newer generative approaches add capabilities such as natural-language querying of a document set and automated issue summaries, but they reintroduce hallucination risk. A generative summary of a custodian email collection may assert facts that are not supported by the underlying documents. For this reason, generative output in discovery should be treated as a lead to verify rather than a finding, and any representation made to a court or counterparty must trace back to the actual source documents.",
+        "Human oversight and proportionality remain the governing principles. The lawyer signing discovery responses certifies a reasonable inquiry, which cannot be delegated wholesale to an algorithm. Proportionality requires matching the review effort and tooling to the stakes of the matter. A practitioner should be able to explain why a given method was chosen, how its quality was measured, and where humans intervened. Defensible AI-assisted review is as much about documented process as about the technology itself."
+      ],
+      "keyPoints": [
+        "AI clusters, ranks, and flags documents so teams focus on high-value items",
+        "Technology-assisted review and predictive coding are accepted when the process is sound",
+        "Defensibility rests on representative training, validation sampling, and documentation",
+        "Generative summaries reintroduce hallucination risk and must trace to source documents",
+        "The certifying lawyer cannot delegate the reasonable-inquiry duty to an algorithm",
+        "Proportionality means matching tooling and effort to the stakes of the matter"
+      ],
+      "example": "In M&A diligence, a team uses AI to flag every change-of-control and anti-assignment clause across four hundred target contracts, then has associates verify each flagged clause and document the methodology for the closing memo.",
+      "summary": "AI makes high-volume diligence and discovery feasible through clustering and predictive coding, but defensibility depends on validated process, source-traceable findings, and undelegated human oversight."
+    },
+    {
+      "order": 6,
+      "title": "AI for Regulatory Compliance and Monitoring",
+      "objectives": [
+        "Use AI to track regulatory change and map obligations to controls",
+        "Recognize the limits of AI in interpreting ambiguous or evolving rules",
+        "Design compliance workflows that pair AI monitoring with human decision authority"
+      ],
+      "body": [
+        "Compliance work is a natural fit for AI because regulations are voluminous, frequently amended, and spread across many sources. AI tools can monitor regulatory feeds, summarize new rules, and alert teams when an obligation changes. They can also help map obligations to internal controls, so a compliance officer sees which policies and processes respond to which requirement. This shifts the team from reactive scrambling toward a maintained, queryable view of the obligation landscape.",
+        "The interpretive limits of AI matter most in compliance. Regulatory language is often deliberately ambiguous, and its meaning is shaped by guidance, enforcement practice, and context that a model may not capture. A model can summarize a rule, but determining how it applies to a specific business activity is legal judgment. Treating an AI summary of a regulation as a compliance determination is a serious error; the summary is an input to analysis, not the analysis itself.",
+        "Compliance also intersects with the regulation of AI systems themselves. As frameworks governing automated decision-making, transparency, and data protection mature, organizations must assess their own AI deployments for compliance. A practitioner advising on AI use should consider obligations around explainability, bias testing, record-keeping, and human review, because deploying an unexamined AI system can itself create regulatory exposure. The compliance lens turns inward as well as outward.",
+        "Effective design pairs AI monitoring with clear human decision authority. The model surfaces changes and candidate impacts; a qualified person decides what action the organization takes. Audit trails should record what the AI flagged, who reviewed it, and what was decided, so the organization can demonstrate diligence to a regulator. The goal is a workflow where AI handles breadth and recall while humans own interpretation and accountability, with documentation linking the two."
+      ],
+      "keyPoints": [
+        "AI monitors regulatory feeds, summarizes changes, and maps obligations to controls",
+        "Regulatory ambiguity means an AI summary is an input, not a compliance determination",
+        "Applying a rule to a specific activity remains a matter of legal judgment",
+        "Deploying AI systems can itself trigger explainability, bias, and record-keeping duties",
+        "Pair AI breadth and recall with human interpretation and decision authority",
+        "Audit trails should record what was flagged, who reviewed it, and what was decided"
+      ],
+      "example": "A compliance team configures an AI monitor to alert on amendments to a data-protection regime, and each alert routes to a privacy counsel who decides whether internal policies need updating and logs the decision for audit.",
+      "summary": "AI strengthens compliance by tracking regulatory change and mapping obligations, but applying ambiguous rules remains human judgment, so workflows must pair AI monitoring with documented human decision authority."
+    },
+    {
+      "order": 7,
+      "title": "Governance, Ethics, and Human Oversight",
+      "objectives": [
+        "Construct a firm-level governance framework for responsible AI adoption",
+        "Apply ethical duties of competence, supervision, and disclosure to AI use",
+        "Operationalize human-in-the-loop oversight as a default practice"
+      ],
+      "body": [
+        "Responsible AI adoption requires governance that is written down and enforced rather than left to individual discretion. A workable framework defines which tools are approved, for what tasks, on what data, and with what verification expectations. It assigns ownership for evaluating new tools, sets training requirements, and establishes an incident process for when something goes wrong. Governance converts the principles from earlier modules into repeatable practice and gives the organization a defensible record of how it manages the technology.",
+        "Ethical duties supply the backbone of any framework. Competence now includes understanding the capabilities and limits of the AI tools in use. Supervision requires that lawyers oversee both junior staff and the AI itself, since output cannot be trusted unexamined. Candor demands honesty with tribunals about the basis of submitted work. Some jurisdictions and clients also expect disclosure of material AI use, and billing must reflect that AI-driven efficiency cannot be charged as if the work were done manually.",
+        "Human-in-the-loop oversight is the operational core of all of this. It means a qualified person reviews AI output before it is relied upon, with the depth of review scaled to the stakes. For low-risk internal drafts, a light check may suffice; for filings, advice, and anything binding, rigorous verification is mandatory. The practitioner remains the author and the accountable party. The oversight is not a formality to be rushed but the point at which professional judgment is actually exercised.",
+        "Finally, governance should anticipate bias, transparency, and access-to-justice dimensions. Models can reflect biases in their training data, so outputs affecting people should be examined for unfair patterns. Transparency with clients about how their matters are handled builds trust and meets emerging expectations. Used thoughtfully, AI can also widen access to legal help by lowering cost. A mature practitioner holds the efficiency gains and the ethical obligations in balance, never trading one away for the other."
+      ],
+      "keyPoints": [
+        "Written governance defines approved tools, tasks, data, and verification expectations",
+        "Competence now includes understanding AI capabilities and limits",
+        "Supervision extends to overseeing AI output, not just junior staff",
+        "Scale the depth of human review to the stakes of the work product",
+        "Disclosure and honest billing reflect AI use and its efficiency gains",
+        "Examine outputs affecting people for bias and unfair patterns"
+      ],
+      "example": "A firm adopts an AI policy that approves a vetted research platform for case-law work, requires citation verification before filing, mandates annual training, and logs any incident where AI output reached a client without review.",
+      "summary": "Responsible AI practice rests on written governance, the ethical duties of competence and supervision, and human-in-the-loop oversight scaled to risk, keeping the lawyer the accountable author of all AI-assisted work."
+    }
+  ],
+  "questions": [
+    {
+      "text": "Why can a generative language model produce a case citation that looks authentic but does not exist?",
+      "options": [
+        "It retrieves the citation from an outdated reporter database",
+        "It predicts plausible text sequences rather than consulting an authoritative source",
+        "It always copies citations verbatim from training documents",
+        "It deliberately fabricates citations to test the user"
+      ],
+      "correctIndex": 1,
+      "explanation": "Generative models generate fluent text by predicting likely word sequences, so they can output well-formatted citations and quotations that are entirely fabricated rather than drawn from any real source."
+    },
+    {
+      "text": "What is the most reliable way to treat output from a generative AI tool in legal work?",
+      "options": [
+        "As a finished answer that can be relied upon directly",
+        "As a starting point that requires independent verification",
+        "As confidential work product that needs no review",
+        "As legally privileged regardless of the tool used"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI output should always be treated as a draft or starting point. The lawyer remains the accountable author and must independently verify the substance before relying on it."
+    },
+    {
+      "text": "During AI-assisted contract review, which element deserves special scrutiny because models are weak at it?",
+      "options": [
+        "Numbers, dates, party names, and cross-references",
+        "The font and formatting of the document",
+        "The length of the boilerplate sections",
+        "The file name of the contract"
+      ],
+      "correctIndex": 0,
+      "explanation": "Models struggle with arithmetic, dates, and maintaining internal references across long documents, so liability caps, defined terms, and cross-references must be verified carefully."
+    },
+    {
+      "text": "How can pasting client material into a consumer AI service threaten attorney-client privilege?",
+      "options": [
+        "It automatically encrypts the data and removes privilege",
+        "It can disclose protected information to an outside third party, risking waiver",
+        "It converts the material into public record by default",
+        "It has no effect on privilege under any circumstances"
+      ],
+      "correctIndex": 1,
+      "explanation": "Privilege depends on maintaining confidentiality. Sharing protected content with a third party outside the circle of confidentiality, such as an unvetted vendor, can risk waiving privilege."
+    },
+    {
+      "text": "Which factor most reduces the hallucination risk of a legal research tool?",
+      "options": [
+        "A friendly conversational interface",
+        "Grounding answers in a curated corpus of actual cases and statutes with citations",
+        "Faster response times",
+        "A higher monthly subscription price"
+      ],
+      "correctIndex": 1,
+      "explanation": "Retrieval-augmented tools that ground answers in a real corpus and cite specific documents reduce fabrication risk, though they do not eliminate the need to verify in primary sources."
+    },
+    {
+      "text": "What makes a technology-assisted review process defensible in e-discovery?",
+      "options": [
+        "Using the most expensive software available",
+        "Avoiding any human involvement to remove bias",
+        "Representative training, validation sampling, measurable recall, and documentation",
+        "Reviewing only the first one hundred documents"
+      ],
+      "correctIndex": 2,
+      "explanation": "Defensibility rests on a sound, documented process including representative training, validation through sampling, measurable recall, and a methodology that can withstand challenge."
+    },
+    {
+      "text": "How should an AI-generated summary of a new regulation be treated in compliance work?",
+      "options": [
+        "As a binding compliance determination",
+        "As an input to legal analysis, not the analysis itself",
+        "As a replacement for reading the regulation entirely",
+        "As confidential advice that needs no human review"
+      ],
+      "correctIndex": 1,
+      "explanation": "Regulatory language is often ambiguous and context-dependent. An AI summary is an input; determining how a rule applies to a specific activity remains a matter of legal judgment."
+    },
+    {
+      "text": "What does the duty of competence now include with respect to AI?",
+      "options": [
+        "An obligation to use AI for every task",
+        "A reasonable understanding of the benefits and limits of the technology used",
+        "A prohibition on ever using AI tools",
+        "Delegating all judgment to the AI vendor"
+      ],
+      "correctIndex": 1,
+      "explanation": "Competence has expanded to include a reasonable understanding of the capabilities and limitations of the AI tools a lawyer uses; judgment cannot be delegated to the tool."
+    },
+    {
+      "text": "What is the core principle of human-in-the-loop oversight in legal AI?",
+      "options": [
+        "A qualified person reviews AI output before reliance, scaled to the stakes",
+        "AI output is automatically approved for low-risk and high-risk work alike",
+        "Only the AI vendor is responsible for errors",
+        "Review is required only after a filing is rejected"
+      ],
+      "correctIndex": 0,
+      "explanation": "Human-in-the-loop means a qualified person reviews output before it is relied upon, with the depth of review scaled to the stakes, keeping the lawyer the accountable author."
+    },
+    {
+      "text": "Which vendor characteristics best support confidentiality for privileged legal work?",
+      "options": [
+        "Free access and unlimited public sharing features",
+        "Use of inputs for model training and indefinite retention",
+        "No-training and zero-retention terms, encryption, and access controls",
+        "Marketing that claims the tool is built for lawyers"
+      ],
+      "correctIndex": 2,
+      "explanation": "Confidentiality is supported by contractual no-training and zero-retention options, encryption in transit and at rest, and access controls. Marketing claims alone do not establish safety."
+    }
+  ]
+}

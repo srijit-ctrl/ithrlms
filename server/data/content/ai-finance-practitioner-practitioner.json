@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of AI in the Modern Finance Function",
+      "objectives": [
+        "Distinguish where AI adds value across the finance value chain versus where traditional automation suffices",
+        "Define core machine learning concepts in plain finance language",
+        "Identify the data, talent, and governance prerequisites for practical AI adoption"
+      ],
+      "body": [
+        "Artificial intelligence in finance is less about replacing analysts and more about extending their reach. Machine learning models excel at finding patterns in large, repetitive datasets, scoring transactions, and producing probabilistic estimates faster than any spreadsheet. Finance teams typically encounter three families of techniques: supervised learning that predicts a known target such as next quarter revenue, unsupervised learning that groups or flags unusual records without labels, and generative models that draft narratives and summaries. Knowing which family fits a problem prevents teams from buying expensive solutions for tasks that simple rules already handle well.",
+        "Not every finance problem deserves an AI solution. A reconciliation that follows a fixed rule is better served by deterministic automation, because the logic is transparent and auditable. AI earns its place when relationships are complex, data is high volume, and exact rules are hard to specify in advance. Forecasting demand across thousands of products, detecting subtle fraud patterns, and classifying free-text expense descriptions are strong candidates. A practitioner should always ask whether the marginal accuracy gain justifies the added opacity, maintenance burden, and model risk that machine learning introduces into a regulated environment.",
+        "Successful adoption rests on three pillars: clean and accessible data, people who understand both finance and modeling, and governance that keeps models trustworthy. Many initiatives stall not because the algorithm is weak but because the underlying ledger, master data, and mappings are inconsistent. Finance practitioners are uniquely positioned because they understand materiality, accounting treatment, and control expectations. Pairing that domain knowledge with data science skills produces models that are both accurate and defensible to auditors, regulators, and the audit committee.",
+        "Throughout this course the emphasis is practical and intermediate. You will learn to frame problems, evaluate model outputs critically, and embed human review at the right points. The goal is not to build production models from scratch but to be an informed owner who can specify requirements, challenge vendors, interpret performance metrics, and ensure that any AI deployed in close, forecasting, or controls work meets the same standards of accuracy and accountability that finance has always demanded."
+      ],
+      "keyPoints": [
+        "AI complements analysts by scaling pattern recognition, not by replacing judgment",
+        "Supervised, unsupervised, and generative methods solve different finance problems",
+        "Deterministic rules beat AI when logic is simple and must be fully transparent",
+        "Data quality, blended talent, and governance are the prerequisites for adoption",
+        "Finance domain knowledge makes models more defensible to auditors and regulators"
+      ],
+      "example": "A controller evaluating a vendor pitch realizes that matching purchase orders to invoices follows fixed rules and needs rule-based automation, while flagging duplicate or inflated invoices among millions of lines is a genuine machine learning use case.",
+      "summary": "AI extends the finance function by scaling pattern recognition, but it earns its place only where complexity is high and rules are hard to specify, supported by clean data, blended talent, and governance."
+    },
+    {
+      "order": 2,
+      "title": "AI for FP&A and Forecasting",
+      "objectives": [
+        "Apply machine learning techniques to revenue, expense, and driver-based forecasting",
+        "Interpret forecast accuracy metrics and avoid common overfitting traps",
+        "Combine statistical models with human assumptions for scenario planning"
+      ],
+      "body": [
+        "Financial planning and analysis is the natural home for AI because forecasting is fundamentally a prediction problem. Traditional approaches lean on linear extrapolation and manager judgment, which struggle with seasonality, promotions, and many interacting drivers. Time-series models and gradient-boosted trees can ingest dozens of signals such as bookings, web traffic, headcount, and macro indicators to produce more responsive forecasts. The practitioner value is in framing the target clearly, choosing a sensible forecast horizon, and recognizing that the model output is a starting point that domain experts refine, not a final number to be accepted blindly.",
+        "Measuring forecast quality matters as much as producing it. Common metrics include mean absolute percentage error and bias, which reveal whether a model is consistently too high or too low. A model that looks impressive on historical data may collapse on new data because it memorized noise, a failure called overfitting. Practitioners guard against this with out-of-sample testing, where the model is evaluated on periods it never saw during training. A modest, stable model that generalizes well is far more useful for planning than a complex one that fits the past perfectly but predicts the future poorly.",
+        "AI does not eliminate the need for assumptions; it makes them more explicit. Driver-based forecasting decomposes outcomes into volume, price, and cost components, letting the model handle the heavy statistical lifting while humans own strategic inputs like a planned price increase or a new market entry. This division of labor improves both accuracy and accountability. When the forecast misses, teams can trace whether the gap came from a flawed model relationship or a wrong human assumption, which sharpens the next planning cycle and builds organizational trust in the process.",
+        "Scenario and driver sensitivity analysis is where AI forecasting truly supports decisions. Rather than a single point estimate, models can generate ranges and probability bands that quantify uncertainty, helping leadership see best, base, and downside cases. Generative tools can then draft the narrative commentary that accompanies the numbers. The practitioner remains the editor, ensuring that the explanation is accurate, that material risks are surfaced, and that the confidence implied by the range honestly reflects the volatility of the underlying business rather than false precision."
+      ],
+      "keyPoints": [
+        "Forecasting is a prediction problem well suited to time-series and tree-based models",
+        "Track accuracy with metrics like MAPE and bias, and always test out-of-sample",
+        "Overfitting makes a model look great historically but fail on new data",
+        "Driver-based design splits statistical work from human strategic assumptions",
+        "AI can express uncertainty as ranges, but humans must avoid false precision"
+      ],
+      "example": "A retail FP&A team feeds three years of weekly sales, promotion calendars, and weather data into a gradient-boosted model; out-of-sample testing shows it cuts forecast error from eighteen percent to nine percent, while planners still set the assumption for an upcoming store opening.",
+      "summary": "AI sharpens FP&A by modeling complex drivers and quantifying uncertainty, but reliable forecasting depends on out-of-sample validation and a clear split between model relationships and human assumptions."
+    },
+    {
+      "order": 3,
+      "title": "Automating Reporting and the Financial Close",
+      "objectives": [
+        "Identify high-value automation targets across the record-to-report cycle",
+        "Use AI to accelerate reconciliations, accruals, and narrative reporting",
+        "Design human review checkpoints that preserve auditability"
+      ],
+      "body": [
+        "The financial close is repetitive, deadline-driven, and rich in structured data, making it fertile ground for automation. AI can accelerate three areas in particular: matching and reconciliation, where models suggest likely pairings for unmatched items; estimation, where models propose accruals based on historical patterns; and narrative generation, where language models draft variance commentary from the underlying numbers. The aim is to compress the close timeline and free accountants from mechanical tasks so they can focus on judgment-heavy items such as unusual transactions, complex estimates, and disclosures that demand professional skepticism.",
+        "Reconciliation is often the single largest time sink in the close. Rule-based matching handles clean one-to-one cases, but real ledgers are messy, with split payments, timing differences, and inconsistent references. Machine learning can score the probability that two records belong together even when fields do not match exactly, then route only the genuinely ambiguous items to a human. This hybrid design captures most of the efficiency gain while keeping a person accountable for the exceptions, which is exactly where errors and fraud tend to hide and where pure automation is riskiest.",
+        "Narrative reporting has been transformed by generative models that can turn a variance table into readable commentary in seconds. Used well, this gives analysts a strong first draft to refine rather than a blank page. Used carelessly, it produces fluent text that may misstate a driver or invent a cause that the data does not support, a phenomenon known as hallucination. The practitioner discipline is to ground every generated statement in source figures, verify the explanation against the actual movement, and never publish machine-written commentary without a qualified human sign-off.",
+        "Automation must never weaken the audit trail. Every AI-assisted entry, match, or estimate should be logged with the inputs used, the model version, the confidence score, and the identity of the reviewer who approved it. This evidence lets auditors test that controls operated effectively and lets the team reconstruct decisions months later. A well-designed close automation does not just run faster; it produces cleaner, more complete documentation than a manual process, turning the control framework into a competitive advantage rather than a compliance afterthought."
+      ],
+      "keyPoints": [
+        "Matching, estimation, and narrative drafting are the prime close automation targets",
+        "Probabilistic matching handles messy ledgers and routes only ambiguous items to humans",
+        "Generative commentary needs grounding in source data to avoid hallucinated causes",
+        "Every AI action should be logged with inputs, model version, and reviewer identity",
+        "Good automation strengthens the audit trail rather than eroding it"
+      ],
+      "example": "A shared-services team deploys probabilistic matching for intercompany reconciliations; the model auto-clears ninety percent of lines with a confidence score above the threshold and escalates the rest, cutting the close by two days while logging every match for the external auditor.",
+      "summary": "AI compresses the close by automating matching, estimates, and commentary, but each step must be grounded in source data and fully logged so the audit trail becomes stronger, not weaker."
+    },
+    {
+      "order": 4,
+      "title": "Anomaly Detection and Fraud Prevention",
+      "objectives": [
+        "Explain how unsupervised and supervised methods detect financial anomalies",
+        "Balance detection sensitivity against false positives and investigation cost",
+        "Integrate AI alerts into existing fraud and control workflows"
+      ],
+      "body": [
+        "Fraud and error often hide as small deviations within enormous transaction volumes that no team can review manually. Anomaly detection uses two broad approaches. Unsupervised methods learn what normal looks like and flag records that deviate, which is valuable because most organizations lack large labeled fraud datasets. Supervised methods learn from confirmed past fraud cases to score new transactions, which is powerful when good labels exist. Many mature programs blend both, using unsupervised models to surface novel patterns and supervised models to catch recurrences of known schemes with greater precision.",
+        "The central tension in any detection system is sensitivity versus false positives. A model tuned to catch every possible fraud will also flag thousands of legitimate transactions, overwhelming investigators and breeding alert fatigue that causes real cases to be ignored. Conversely, a conservative model misses genuine fraud. Practitioners manage this with the precision and recall trade-off, setting thresholds that reflect the cost of a missed fraud against the cost of an investigation. Tuning is an ongoing exercise informed by feedback from investigators about which alerts proved worthwhile.",
+        "Detection only creates value when alerts feed a disciplined response workflow. An anomaly score on its own changes nothing; it must trigger a case, assign an owner, capture the investigation outcome, and feed that result back to improve the model. This feedback loop is what separates a one-off analytics project from a durable control. Finance practitioners should ensure that AI alerts are integrated with existing fraud, audit, and compliance processes rather than living in a separate dashboard that nobody checks once the novelty fades.",
+        "Explainability is essential in fraud work because accusations carry serious consequences. An investigator confronting an employee or vendor needs to know why a transaction was flagged, not merely that a black-box model scored it highly. Models that surface the contributing factors, such as an unusual amount, an off-hours timestamp, or a new payee, let investigators act confidently and defend their conclusions. Unexplainable flags also risk embedding bias, so transparency protects both the integrity of the investigation and the fairness owed to the people involved."
+      ],
+      "keyPoints": [
+        "Unsupervised methods flag deviations without labels; supervised methods score known patterns",
+        "Sensitivity must be balanced against false positives to avoid alert fatigue",
+        "Precision and recall thresholds should reflect the relative cost of misses and investigations",
+        "Alerts create value only when wired into a case-management feedback loop",
+        "Explainable flags let investigators act confidently and guard against bias"
+      ],
+      "example": "A payments team layers an unsupervised model over outgoing transfers; it flags a payment to a newly added vendor for an amount far above that vendor's history, the case is investigated, and a redirected-payment fraud is stopped before funds leave the account.",
+      "summary": "Anomaly detection combines unsupervised and supervised methods to surface hidden fraud, but value comes from balanced thresholds, explainable alerts, and a feedback loop into real investigation workflows."
+    },
+    {
+      "order": 5,
+      "title": "AI for Financial Risk Management",
+      "objectives": [
+        "Apply AI to credit, liquidity, and market risk monitoring",
+        "Understand model risk and the importance of validation and stress testing",
+        "Communicate risk model outputs responsibly to decision makers"
+      ],
+      "body": [
+        "Risk management is inherently quantitative, which makes it a strong fit for AI, but also one of the most heavily scrutinized. Machine learning improves credit scoring by capturing nonlinear relationships among borrower attributes, enhances liquidity forecasting by modeling cash flow timing, and supports market risk by detecting regime shifts in volatility. The practitioner advantage is treating these models as tools within a broader risk framework rather than oracles. A risk model informs limits, reserves, and pricing, but the appetite, governance, and final decisions remain human and board-level responsibilities.",
+        "Every model is itself a source of risk. Model risk arises when a model is wrong or used in ways its design never intended, and in finance the consequences can be severe. Sound practice requires independent validation, where a separate team challenges the assumptions, data, and performance before deployment and periodically thereafter. Validation asks whether the model is conceptually sound, whether it performs on fresh data, and whether it remains appropriate as conditions change. This discipline, long standard in banking, is increasingly expected across all finance functions that rely on automated decisioning.",
+        "Models trained on calm periods can fail catastrophically under stress, as several financial crises have shown. Stress testing deliberately feeds extreme but plausible scenarios through a model to see whether its outputs remain sensible. A credit model should be probed with a sharp rise in unemployment, a liquidity model with a sudden funding withdrawal. The goal is to expose hidden fragility before reality does. Practitioners should be suspicious of any model that has only ever seen benign conditions, because its confidence in a downturn is untested and potentially dangerous.",
+        "Communicating risk outputs honestly is a core practitioner skill. A probability of default or a value-at-risk figure carries uncertainty that decision makers must understand. Presenting a single number as precise truth invites overconfidence and poor decisions. Effective communication conveys the estimate, its key assumptions, its known limitations, and the conditions under which it would break down. This candor builds credibility with executives and regulators alike, and it ensures that AI strengthens the institution's risk posture rather than creating a false sense of security."
+      ],
+      "keyPoints": [
+        "AI enhances credit, liquidity, and market risk monitoring through nonlinear pattern detection",
+        "Risk models inform decisions but appetite and accountability stay with humans and the board",
+        "Model risk demands independent validation before and after deployment",
+        "Stress testing exposes fragility that calm-period training data conceals",
+        "Honest communication of assumptions and limitations prevents false confidence"
+      ],
+      "example": "A bank's credit team validates a new default-prediction model and stress tests it against a simulated recession; the test reveals the model underestimates risk for thin-file borrowers, so the team adds a conservative overlay before approving it for lending decisions.",
+      "summary": "AI strengthens risk management across credit, liquidity, and market domains, but only when paired with independent validation, stress testing, and honest communication of model limitations."
+    },
+    {
+      "order": 6,
+      "title": "Data Quality, Controls, and Internal Audit Implications",
+      "objectives": [
+        "Explain why data quality is the foundation of trustworthy financial AI",
+        "Design controls over AI inputs, processing, and outputs",
+        "Adapt internal control frameworks to cover automated decisioning"
+      ],
+      "body": [
+        "Every AI output is only as trustworthy as the data behind it, captured in the principle that garbage in produces garbage out. In finance, poor data quality manifests as duplicate vendors, inconsistent account mappings, miscoded transactions, and timing gaps that silently distort model results. Before any model is built, practitioners must profile the data for completeness, accuracy, consistency, and timeliness. Investing in master data management and clean source systems delivers more reliable AI than any sophisticated algorithm applied to a messy foundation. Data quality is not a one-time cleanup but a continuous control.",
+        "Controls over AI span three points: inputs, processing, and outputs. Input controls verify that data feeding the model is complete and authorized, guarding against silent feed failures that corrupt results. Processing controls confirm the right model version runs with approved parameters and that changes follow change management. Output controls check that results fall within expected ranges and route material or low-confidence items to human review. Mapping these controls explicitly turns an opaque model into a governed process that management can attest to and auditors can test with confidence.",
+        "Traditional control frameworks were written for human-executed and rule-based processes, so they need thoughtful adaptation for AI. A control that relied on a person reviewing every item may no longer be feasible at machine scale, requiring a shift toward monitoring, sampling, and exception-based review. The concept of segregation of duties extends to model development, validation, and deployment, ensuring no single person can build, approve, and run a model unchecked. Documenting how each automated step maps to a control objective keeps the framework coherent as automation expands across the function.",
+        "Internal audit takes on a dual role with financial AI. Auditors must learn to audit through the model, testing whether it operates as intended and whether its controls are effective, while also using AI themselves to analyze full populations rather than samples. This raises the bar for evidence: a model's training data, version history, validation reports, and override logs all become auditable artifacts. Practitioners who maintain this documentation proactively make audits faster and demonstrate a mature control environment, while those who treat models as black boxes invite findings and remediation."
+      ],
+      "keyPoints": [
+        "AI is only as reliable as its data, so profiling and master data management come first",
+        "Controls must cover model inputs, processing with version control, and outputs",
+        "Output controls should route material and low-confidence items to human review",
+        "Segregation of duties extends to model build, validation, and deployment",
+        "Internal audit must audit through models and treat model artifacts as evidence"
+      ],
+      "example": "An internal audit team reviewing an automated accrual model requests the input data feeds, the model version log, and the override history; they find an unmonitored data feed that had failed for two weeks, explaining a string of misstated accruals and prompting an input control fix.",
+      "summary": "Trustworthy financial AI rests on continuous data quality and explicit controls over inputs, processing, and outputs, with control frameworks and internal audit adapted to govern automated decisioning."
+    },
+    {
+      "order": 7,
+      "title": "Governance, Ethics, and Responsible Deployment",
+      "objectives": [
+        "Establish governance structures and accountability for financial AI",
+        "Address bias, transparency, and regulatory expectations",
+        "Build a responsible deployment lifecycle from pilot to monitoring"
+      ],
+      "body": [
+        "Governance turns scattered AI experiments into a managed capability. A sound structure defines who owns each model, who approves it for production, and who monitors it over time, supported by an inventory that lists every model, its purpose, its risk rating, and its owner. Higher-risk models, such as those driving lending or financial reporting, warrant more rigorous review than low-risk internal tools. This tiered approach focuses scarce oversight where the stakes are highest and prevents the common failure of a model quietly making material decisions with no accountable owner.",
+        "Bias and fairness deserve deliberate attention because models learn from historical data that may encode past discrimination or skewed sampling. A credit model trained on biased lending history can perpetuate that bias at scale and expose the institution to legal and reputational harm. Practitioners should test outcomes across relevant groups, document the steps taken to detect and mitigate bias, and recognize that fairness is partly an ethical judgment that cannot be fully delegated to a metric. Transparency about how a model reaches its decisions is both an ethical obligation and, increasingly, a legal one.",
+        "The regulatory landscape for AI in finance is tightening worldwide. Expectations increasingly include model inventories, documented validation, explainability for consequential decisions, human oversight, and clear accountability when automated decisions affect customers. Rather than chasing each rule reactively, practitioners should build governance that embodies the underlying principles of accuracy, fairness, transparency, and accountability. A program grounded in these principles adapts more easily as specific regulations evolve, and it signals to regulators and customers that the institution takes responsible AI seriously.",
+        "Responsible deployment follows a lifecycle, not a one-time launch. It begins with a contained pilot that proves value against clear success criteria, proceeds to a controlled rollout with human oversight, and continues with ongoing monitoring for model drift, where performance silently degrades as the world changes. Retraining, revalidation, and a clear retirement plan keep the model fit over time. Embedding a human-in-the-loop for consequential decisions, maintaining an override mechanism, and reviewing outcomes regularly ensure that AI remains a well-governed servant of the finance function rather than an ungoverned risk."
+      ],
+      "keyPoints": [
+        "A model inventory with named owners and risk tiers anchors AI governance",
+        "Higher-risk models warrant proportionally more rigorous review and oversight",
+        "Bias testing across groups is an ethical and increasingly legal requirement",
+        "Building on principles of accuracy, fairness, and transparency outlasts specific rules",
+        "Responsible deployment is a lifecycle with monitoring, retraining, and retirement"
+      ],
+      "example": "A finance organization launches an expense-fraud model as a limited pilot with full human review, then scales it under a governance committee that assigns an owner, sets a quarterly bias and drift review, and defines criteria for retraining or retiring the model.",
+      "summary": "Responsible financial AI requires tiered governance with accountable owners, deliberate bias and transparency controls, and a full deployment lifecycle that monitors for drift and keeps humans in the loop."
+    }
+  ],
+  "questions": [
+    {
+      "text": "A reconciliation process follows a fixed, fully specified rule and must be completely transparent to auditors. Which approach is most appropriate?",
+      "options": [
+        "Deterministic rule-based automation rather than machine learning",
+        "An unsupervised anomaly detection model",
+        "A generative language model",
+        "A deep neural network for maximum accuracy"
+      ],
+      "correctIndex": 0,
+      "explanation": "When the logic is simple, fixed, and must be fully transparent, deterministic automation is preferable because it is auditable and avoids the opacity and maintenance burden of machine learning."
+    },
+    {
+      "text": "A forecasting model fits historical data almost perfectly but performs poorly on new periods. What is this most likely an example of?",
+      "options": [
+        "Overfitting, where the model memorized noise instead of generalizable patterns",
+        "Underfitting due to too few variables",
+        "Data leakage from the future into the past",
+        "A correctly calibrated model that simply needs more training"
+      ],
+      "correctIndex": 0,
+      "explanation": "Excellent historical fit combined with poor performance on unseen data is the signature of overfitting, which out-of-sample testing is designed to detect."
+    },
+    {
+      "text": "Why is out-of-sample testing essential when evaluating a finance forecasting model?",
+      "options": [
+        "It evaluates the model on periods it never saw during training to gauge real predictive ability",
+        "It guarantees the model will never be biased",
+        "It removes the need for human assumptions",
+        "It increases the number of variables the model can use"
+      ],
+      "correctIndex": 0,
+      "explanation": "Out-of-sample testing checks performance on data the model did not train on, which is the only honest way to estimate how it will perform on future, unseen periods."
+    },
+    {
+      "text": "When using a generative model to draft variance commentary in the close, the main risk to guard against is:",
+      "options": [
+        "Hallucination, where fluent text states a driver or cause not supported by the data",
+        "The model running too slowly to meet deadlines",
+        "The model refusing to produce any output",
+        "Excessive use of technical accounting jargon"
+      ],
+      "correctIndex": 0,
+      "explanation": "Generative models can produce convincing but unsupported explanations, so every statement must be grounded in source figures and verified before publication."
+    },
+    {
+      "text": "In a close automation, an AI-suggested match clears automatically only above a confidence threshold, and ambiguous items go to a person. What is the primary benefit of this hybrid design?",
+      "options": [
+        "It captures most efficiency gains while keeping humans accountable for the riskiest exceptions",
+        "It removes the need for any audit trail",
+        "It guarantees zero false matches",
+        "It eliminates the need for model validation"
+      ],
+      "correctIndex": 0,
+      "explanation": "Routing only ambiguous items to humans preserves efficiency while ensuring people review the exceptions where errors and fraud are most likely to hide."
+    },
+    {
+      "text": "A fraud model is tuned to catch nearly every possible fraud and consequently flags thousands of legitimate transactions. What is the main consequence?",
+      "options": [
+        "Alert fatigue, where investigators are overwhelmed and may ignore genuine cases",
+        "The model becomes unable to detect any fraud",
+        "Investigation costs fall to zero",
+        "The model automatically becomes more explainable"
+      ],
+      "correctIndex": 0,
+      "explanation": "Maximizing sensitivity produces excessive false positives, overwhelming investigators and causing alert fatigue that can let real fraud slip through."
+    },
+    {
+      "text": "Which approach is most useful when an organization lacks a large set of labeled historical fraud cases?",
+      "options": [
+        "Unsupervised methods that learn normal behavior and flag deviations",
+        "Supervised methods that require many confirmed fraud labels",
+        "Abandoning anomaly detection entirely",
+        "A generative model that writes fraud narratives"
+      ],
+      "correctIndex": 0,
+      "explanation": "Unsupervised anomaly detection does not need labeled fraud examples; it learns a baseline of normal activity and flags records that deviate from it."
+    },
+    {
+      "text": "Why is stress testing important for an AI risk model?",
+      "options": [
+        "It feeds extreme but plausible scenarios to expose fragility that calm-period data conceals",
+        "It speeds up the model's runtime performance",
+        "It replaces the need for independent validation",
+        "It guarantees the model will be profitable"
+      ],
+      "correctIndex": 0,
+      "explanation": "Models trained only on benign conditions can fail under stress; deliberately testing extreme scenarios reveals hidden fragility before real events do."
+    },
+    {
+      "text": "An internal audit team reviewing an automated accrual model should treat which items as auditable evidence?",
+      "options": [
+        "Input data feeds, model version logs, validation reports, and override history",
+        "Only the final journal entries produced",
+        "Only the vendor marketing materials for the model",
+        "Nothing, because automated models cannot be audited"
+      ],
+      "correctIndex": 0,
+      "explanation": "For AI-driven processes, the data feeds, version history, validation, and override logs become key audit artifacts that demonstrate controls operated effectively."
+    },
+    {
+      "text": "What best describes a sound governance approach to financial AI?",
+      "options": [
+        "A model inventory with named owners and risk tiers, applying heavier oversight to higher-risk models",
+        "Treating every model identically regardless of its impact",
+        "Leaving model ownership undefined to encourage experimentation",
+        "Avoiding documentation so the program stays agile"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tiered governance with an inventory, named owners, and proportionate oversight focuses scarce review on the highest-stakes models and ensures accountability."
+    }
+  ]
+}

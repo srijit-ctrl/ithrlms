@@ -1,0 +1,245 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "What an AI Product Manager Actually Does",
+      "objectives": [
+        "Describe how AI product management differs from traditional product management",
+        "Identify the core responsibilities of an AI PM across the product lifecycle",
+        "Recognize the cross-functional teams an AI PM works with"
+      ],
+      "body": [
+        "An AI product manager owns the same outcomes as any product manager: solving real user problems and creating business value. The difference is the material you build with. Instead of fully predictable software rules, you work with models that learn patterns from data and produce outputs that are probabilistic. This means an AI PM thinks in terms of accuracy, confidence, and failure modes rather than simple pass-or-fail features. You still write requirements, prioritize a roadmap, and talk to customers, but you also reason about whether a problem is even a good fit for AI.",
+        "A practical day blends classic PM work with new questions. You define the user problem, then ask whether prediction, generation, or automation would meaningfully help. You partner closely with data scientists and engineers to understand what data exists, how clean it is, and how a model might behave. You set success metrics that capture both product value and model quality. You also plan for the messy reality that AI is sometimes wrong, designing the experience so users stay in control and trust the product even when an answer is imperfect.",
+        "AI PMs sit at the center of several disciplines. They translate fuzzy business goals into something a data team can build, and translate model behavior back into language stakeholders understand. They coordinate with design on how to present uncertainty, with legal and compliance on responsible use, and with leadership on realistic timelines. Because AI projects involve experimentation, an AI PM must be comfortable with iteration and the possibility that a promising idea does not pan out after testing. Communication and judgment matter as much as technical literacy.",
+        "You do not need to train models yourself to be effective. What you need is enough literacy to ask good questions: Where does the data come from? What does good look like? What happens when the model is confident but wrong? Beginners often overestimate how much math they must learn and underestimate how much product judgment the role demands. The strongest AI PMs pair a clear understanding of user needs with a healthy respect for the limits and risks of the technology they are shipping."
+      ],
+      "keyPoints": [
+        "AI PMs own user and business outcomes, just like traditional PMs",
+        "AI outputs are probabilistic, so you reason about accuracy and failure modes",
+        "The role is heavy on translation between technical teams and stakeholders",
+        "You must plan for the experience when the model is wrong",
+        "Deep math is not required, but strong AI literacy and product judgment are",
+        "AI projects are experimental, so iteration and uncertainty are normal"
+      ],
+      "example": "A PM at a customer support tool decides to add an AI feature that drafts reply suggestions for agents. Rather than replacing agents, the feature surfaces a suggested response that the human can accept, edit, or ignore, keeping people in control while the model assists.",
+      "summary": "An AI product manager applies classic product skills to probabilistic, data-driven features, focusing on fit, metrics, failure handling, and clear translation across teams."
+    },
+    {
+      "order": 2,
+      "title": "Spotting Good AI Use Cases",
+      "objectives": [
+        "Apply simple criteria to judge whether a problem suits AI",
+        "Distinguish problems better solved with rules or plain software",
+        "Avoid common traps that lead to wasted AI investment"
+      ],
+      "body": [
+        "Not every problem needs AI, and choosing the wrong use case is the most common way AI products fail. A good candidate usually has three traits: the task involves recognizing patterns or generating content rather than following fixed rules, there is enough relevant data to learn from, and a slightly imperfect answer still creates value. If a task can be solved with a clear set of if-then rules, ordinary software is cheaper, faster, and easier to maintain than a model that might behave unpredictably.",
+        "Strong use cases often share a shape. They are repetitive and high volume, so automation saves real time. They tolerate some error, because the cost of an occasional mistake is low or a human can catch it. And they have a clear definition of success that you can measure. Sorting incoming emails by topic, suggesting products a shopper might like, or summarizing long documents all fit this pattern. Each repeats often, survives the occasional miss, and has outputs you can evaluate against what users actually wanted.",
+        "Weak use cases tend to break one of these conditions. Tasks that demand perfect accuracy every time, such as calculating someone tax bill, are poor fits because models make mistakes. Tasks with almost no data to learn from leave the model guessing. And rare, high-stakes decisions where an error causes serious harm need heavy human oversight or should not be automated at all. A useful habit is to ask what happens on the model worst day, not just its best, before committing resources.",
+        "Beginners often chase AI because it sounds impressive rather than because it fits. Guard against this by writing the user problem first, with no mention of technology, then asking whether AI is genuinely the best tool. Sometimes a simple lookup, a filter, or a better-designed form solves the problem with less risk. The discipline of justifying why AI specifically, and what value it adds over the simplest alternative, separates products that ship and succeed from expensive science projects that never reach users."
+      ],
+      "keyPoints": [
+        "Good AI fits pattern recognition or generation, not fixed if-then rules",
+        "Strong use cases are repetitive, tolerant of some error, and measurable",
+        "Tasks needing perfect accuracy or having little data are poor fits",
+        "Always consider the model behavior on its worst day, not just its best",
+        "Write the user problem before naming any technology",
+        "Justify why AI beats the simplest non-AI alternative"
+      ],
+      "example": "An online retailer wants to reduce time spent tagging product photos by category. This is repetitive, high volume, has thousands of labeled examples, and tolerates the rare misclassification a human can fix, making it a strong AI use case.",
+      "summary": "The best AI use cases involve patterns, ample data, and tolerance for imperfect answers; testing fit against the simplest alternative prevents costly missteps."
+    },
+    {
+      "order": 3,
+      "title": "User and Problem Fit for AI Features",
+      "objectives": [
+        "Frame AI features around a concrete user job to be done",
+        "Decide how much trust and control to give users over AI output",
+        "Design experiences that stay useful when the model is wrong"
+      ],
+      "body": [
+        "AI features succeed when they are anchored to a specific user need, not to the technology itself. Start by describing the job the user is trying to get done and the friction in their current path. Only then ask how AI could remove that friction. A feature that drafts a first version of an email helps a user who hates staring at a blank page; a feature that predicts late shipments helps an operations lead who wants to act before customers complain. The clearer the job, the easier it is to judge whether the AI actually helps.",
+        "Trust is earned through the experience design, not assumed. Because models can be wrong, you decide how much authority to hand the user versus the system. A low-stakes suggestion, like a recommended song, can act automatically. A high-stakes action, like sending money, should keep the human firmly in the loop with clear confirmation. Showing why the model suggested something, offering an easy way to undo or correct it, and being honest about uncertainty all help users build appropriate trust rather than blind reliance or total dismissal.",
+        "Good AI experiences assume the model will sometimes fail and design for that gracefully. Instead of presenting one answer as absolute truth, you might offer a few options, indicate confidence, or let users give quick feedback that improves future results. The goal is to keep the product valuable even on an imperfect day. A search feature that returns slightly off results but lets the user refine easily is far better than one that confidently returns a single wrong answer with no recourse.",
+        "Measuring fit means watching real behavior, not just satisfaction surveys. Do users accept the AI suggestions or ignore them? Do they complete their task faster? Do they come back? Early on, talk to users while they use the feature and look for moments of confusion or distrust. Fit is not a one-time decision; it evolves as users learn the feature and as the model improves. Treat the first release as a hypothesis about value, then let observed usage confirm or challenge it."
+      ],
+      "keyPoints": [
+        "Anchor every AI feature to a specific user job, not to the technology",
+        "Match the level of automation to the stakes of the action",
+        "Build trust with explanations, easy correction, and honesty about uncertainty",
+        "Design the experience to stay useful when the model is wrong",
+        "Measure fit through real behavior like acceptance, speed, and return rate",
+        "Treat the first release as a hypothesis to be tested, not a final answer"
+      ],
+      "example": "A writing app adds a tone-adjustment feature. It shows the rewritten text as a preview the user can accept or reject, keeps the original one click away, and learns from which suggestions users keep, so a wrong rewrite never destroys the user work.",
+      "summary": "AI features fit best when tied to a clear user job, designed with appropriate control and graceful failure, and validated through observed user behavior over time."
+    },
+    {
+      "order": 4,
+      "title": "Working with Data and Models at a High Level",
+      "objectives": [
+        "Explain why data quality and relevance drive AI product outcomes",
+        "Describe the difference between building, fine-tuning, and using existing models",
+        "Ask informed questions of data and engineering teams without coding"
+      ],
+      "body": [
+        "Data is the raw material of any AI feature, and its quality usually matters more than the cleverness of the model. A model learns patterns from the examples it is given, so if those examples are incomplete, biased, or out of date, the product will reflect those flaws. As a PM you should understand where the data comes from, whether it represents the users you actually serve, and how it is labeled. You do not need to clean data yourself, but you must ask whether the data tells the story the product needs to tell.",
+        "There is a spectrum of ways to get a model. At one end, teams use a ready-made model through an API, such as a general language model, which is fast to start with and requires no training. In the middle, teams fine-tune an existing model on their own examples to specialize it. At the far end, teams build a custom model from scratch, which is expensive and slow and rarely the right first move. Most beginner-friendly products start by using or lightly adapting existing models, saving custom work for when it clearly pays off.",
+        "A model turns inputs into outputs by applying patterns it learned, and it always carries some uncertainty. Two ideas help PMs reason about this. First, models can overfit, meaning they memorize training examples and perform poorly on new, unseen data; that is why teams test on data the model has never seen. Second, the world changes, so a model trained on last year data can drift and degrade over time. Knowing these concepts lets you plan for ongoing monitoring and retraining rather than treating a model as finished at launch.",
+        "Your leverage is in the questions you ask. Where did this data come from and who does it leave out? What does the model do when it is unsure? How will we know if it gets worse after launch? How much will it cost to run at scale? These questions keep technical work tied to product reality and surface risks early. A PM who can hold a clear, non-jargon conversation about data and model trade-offs helps the team make smarter choices than one who simply trusts whatever the model produces."
+      ],
+      "keyPoints": [
+        "Data quality and representativeness usually matter more than model sophistication",
+        "Options range from using existing models to fine-tuning to building custom",
+        "Most products should start by using or lightly adapting existing models",
+        "Overfitting and model drift explain why testing and monitoring are essential",
+        "PMs add value by asking sharp questions, not by writing code",
+        "Running models at scale has real cost that affects product decisions"
+      ],
+      "example": "A bank wants to flag likely fraudulent transactions. The team starts with an existing fraud model fine-tuned on the bank own labeled cases, monitors accuracy weekly, and retrains when fraud patterns shift, rather than building a model from scratch.",
+      "summary": "Strong AI products depend on relevant, high-quality data and a sensible model choice; PMs guide this by asking informed questions about sources, uncertainty, cost, and drift."
+    },
+    {
+      "order": 5,
+      "title": "Evaluating AI Products",
+      "objectives": [
+        "Choose evaluation metrics that reflect real product value",
+        "Interpret common model quality measures in plain language",
+        "Combine offline testing with live feedback to judge performance"
+      ],
+      "body": [
+        "Evaluation answers a deceptively simple question: is this AI feature actually good enough to ship and keep running? Because models are probabilistic, you cannot rely on a single thumbs-up. You need measures that capture both how the model performs technically and whether users get real value. The danger is optimizing a number that looks impressive but does not move the outcome you care about. A recommendation model with high accuracy is useless if no one clicks the recommendations. Good evaluation always connects model metrics back to user and business goals.",
+        "A few model metrics appear again and again, and a PM should grasp them in plain terms. Accuracy is the share of predictions that are correct, but it can mislead when one outcome is rare. Precision asks, of the things the model flagged, how many were truly right, while recall asks, of all the things it should have flagged, how many it caught. These two often trade off: catching more cases can mean more false alarms. Choosing which to favor is a product decision driven by the cost of each kind of mistake.",
+        "Offline evaluation tests the model on historical data the team has set aside, giving a quick read before exposing real users. But offline numbers rarely tell the whole story, because real users behave in surprising ways. That is why teams pair offline tests with live evaluation, often through controlled experiments like A/B tests that compare the AI version against a baseline on real outcomes. Watching live metrics such as task completion, engagement, and complaints reveals whether the model good scores translate into a better product.",
+        "Evaluation is continuous, not a launch gate you pass once. Models degrade as data and user behavior shift, so you set up ongoing monitoring and alerts for when quality drops. You also collect user feedback directly, since a quick correction or rating is both a quality signal and often a source of better training data. The mindset that serves AI PMs best is treating every release as an experiment: define what good looks like in advance, measure honestly, and be willing to roll back a feature whose numbers do not hold up in the real world."
+      ],
+      "keyPoints": [
+        "Tie model metrics to real user and business outcomes, not vanity numbers",
+        "Precision and recall trade off based on the cost of each error type",
+        "Accuracy can mislead when one outcome is rare",
+        "Offline tests give a fast read; live A/B tests reveal true impact",
+        "Monitor continuously because models degrade over time",
+        "Treat each release as an experiment with success defined in advance"
+      ],
+      "example": "A spam filter team finds the model has high accuracy but low recall, letting too much spam through. They tune it to catch more spam, accept a few more false flags, and confirm with an A/B test that user complaints about missed spam drop.",
+      "summary": "Effective evaluation links model metrics like precision and recall to user value, combines offline and live testing, and continues after launch through monitoring and feedback."
+    },
+    {
+      "order": 6,
+      "title": "Responsible and Ethical AI Product Decisions",
+      "objectives": [
+        "Identify common ethical risks in AI products such as bias and privacy harm",
+        "Apply practical safeguards to reduce harm before and after launch",
+        "Balance business goals with fairness, transparency, and user trust"
+      ],
+      "body": [
+        "Responsible AI is not a separate checklist bolted on at the end; it is part of building a product people can trust. Because models learn from data drawn from the real world, they can absorb and amplify existing biases. A hiring tool trained mostly on past resumes from one group may unfairly favor that group. As a PM you are accountable for asking who could be harmed by this feature, even unintentionally, and for making sure the team examines fairness across different kinds of users before shipping, not after a public failure forces the conversation.",
+        "Privacy and transparency are core obligations. AI features often rely on personal data, so you must know what data you collect, why you need it, and whether users understand and consent to its use. Collect the minimum necessary and protect it well. Transparency means being honest that a feature is AI-powered, explaining in plain language what it does, and not implying more certainty than the model has. Users who understand what a feature is doing, and what it cannot do, make better decisions and forgive occasional mistakes more readily.",
+        "Practical safeguards turn good intentions into action. Test the model across different user groups to check for unequal performance. Keep a human in the loop for high-stakes decisions like loans, medical guidance, or content removal. Provide a clear way for users to contest or correct an AI decision that affects them. Document known limitations so support teams and users are not surprised. And monitor after launch, because harms that were invisible in testing often appear once a diverse real-world population starts using the product at scale.",
+        "Ethics and business success are usually allies, not enemies. Products that quietly cut corners on fairness or privacy invite regulatory penalties, public backlash, and lasting damage to user trust, all of which cost far more than doing it right. The strongest AI PMs treat responsible design as a competitive advantage that builds durable trust. When a hard trade-off appears between a short-term metric and a clear risk of harm, raise it openly, bring in the right experts, and be willing to slow down. Shipping something you would be comfortable explaining publicly is a reliable test."
+      ],
+      "keyPoints": [
+        "Models can absorb and amplify bias from their training data",
+        "Collect minimal personal data and be transparent about AI use",
+        "Test performance across different user groups to catch unfair gaps",
+        "Keep humans in the loop and offer a way to contest high-stakes decisions",
+        "Monitor after launch because real-world harms often appear at scale",
+        "Responsible design protects trust and is usually good for business"
+      ],
+      "example": "A lending startup builds an AI to assess loan applications. Before launch it tests approval rates across demographic groups, finds a gap, retrains on more balanced data, keeps a human reviewer for borderline cases, and lets applicants request a manual review.",
+      "summary": "Responsible AI means anticipating bias and privacy harms, building safeguards like fairness testing and human oversight, and recognizing that earning trust supports long-term success."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What is the biggest practical difference between an AI product manager and a traditional product manager?",
+      "options": [
+        "AI PMs must personally train every model they ship",
+        "AI PMs reason about probabilistic outputs, accuracy, and failure modes",
+        "AI PMs do not need to talk to users or write requirements",
+        "AI PMs only work on research projects that never reach customers"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI features are probabilistic rather than fully predictable, so AI PMs must reason about accuracy, confidence, and what happens when the model is wrong, while still owning the same user and business outcomes as any PM."
+    },
+    {
+      "text": "Which problem is the strongest candidate for an AI solution?",
+      "options": [
+        "Calculating an exact tax owed where any error is unacceptable",
+        "A rare, one-time decision with almost no historical data",
+        "Sorting a high volume of incoming emails by topic where occasional mistakes are tolerable",
+        "A task fully solvable with a short list of fixed if-then rules"
+      ],
+      "correctIndex": 2,
+      "explanation": "Good AI use cases are repetitive and high volume, tolerate some error, and have measurable success. Email sorting fits all three, while the other options demand perfection, lack data, or are better served by simple rules."
+    },
+    {
+      "text": "A team wants to add AI mainly because it sounds impressive. What is the best first step?",
+      "options": [
+        "Write the user problem with no mention of technology, then ask if AI is the best tool",
+        "Build a custom model from scratch to show technical ambition",
+        "Pick the most advanced model available and design around it",
+        "Skip user research since AI will figure out the need automatically"
+      ],
+      "correctIndex": 0,
+      "explanation": "Anchoring on the user problem first, without naming technology, guards against chasing AI for its own sake and lets you honestly judge whether AI beats simpler alternatives."
+    },
+    {
+      "text": "Why should an AI feature be designed to stay useful even when the model is wrong?",
+      "options": [
+        "Because models are always wrong and should never be trusted",
+        "Because regulations forbid showing any AI output to users",
+        "Because models are probabilistic and will sometimes produce imperfect answers",
+        "Because designing for failure removes the need for evaluation"
+      ],
+      "correctIndex": 2,
+      "explanation": "Since AI outputs are probabilistic, occasional mistakes are inevitable. Designing for graceful failure, such as offering options or easy correction, keeps the product valuable and maintains user trust on imperfect days."
+    },
+    {
+      "text": "When starting a new AI product, which approach to obtaining a model is usually most sensible for beginners?",
+      "options": [
+        "Always build a fully custom model from scratch first",
+        "Start by using or lightly adapting an existing model",
+        "Avoid existing models because they can never fit a real need",
+        "Choose the most expensive option to guarantee quality"
+      ],
+      "correctIndex": 1,
+      "explanation": "Building from scratch is expensive and slow. Most beginner-friendly products start by using a ready-made model or lightly fine-tuning one, reserving custom builds for when they clearly pay off."
+    },
+    {
+      "text": "What does it mean when a model is described as overfitting?",
+      "options": [
+        "It runs too slowly to be used in production",
+        "It memorizes training examples but performs poorly on new, unseen data",
+        "It uses too little electricity to be accurate",
+        "It is perfectly accurate on every possible input forever"
+      ],
+      "correctIndex": 1,
+      "explanation": "Overfitting means the model has effectively memorized its training data and fails to generalize to new examples, which is why teams test models on data they have never seen."
+    },
+    {
+      "text": "A spam filter has high accuracy but lets a lot of spam through. Which measure is the team most likely failing?",
+      "options": [
+        "Recall, the share of true spam it actually catches",
+        "Loading speed of the email client",
+        "The number of servers used to run the model",
+        "User satisfaction surveys about the app color scheme"
+      ],
+      "correctIndex": 0,
+      "explanation": "Letting spam through means the filter misses cases it should catch, which is low recall. Accuracy can look high when most email is legitimate, so recall better reflects the real problem here."
+    },
+    {
+      "text": "Which practice best reflects responsible AI product decisions?",
+      "options": [
+        "Collecting as much personal data as possible just in case it is useful",
+        "Hiding that a feature is AI-powered to seem more advanced",
+        "Testing performance across different user groups and keeping humans in the loop for high-stakes decisions",
+        "Skipping post-launch monitoring once the feature passes initial tests"
+      ],
+      "correctIndex": 2,
+      "explanation": "Responsible AI involves checking for unequal performance across user groups, keeping human oversight on high-stakes decisions, minimizing data collection, being transparent, and monitoring after launch since real-world harms can emerge at scale."
+    }
+  ]
+}
