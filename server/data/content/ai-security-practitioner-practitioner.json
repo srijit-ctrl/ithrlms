@@ -1,0 +1,292 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "The AI Threat Landscape",
+      "objectives": [
+        "Distinguish AI-specific threats from traditional application security risks",
+        "Map the attack surface across the model lifecycle from data to inference",
+        "Relate adversary objectives to confidentiality, integrity, and availability impacts"
+      ],
+      "body": [
+        "Securing AI systems requires recognizing that machine learning expands the attack surface well beyond conventional software. Traditional controls still matter, but models introduce threats that target the data, the learned parameters, and the inference interface itself. A practitioner must think in terms of the full lifecycle: data collection, training, validation, deployment, and ongoing inference. Each stage exposes distinct weaknesses, and an attacker who cannot breach the network may still corrupt a model by manipulating its training data or probing its outputs. Treating the model as just another binary misses the threats unique to learned behavior.",
+        "The dominant AI-specific threats fall into a handful of categories. Data poisoning corrupts training data so the model learns attacker-chosen behavior or a hidden backdoor. Model extraction queries a deployed model repeatedly to steal an approximate copy of its parameters or capabilities. Membership inference determines whether a specific record was in the training set, leaking privacy. Adversarial examples are crafted inputs that cause confident misclassification. For large language models, prompt injection and jailbreaks subvert intended instructions. Each maps to a classic security goal: poisoning and adversarial inputs attack integrity, extraction and inference attack confidentiality, and resource exhaustion attacks availability.",
+        "Supply-chain risk is acute in modern AI. Teams routinely download pretrained models, datasets, and libraries from public hubs, any of which may carry backdoors, malicious serialization payloads, or tampered weights. A poisoned base model can propagate compromise into every fine-tuned derivative. Practitioners should treat third-party models and datasets as untrusted inputs, verifying provenance, checking signatures and hashes where available, and preferring vetted sources. Frameworks such as the MITRE ATLAS knowledge base catalog real adversary tactics against AI systems and help teams reason about realistic threat chains rather than abstract fears.",
+        "Effective threat modeling for AI starts with the same questions as any system: what are we protecting, who might attack it, and what can they reach. The difference lies in the assets and access paths. An attacker may only have black-box query access yet still extract a model or infer training membership. Insiders with data pipeline access can poison silently. Defenders should enumerate trust boundaries, rate threats by feasibility and impact, and prioritize defenses accordingly. This module frames the landscape; later modules build the concrete controls for the pipeline, the prompt interface, robustness, privacy, monitoring, and governance."
+      ],
+      "keyPoints": [
+        "AI expands the attack surface across data, training, parameters, and the inference interface",
+        "Core AI threats include data poisoning, model extraction, membership inference, adversarial examples, and prompt injection",
+        "Map each threat to confidentiality, integrity, or availability to prioritize defenses",
+        "Third-party models, datasets, and libraries are untrusted supply-chain inputs",
+        "Black-box query access alone can enable extraction and inference attacks",
+        "MITRE ATLAS catalogs real-world adversary tactics against AI systems"
+      ],
+      "example": "A team fine-tunes a freely downloaded open-weight model for customer support. Because the base model was never verified, a backdoor planted by the original uploader survives fine-tuning and triggers on a specific phrase, illustrating how supply-chain risk propagates into derivative systems.",
+      "summary": "AI systems face a lifecycle-wide attack surface with threats unique to learned behavior, and practitioners must map each threat to a security goal and verify the provenance of every model, dataset, and library."
+    },
+    {
+      "order": 2,
+      "title": "Securing the ML/Data Pipeline",
+      "objectives": [
+        "Identify integrity risks in data ingestion, labeling, and training workflows",
+        "Apply least privilege and provenance controls across the ML pipeline",
+        "Recognize data poisoning and backdoor patterns and their countermeasures"
+      ],
+      "body": [
+        "The data and training pipeline is the foundation of model integrity, and it is where poisoning attacks take root. If an adversary can influence even a small fraction of training data, they may degrade accuracy or implant a backdoor that behaves normally until a specific trigger appears. Pipelines that scrape the open web, accept crowd-sourced labels, or retrain continuously on user interactions are especially exposed. Securing this stage means controlling who can add or modify data, validating data quality and distribution, and maintaining a verifiable record of where every dataset and label originated.",
+        "Provenance and integrity controls are the practical defense. Maintain immutable lineage for datasets, capturing source, transformations, and approver for each version. Use content hashing and signed artifacts so tampering is detectable, and pin dataset and dependency versions so retraining is reproducible. Apply statistical screening to detect anomalous samples, label flips, or distribution shifts that may signal poisoning. While no single check is foolproof, layered validation combined with human review of suspicious batches raises the cost of a successful attack and shrinks the window in which corrupted data goes unnoticed.",
+        "Access control across the pipeline must follow least privilege. Data scientists rarely need write access to production training stores, and automated jobs should run with narrowly scoped service identities rather than broad credentials. Separate environments for development, staging, and production prevent experimental data from contaminating released models. Secrets such as data store keys and registry tokens belong in a managed vault, not in notebooks or source control. Logging every read and write to training data and the model registry creates the audit trail needed to investigate suspected poisoning or unauthorized model changes.",
+        "The model registry and artifact store deserve the same rigor as a code repository. Treat trained weights as sensitive build artifacts: sign them, record the exact data and code that produced them, and restrict who can promote a model to production. Beware insecure serialization formats that can execute code on load, and prefer safe formats and sandboxed loading for untrusted artifacts. A secure pipeline gives defenders confidence that a deployed model is the one they built, from data they trust, without silent modification along the way."
+      ],
+      "keyPoints": [
+        "Even a small fraction of poisoned training data can implant a backdoor or degrade accuracy",
+        "Maintain immutable data lineage with source, transformation, and approver records",
+        "Use hashing, signing, and version pinning for reproducible, tamper-evident training",
+        "Apply least privilege and separate dev, staging, and production environments",
+        "Screen training data statistically for anomalies, label flips, and distribution shift",
+        "Treat model weights as signed build artifacts and avoid unsafe serialization formats"
+      ],
+      "example": "A continuously retrained recommendation model ingests user-submitted reviews. An attacker floods the system with coordinated text to nudge the model toward promoting a specific product. Distribution monitoring flags the anomalous batch, and lineage records let defenders quarantine the tainted data before the next training run.",
+      "summary": "Pipeline security rests on provenance, integrity checks, least privilege, and a tightly controlled model registry, all of which make data poisoning harder to execute and easier to detect."
+    },
+    {
+      "order": 3,
+      "title": "Prompt Injection & LLM Attacks",
+      "objectives": [
+        "Explain how direct and indirect prompt injection subvert LLM applications",
+        "Distinguish jailbreaks, injection, and insecure output handling",
+        "Apply layered defenses for LLM-integrated applications and agents"
+      ],
+      "body": [
+        "Prompt injection is the signature vulnerability of large language model applications. Because LLMs process instructions and data in the same natural-language channel, an attacker can embed text that the model interprets as new commands, overriding the developer's intended behavior. Direct injection comes from the user typing adversarial input. Indirect injection is more insidious: malicious instructions hide inside content the model later retrieves, such as a web page, document, or email, and execute when the model ingests them. As LLMs gain tools and autonomy, a successful injection can trigger real actions, not just unwanted text.",
+        "Jailbreaks are a related but distinct concern. A jailbreak coaxes the model into violating its safety or policy constraints, for example by role-play framing or obfuscation, whereas injection redirects the application's logic. Insecure output handling is a third failure mode: when an application trusts model output and passes it unsanitized into a database query, a shell, a browser, or downstream code, the model becomes a conduit for classic injection flaws. Treating model output as untrusted user input is essential, because the model can be manipulated into producing whatever an attacker wants downstream systems to receive.",
+        "No single control fully prevents prompt injection, so defense is layered. Keep a clear separation between trusted system instructions and untrusted content, and clearly delimit or tag retrieved data so the model is steered to treat it as information rather than commands. Constrain the model's capabilities through least privilege: an agent should hold only the minimum tools and permissions for its task, with high-impact actions requiring human confirmation. Validate and filter both inputs and outputs, and design so that even a fully manipulated model cannot perform irreversible or sensitive operations on its own.",
+        "Operational practices reinforce these design choices. Red-team LLM features before launch using known injection and jailbreak patterns, and keep regression tests that re-run those patterns as prompts and models change. Log prompts, retrieved context, tool calls, and outputs so suspicious sequences can be investigated. Rate-limit and monitor for anomalous tool usage. Crucially, scope tool permissions and data access so that the blast radius of a compromised prompt stays small. The goal is not a perfect prompt firewall but an architecture where injection cannot escalate into serious harm."
+      ],
+      "keyPoints": [
+        "LLMs mix instructions and data in one channel, enabling prompt injection",
+        "Indirect injection hides malicious instructions in retrieved content the model later reads",
+        "Jailbreaks bypass safety policy; injection redirects application logic; both differ from insecure output handling",
+        "Treat all model output as untrusted before it reaches databases, shells, browsers, or code",
+        "Give agents least-privilege tools and require human approval for high-impact actions",
+        "Red-team injection and jailbreak patterns and log prompts, context, and tool calls"
+      ],
+      "example": "A support assistant summarizes incoming emails and can draft replies. An attacker sends an email containing hidden text instructing the assistant to forward the customer database. Because the assistant treats retrieved email as data, lacks send-to-external permissions, and requires human approval for outbound mail, the indirect injection fails to cause harm.",
+      "summary": "Prompt injection and jailbreaks exploit the LLM's blended instruction-and-data channel, so practitioners separate trusted instructions from untrusted content, treat outputs as untrusted, and constrain agent privileges to limit blast radius."
+    },
+    {
+      "order": 4,
+      "title": "Model Robustness & Adversarial Inputs",
+      "objectives": [
+        "Describe adversarial examples and how they exploit model decision boundaries",
+        "Compare evasion, extraction, and inference attacks at the inference interface",
+        "Select robustness and rate-limiting defenses appropriate to a threat model"
+      ],
+      "body": [
+        "Adversarial examples are inputs deliberately perturbed so a model misclassifies them, often with high confidence, while a human sees no meaningful change. They exploit the fact that learned decision boundaries are high-dimensional and imperfect, leaving regions where tiny shifts flip the output. These evasion attacks matter most where model decisions gate security or safety, such as malware detection, fraud screening, or content moderation. An attacker who can iteratively query a model and observe its responses can search for perturbations that defeat it, turning the inference interface into the primary battleground for integrity.",
+        "Beyond evasion, the inference interface enables confidentiality attacks. Model extraction uses many crafted queries to reconstruct an approximate copy of a model, stealing intellectual property and enabling offline attack development. Membership inference exploits a model's tendency to behave differently on data it memorized, revealing whether a particular record was in the training set. Model inversion attempts to reconstruct sensitive training features. All three are amplified when an API returns rich outputs such as full confidence scores or logits, which give attackers more signal per query to exploit.",
+        "Defenses operate at several layers. Reducing the information an interface returns, for example by exposing only top labels rather than precise confidence vectors, lowers the signal available for extraction and inference. Rate limiting, anomaly detection on query patterns, and per-client quotas raise the cost of the high-volume querying these attacks require. Adversarial training, where the model is trained on perturbed examples, can improve evasion robustness, though it often trades some clean accuracy and never guarantees immunity. Input preprocessing and ensembling add friction but should be viewed as defense in depth rather than complete solutions.",
+        "Robustness must be matched to the threat model and the cost of failure. A low-stakes recommendation engine warrants lighter controls than a model authorizing financial transactions. Practitioners should test models against adversarial inputs as part of evaluation, document known robustness limits, and avoid over-relying on a single model for high-impact decisions. Combining model defenses with traditional controls, such as human review of borderline decisions and independent corroborating signals, keeps a robust posture even when the model itself can be fooled. Robustness is a property of the whole system, not just the network weights."
+      ],
+      "keyPoints": [
+        "Adversarial examples exploit imperfect, high-dimensional decision boundaries to force confident errors",
+        "Evasion attacks target integrity; extraction, membership inference, and inversion target confidentiality",
+        "Rich API outputs such as full confidence vectors and logits give attackers more signal per query",
+        "Rate limiting, query anomaly detection, and reduced output detail raise attack cost",
+        "Adversarial training improves robustness but trades clean accuracy and is not a guarantee",
+        "Match robustness controls to the threat model and add human or corroborating checks for high-impact decisions"
+      ],
+      "example": "A fraud-detection API returns exact probability scores for every transaction. An attacker scripts thousands of small variations to learn which features push a transaction below the fraud threshold. Switching the API to coarse risk bands plus per-client rate limits and query-pattern alerts removes most of the signal the attacker relied on.",
+      "summary": "The inference interface is the front line for evasion, extraction, and inference attacks, so practitioners limit returned information, throttle and monitor queries, and treat robustness as a whole-system property reinforced by human and corroborating controls."
+    },
+    {
+      "order": 5,
+      "title": "Privacy, Data Protection & Compliance",
+      "objectives": [
+        "Explain how models can leak training data through memorization and inference attacks",
+        "Apply privacy-preserving techniques such as minimization, anonymization, and differential privacy",
+        "Relate AI data handling to regulatory obligations and data subject rights"
+      ],
+      "body": [
+        "Machine learning creates privacy risks that traditional data stores do not, because a trained model can memorize and later emit fragments of its training data. Large models in particular have been shown to regurgitate verbatim sequences, and membership inference can reveal whether an individual's record was used in training. This means the model itself, not just the database behind it, becomes regulated personal data once it is trained on people's information. Practitioners must reason about privacy across collection, training, the model artifact, and the outputs users receive.",
+        "Data minimization is the most reliable defense: collect and retain only what the use case requires, and avoid training on sensitive fields when they are not essential. Anonymization and pseudonymization reduce exposure, though practitioners should recognize that high-dimensional data is often re-identifiable, so these are mitigations rather than guarantees. Differential privacy offers a rigorous, quantifiable bound on how much any single record influences the model, typically by adding calibrated noise during training. It reduces memorization and inference risk at some cost to accuracy, and is well suited to training on sensitive populations where formal guarantees matter.",
+        "Regulatory frameworks impose concrete obligations on AI systems that process personal data. Laws such as the GDPR and similar regimes require a lawful basis for processing, purpose limitation, transparency, and support for data subject rights including access, correction, and deletion. The right to erasure is genuinely hard for models, since a trained model cannot simply forget one record, which is why minimization and documented retention decisions matter from the outset. The emerging EU AI Act adds risk-tiered obligations for higher-risk AI uses, layering on top of existing privacy law rather than replacing it.",
+        "Operationally, privacy and security reinforce each other. Encrypt personal data at rest and in transit, control access on a need-to-know basis, and log access for accountability. Conduct data protection impact assessments for higher-risk AI processing, and document the data sources, purposes, and safeguards for each model. For systems that send data to third-party model providers, scrutinize whether prompts or inputs are retained or used for further training, and contract accordingly. Treating privacy as a design requirement, not an afterthought, both satisfies regulators and shrinks the attack surface for inference-based leakage."
+      ],
+      "keyPoints": [
+        "Trained models can memorize and emit training data, making the model itself regulated personal data",
+        "Membership inference and model inversion can expose whether and what data was used in training",
+        "Data minimization is the most reliable privacy control; anonymization is a mitigation, not a guarantee",
+        "Differential privacy gives a quantifiable bound on per-record influence at some accuracy cost",
+        "GDPR-style laws require lawful basis, transparency, and data subject rights including erasure, which is hard for models",
+        "Run data protection impact assessments and scrutinize third-party provider data retention terms"
+      ],
+      "example": "A bank wants to train a model on customer transaction histories. Applying differential privacy during training bounds how much any single customer's records affect the model, so even a successful membership inference attempt cannot reliably confirm an individual was in the dataset, supporting both privacy and regulatory defensibility.",
+      "summary": "Models can leak the data they were trained on, so practitioners minimize data, apply techniques like differential privacy, and align handling with GDPR-style obligations and risk-tiered AI regulation."
+    },
+    {
+      "order": 6,
+      "title": "Monitoring, Detection & Response",
+      "objectives": [
+        "Define what to log and monitor across the inference and pipeline surfaces",
+        "Detect drift, abuse, and attack signatures specific to AI systems",
+        "Build incident response and red-teaming practices tailored to ML"
+      ],
+      "body": [
+        "Monitoring AI systems extends traditional observability with model-specific signals. Beyond infrastructure metrics, defenders need visibility into inputs, outputs, confidence distributions, and tool or API usage. For LLM applications this includes prompts, retrieved context, and the actions agents take. Comprehensive, privacy-aware logging is the foundation: without a record of what the model saw and did, investigating a suspected poisoning, injection, or extraction attempt is nearly impossible. The goal is to turn the opaque behavior of a model into an auditable trail that supports both detection and post-incident analysis.",
+        "Several detection patterns are unique to AI. Data and concept drift, where input distributions or real-world relationships shift over time, can silently degrade accuracy and may also signal an attack in progress. High-volume or systematically varied queries from a single client suggest extraction or evasion probing. Repeated near-duplicate inputs with small perturbations hint at adversarial search. For LLMs, spikes in refusals, anomalous tool calls, or outputs containing known injection markers warrant alerting. Establishing behavioral baselines lets defenders distinguish normal variation from the coordinated, high-volume activity that most query-based attacks require.",
+        "Incident response for AI builds on standard processes but adds model-specific playbooks. Responders need the ability to roll back to a known-good model version, quarantine suspect training data, and revoke compromised credentials or API keys. Because a poisoned model may have been serving for some time, response includes assessing which decisions it influenced and whether they must be reviewed or reversed. Version-pinned artifacts and immutable lineage, established in the pipeline module, make rollback and impact analysis feasible. Tabletop exercises that walk through poisoning, injection, and extraction scenarios prepare teams before a real event.",
+        "Proactive red-teaming closes the loop between monitoring and design. Internal or external teams deliberately attempt prompt injection, jailbreaks, adversarial inputs, and extraction against the system, documenting what succeeds and feeding fixes back into controls and detection rules. Successful attack patterns become regression tests and new alert signatures, so the same technique is caught next time. Continuous evaluation matters because models, prompts, and threats all evolve. A mature program treats monitoring, detection, response, and red-teaming as a single feedback loop that steadily hardens the system against both known and emerging AI attacks."
+      ],
+      "keyPoints": [
+        "Log inputs, outputs, confidence distributions, prompts, retrieved context, and tool or API calls",
+        "Watch for data and concept drift that can signal degradation or an attack in progress",
+        "High-volume or systematically perturbed queries indicate extraction, evasion, or adversarial search",
+        "Maintain playbooks for model rollback, data quarantine, and credential revocation",
+        "Version pinning and immutable lineage make rollback and impact analysis feasible",
+        "Feed successful red-team findings back into regression tests and detection rules"
+      ],
+      "example": "Monitoring flags a single API client issuing thousands of slightly varied requests within an hour, far above the established baseline. Automated throttling kicks in, an alert fires, and analysts confirm a model-extraction attempt, then add the query-pattern signature to detection rules and the red-team regression suite.",
+      "summary": "AI monitoring adds model-specific signals like drift and query anomalies, and pairs them with ML-aware incident response and continuous red-teaming in a feedback loop that hardens the system over time."
+    },
+    {
+      "order": 7,
+      "title": "Governance: NIST AI RMF & ISO/IEC 42001",
+      "objectives": [
+        "Summarize the four core functions of the NIST AI Risk Management Framework",
+        "Explain the purpose and structure of an ISO/IEC 42001 AI management system",
+        "Connect governance frameworks to the technical controls covered in earlier modules"
+      ],
+      "body": [
+        "Governance turns scattered technical controls into a managed, accountable program, and two frameworks anchor current practice. The NIST AI Risk Management Framework is a voluntary, U.S.-developed guide for identifying and managing AI risks across the lifecycle. It is organized around four core functions: Govern, Map, Measure, and Manage. Govern establishes the culture, policies, roles, and accountability that cut across the others. Map establishes context and identifies risks tied to the system's purpose and setting. Measure analyzes and tracks those risks using quantitative and qualitative methods. Manage prioritizes and acts on risks, allocating resources and monitoring over time.",
+        "The four functions are iterative rather than sequential, and they reinforce each other throughout the lifecycle. Govern is deliberately central because without clear ownership, defined risk tolerance, and accountability, the technical work in Map, Measure, and Manage lacks authority and follow-through. The framework is paired with a Playbook and profiles that help organizations tailor it to their context and to specific applications such as generative AI. Importantly, the RMF is descriptive and flexible: it tells an organization what to address and how to structure the conversation, but leaves the specific controls to the organization and its threat model.",
+        "ISO/IEC 42001 is the first international standard for an AI management system, and it is certifiable, much like ISO/IEC 27001 is for information security. Rather than prescribing specific technical defenses, it specifies the management system: the policies, objectives, roles, risk and impact assessment processes, operational controls, and the continual-improvement cycle an organization uses to develop and operate AI responsibly. It follows the familiar plan-do-check-act structure and the common management-system format, so organizations already certified to other ISO standards can integrate it. Certification gives customers and regulators independent assurance that AI governance is systematic rather than ad hoc.",
+        "The two frameworks are complementary, and they connect directly to the earlier modules. NIST AI RMF helps an organization reason about and prioritize AI risk; ISO/IEC 42001 provides an auditable management system to operate that program continuously. Together they create the umbrella under which pipeline integrity, prompt-injection defenses, robustness testing, privacy controls, and monitoring live as documented, owned, and improving practices. Related guidance, such as the NIST Secure Software Development Framework extensions for AI and sector regulations, plugs in beneath them. For a practitioner, governance is what ensures the controls from modules two through six are funded, assigned, tested, and sustained."
+      ],
+      "keyPoints": [
+        "NIST AI RMF is voluntary and built on four functions: Govern, Map, Measure, and Manage",
+        "Govern is central, setting culture, policy, roles, and accountability across the other functions",
+        "The RMF is iterative and descriptive, structuring risk decisions without prescribing specific controls",
+        "ISO/IEC 42001 is the first certifiable international AI management system standard",
+        "ISO/IEC 42001 follows plan-do-check-act and the common ISO management-system structure",
+        "RMF guides risk prioritization while 42001 provides the auditable system to sustain the program"
+      ],
+      "example": "An organization adopts NIST AI RMF to identify and rate risks for a new generative AI product, then implements an ISO/IEC 42001 management system to assign owners, document controls, and run audits. The pipeline, prompt-injection, privacy, and monitoring controls from earlier modules become the operational evidence assessed during certification.",
+      "summary": "NIST AI RMF structures AI risk decisions through Govern, Map, Measure, and Manage, while the certifiable ISO/IEC 42001 standard provides the management system that operationalizes and sustains those controls."
+    }
+  ],
+  "questions": [
+    {
+      "text": "Which attack determines whether a specific individual's record was part of a model's training dataset?",
+      "options": [
+        "Membership inference",
+        "Adversarial evasion",
+        "Prompt injection",
+        "Model extraction"
+      ],
+      "correctIndex": 0,
+      "explanation": "Membership inference exploits differences in how a model behaves on data it memorized versus unseen data to determine whether a particular record was in the training set, which is a confidentiality and privacy leak."
+    },
+    {
+      "text": "What best describes indirect prompt injection?",
+      "options": [
+        "Malicious instructions hidden in external content the model later retrieves and processes",
+        "A user directly typing commands that override the system prompt",
+        "Adding noise to an image so the model misclassifies it",
+        "Querying an API repeatedly to copy a model"
+      ],
+      "correctIndex": 0,
+      "explanation": "Indirect prompt injection plants adversarial instructions inside content such as a web page, document, or email that the model ingests later, causing it to act on attacker text without the user typing anything malicious."
+    },
+    {
+      "text": "Which technique provides a quantifiable bound on how much any single training record influences a model?",
+      "options": [
+        "Differential privacy",
+        "Pseudonymization",
+        "Adversarial training",
+        "Rate limiting"
+      ],
+      "correctIndex": 0,
+      "explanation": "Differential privacy adds calibrated noise during training to mathematically bound the influence of any single record, reducing memorization and membership inference risk at some cost to accuracy."
+    },
+    {
+      "text": "An attacker influences a small fraction of training data to implant hidden behavior triggered by a specific input. This is an example of:",
+      "options": [
+        "Data poisoning with a backdoor",
+        "Membership inference",
+        "Insecure output handling",
+        "Model inversion"
+      ],
+      "correctIndex": 0,
+      "explanation": "Data poisoning corrupts training data, and a backdoor is a poisoned pattern that makes the model behave normally until a specific trigger appears, at which point the attacker-chosen behavior activates."
+    },
+    {
+      "text": "Which of the four NIST AI RMF functions establishes the culture, policies, roles, and accountability that cut across the others?",
+      "options": [
+        "Govern",
+        "Map",
+        "Measure",
+        "Manage"
+      ],
+      "correctIndex": 0,
+      "explanation": "The four functions are Govern, Map, Measure, and Manage. Govern is central and cross-cutting, setting the organizational culture, policies, roles, and accountability under which the other functions operate."
+    },
+    {
+      "text": "Why is exposing full confidence scores or logits from a model API a security concern?",
+      "options": [
+        "It gives attackers more signal per query, aiding extraction and inference attacks",
+        "It increases the model's clean accuracy unfairly",
+        "It violates the plan-do-check-act cycle",
+        "It prevents differential privacy from working"
+      ],
+      "correctIndex": 0,
+      "explanation": "Rich outputs such as full confidence vectors or logits give attackers more information per query, making model extraction, membership inference, and adversarial search more effective. Returning coarse labels reduces this signal."
+    },
+    {
+      "text": "What is the most appropriate way to treat the output of an LLM before passing it to a database query or shell command?",
+      "options": [
+        "As untrusted input that must be validated and sanitized",
+        "As trusted because the model is internal",
+        "As already safe if the system prompt is well written",
+        "As exempt from injection risks because it is generated text"
+      ],
+      "correctIndex": 0,
+      "explanation": "Because a model can be manipulated via prompt injection, its output must be treated as untrusted input. Passing it unsanitized into queries, shells, or browsers reintroduces classic injection vulnerabilities."
+    },
+    {
+      "text": "What is the primary distinction between ISO/IEC 42001 and the NIST AI RMF?",
+      "options": [
+        "ISO/IEC 42001 is a certifiable management-system standard, while NIST AI RMF is a voluntary risk-management framework",
+        "ISO/IEC 42001 prescribes exact technical defenses, while NIST AI RMF certifies models",
+        "NIST AI RMF is legally binding worldwide, while ISO/IEC 42001 is optional guidance",
+        "They are identical and interchangeable"
+      ],
+      "correctIndex": 0,
+      "explanation": "ISO/IEC 42001 is the first certifiable international AI management system standard specifying policies and a continual-improvement cycle, whereas NIST AI RMF is a voluntary, descriptive framework for structuring AI risk decisions."
+    },
+    {
+      "text": "Which monitoring signal most strongly suggests a model-extraction attempt is underway?",
+      "options": [
+        "A single client issuing high-volume, systematically varied queries far above baseline",
+        "A gradual seasonal change in user traffic",
+        "An occasional model timeout during peak hours",
+        "A drop in storage costs for the model registry"
+      ],
+      "correctIndex": 0,
+      "explanation": "Model extraction requires many queries to approximate the target model. High-volume, systematically varied requests from one client that exceed established behavioral baselines are a strong indicator and justify throttling and alerting."
+    },
+    {
+      "text": "Why does the right to erasure pose a particular challenge for trained machine learning models?",
+      "options": [
+        "A trained model cannot simply forget a single record, since the data is encoded in its parameters",
+        "Models never contain personal data once deployed",
+        "Erasure only applies to backups, not models",
+        "Differential privacy makes erasure automatic and instant"
+      ],
+      "correctIndex": 0,
+      "explanation": "Unlike a database row, training data is diffusely encoded across a model's parameters, so a record cannot be cleanly deleted. This is why data minimization and documented retention decisions are important from the outset."
+    }
+  ]
+}

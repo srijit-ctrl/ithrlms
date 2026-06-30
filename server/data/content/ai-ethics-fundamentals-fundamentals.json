@@ -1,0 +1,248 @@
+{
+  "version": 2,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Why AI Ethics Matters",
+      "objectives": [
+        "Explain why ethical considerations are essential when designing and deploying AI systems",
+        "Identify the kinds of harm that can result from poorly governed AI",
+        "Describe how ethics connects to trust, adoption, and organizational reputation"
+      ],
+      "body": [
+        "Artificial intelligence now shapes decisions that affect people in tangible ways, from who is shortlisted for a job to which patients receive priority care. Because these systems operate at scale and often with limited human review, a single design flaw can affect thousands of individuals before anyone notices. AI ethics is the discipline of anticipating these effects and steering technology toward outcomes that respect human rights, dignity, and wellbeing. At ITHR, we treat ethics not as a compliance afterthought but as a design input that shapes how systems are conceived, built, and monitored from the very first conversation.",
+        "Unlike a calculator that produces the same answer every time, many AI systems learn patterns from historical data and produce probabilistic outputs. This means they can reflect and amplify the assumptions, gaps, and inequities present in the data they were trained on. A hiring model trained on past decisions may quietly reproduce past discrimination. An ethical approach asks who could be harmed, whether the harm is distributed fairly, and what recourse affected people have. These questions are difficult precisely because the answers are rarely obvious from the technical metrics alone.",
+        "Ethical lapses carry real consequences. Organizations have faced regulatory penalties, lawsuits, public backlash, and lasting reputational damage when AI systems behaved in biased, opaque, or unsafe ways. Conversely, teams that build ethics into their practice tend to ship systems that earn user trust, satisfy regulators, and remain useful over time. Trust is the currency of adoption: people will not rely on tools they believe are unfair or unaccountable. Ethics, in this sense, is not opposed to good engineering but is part of what good engineering means.",
+        "AI ethics also matters because the people building these systems hold genuine power over others. Practitioners make choices about what to optimize, what data to collect, and which errors are tolerable. These are value judgments, not purely technical ones. Recognizing this responsibility is the starting point for the rest of this course, which examines bias, privacy, transparency, safety, and the governance frameworks that help teams act on these principles consistently rather than relying on individual good intentions alone."
+      ],
+      "keyPoints": [
+        "AI systems operate at scale, so small flaws can cause widespread harm",
+        "Models can reflect and amplify bias present in their training data",
+        "Ethical lapses lead to regulatory, legal, and reputational consequences",
+        "Trust is essential for the adoption and long-term usefulness of AI",
+        "Design choices in AI are value judgments, not just technical decisions",
+        "Ethics is a design input, not a compliance afterthought"
+      ],
+      "example": "A bank deploys an automated credit-scoring model that denies loans to qualified applicants from certain neighborhoods because historical lending data encoded past discrimination; the resulting complaints and regulatory scrutiny illustrate why ethical review must precede deployment.",
+      "summary": "AI ethics matters because automated systems make consequential decisions at scale, and embedding ethical thinking early protects people while building the trust that adoption depends on."
+    },
+    {
+      "order": 2,
+      "title": "Bias and Fairness",
+      "objectives": [
+        "Define algorithmic bias and explain its common sources",
+        "Distinguish between several recognized notions of fairness",
+        "Describe practical techniques for detecting and mitigating bias"
+      ],
+      "body": [
+        "Bias in AI refers to systematic errors that lead a model to treat some groups less favorably than others. Bias rarely comes from a single cause. It can enter through unrepresentative training data, through labels that reflect human prejudice, through features that act as proxies for protected attributes such as race or gender, and through choices made when defining the problem itself. Because bias can be introduced at many stages, addressing it requires examining the whole pipeline rather than searching for one faulty component.",
+        "Fairness is harder to pin down than it first appears, because there are several reasonable but mathematically incompatible definitions. Demographic parity asks that outcomes be distributed equally across groups. Equal opportunity asks that qualified individuals have the same chance of a favorable outcome regardless of group. Calibration asks that a predicted score mean the same thing for everyone. Researchers have shown that you generally cannot satisfy all of these at once, so teams must decide, in context, which notion of fairness best fits the situation and be transparent about the tradeoff.",
+        "Detecting bias begins with measurement. Teams disaggregate performance metrics by relevant subgroups to see whether error rates, false positives, or approval rates differ in ways that matter. This requires thoughtful collection or estimation of group information, which itself raises privacy questions covered later in this course. Visualization, audits by independent reviewers, and stress testing with edge cases all help surface problems that aggregate accuracy figures conceal.",
+        "Mitigation techniques span the lifecycle. Before training, teams can rebalance or augment data and remove leaky proxy features. During training, fairness constraints or reweighting can be applied. After training, decision thresholds can be adjusted per group or outputs can be post-processed. No technique is a cure-all, and some reduce overall accuracy, so mitigation is a deliberate balancing act. Critically, fairness is not only technical: it depends on involving affected communities and domain experts who understand what equitable treatment actually means in a given setting.",
+        "Finally, fairness work is ongoing rather than a one-time fix. Populations change, behavior shifts, and a model that was fair at launch can drift into unfairness as the world around it evolves. Continuous monitoring, clear escalation paths, and a willingness to retrain or retire a model are part of responsible practice. Documenting the fairness choices made and the reasoning behind them allows future teams to understand and revisit decisions as circumstances change."
+      ],
+      "keyPoints": [
+        "Bias can enter through data, labels, proxy features, and problem framing",
+        "Several fairness definitions exist and cannot all be satisfied at once",
+        "Detection relies on disaggregating metrics across relevant subgroups",
+        "Mitigation can occur before, during, or after model training",
+        "Reducing bias often involves tradeoffs with overall accuracy",
+        "Fairness requires ongoing monitoring as populations and behavior change"
+      ],
+      "example": "A widely studied facial analysis system showed far higher error rates for darker-skinned women than for lighter-skinned men, traceable to training data that underrepresented some groups; disaggregating accuracy by subgroup revealed a gap that overall accuracy had hidden.",
+      "summary": "Bias arises throughout the AI pipeline, fairness has multiple incompatible definitions, and mitigating unfairness requires deliberate measurement, tradeoffs, and continuous monitoring."
+    },
+    {
+      "order": 3,
+      "title": "Privacy and Data Protection",
+      "objectives": [
+        "Explain why AI systems raise distinctive privacy risks",
+        "Describe core GDPR rights and the principle of data minimization",
+        "Identify privacy-protective techniques used in AI development"
+      ],
+      "body": [
+        "AI systems are data-hungry, and that appetite creates privacy risks beyond those of ordinary software. Models can memorize fragments of their training data and reveal them later, can be used to re-identify individuals from supposedly anonymous records, and can infer sensitive attributes such as health status or political views that a person never disclosed. Because data flows through training, deployment, and logging, privacy must be considered across the whole lifecycle rather than treated as a single checkbox at collection time.",
+        "Data minimization is a foundational principle: collect and retain only the personal data that is genuinely necessary for a specified purpose, and keep it no longer than needed. Under the European Union General Data Protection Regulation, or GDPR, this principle sits alongside requirements such as having a lawful basis for processing, limiting use to the purpose for which data was gathered, and ensuring data is accurate and secure. Minimization reduces both privacy harm and security exposure, because data that is never collected cannot be breached or misused.",
+        "GDPR grants individuals a set of rights over their personal data. These include the right to be informed about how data is used, the right of access to their data, the right to rectification of inaccurate data, the right to erasure in certain circumstances, the right to restrict or object to processing, and the right to data portability. The regulation also provides safeguards around decisions based solely on automated processing that produce significant effects. Practitioners should treat these as concrete design requirements rather than abstract legal language, and should consult qualified counsel for specific obligations.",
+        "Several technical approaches help reduce privacy risk. Pseudonymization and anonymization limit how easily data ties back to a person, though true anonymization is difficult to guarantee. Differential privacy adds carefully calibrated noise so that results do not depend too heavily on any single individual. Federated learning trains models across distributed devices without centralizing raw data. Access controls, encryption, and strict retention limits round out a defense-in-depth posture. Each technique has limits and tradeoffs, so they are best combined rather than relied upon in isolation.",
+        "Privacy is ultimately about respecting people, not merely satisfying a statute. Privacy by design means building protective defaults into systems from the outset, conducting impact assessments for high-risk processing, and being transparent with users about what happens to their data. When teams treat privacy as a feature that users value rather than a constraint to be minimized, they tend to design systems that are both more trustworthy and more durable."
+      ],
+      "keyPoints": [
+        "AI can memorize, re-identify, and infer sensitive personal information",
+        "Data minimization means collecting only what is necessary and keeping it briefly",
+        "GDPR grants rights such as access, rectification, erasure, and portability",
+        "Lawful basis and purpose limitation are core GDPR processing requirements",
+        "Differential privacy and federated learning reduce exposure of raw data",
+        "Privacy by design builds protective defaults in from the start"
+      ],
+      "example": "A health app trains a model on patient records but applies data minimization by stripping unnecessary fields, uses differential privacy during training, and honors a user's GDPR erasure request by removing their records and retraining, demonstrating privacy considerations across the lifecycle.",
+      "summary": "AI amplifies privacy risk, so practitioners apply data minimization, honor GDPR rights such as access and erasure, and use privacy-protective techniques to respect individuals throughout the data lifecycle."
+    },
+    {
+      "order": 4,
+      "title": "Transparency and Accountability",
+      "objectives": [
+        "Distinguish transparency, explainability, and interpretability",
+        "Explain why documentation and audit trails support accountability",
+        "Describe how to assign clear responsibility for AI outcomes"
+      ],
+      "body": [
+        "Transparency means being open about how an AI system works, what it is used for, and what its limitations are. It operates at several levels: disclosing that an automated system is in use, documenting how it was built and tested, and explaining individual decisions to those affected. Explainability and interpretability are related ideas. Interpretability usually refers to how readily a human can understand a model's inner workings, while explainability refers to producing understandable accounts of specific outputs, often through techniques layered on top of complex models.",
+        "Not all transparency is the same, and audiences differ. A regulator may need detailed documentation of training data and validation results, while an affected individual mainly needs a clear, plain-language reason for a decision and a way to contest it. A developer needs technical diagnostics. Designing transparency well means matching the explanation to the audience and the stakes. Overly technical disclosures can be as unhelpful as no disclosure at all if they do not let the recipient understand or act.",
+        "Accountability is the principle that someone is answerable for what an AI system does. This requires more than good intentions; it requires structures. Clear ownership assigns named roles responsible for a system's behavior. Documentation such as model cards and datasheets records intended use, performance, and known limitations. Audit trails log decisions and changes so that problems can be traced and investigated. Without these structures, responsibility diffuses until no one is accountable when something goes wrong.",
+        "Meaningful accountability also depends on recourse and oversight. People affected by automated decisions should have a way to question them and reach a human who can review the outcome. Internally, organizations benefit from independent review, escalation paths, and the authority to pause or roll back a system that misbehaves. Transparency and accountability reinforce each other: you cannot hold a system accountable if you cannot see how it works, and transparency has little value if no one is responsible for acting on what it reveals."
+      ],
+      "keyPoints": [
+        "Transparency operates at disclosure, documentation, and explanation levels",
+        "Interpretability concerns model internals; explainability concerns specific outputs",
+        "Explanations should match the audience and the stakes involved",
+        "Model cards, datasheets, and audit trails support accountability",
+        "Clear ownership prevents responsibility from diffusing across a team",
+        "Affected people need recourse and access to human review"
+      ],
+      "example": "A lender that automatically declines an application provides the applicant with a plain-language statement of the main factors behind the decision and a route to request human review, while maintaining internal model documentation and audit logs that let auditors trace how the decision was reached.",
+      "summary": "Transparency makes AI systems understandable to the right audiences, and accountability assigns clear responsibility supported by documentation, audit trails, and meaningful human recourse."
+    },
+    {
+      "order": 5,
+      "title": "Safety, Reliability and Human Oversight",
+      "objectives": [
+        "Explain what safety and reliability mean for AI systems",
+        "Describe common failure modes such as drift and distribution shift",
+        "Identify approaches to human oversight and meaningful control"
+      ],
+      "body": [
+        "Safety in AI means designing systems that avoid causing harm even when conditions are unexpected, while reliability means performing consistently and correctly across the range of situations the system will actually encounter. These goals are demanding because AI systems often operate in open, changing environments. A model that works well in testing may behave unpredictably when it meets inputs unlike anything in its training data. Anticipating and bounding these failures is central to responsible deployment, especially in high-stakes domains such as healthcare, transportation, and finance.",
+        "Several failure modes recur. Distribution shift occurs when the real-world data a model sees diverges from its training data, degrading performance silently. Model drift describes how performance decays over time as the world changes. Models can also be brittle, failing on small perturbations, or vulnerable to adversarial inputs crafted to fool them. Automation bias is a human failure mode in which people over-trust system outputs and stop applying their own judgment. Designing for safety means planning for all of these rather than assuming the model will keep working.",
+        "Robust engineering practices reduce these risks. Thorough testing across diverse and edge-case scenarios, validation on data the model has not seen, and ongoing monitoring of live performance help catch problems early. Setting confidence thresholds, building fallback behaviors for low-confidence cases, and designing graceful degradation so the system fails safely rather than catastrophically all contribute to reliability. Clear specifications of intended operating conditions help everyone understand when the system should and should not be relied upon.",
+        "Human oversight ensures that people remain meaningfully in control of consequential decisions. Oversight is sometimes described as human-in-the-loop, where a person approves each decision, human-on-the-loop, where a person monitors and can intervene, or human-in-command, where humans retain ultimate authority over the system's role. Effective oversight is more than a rubber stamp: reviewers need adequate time, relevant information, the competence to judge, and genuine authority to override or halt the system. Designing oversight that resists automation bias is itself a safety discipline."
+      ],
+      "keyPoints": [
+        "Safety means avoiding harm; reliability means consistent correct performance",
+        "Distribution shift and drift can silently degrade a model over time",
+        "Adversarial inputs and brittleness are recognized failure modes",
+        "Automation bias leads people to over-trust system outputs",
+        "Fallbacks, thresholds, and graceful degradation improve safety",
+        "Meaningful human oversight requires time, information, and real authority"
+      ],
+      "example": "A clinical decision-support tool flags low-confidence predictions for mandatory clinician review and continuously monitors for performance drift; when accuracy drops after a change in patient population, the system alerts its owners and routes more cases to human judgment until it is retrained.",
+      "summary": "Safe and reliable AI anticipates failure modes like drift and adversarial inputs, builds in fallbacks, and preserves meaningful human oversight so people retain genuine control over high-stakes decisions."
+    },
+    {
+      "order": 6,
+      "title": "Frameworks and Governance",
+      "objectives": [
+        "Summarize the structure of the NIST AI Risk Management Framework",
+        "Explain the purpose of ISO/IEC 42001 and the EU AI Act's risk tiers",
+        "Describe how governance operationalizes ethical principles"
+      ],
+      "body": [
+        "Ethical principles only matter if organizations can act on them consistently, which is the role of governance. Governance turns values into repeatable processes: assigning roles, setting policies, defining review gates, and tracking risks across the AI lifecycle. Several frameworks and regulations help structure this work. They are complementary rather than competing, and many organizations draw on more than one. The aim is to make responsible behavior the default through clear expectations, accountability, and documentation rather than relying on individual judgment alone.",
+        "The NIST AI Risk Management Framework, published by the United States National Institute of Standards and Technology, is a voluntary framework organized around four core functions. Govern establishes a culture of risk management with policies, roles, and accountability that cut across the others. Map builds context by identifying the system's purpose, stakeholders, and potential impacts. Measure analyzes and tracks risks using quantitative and qualitative methods. Manage prioritizes and acts on those risks, allocating resources and responding over time. Together these functions provide a flexible, lifecycle-oriented approach that organizations can tailor to their context.",
+        "ISO/IEC 42001 is an international standard that specifies requirements for an AI management system, often abbreviated AIMS. Much as ISO/IEC 27001 addresses information security management, 42001 gives organizations a certifiable, auditable structure for governing AI responsibly. It follows the familiar management-system pattern of establishing policies and objectives, implementing controls, monitoring performance, and continually improving. Because it is a management-system standard, it focuses on organizational processes and governance rather than prescribing specific technical methods, which makes it broadly applicable across industries.",
+        "The European Union Artificial Intelligence Act takes a risk-based, tiered approach to regulation. It prohibits a narrow set of practices deemed to pose unacceptable risk, imposes substantial obligations on high-risk systems such as requirements for risk management, data governance, documentation, transparency, and human oversight, applies lighter transparency duties to certain limited-risk systems such as those interacting with people, and leaves minimal-risk systems largely unregulated. As legislation it carries legal obligations, and its detailed requirements and timelines are technical, so organizations should rely on qualified legal advice rather than summaries when assessing their specific duties.",
+        "In practice, these frameworks reinforce the topics covered earlier in this course. They ask organizations to assess bias and fairness, protect privacy, document and explain systems, and maintain human oversight, while assigning clear accountability for each. At ITHR we encourage teams to select frameworks proportionate to their risk, integrate governance into existing workflows rather than bolting it on, and revisit their approach as both the technology and the regulatory landscape continue to evolve."
+      ],
+      "keyPoints": [
+        "Governance turns ethical principles into repeatable, accountable processes",
+        "The NIST AI RMF is built on four functions: Govern, Map, Measure, Manage",
+        "ISO/IEC 42001 specifies an auditable AI management system",
+        "The EU AI Act regulates by risk tier, from prohibited to minimal risk",
+        "High-risk systems under the EU AI Act face the most stringent obligations",
+        "Frameworks are complementary and should be chosen proportionate to risk"
+      ],
+      "example": "An organization launching a high-risk recruitment tool uses the NIST AI RMF to map stakeholders and measure bias, adopts ISO/IEC 42001 to formalize its AI management processes, and reviews the EU AI Act with legal counsel to confirm which high-risk obligations apply before deployment.",
+      "summary": "Governance frameworks such as the NIST AI RMF, ISO/IEC 42001, and the risk-tiered EU AI Act give organizations structured, accountable ways to operationalize the ethical principles covered throughout this course."
+    }
+  ],
+  "questions": [
+    {
+      "text": "Why can a small flaw in an AI system cause disproportionately large harm compared with a flaw in traditional software?",
+      "options": [
+        "AI systems are always written in less reliable programming languages",
+        "AI systems often operate at scale with limited human review, affecting many people quickly",
+        "AI systems cannot be tested before deployment",
+        "AI systems are immune to regulatory oversight"
+      ],
+      "correctIndex": 1,
+      "explanation": "Because AI systems make decisions at scale and often with limited human review, a single design flaw can affect large numbers of people before it is detected, magnifying the potential harm."
+    },
+    {
+      "text": "Which statement best describes the relationship between common mathematical fairness definitions?",
+      "options": [
+        "They are interchangeable and always produce identical outcomes",
+        "Only one valid definition of fairness exists",
+        "Several reasonable definitions exist and generally cannot all be satisfied at once",
+        "Fairness definitions apply only to image recognition systems"
+      ],
+      "correctIndex": 2,
+      "explanation": "Definitions such as demographic parity, equal opportunity, and calibration are each reasonable, but research shows they are generally incompatible, so teams must choose which fits the context and be transparent about the tradeoff."
+    },
+    {
+      "text": "What does the principle of data minimization require?",
+      "options": [
+        "Collecting as much data as possible in case it is useful later",
+        "Collecting and retaining only the personal data necessary for a specified purpose",
+        "Deleting all data immediately after a model is trained",
+        "Sharing personal data freely across all departments"
+      ],
+      "correctIndex": 1,
+      "explanation": "Data minimization, a core GDPR principle, requires collecting and keeping only the personal data genuinely necessary for a specified purpose, and retaining it no longer than needed."
+    },
+    {
+      "text": "Which of the following is a right granted to individuals under the GDPR?",
+      "options": [
+        "The right to demand that any model be permanently shut down",
+        "The right to access their personal data held by an organization",
+        "The right to receive financial compensation for any data use",
+        "The right to prevent all companies from using AI"
+      ],
+      "correctIndex": 1,
+      "explanation": "GDPR grants individuals rights including the right of access to their personal data, alongside rights to rectification, erasure, restriction, objection, and portability. The other options are not GDPR rights as stated."
+    },
+    {
+      "text": "What is the difference between interpretability and explainability as described in the course?",
+      "options": [
+        "They are identical terms with no meaningful distinction",
+        "Interpretability concerns how readily a human can understand a model's inner workings, while explainability concerns producing understandable accounts of specific outputs",
+        "Interpretability applies only to regulators and explainability only to developers",
+        "Explainability means hiding how a model works from the public"
+      ],
+      "correctIndex": 1,
+      "explanation": "Interpretability generally refers to how easily a human can understand a model's internal workings, whereas explainability refers to producing understandable accounts of particular outputs, often via techniques layered on complex models."
+    },
+    {
+      "text": "Which term describes the human tendency to over-trust automated system outputs and stop applying independent judgment?",
+      "options": [
+        "Distribution shift",
+        "Differential privacy",
+        "Automation bias",
+        "Demographic parity"
+      ],
+      "correctIndex": 2,
+      "explanation": "Automation bias is the failure mode in which people over-rely on system outputs and stop exercising their own judgment, which is why meaningful human oversight must be designed to resist it."
+    },
+    {
+      "text": "What are the four core functions of the NIST AI Risk Management Framework?",
+      "options": [
+        "Plan, Do, Check, Act",
+        "Govern, Map, Measure, Manage",
+        "Identify, Protect, Detect, Respond",
+        "Collect, Train, Deploy, Retire"
+      ],
+      "correctIndex": 1,
+      "explanation": "The NIST AI RMF is organized around four core functions: Govern, Map, Measure, and Manage, with Govern cutting across the others to establish a culture of risk management."
+    },
+    {
+      "text": "How does the EU AI Act primarily structure its requirements?",
+      "options": [
+        "By the size of the company deploying the system",
+        "By a risk-based approach with tiers from prohibited to minimal risk",
+        "By requiring identical obligations for every AI system",
+        "By the programming language used to build the system"
+      ],
+      "correctIndex": 1,
+      "explanation": "The EU AI Act uses a risk-based, tiered approach: it prohibits certain unacceptable-risk practices, places stringent obligations on high-risk systems, applies lighter transparency duties to limited-risk systems, and largely leaves minimal-risk systems unregulated."
+    }
+  ]
+}

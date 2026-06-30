@@ -1,0 +1,269 @@
+{
+  "version": 2,
+  "modules": [
+    {
+      "order": 1,
+      "title": "What AI Is (and Isn't)",
+      "objectives": [
+        "Define artificial intelligence in plain language",
+        "Distinguish AI from ordinary software and from science-fiction robots",
+        "Recognize everyday tools that already use AI"
+      ],
+      "body": [
+        "Artificial intelligence, usually shortened to AI, is software that performs tasks we normally associate with human thinking, such as recognizing a face in a photo, understanding a spoken question, or suggesting the next word as you type. The key idea is that the computer is not simply following a fixed list of instructions a programmer wrote out by hand. Instead, it has been built to find patterns in large amounts of information and use those patterns to make useful guesses about new situations it has never seen before. That ability to generalize from examples is what makes a system feel intelligent.",
+        "It helps to compare AI with traditional software. A normal program is like a recipe: a developer writes exact steps, and the computer follows them the same way every time. If a situation was not anticipated, the program simply fails or does nothing. AI is different because it learns its behavior from data rather than from hand-written rules. Think of a child learning to tell cats from dogs. Nobody gives the child a precise rulebook; the child sees many animals, hears the labels, and gradually gets the feel for the difference. AI systems learn in a roughly similar, example-driven way.",
+        "There is also a lot AI is not. It is not a conscious mind, it does not have feelings or intentions, and it does not understand the world the way a person does. When a chatbot sounds friendly or confident, that tone is a pattern it learned from text, not a sign of genuine emotion or belief. Today we have what experts call narrow AI, meaning systems that are good at specific tasks like translation or spam filtering. The all-purpose thinking machine of movies, often called general AI, does not exist, and treating current tools as if they truly comprehend can lead to costly mistakes.",
+        "You almost certainly use AI already, often without noticing. The map app that predicts traffic, the email tool that flags junk, the streaming service that recommends a show, the bank system that spots an unusual charge, and the phone camera that sharpens a blurry shot all rely on AI under the hood. Understanding this matters because AI is now woven into ordinary work and daily life. Knowing what these systems can and cannot do lets you take advantage of their strengths while staying alert to their limits, which is the whole point of this course."
+      ],
+      "keyPoints": [
+        "AI is software that learns patterns from data instead of following only hand-written rules",
+        "Traditional programs follow fixed steps; AI generalizes from examples",
+        "Current systems are narrow AI, skilled at specific tasks, not general thinking machines",
+        "AI has no consciousness, emotions, or true understanding",
+        "Common tools like maps, spam filters, and recommendations already use AI",
+        "Knowing the limits of AI is as important as knowing its strengths"
+      ],
+      "example": "When your phone photo app automatically groups pictures of the same person together, it is using AI: it learned from millions of labeled faces what features tend to belong to one individual, then applies that learned pattern to your own photos, even though it was never shown your specific friends in advance.",
+      "summary": "AI is software that learns patterns from data to make useful predictions, and today it powers many everyday tools, but it remains narrow and has no real understanding or feelings."
+    },
+    {
+      "order": 2,
+      "title": "How Machine Learning Learns",
+      "objectives": [
+        "Explain what machine learning is and how training works",
+        "Describe the role of training data and patterns",
+        "Identify the main learning styles in plain terms"
+      ],
+      "body": [
+        "Machine learning is the part of AI that gives systems the ability to improve at a task by studying examples rather than being explicitly programmed for every case. The examples a system studies are called training data, and the quality and quantity of that data shape how well the system performs. During a process called training, the software repeatedly looks at the data, makes a guess, checks how wrong the guess was, and nudges its internal settings to do a little better next time. After many rounds across huge numbers of examples, the system becomes good at the task.",
+        "A simple analogy is learning to estimate the price of a used car. Imagine you study thousands of past sales, each listing the car age, mileage, brand, and final price. Over time you notice patterns, such as older cars with high mileage selling for less. Machine learning does the same thing automatically: it adjusts numbers, often called weights, until its price guesses closely match the real sale prices in the training data. Once trained, it can estimate the price of a car it has never seen by applying the patterns it discovered.",
+        "There are a few common styles of learning. In supervised learning, the training data comes with correct answers, or labels, such as photos already tagged as cat or dog, and the system learns to reproduce those answers. In unsupervised learning, there are no labels, and the system instead groups similar items together or finds hidden structure, which is useful for tasks like customer segmentation. A third style, reinforcement learning, trains a system through trial and error using rewards, much like training a pet, and is common in game-playing and robotics.",
+        "Training is not magic, and it has clear failure modes worth knowing. If the training data is too small or unrepresentative, the system learns the wrong lessons, a problem sometimes described as garbage in, garbage out. A model can also overfit, meaning it memorizes the specific examples instead of learning the general pattern, so it performs well on data it has seen but poorly on anything new. This is why professionals always test a trained system on fresh data it did not learn from, to confirm it actually generalizes rather than simply recalling answers.",
+        "It also helps to separate two phases. Training is the learning stage, which can take a lot of time and computing power and happens before you ever use the tool. Inference is when the finished, trained model is put to work making predictions on your real inputs, which is usually fast. When you ask a recommendation app for suggestions, you are using inference on a model that was trained earlier. Understanding this split clarifies why AI tools can answer instantly yet still reflect choices and limitations baked in during their earlier training."
+      ],
+      "keyPoints": [
+        "Machine learning improves at tasks by studying training data rather than fixed rules",
+        "Training means repeatedly guessing, checking errors, and adjusting internal settings",
+        "Supervised learning uses labeled answers; unsupervised finds structure without labels",
+        "Reinforcement learning trains through trial, error, and rewards",
+        "Poor or biased data leads to poor results, summarized as garbage in, garbage out",
+        "Overfitting means memorizing examples instead of learning the general pattern"
+      ],
+      "example": "An email provider trains a spam filter by feeding it millions of messages already marked spam or not spam. The system learns which words, senders, and patterns tend to appear in junk mail. Later, when a brand-new email arrives, the trained filter applies those learned patterns to decide whether to route it to your inbox or your spam folder.",
+      "summary": "Machine learning trains a system on example data so it can spot patterns and make predictions, and its accuracy depends heavily on good data and proper testing to avoid overfitting."
+    },
+    {
+      "order": 3,
+      "title": "Generative AI & Large Language Models",
+      "objectives": [
+        "Define generative AI and large language models",
+        "Explain tokens, context windows, and how text is predicted",
+        "Understand why hallucinations happen and what they mean"
+      ],
+      "body": [
+        "Generative AI is a category of AI that creates new content, such as text, images, audio, or code, rather than only sorting or labeling existing things. The tools that generate text and answer questions in plain language are powered by large language models, abbreviated as LLMs. A large language model is a machine learning system trained on enormous amounts of written text so that it learns the statistical patterns of language: which words and ideas tend to follow others. Because it has absorbed so much writing, it can produce fluent, relevant sentences on a remarkable range of topics.",
+        "At its core, an LLM works by predicting the next piece of text, one small chunk at a time. These chunks are called tokens. A token is a unit of text the model processes, often a whole short word or a fragment of a longer word, roughly three quarters of a word on average in English. When you type a request, the model converts your words into tokens, predicts the most likely next token, adds it, and repeats, building the answer step by step. It is essentially a very sophisticated autocomplete that has read far more than any human ever could.",
+        "Two terms come up constantly. The context window is the maximum amount of text, measured in tokens, that a model can consider at once, including both your input and its own developing answer. If a conversation grows longer than the context window, the earliest parts effectively fall out of view and the model can lose track of them. Training data refers to the body of text the model studied while learning. The model does not look things up live during a normal chat; it draws on patterns from that earlier training, which means its knowledge has a cutoff date and may be out of date.",
+        "Because an LLM predicts plausible-sounding text rather than checking facts, it can produce confident statements that are simply false. This is called a hallucination. The model is not lying, since it has no concept of truth; it is generating text that fits the pattern even when the underlying claim is wrong, such as inventing a fake citation, a made-up statistic, or a nonexistent product feature. Hallucinations are most likely on obscure topics, recent events past the training cutoff, or precise details like names, numbers, and quotes. This is why you must verify anything important before relying on it.",
+        "Despite that limitation, generative AI is extraordinarily useful for drafting, summarizing, brainstorming, explaining, translating, and reformatting. The practical mindset is to treat an LLM as a fast, knowledgeable, but sometimes unreliable assistant: brilliant for a first draft or a quick explanation, but never the final word on facts that matter. Used this way, with a human checking the output, these tools can save large amounts of time while keeping quality and accuracy under your control rather than the machine's."
+      ],
+      "keyPoints": [
+        "Generative AI creates new content; LLMs are the models behind text generation",
+        "An LLM predicts text one token at a time, like advanced autocomplete",
+        "A token is a small unit of text, often roughly three quarters of a word",
+        "The context window is how much text the model can consider at once",
+        "Models rely on training data with a knowledge cutoff and do not browse by default",
+        "A hallucination is a confident but false output, so facts must be verified"
+      ],
+      "example": "If you ask an LLM to summarize a long report you paste in, it reads your text as tokens within its context window and generates a concise version by predicting fluent summarizing sentences. But if you then ask for the exact publication date and the document never stated it, the model may hallucinate a plausible-looking date that is simply invented.",
+      "summary": "Large language models generate text by predicting tokens from patterns in their training data, which makes them powerful for many tasks but prone to hallucinations, so important facts always need human verification."
+    },
+    {
+      "order": 4,
+      "title": "Using AI Tools Effectively",
+      "objectives": [
+        "Write clear, specific prompts that get better results",
+        "Apply techniques like context, examples, and roles",
+        "Review and refine AI output responsibly"
+      ],
+      "body": [
+        "The instruction you give an AI tool is called a prompt, and the skill of writing good prompts is often called prompt engineering. Because the model responds to exactly what you provide, vague requests tend to produce vague answers. A prompt like write something about marketing gives the tool almost nothing to work with. A stronger prompt states the task, the audience, the format, and the tone, for example: write a friendly three-sentence social post announcing a 20 percent summer sale for a small bakery, aimed at local families. The more relevant detail you supply, the more useful and on-target the result.",
+        "A few reliable techniques improve almost any prompt. First, give context: explain the background, the goal, and any constraints, since the model cannot read your mind or know your situation. Second, specify the format you want, such as a bullet list, a table, or a short paragraph. Third, assign a role when helpful, like asking the tool to respond as an experienced HR advisor, which nudges it toward an appropriate style. Fourth, provide an example of the kind of output you want, because showing a sample is often clearer than describing it in words.",
+        "Working with AI is rarely one and done; it is a conversation. If the first answer misses the mark, refine your request instead of giving up. You can ask the tool to make it shorter, change the tone, focus on a specific point, or try a completely different angle. Breaking a big task into smaller steps also helps, such as asking for an outline first, then expanding each section. Keep in mind the context window from the previous module: in a long exchange, restating key details can prevent the tool from losing track of earlier instructions.",
+        "No matter how polished the output looks, you remain responsible for it, so always review before you use it. Check facts, figures, names, and any claims that matter, since the tool may hallucinate. Read for tone and appropriateness, and edit so the final piece sounds like you or your organization rather than a generic machine. Treat the AI as a capable assistant that produces a strong first draft, while you act as the editor and decision-maker who verifies, corrects, and approves. This human-in-the-loop habit is the difference between using AI well and being misled by it."
+      ],
+      "keyPoints": [
+        "A prompt is your instruction to the tool; specific prompts get better results",
+        "State the task, audience, format, and tone for stronger output",
+        "Add context, assign a role, and show examples to guide the model",
+        "Refine through follow-up requests rather than accepting the first answer",
+        "Break large tasks into smaller, sequential steps",
+        "Always review and verify output before using it; you stay responsible"
+      ],
+      "example": "Instead of prompting help me with an email, a marketing assistant writes: you are a polite customer-service rep; draft a short email apologizing to a customer named Priya for a delayed order, offering a 10 percent discount on her next purchase, in a warm and professional tone. The detailed prompt produces a usable draft the rep then proofreads and personalizes before sending.",
+      "summary": "Effective AI use comes from clear, detailed prompts, iterative refinement, and careful human review, treating the tool as an assistant whose output you always verify and approve."
+    },
+    {
+      "order": 5,
+      "title": "Responsible & Ethical AI",
+      "objectives": [
+        "Recognize bias, privacy, and accuracy risks in AI",
+        "Apply basic principles of responsible AI use",
+        "Know when human oversight is essential"
+      ],
+      "body": [
+        "AI systems learn from data created by people, and that data carries human imperfections, so the models can inherit and even amplify unfairness. This is called bias. If a hiring tool is trained mostly on resumes from one group of people, it may unfairly favor similar candidates and overlook others, not out of malice but because that pattern dominated its training data. Bias can be subtle and hard to spot, which is why responsible use means questioning whether an AI decision might disadvantage certain people and testing outcomes across different groups before trusting the system.",
+        "Privacy is a second major concern. Many AI tools send whatever you type to servers run by another company, where it may be stored or even used to improve future models. That makes it risky to paste sensitive material, such as customer records, confidential business plans, health information, or passwords, into a public AI tool. A safe rule is to assume anything you enter could be seen by others, and to remove or anonymize personal and confidential details unless you are using an approved tool with clear guarantees about how your data is handled.",
+        "Accuracy and accountability round out the core risks. As earlier modules explained, AI can produce confident but wrong answers, so relying on it for high-stakes decisions without checking is dangerous. Accountability means that when an AI tool is used, a person, not the software, is responsible for the outcome. If an AI-written report contains a damaging error, the blame and the duty to fix it sit with the human who used it, not the model. Transparency also matters: people generally deserve to know when they are interacting with AI rather than a human.",
+        "Putting this together, responsible AI use rests on a few habits. Be fair by watching for bias and considering who might be harmed. Protect privacy by guarding sensitive data. Verify accuracy before acting on outputs. Stay accountable by keeping a human in charge of consequential decisions. And be transparent about when and how AI is involved. The guiding principle is that AI should support human judgment, not replace it, especially in areas that affect people's livelihoods, health, safety, money, or rights, where careful human oversight is not optional but essential."
+      ],
+      "keyPoints": [
+        "Bias in training data can lead AI to produce unfair or skewed results",
+        "Avoid entering sensitive or confidential data into public AI tools",
+        "AI can be confidently wrong, so accuracy must be verified for important uses",
+        "Accountability stays with the human user, not the software",
+        "Be transparent about when AI is being used",
+        "High-stakes decisions affecting people require human oversight"
+      ],
+      "example": "A bank considers an AI tool to screen loan applications. Before deploying it, the team tests whether approval rates differ unfairly across neighborhoods or backgrounds, avoids feeding in data the law protects, and keeps a human officer making the final call. This guards against hidden bias, protects privacy, and ensures a person remains accountable for each decision.",
+      "summary": "Responsible AI use means watching for bias, protecting privacy, verifying accuracy, staying accountable, and being transparent, while keeping humans in charge of decisions that affect people."
+    },
+    {
+      "order": 6,
+      "title": "AI at Work: Putting It Together",
+      "objectives": [
+        "Identify good and poor candidate tasks for AI at work",
+        "Combine prompting, verification, and ethics into a workflow",
+        "Build practical habits for using AI day to day"
+      ],
+      "body": [
+        "Everything in this course comes together in the simple question of how to use AI well in real work. The first step is choosing the right tasks. AI shines at jobs that involve drafting, summarizing, reorganizing, brainstorming, explaining, and handling repetitive text-based work, especially when a human can quickly check the result. It is a poor fit for tasks that demand guaranteed accuracy without review, deep confidential data in unapproved tools, or final decisions about people, money, or safety. A good rule is to use AI to accelerate the work, not to make the call that you should own.",
+        "A practical workflow ties the earlier modules together. Start by defining your goal clearly, then write a specific prompt that includes context, the desired format, and any role or example, as covered in module four. Generate a first draft, then read it critically, applying the lessons from module three about hallucinations: verify facts, numbers, names, and sources. Refine through follow-up prompts until the output is close, then do a final human edit so it matches your voice and standards. Throughout, apply the responsible-use checks from module five regarding bias, privacy, and accountability.",
+        "Consider a realistic example. A small team needs to launch a new training course and send announcements. They use AI to brainstorm course titles, draft an outline, and produce a first version of an announcement email and a few social posts. A team member then verifies every factual detail, removes any sensitive information, adjusts the tone to fit the brand, and confirms nothing misleading slipped in. The AI compresses hours of blank-page effort into minutes of editing, while the humans keep full control over accuracy, ethics, and the final published result.",
+        "Building lasting habits is what turns these ideas into everyday value. Keep a personal collection of prompts that work well so you can reuse them. Develop a healthy skepticism, treating every output as a draft to be checked rather than a finished truth. Learn your organization's policies on which tools and data are approved, and follow them. Most importantly, keep practicing, because comfort and skill with AI grow through regular, thoughtful use. The goal of this foundation course is not to make you a technical expert but a confident, responsible user who knows what AI can do, where it fails, and how to get reliable value from it."
+      ],
+      "keyPoints": [
+        "AI suits drafting, summarizing, and repetitive text tasks a human can review",
+        "Avoid AI for guaranteed-accuracy needs, confidential data, or final high-stakes calls",
+        "A solid workflow: define goal, prompt well, verify, refine, then human edit",
+        "Apply bias, privacy, and accountability checks every time",
+        "Save reusable prompts and keep a habit of skeptical review",
+        "Follow your organization's policies on approved tools and data"
+      ],
+      "example": "Asked to write meeting minutes, an assistant pastes the approved meeting notes into a company-sanctioned AI tool, prompts it to produce a structured summary with action items in a table, then checks each decision and owner against the notes, fixes one misattributed task, removes a personal phone number, and shares the polished minutes, completing in fifteen minutes what once took an hour.",
+      "summary": "Used well, AI accelerates everyday work by drafting and organizing, while a clear workflow of specific prompting, verification, refinement, and ethical review keeps the human firmly in control of the final result."
+    }
+  ],
+  "questions": [
+    {
+      "text": "Which statement best describes what artificial intelligence is?",
+      "options": [
+        "Software that learns patterns from data to make useful predictions",
+        "A conscious machine that thinks and feels like a human",
+        "A program that only follows a fixed list of hand-written rules",
+        "A physical robot that can perform any human job"
+      ],
+      "correctIndex": 0,
+      "explanation": "AI is software that learns patterns from data rather than following only fixed rules. It is not conscious, and today it is narrow rather than a general all-purpose machine."
+    },
+    {
+      "text": "What is the main difference between traditional software and AI?",
+      "options": [
+        "Traditional software is always faster than AI",
+        "AI learns behavior from examples, while traditional software follows explicit hand-written steps",
+        "AI never makes mistakes, while traditional software often does",
+        "Traditional software can feel emotions, while AI cannot"
+      ],
+      "correctIndex": 1,
+      "explanation": "Traditional programs follow exact, programmer-written steps, whereas AI learns its behavior from data and examples, allowing it to generalize to new situations."
+    },
+    {
+      "text": "In machine learning, what is training data?",
+      "options": [
+        "The final answers the model gives to users",
+        "The hardware used to run the model",
+        "The examples a system studies in order to learn patterns",
+        "A list of rules written by a programmer"
+      ],
+      "correctIndex": 2,
+      "explanation": "Training data is the body of examples a machine learning system studies during training, and its quality strongly affects how well the system performs."
+    },
+    {
+      "text": "What does overfitting mean?",
+      "options": [
+        "The model memorizes specific examples instead of learning the general pattern",
+        "The model runs too slowly to be useful",
+        "The model uses too little electricity",
+        "The model refuses to answer any question"
+      ],
+      "correctIndex": 0,
+      "explanation": "Overfitting is when a model memorizes its training examples rather than learning the underlying pattern, so it does well on seen data but poorly on new data."
+    },
+    {
+      "text": "In the context of large language models, what is a token?",
+      "options": [
+        "A password that unlocks the AI tool",
+        "A small unit of text the model processes, often part of a word",
+        "A type of computer chip",
+        "A reward given during reinforcement learning"
+      ],
+      "correctIndex": 1,
+      "explanation": "A token is a small chunk of text the model reads and predicts, often a short word or a fragment of a longer word, averaging roughly three quarters of a word in English."
+    },
+    {
+      "text": "What is a hallucination in a large language model?",
+      "options": [
+        "A visual image the model paints",
+        "A moment when the model stops responding",
+        "A confident statement the model produces that is actually false",
+        "A special mode that makes the model more accurate"
+      ],
+      "correctIndex": 2,
+      "explanation": "A hallucination is when the model generates plausible-sounding but false content because it predicts fitting text rather than checking facts, which is why important claims must be verified."
+    },
+    {
+      "text": "What does the context window of a model refer to?",
+      "options": [
+        "The screen area where you type your question",
+        "The time of day the model works best",
+        "The maximum amount of text, in tokens, the model can consider at once",
+        "The number of users allowed at the same time"
+      ],
+      "correctIndex": 2,
+      "explanation": "The context window is the maximum amount of text, measured in tokens, that a model can take into account at once, including both your input and its developing answer."
+    },
+    {
+      "text": "Which prompt is most likely to produce a useful result?",
+      "options": [
+        "Write something about our product",
+        "Tell me stuff",
+        "Help",
+        "Write a friendly three-sentence email announcing our store reopening to local customers"
+      ],
+      "correctIndex": 3,
+      "explanation": "Specific prompts that state the task, audience, format, and tone give the model clear direction, while vague prompts produce vague, less useful answers."
+    },
+    {
+      "text": "Why should you avoid pasting confidential information into a public AI tool?",
+      "options": [
+        "It will make the tool respond more slowly",
+        "The data may be stored or seen by others and is no longer fully private",
+        "The tool cannot read long text",
+        "Confidential text always causes hallucinations"
+      ],
+      "correctIndex": 1,
+      "explanation": "Public AI tools may send your input to outside servers where it could be stored or reused, so sensitive data should be removed, anonymized, or kept to approved tools."
+    },
+    {
+      "text": "When using AI for an important work task, who is responsible for the final result?",
+      "options": [
+        "The AI tool itself",
+        "The company that built the model",
+        "No one, because AI output is automatic",
+        "The human who uses and approves the output"
+      ],
+      "correctIndex": 3,
+      "explanation": "Accountability rests with the human user. AI produces a draft, but a person must verify, edit, and approve it and remains responsible for any errors or consequences."
+    }
+  ]
+}

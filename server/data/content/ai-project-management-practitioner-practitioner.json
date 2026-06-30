@@ -1,0 +1,292 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "AI in the Project Lifecycle",
+      "objectives": [
+        "Map where AI tools add value across initiation, planning, execution, monitoring, and closing",
+        "Distinguish tasks AI can accelerate from decisions the project manager must own",
+        "Frame AI as an assistant that augments, rather than replaces, professional judgment"
+      ],
+      "body": [
+        "Artificial intelligence has moved from a novelty into a practical layer that touches every phase of a project. During initiation, a practitioner might use a large language model to draft a charter outline, summarize a sprawling business case, or surface comparable past projects from a knowledge base. In planning, AI can suggest task breakdowns and dependencies. In execution and monitoring, it can scan status data for anomalies. The point is not to hand the project to a machine but to clear away repetitive drafting and synthesis so the manager spends more time on stakeholders, trade-offs, and judgment calls.",
+        "A useful mental model is to treat AI as a fast, tireless junior analyst who never sleeps but also never carries accountability. Consider a program manager opening a new infrastructure migration. She asks an AI assistant to summarize three prior migration retrospectives and list recurring failure points. In minutes she has a starting list. She then validates each item against the actual reports, removes one that was misattributed, and adds two risks the tool missed because they lived in a side conversation. The AI compressed hours of reading; the manager supplied the discernment.",
+        "Knowing where AI fits also means knowing where it does not. Approving budgets, committing the organization to deadlines, resolving conflicts between stakeholders, and signing off on quality gates remain human responsibilities. These decisions carry legal, financial, and relational weight that a model cannot hold. A practitioner who blurs this line risks delegating accountability to a system that cannot be held accountable. The lifecycle view helps you place AI deliberately: speeding analysis and drafting in the early and middle phases, while preserving human ownership of every formal commitment.",
+        "Adoption should be incremental and measured. Rather than rolling AI into every workflow at once, mature teams pick one or two high-friction tasks, such as meeting summaries or first-draft schedules, and measure whether quality and cycle time actually improve. They document the prompts and patterns that work, then expand. This disciplined approach prevents the common failure mode where a team adopts a flashy tool, sees inconsistent results, and abandons it. Treating AI integration as its own small change-management effort keeps expectations realistic and builds organizational trust."
+      ],
+      "keyPoints": [
+        "AI adds the most value in synthesis, drafting, and pattern-spotting tasks",
+        "Formal commitments and approvals stay with the project manager",
+        "Treat AI like a fast junior analyst that lacks accountability",
+        "Always validate AI output against source data before acting",
+        "Adopt AI incrementally and measure quality and cycle-time gains",
+        "Document prompts and patterns that work so they can be reused"
+      ],
+      "example": "A migration program manager uses AI to summarize three past retrospectives in minutes, then manually corrects one misattributed risk and adds two the tool missed, turning hours of reading into a validated starting point.",
+      "summary": "AI assists across every project phase by accelerating synthesis and drafting, but the practitioner retains ownership of all formal decisions and commitments."
+    },
+    {
+      "order": 2,
+      "title": "Planning & Estimation with AI",
+      "objectives": [
+        "Use AI to accelerate work breakdown, scheduling, and first-pass estimates",
+        "Apply professional judgment to correct AI bias toward optimism or generic plans",
+        "Combine AI outputs with historical data and team input to improve estimate reliability"
+      ],
+      "body": [
+        "Planning is where AI tools are most tempting and most dangerous. Given a project description, a model can produce a tidy work breakdown structure and a Gantt-style sequence within seconds. This is genuinely useful for breaking writer's block on a blank plan. A practitioner planning a mobile app release can ask for a draft task list spanning design, development, testing, and rollout, then react to it. Reacting to a draft is faster than building from nothing, and it often jogs the team to remember tasks they would otherwise omit.",
+        "The danger lies in estimates. Language models generate plausible-sounding durations, but those numbers come from general patterns, not your team's velocity, your codebase, or your organization's approval cycles. A model may confidently suggest two weeks for a task that historically takes six because of a slow security review. The disciplined approach is to use AI for the structure of the estimate and your own data for the magnitudes. Feed the model your historical actuals where you can, but always reconcile AI durations against past performance and the estimates of the people doing the work.",
+        "Estimation also benefits from triangulation. A practitioner might generate an AI estimate, gather a bottom-up estimate from the team, and pull an analogous estimate from a similar past project. When all three converge, confidence is high. When they diverge sharply, that gap is itself valuable information pointing to a hidden assumption or risk worth investigating. AI makes producing one of these three views nearly free, which encourages the healthy habit of cross-checking rather than anchoring on a single number.",
+        "Finally, watch for the optimism and uniformity bias in generated plans. AI plans tend to assume smooth execution, ignore organizational drag, and present every project as broadly similar. The practitioner's job is to inject reality: dependencies on shared resources, holiday slowdowns, regulatory waits, and the specific personalities involved. Use AI to get to a complete-looking draft quickly, then spend your saved time stress-testing that draft against how work truly flows in your environment. The schedule you commit to must reflect your judgment, not the model's defaults."
+      ],
+      "keyPoints": [
+        "AI excels at first-draft work breakdowns and task sequencing",
+        "Never trust AI-generated durations without reconciling against historical actuals",
+        "Triangulate AI, bottom-up, and analogous estimates; divergence signals hidden risk",
+        "Generated plans carry an optimism and uniformity bias toward smooth execution",
+        "Inject organizational realities like approvals, shared resources, and slowdowns",
+        "The committed schedule must reflect the practitioner's judgment, not model defaults"
+      ],
+      "example": "Planning a mobile app release, a PM has AI draft the full task list in seconds, then replaces the model's two-week estimate for security review with the six weeks history shows it actually takes.",
+      "summary": "AI speeds up plan structure and first-pass estimates, but reliable durations come from triangulating model output with historical data and team input under the practitioner's judgment."
+    },
+    {
+      "order": 3,
+      "title": "Risk & Issue Management",
+      "objectives": [
+        "Leverage AI to identify candidate risks and draft risk register entries",
+        "Use AI to analyze patterns in issue logs and surface early warning signals",
+        "Maintain human ownership of risk scoring, response decisions, and escalation"
+      ],
+      "body": [
+        "Risk identification is one of the strongest fits for AI in project management. A blank risk register is intimidating, and teams routinely under-identify risks because they anchor on what went wrong last time. By describing a project to an AI assistant and asking for categories of risk it might face, a practitioner can quickly generate a broad candidate list spanning technical, schedule, vendor, regulatory, and people risks. The value is breadth: the model surfaces categories the team had not considered, which the practitioner can then accept, discard, or refine based on real context.",
+        "AI can also help draft well-formed register entries. A good risk statement names the cause, the uncertain event, and the effect. Practitioners often write vague entries like 'integration might fail.' Asking AI to rewrite candidate risks in cause-event-effect form produces sharper, more actionable statements, such as 'because the payment vendor's API is still in beta, the integration may slip, delaying the launch milestone.' The manager reviews each rewrite for accuracy. This pairing of human knowledge with AI phrasing raises the quality of the register without much extra effort.",
+        "On the issue side, AI shines at pattern detection across volume. A project with hundreds of logged issues is hard to read holistically. A practitioner can ask AI to cluster issues by theme, flag recurring root causes, or note that defects spiked after a particular release. These summaries point attention to systemic problems that individual issue tickets obscure. As always, the model surfaces patterns; the manager confirms whether the pattern is real and decides what to do about it.",
+        "What must stay human is the consequential judgment. Scoring a risk's probability and impact reflects organizational risk appetite and context the model does not fully have. Choosing whether to avoid, mitigate, transfer, or accept a risk commits resources and shapes strategy. Deciding when to escalate to a sponsor is a relationship and political call. AI can propose options and even draft a mitigation plan, but the practitioner owns the scoring, the response choice, and the escalation, because these carry accountability the tool cannot."
+      ],
+      "keyPoints": [
+        "AI broadens risk identification by surfacing categories teams overlook",
+        "Asking AI to rewrite risks in cause-event-effect form sharpens the register",
+        "AI clusters and analyzes large issue logs to reveal systemic patterns",
+        "Risk scoring reflects organizational risk appetite and stays with the PM",
+        "Response choice and escalation decisions remain human responsibilities",
+        "Always confirm an AI-surfaced pattern is real before acting on it"
+      ],
+      "example": "Facing a blank register, a PM asks AI for candidate risks across categories, accepts a vendor-API risk it raised, and has the tool rephrase it in cause-event-effect form before scoring it himself.",
+      "summary": "AI strengthens risk identification, register quality, and issue-pattern analysis, while the practitioner retains ownership of scoring, response decisions, and escalation."
+    },
+    {
+      "order": 4,
+      "title": "AI-Assisted Status & Reporting",
+      "objectives": [
+        "Use AI to draft and tailor status reports from raw project data",
+        "Verify AI-generated metrics and narratives against authoritative sources",
+        "Adapt report tone and detail for different audiences efficiently"
+      ],
+      "body": [
+        "Status reporting consumes a surprising share of a project manager's week, and much of it is mechanical: gathering updates, summarizing progress, and formatting the same information for different readers. AI is well suited to this. A practitioner can paste raw inputs, such as task completion data, meeting notes, and team comments, and ask the assistant to produce a draft weekly status with sections for accomplishments, upcoming work, and concerns. The draft is rarely final, but it converts scattered inputs into a coherent structure that the manager then edits and verifies.",
+        "Tailoring is where AI earns its keep. The same week's status needs different framings for an executive steering committee, a technical team, and an external client. Executives want a short outcome-and-risk summary; the team wants task-level detail; the client wants scope and milestone confidence. Rather than rewriting three times, the practitioner can ask AI to re-cast one verified summary for each audience, adjusting length and tone. This preserves a single source of truth while saving the repetitive labor of reformatting, letting the manager focus on the messages that need careful wording.",
+        "The non-negotiable discipline is verification of facts and figures. AI can confidently state that a project is sixty percent complete or that a milestone is on track when the underlying data says otherwise, especially if the inputs were ambiguous. A practitioner must treat every number and status color in an AI draft as a claim to confirm against the authoritative system of record, whether that is the schedule tool, the budget tracker, or the defect dashboard. Sending an unverified AI status that later proves wrong damages credibility far more than the time saved was worth.",
+        "Reporting is also a judgment exercise about what to emphasize and what to soften, and that judgment stays human. A model does not know that a particular sponsor reacts badly to surprises, or that a yellow status this week is politically sensitive given last month's overrun. The practitioner decides how candidly to frame a slipping milestone, when to add context, and what to escalate verbally before it appears in writing. AI handles the drafting and reformatting; the manager owns accuracy, framing, and the relationships the report touches."
+      ],
+      "keyPoints": [
+        "AI turns scattered raw inputs into a structured first-draft status report",
+        "Re-cast one verified summary for executives, teams, and clients to save rework",
+        "Every metric and status color in an AI draft must be verified against the source of record",
+        "Maintain a single source of truth across all tailored versions",
+        "Framing, emphasis, and what to escalate remain the practitioner's judgment",
+        "An inaccurate AI status costs more credibility than the time it saved"
+      ],
+      "example": "A PM pastes task data and meeting notes, gets an AI-drafted weekly status, confirms the sixty-percent figure against the schedule tool, then has AI re-cast it into a short executive version and a detailed team version.",
+      "summary": "AI drafts and tailors status reports from raw data quickly, but the practitioner must verify every figure and own the framing for each audience."
+    },
+    {
+      "order": 5,
+      "title": "Stakeholder Communication",
+      "objectives": [
+        "Apply AI to draft, refine, and adapt stakeholder messages for tone and clarity",
+        "Use AI to prepare for difficult conversations and analyze stakeholder concerns",
+        "Preserve authenticity, relationships, and ethical transparency in all communication"
+      ],
+      "body": [
+        "Stakeholder communication is relationship work, and AI can support it without replacing the human connection at its core. A practitioner facing a tense update to a frustrated client can draft the message, then ask AI to check the tone for clarity and professionalism, flag anything that sounds defensive, and suggest a more empathetic opening. The model acts as a fast second reader. Used this way, AI helps the manager communicate more thoughtfully, especially under time pressure when the temptation to fire off a curt reply is highest.",
+        "AI is also valuable for preparation. Before a steering committee meeting, a practitioner can describe the stakeholders and the contentious topic and ask the assistant to anticipate likely objections and questions. This rehearsal surfaces angles the manager might not have considered and lets them prepare clear, honest answers. Similarly, when a long thread of stakeholder feedback piles up, AI can summarize the recurring concerns so the manager grasps the sentiment quickly and responds to what people actually care about rather than the loudest single voice.",
+        "Adaptation across audiences applies here just as in reporting. A change in scope must be explained differently to a sponsor, an end-user group, and a delivery vendor. AI can help recast a single honest explanation into the vocabulary and concerns of each group. The practitioner ensures the core message stays consistent and truthful across versions; tailoring should clarify, never spin. Using AI to adjust register and emphasis is legitimate, while using it to tell different stakeholders contradictory things is a misuse that erodes trust the moment it is discovered.",
+        "The boundaries of authenticity and transparency matter most in communication. Stakeholders build trust with a person, not a chatbot, so a practitioner should never let AI impersonate genuine personal commitment or fabricate sentiment. Sensitive, high-stakes messages, such as announcing a major delay or addressing a complaint, deserve the manager's own voice and final wording. There is also a transparency consideration: relying on AI to handle communication entirely, without review, risks sending tone-deaf or factually wrong messages in the manager's name. AI drafts and advises; the practitioner remains the accountable, authentic communicator."
+      ],
+      "keyPoints": [
+        "AI acts as a fast second reader to refine tone, clarity, and empathy",
+        "Use AI to anticipate objections and rehearse difficult conversations",
+        "AI summarizes long feedback threads to reveal genuine recurring concerns",
+        "Tailor messages to clarify, never to tell stakeholders contradictory things",
+        "High-stakes messages deserve the practitioner's own authentic voice",
+        "Trust is built with a person; never let AI fabricate genuine commitment"
+      ],
+      "example": "Before a tense client update, a PM drafts the note, asks AI to flag any defensive tone and suggest a warmer opening, then sends a final version in her own words after confirming the facts.",
+      "summary": "AI helps draft, refine, and prepare stakeholder communication, but authenticity, consistency, and high-stakes messaging stay firmly with the practitioner."
+    },
+    {
+      "order": 6,
+      "title": "Governance & Responsible Use",
+      "objectives": [
+        "Protect the privacy and confidentiality of project information used with AI tools",
+        "Establish human oversight, review, and accountability for AI-assisted work",
+        "Apply organizational policies, bias awareness, and transparency to AI use"
+      ],
+      "body": [
+        "Responsible AI use starts with protecting the data a practitioner feeds into these tools. Project information is often confidential: budgets, vendor contracts, personnel performance notes, customer data, and unreleased strategy. Pasting such material into a public AI service may expose it, since some tools retain inputs or use them for training. A disciplined practitioner learns which tools the organization has approved, what data classification rules apply, and never enters personally identifiable information, client secrets, or regulated data into an unsanctioned system. When in doubt, anonymize or summarize before prompting, and prefer enterprise tools with contractual data protections.",
+        "Human oversight is the second pillar of governance. Because AI can produce confident but wrong output, every AI-assisted deliverable that influences a decision needs a human reviewer who understands the content and is accountable for it. This means a practitioner cannot hide behind the tool: if an AI-drafted plan, estimate, or report contains an error that reaches a stakeholder, the responsibility is the manager's, not the model's. Establishing a clear review step, where a qualified person checks AI output before it is used or sent, turns AI from a liability into a safe accelerator.",
+        "Bias and fairness deserve attention, particularly when AI touches people. Models trained on historical data can carry forward skewed assumptions, which matters if AI is used to evaluate vendor proposals, summarize team performance, or prioritize work in ways that affect individuals. A practitioner should watch for outputs that systematically favor or disadvantage a group and should never let an opaque model make a consequential judgment about a person without human review. Treating AI suggestions as input to a fair human process, rather than as an automated verdict, keeps decisions defensible and ethical.",
+        "Finally, governance includes transparency and policy alignment. Many organizations now require disclosure when AI materially contributes to a deliverable, and clients may have their own restrictions. A responsible practitioner documents where and how AI was used on a project, follows the organization's acceptable-use policy, and is honest with stakeholders about the role AI played. This is not bureaucratic box-ticking; it builds trust, supports audits, and protects the practitioner if questions arise later. Good governance makes AI use sustainable rather than a hidden risk waiting to surface."
+      ],
+      "keyPoints": [
+        "Never enter confidential, personal, or regulated project data into unsanctioned AI tools",
+        "Use organization-approved tools and respect data classification rules",
+        "Every AI-assisted deliverable needs an accountable human reviewer",
+        "Responsibility for AI errors rests with the practitioner, not the model",
+        "Watch for bias when AI touches people, vendors, or performance judgments",
+        "Disclose and document AI use in line with policy and client requirements"
+      ],
+      "example": "Before summarizing vendor bids, a PM strips out confidential pricing and pastes only anonymized criteria into the approved enterprise AI tool, then personally reviews the output for bias before any recommendation reaches the sponsor.",
+      "summary": "Responsible AI use rests on protecting confidential project data, keeping an accountable human reviewer in the loop, guarding against bias, and disclosing AI use per policy."
+    },
+    {
+      "order": 7,
+      "title": "Leading an AI-Augmented Team",
+      "objectives": [
+        "Set clear team norms for when and how AI tools are used on the project",
+        "Build team AI literacy and verification habits while sustaining trust",
+        "Lead change so AI augments the team without eroding skills or accountability"
+      ],
+      "body": [
+        "Leading a team that uses AI requires the practitioner to set explicit norms rather than leave usage to chance. Without guidance, some team members will over-rely on AI and ship unverified output, while others will avoid it and fall behind on speed. A leader establishes shared expectations: which tasks AI may assist, which approved tools to use, what data is off-limits, and the requirement that a human verifies AI output before it counts as done. Writing these norms into the team's working agreement removes ambiguity and prevents the quiet erosion of quality that happens when everyone improvises.",
+        "Building AI literacy is part of the leadership role. Team members vary widely in their ability to prompt well and to judge when AI output is wrong. The practitioner can encourage sharing of effective prompts, run short demonstrations of useful patterns, and model healthy skepticism by showing how they verify what a tool produces. The goal is a team that uses AI confidently and critically, treating it as a capable assistant whose work always gets checked, rather than either fearing it or trusting it blindly. This balanced literacy is now a core team capability.",
+        "AI also reshapes how a leader thinks about workload, skills, and motivation. If AI absorbs routine drafting, the team can spend more time on creative and complex work, which is energizing if framed well. But leaders must guard against skill atrophy, where junior members never learn fundamentals because the tool always does the first pass. Thoughtful leaders ensure people still build core judgment, perhaps by having them critique AI output and understand why it is right or wrong. They also address anxiety honestly, positioning AI as a tool that elevates the team rather than a threat to jobs.",
+        "Ultimately, accountability and human connection anchor the AI-augmented team. The practitioner remains responsible for the project's outcomes regardless of how much AI contributed, and they extend that principle by making each team member accountable for the AI-assisted work they deliver. At the same time, leadership is fundamentally about people: coaching, motivation, conflict resolution, and trust cannot be delegated to a tool. A leader who uses AI to handle drudgery and reinvests the freed time into developing and supporting the team gets the best of both worlds, a faster team that is also more engaged and capable."
+      ],
+      "keyPoints": [
+        "Set explicit team norms for AI usage, approved tools, and off-limits data",
+        "Require human verification before AI-assisted work is considered complete",
+        "Build balanced AI literacy: confident use paired with healthy skepticism",
+        "Guard against skill atrophy, especially for junior team members",
+        "Each member stays accountable for the AI-assisted work they deliver",
+        "Reinvest time AI frees up into coaching, motivation, and team development"
+      ],
+      "example": "A delivery lead adds an AI clause to the team's working agreement, runs a short prompt-sharing session, and requires that every AI-drafted artifact be reviewed by its owner before it is marked done.",
+      "summary": "Leading an AI-augmented team means setting clear usage norms, building critical AI literacy, protecting core skills, and reinvesting saved time into the people work that AI cannot do."
+    }
+  ],
+  "questions": [
+    {
+      "text": "A project manager uses an AI assistant to summarize three past retrospectives before initiating a new project. What is the most appropriate next step?",
+      "options": [
+        "Adopt the AI summary directly into the new charter to save time",
+        "Validate each summarized point against the original reports before relying on it",
+        "Forward the summary to the sponsor as the official lessons-learned record",
+        "Ask the AI to also make all the project commitments"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI accelerates synthesis but can misattribute or miss items, so the practitioner must validate output against source data before relying on it. The manager retains accountability for the final content."
+    },
+    {
+      "text": "Which planning task is AI LEAST trustworthy for without correction?",
+      "options": [
+        "Producing a first-draft work breakdown structure",
+        "Suggesting a logical task sequence and dependencies",
+        "Generating accurate task durations for your specific team",
+        "Listing common categories of tasks for a project type"
+      ],
+      "correctIndex": 2,
+      "explanation": "AI durations come from general patterns, not your team's velocity, codebase, or approval cycles. Estimates must be reconciled against historical actuals and team input rather than trusted as generated."
+    },
+    {
+      "text": "A PM generates an AI estimate, a bottom-up team estimate, and an analogous estimate from a past project. They diverge sharply. What does this divergence most usefully indicate?",
+      "options": [
+        "The AI tool is broken and should be discarded",
+        "A hidden assumption or risk worth investigating",
+        "The team estimate is always the correct one",
+        "Estimation triangulation does not work"
+      ],
+      "correctIndex": 1,
+      "explanation": "When triangulated estimates diverge sharply, the gap itself is valuable information pointing to a hidden assumption or risk. Investigating it improves the plan rather than simply picking one number."
+    },
+    {
+      "text": "How does AI best improve the quality of risk register entries?",
+      "options": [
+        "By automatically scoring probability and impact for the team",
+        "By rewriting vague risks into clear cause-event-effect statements for human review",
+        "By deciding which risks to escalate to the sponsor",
+        "By removing the need for a risk register entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI can rephrase vague risks into sharp cause-event-effect statements that the manager reviews. Scoring and escalation reflect organizational risk appetite and accountability, which stay with the practitioner."
+    },
+    {
+      "text": "An AI-drafted weekly status states the project is sixty percent complete. What must the project manager do before sending it?",
+      "options": [
+        "Send it immediately since AI is generally accurate",
+        "Verify the figure against the authoritative system of record",
+        "Round the figure up to seventy percent for confidence",
+        "Remove all metrics so nothing can be wrong"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI can state figures confidently even when inputs were ambiguous. Every metric and status color must be verified against the source of record, because an inaccurate status damages credibility more than the time saved."
+    },
+    {
+      "text": "What is a legitimate use of AI when tailoring stakeholder communications?",
+      "options": [
+        "Telling the sponsor and the client contradictory versions of progress",
+        "Recasting one verified, honest message into each audience's vocabulary and concerns",
+        "Letting AI impersonate the manager's personal commitment in sensitive messages",
+        "Sending AI drafts directly without any human review"
+      ],
+      "correctIndex": 1,
+      "explanation": "Tailoring should clarify, not spin. Recasting a single truthful message for different audiences is legitimate, while contradictory versions, impersonation, and unreviewed sends erode trust and accountability."
+    },
+    {
+      "text": "Which action best protects the privacy of confidential project information when using AI?",
+      "options": [
+        "Pasting full vendor contracts into any free public AI tool for speed",
+        "Anonymizing or summarizing sensitive data and using organization-approved tools",
+        "Assuming all AI tools delete inputs immediately",
+        "Sharing personnel performance notes to get richer summaries"
+      ],
+      "correctIndex": 1,
+      "explanation": "Some tools retain inputs, so confidential, personal, or regulated data should never go into unsanctioned systems. Anonymizing or summarizing and using approved enterprise tools with data protections is the responsible approach."
+    },
+    {
+      "text": "Why must every AI-assisted deliverable that influences a decision have a human reviewer?",
+      "options": [
+        "Because AI tools charge more without a reviewer",
+        "Because AI can produce confident but wrong output, and accountability rests with the practitioner",
+        "Because reviewers make the AI run faster",
+        "Because organizational policy never permits AI use at all"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI can be confidently wrong, and responsibility for any error that reaches a stakeholder rests with the manager, not the model. A clear human review step turns AI into a safe accelerator."
+    },
+    {
+      "text": "When AI is used in a way that touches people, such as evaluating vendor proposals or summarizing performance, the practitioner should primarily watch for:",
+      "options": [
+        "Faster output regardless of fairness",
+        "Bias that could systematically favor or disadvantage a group",
+        "Opportunities to remove human review entirely",
+        "Ways to keep the AI use hidden from stakeholders"
+      ],
+      "correctIndex": 1,
+      "explanation": "Models can carry forward skewed historical assumptions. AI suggestions should be input to a fair human process, never an automated verdict on a person, to keep decisions ethical and defensible."
+    },
+    {
+      "text": "A leader wants their team to use AI effectively without eroding quality or skills. What is the strongest approach?",
+      "options": [
+        "Ban AI entirely to avoid any risk",
+        "Let each member improvise with no shared rules",
+        "Set explicit norms, require human verification, and build critical AI literacy",
+        "Require everyone to accept all AI output without checking it"
+      ],
+      "correctIndex": 2,
+      "explanation": "Clear norms on tools and data, a verification requirement before work is done, and balanced literacy that pairs confident use with skepticism prevent quality erosion and protect core skills while capturing AI's benefits."
+    }
+  ]
+}

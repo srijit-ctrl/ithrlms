@@ -1,0 +1,286 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "AI Across the Marketing Funnel",
+      "objectives": [
+        "Map where AI tools add value at each funnel stage",
+        "Distinguish generative, predictive, and automation use cases",
+        "Frame AI initiatives around measurable funnel outcomes"
+      ],
+      "body": [
+        "AI does not replace the marketing funnel; it accelerates work inside each stage. At the top of the funnel, generative tools draft awareness ads and social variations, while predictive models score which audiences are most likely to engage. In the middle, AI clusters behavioral signals to nurture leads with relevant content. At the bottom, propensity models flag accounts ready to convert so sales can prioritize them. Thinking stage by stage keeps you focused on outcomes rather than chasing tools for their own sake.",
+        "It helps to separate three AI capabilities. Generative AI produces new assets such as copy, images, and email drafts. Predictive AI estimates likely outcomes like conversion probability, churn risk, or expected lifetime value. Automation AI executes repetitive tasks such as routing leads, scheduling sends, or pausing underperforming ads. A practitioner who can name which capability a project needs will scope work more accurately and avoid promising a chatbot when the real need is a propensity score.",
+        "Consider a software company running a quarterly demand campaign. Generative tools spin up landing page headlines and a dozen ad variants overnight. A lead score built from website visits, content downloads, and firmographics tells the team which trial signups deserve a sales call within an hour. Automation moves cold leads into a long nurture track. The same campaign budget now produces more pipeline because effort is concentrated where the model predicts return, not spread evenly across every contact.",
+        "The discipline that ties this together is matching each AI use case to a funnel metric you already track. Top-of-funnel tools should move reach, cost per click, or qualified traffic. Mid-funnel tools should move engagement rate or marketing qualified leads. Bottom-funnel tools should move conversion rate, pipeline, or revenue. If you cannot name the metric an AI tool is meant to improve, you are not ready to deploy it. Start with the gap in your funnel, then choose the capability that closes it."
+      ],
+      "keyPoints": [
+        "AI augments existing funnel stages rather than replacing the funnel",
+        "Generative, predictive, and automation are three distinct AI capabilities",
+        "Top-funnel AI drives reach; bottom-funnel AI drives conversion and pipeline",
+        "Every AI use case should map to a metric you already measure",
+        "Concentrate budget where models predict the highest return"
+      ],
+      "example": "A SaaS team uses generative AI for ad variants, a predictive lead score to route hot trials to sales within an hour, and automation to nurture cold leads, lifting pipeline without raising spend.",
+      "summary": "AI strengthens each funnel stage when you match generative, predictive, or automation capabilities to a specific funnel metric you already track."
+    },
+    {
+      "order": 2,
+      "title": "Content Creation & Brand Voice",
+      "objectives": [
+        "Use AI to accelerate drafting while protecting brand voice",
+        "Build prompts and style guides that keep output on-brand",
+        "Establish a human review workflow for quality and accuracy"
+      ],
+      "body": [
+        "Generative tools are fastest at first drafts, variations, and repurposing. A practitioner gets the most value by treating AI as a junior copywriter who works at speed but needs clear direction and editing. Feed it your positioning, audience, and a sample of approved copy, and it will produce serviceable drafts of blog intros, ad headlines, and email subject lines in minutes. The strategic thinking, the angle, and the final polish remain human responsibilities.",
+        "Brand voice is the most common casualty of careless AI use. To protect it, codify your voice in a reusable brief: tone descriptors, words you embrace, words you ban, sentence rhythm, and two or three exemplar passages. Paste that brief into every prompt or store it as a custom instruction. When you ask for ten subject lines, you also tell the model the brand sounds confident but never hype, avoids exclamation points, and speaks to busy operations managers. Consistent inputs produce consistent voice.",
+        "Repurposing is where AI quietly saves the most hours. One webinar transcript can become a recap blog post, five LinkedIn snippets, an email summary, and a set of quote graphics captions. The practitioner directs the model to hold the core message steady while adapting length and format to each channel. This keeps the campaign coherent and stretches a single content investment across the funnel without rewriting everything from scratch.",
+        "Quality control is non-negotiable. AI can fabricate statistics, misstate product details, and drift off-brand over long outputs. Build a review step where a human checks facts, claims, and tone before anything publishes. For regulated or technical content, route drafts to a subject expert. A simple rule keeps teams safe: AI may draft, but a named person approves. That accountability prevents the slow erosion of quality that happens when unreviewed output ships at volume."
+      ],
+      "keyPoints": [
+        "AI excels at first drafts, variations, and repurposing across channels",
+        "Codify brand voice in a reusable brief fed into every prompt",
+        "One asset can be repurposed into many channel-specific formats",
+        "AI can fabricate facts, so human review before publishing is essential",
+        "Adopt the rule: AI drafts, a named person approves"
+      ],
+      "example": "A team turns one webinar transcript into a recap post, five LinkedIn snippets, and an email summary using a saved brand-voice brief, then a human editor verifies claims before anything publishes.",
+      "summary": "AI speeds content creation when guided by a codified brand voice and finished by mandatory human review for accuracy and tone."
+    },
+    {
+      "order": 3,
+      "title": "Audience Insight & Segmentation",
+      "objectives": [
+        "Apply AI clustering to discover meaningful audience segments",
+        "Translate behavioral signals into actionable personas",
+        "Validate AI-derived segments against business goals"
+      ],
+      "body": [
+        "Traditional segmentation relies on a few obvious attributes such as industry or job title. AI can analyze far richer behavioral data, pages viewed, emails opened, products browsed, and purchase timing, then group customers into clusters a human might miss. These data-driven segments often reveal hidden patterns, such as a cohort that researches heavily on mobile at night and converts only after a discount. The practitioner uses these clusters as starting hypotheses, not final truth.",
+        "The value comes from translating a statistical cluster into a usable persona. A model might output Segment C: high email engagement, frequent support contact, mid-tier spend. The marketer turns that into a recognizable customer, perhaps a hands-on small-business owner who values responsiveness over price. That narrative makes the segment usable across teams, guiding which message, offer, and channel to deploy. Without translation, clusters stay as numbers nobody acts on.",
+        "AI also powers predictive segmentation, grouping people by what they are likely to do rather than what they have done. Propensity-to-buy, churn-risk, and likely-lifetime-value scores let you build forward-looking audiences. A retention campaign can target the top decile of churn risk before they leave, which is far more efficient than emailing the whole base. These predictive segments must be refreshed regularly because behavior and the model both drift over time.",
+        "Every AI segment needs validation against business goals before you spend on it. Check segment size; a precise cluster of forty people may not justify a campaign. Check that segments are distinct enough to warrant different treatment. Run a small test and compare response rates against your existing approach. If a new AI segment does not outperform your current targeting, keep the simpler method. Sophistication is only valuable when it improves a result you can measure."
+      ],
+      "keyPoints": [
+        "AI clusters rich behavioral data into segments beyond basic demographics",
+        "Translate statistical clusters into named, actionable personas",
+        "Predictive segmentation groups by likely future behavior, not just history",
+        "Refresh predictive segments regularly as behavior and models drift",
+        "Validate every segment against size, distinctness, and test performance"
+      ],
+      "example": "A retailer uses churn-risk scoring to target the top decile most likely to lapse with a win-back offer, then validates the segment with an A/B test before scaling the campaign.",
+      "summary": "AI uncovers richer audience segments from behavioral and predictive signals, but each must be turned into a persona and validated against business goals."
+    },
+    {
+      "order": 4,
+      "title": "Campaign Personalization & Email",
+      "objectives": [
+        "Design AI-driven personalization that respects relevance and limits",
+        "Use AI to optimize email subject lines, timing, and content",
+        "Balance automation with oversight to protect customer trust"
+      ],
+      "body": [
+        "Personalization works when it increases relevance, not when it merely inserts a first name. AI lets you tailor content blocks, product recommendations, and offers based on each recipient's behavior. An email platform might show a returning shopper the category they browsed, while a new subscriber sees an educational welcome series. The practitioner defines the rules and content library; the AI selects the right combination per person at send time, which would be impossible to do manually at scale.",
+        "Email is the most measurable place to apply AI. Models can generate and test dozens of subject lines, predict the best send time for each contact based on past opens, and assemble dynamic content that adapts to interests. A common workflow uses AI to draft three subject-line variants, runs an automated A/B test on a holdout, then sends the winner to the remainder. Over many campaigns these incremental gains in open and click rates compound into meaningful revenue.",
+        "Send-time and frequency optimization deserve special care. AI can find the hour each subscriber is most likely to engage, but it should also respect frequency caps so the program does not overwhelm people. Pair engagement optimization with suppression logic that pauses contacts who show fatigue, such as repeated non-opens. Relevance and restraint together protect deliverability and the long-term health of your list, which matters more than any single campaign's numbers.",
+        "Automation must always leave room for human oversight. Set guardrails: maximum discount levels, approved content blocks, and exclusion lists for sensitive segments. Review automated journeys regularly to confirm the logic still matches your strategy and that no broken or off-brand variation is reaching customers. The goal is a system where AI handles the per-person decisions at scale while a marketer owns the boundaries, the brand standards, and the escalation path when something looks wrong."
+      ],
+      "keyPoints": [
+        "Personalization should raise relevance, not just insert a name",
+        "AI optimizes subject lines, send times, and dynamic email content",
+        "Use automated A/B tests on a holdout before sending to the full list",
+        "Respect frequency caps and suppress fatigued contacts to protect deliverability",
+        "Set guardrails so AI scales decisions while marketers own the boundaries"
+      ],
+      "example": "An e-commerce program uses AI to test three subject lines on a holdout, send the winner, personalize product blocks by browse history, and apply a frequency cap, lifting click-through while protecting list health.",
+      "summary": "AI personalizes campaigns and email at scale through dynamic content and optimization, but trust depends on relevance, frequency limits, and human guardrails."
+    },
+    {
+      "order": 5,
+      "title": "SEO & Performance with AI",
+      "objectives": [
+        "Apply AI to keyword research, content briefs, and optimization",
+        "Use AI for ad creative testing and bid signal analysis",
+        "Avoid AI practices that risk search quality or penalties"
+      ],
+      "body": [
+        "AI reshapes SEO from guesswork into structured research. Tools can cluster thousands of keywords by search intent, reveal questions real users ask, and identify content gaps against competitors. From that analysis a practitioner builds a content brief specifying the target query, subtopics to cover, and the search intent to satisfy. The writer, human or AI-assisted, then produces a page designed to answer the query thoroughly. This intent-first approach aligns with how modern search engines rank helpful content.",
+        "The rise of AI answer engines and search generative experiences changes the goal. People increasingly get answers directly in an AI summary rather than clicking through. Practitioners respond by structuring content for clarity: clear headings, concise direct answers near the top, and well-organized facts that an AI system can extract and cite. Earning a citation in an AI overview is becoming as valuable as ranking, and clean structure plus genuine expertise is what makes content quotable.",
+        "On the paid side, AI optimizes performance campaigns by testing creative at scale and learning which signals predict conversions. Platforms use machine learning to allocate budget toward audiences and placements that perform, while the marketer supplies strong creative variants and accurate conversion data. A practical workflow generates several ad headlines and images, lets the platform's automation find winners, then feeds clean conversion tracking back so the bidding model optimizes toward real business value, not vanity clicks.",
+        "Some AI practices are risky and should be avoided. Publishing large volumes of thin, unedited AI text to chase rankings can trigger quality demotions, because search engines reward helpful, original content regardless of how it was produced. Keyword stuffing and auto-generated pages with no added value remain against guidelines. The safe stance is to use AI to research and draft, then add genuine expertise, accurate data, and editing so the final page deserves to rank on merit."
+      ],
+      "keyPoints": [
+        "AI clusters keywords by intent and exposes content gaps for better briefs",
+        "Structure content clearly so AI answer engines can extract and cite it",
+        "Paid platforms use ML to optimize bids when fed strong creative and clean data",
+        "Thin, mass-produced AI content risks quality demotions",
+        "Use AI to research and draft, then add expertise and editing for merit"
+      ],
+      "example": "A team uses AI to cluster keywords by intent, builds a brief, drafts a page, then a specialist adds original data and clear headings so the article both ranks and gets cited in an AI overview.",
+      "summary": "AI sharpens SEO research and paid optimization, but durable performance comes from helpful, well-structured, expert-edited content rather than mass-produced text."
+    },
+    {
+      "order": 6,
+      "title": "Measuring Impact & Analytics",
+      "objectives": [
+        "Use AI to surface insights and anomalies in marketing data",
+        "Apply attribution and incrementality thinking to AI-driven campaigns",
+        "Translate analytics into decisions while questioning model outputs"
+      ],
+      "body": [
+        "AI changes analytics from periodic reporting into continuous sensing. Anomaly detection can flag a sudden drop in conversion rate or a spike in cost per acquisition the moment it happens, instead of weeks later in a monthly review. Natural-language query tools let a marketer ask which channel drove the most pipeline last quarter and get an immediate answer. The practitioner's job shifts from building reports to interrogating the findings and deciding what action they warrant.",
+        "Attribution remains one of the hardest problems, and AI helps without solving it perfectly. Data-driven attribution models distribute credit across touchpoints based on observed patterns rather than crude first or last click rules. These models give a more balanced view of which emails, ads, and content actually contribute to conversions. Still, they depend on the data and assumptions fed in, so a practitioner treats attribution as a directional guide for budget allocation, not as absolute financial truth.",
+        "Incrementality testing answers the question attribution cannot: would this conversion have happened anyway. By holding out a control group from a campaign and comparing it to an exposed group, you measure the true lift the marketing caused. AI makes these tests easier to design and analyze at scale. A practitioner who runs holdout tests on major channels avoids over-crediting tactics that merely capture demand that already existed, which is the most common way marketing budgets get misallocated.",
+        "The discipline that protects you is healthy skepticism of model outputs. An AI dashboard can present a confident number built on incomplete tracking, sampled data, or a flawed assumption. Always ask what data fed the model, over what window, and whether the result passes a common-sense check. Translate insight into a decision only after that scrutiny. The marketers who get the most from AI analytics are the ones who treat every output as a hypothesis to verify, not a verdict to obey."
+      ],
+      "keyPoints": [
+        "AI enables continuous anomaly detection and natural-language data queries",
+        "Data-driven attribution balances credit but remains a directional guide",
+        "Incrementality holdout tests reveal the true lift a campaign caused",
+        "Question the data, window, and assumptions behind every AI output",
+        "Treat model results as hypotheses to verify before acting"
+      ],
+      "example": "A marketer runs a holdout test on a retargeting campaign and finds most credited conversions would have happened anyway, then reallocates budget to a channel with proven incremental lift.",
+      "summary": "AI accelerates analytics through anomaly detection and attribution, but sound decisions require incrementality testing and skeptical scrutiny of every model output."
+    },
+    {
+      "order": 7,
+      "title": "Responsible & Compliant AI Marketing",
+      "objectives": [
+        "Apply disclosure and transparency norms to AI-generated marketing",
+        "Handle personal data with consent and privacy principles in mind",
+        "Detect bias and prevent misinformation in AI outputs"
+      ],
+      "body": [
+        "Responsible AI marketing starts with transparency. When AI generates content, imagery, or synthetic voices that could mislead, disclose it appropriately, especially for endorsements, reviews, or anything resembling a real person. Audiences and regulators increasingly expect honesty about AI involvement. A simple practice is to avoid presenting AI-generated material as authentic human testimony and to label synthetic media where its nature would otherwise deceive. Disclosure protects trust, which is far harder to rebuild than to keep.",
+        "Personal data demands care. Many AI personalization and segmentation use cases rely on customer data, and that data should be collected with proper consent and used only for the purposes people agreed to. At a high level, privacy frameworks such as the GDPR in Europe emphasize lawful basis, consent, and individual rights over data, while email rules like CAN-SPAM in the United States require honest headers, clear sender identity, and a working unsubscribe option. Treat these as principles to design around and consult qualified counsel for specifics; this course is not legal advice.",
+        "Be cautious about what you feed into AI tools. Pasting customer lists, private contact details, or confidential data into a public AI service can create privacy and security exposure. Prefer tools with clear data handling terms, and minimize the personal data you share with any model. Honoring data subject requests, suppression lists, and opt-outs across your AI-driven systems is part of compliant practice, not an afterthought. Build these controls into the workflow rather than bolting them on later.",
+        "Bias and misinformation are quality and ethics risks at once. AI models trained on imperfect data can produce skewed targeting or stereotyped imagery, so review campaigns for fairness across the audiences you reach. Generative tools can also state false facts with total confidence, which becomes misinformation the moment you publish it. The safeguard is the same human review you apply to brand voice: verify claims, statistics, and product details before they go live. Responsible practice means a named person is accountable for accuracy, fairness, and disclosure on everything AI helps produce."
+      ],
+      "keyPoints": [
+        "Disclose AI-generated or synthetic content where it could mislead",
+        "Collect personal data with consent and use it only as agreed",
+        "GDPR stresses lawful basis and rights; CAN-SPAM requires honesty and unsubscribe",
+        "Avoid feeding confidential customer data into public AI tools",
+        "Review outputs for bias and verify facts to prevent misinformation",
+        "Keep a named person accountable for accuracy, fairness, and disclosure"
+      ],
+      "example": "Before launching an AI-assisted email campaign, a marketer verifies every claim, confirms a working unsubscribe link and honest sender details, checks imagery for bias, and avoids pasting the customer list into a public AI tool.",
+      "summary": "Responsible AI marketing rests on disclosure, consent-based data handling, bias awareness, and fact-checking, with a named person accountable for compliance and accuracy."
+    }
+  ],
+  "questions": [
+    {
+      "text": "A team wants to identify which trial signups are most likely to convert so sales can prioritize them. Which AI capability best fits this need?",
+      "options": [
+        "Generative AI to write the follow-up emails",
+        "Predictive AI to produce a propensity-to-convert score",
+        "Automation AI to schedule the email sends",
+        "A chatbot to answer trial users' questions"
+      ],
+      "correctIndex": 1,
+      "explanation": "Scoring how likely a signup is to convert is a prediction task, so predictive AI producing a propensity score is the correct match. Generative and automation tools address different needs."
+    },
+    {
+      "text": "What is the most reliable way to keep AI-generated copy consistent with brand voice?",
+      "options": [
+        "Generate more variations and pick the best one each time",
+        "Use the most advanced model available",
+        "Feed a reusable brief with tone descriptors and exemplar passages into every prompt",
+        "Limit AI to short outputs only"
+      ],
+      "correctIndex": 2,
+      "explanation": "Consistent inputs produce consistent voice. A codified brief with tone, banned and embraced words, and exemplars steers every generation toward the brand standard."
+    },
+    {
+      "text": "Why must AI-drafted content go through human review before publishing?",
+      "options": [
+        "AI is too slow to be trusted with deadlines",
+        "AI can fabricate facts and statistics and drift off-brand",
+        "Search engines ban all AI-written content",
+        "Human review is only needed for images, not text"
+      ],
+      "correctIndex": 1,
+      "explanation": "Generative models can confidently state false information and lose voice over long outputs, so a human must verify facts, claims, and tone before anything ships."
+    },
+    {
+      "text": "An AI clustering tool outputs a precise segment of 40 customers. What should a practitioner do first?",
+      "options": [
+        "Immediately build a dedicated campaign for it",
+        "Validate whether the segment size and distinctness justify a campaign",
+        "Merge it into the largest existing segment",
+        "Discard it because AI segments are unreliable"
+      ],
+      "correctIndex": 1,
+      "explanation": "Sophistication only matters when it improves a measurable result. A 40-person cluster may be too small to justify the effort, so validate size, distinctness, and test performance first."
+    },
+    {
+      "text": "Which describes predictive segmentation as opposed to traditional segmentation?",
+      "options": [
+        "Grouping people only by industry and job title",
+        "Grouping people by what they are likely to do, such as churn risk",
+        "Grouping people randomly for A/B tests",
+        "Grouping people by email client used"
+      ],
+      "correctIndex": 1,
+      "explanation": "Predictive segmentation groups audiences by likely future behavior, like propensity to buy or churn, rather than only by static historical attributes."
+    },
+    {
+      "text": "What is the recommended email workflow for using AI on subject lines?",
+      "options": [
+        "Send a single AI subject line to everyone immediately",
+        "Have AI draft variants, A/B test on a holdout, then send the winner to the rest",
+        "Avoid AI subject lines because they hurt deliverability",
+        "Let AI change the subject line for each recipient after sending"
+      ],
+      "correctIndex": 1,
+      "explanation": "Drafting variants, testing them on a holdout, and sending the proven winner to the remaining list captures incremental gains while limiting risk."
+    },
+    {
+      "text": "Why should send-time optimization be paired with frequency caps and suppression logic?",
+      "options": [
+        "To increase the total number of emails sent",
+        "To protect deliverability and list health by preventing fatigue",
+        "Because frequency caps improve open-rate reporting accuracy",
+        "Because AI cannot calculate send times without caps"
+      ],
+      "correctIndex": 1,
+      "explanation": "Engagement optimization must be balanced with restraint; caps and suppression of fatigued contacts protect deliverability and the long-term health of the list."
+    },
+    {
+      "text": "Which AI-driven SEO practice carries the highest risk of a quality demotion?",
+      "options": [
+        "Clustering keywords by search intent",
+        "Publishing large volumes of thin, unedited AI text to chase rankings",
+        "Structuring content with clear headings",
+        "Adding original data to an AI-assisted draft"
+      ],
+      "correctIndex": 1,
+      "explanation": "Search engines reward helpful, original content. Mass-produced thin AI text with no added value risks quality demotions regardless of how it was created."
+    },
+    {
+      "text": "What question does an incrementality holdout test answer that attribution cannot?",
+      "options": [
+        "Which subject line had the highest open rate",
+        "Whether a conversion would have happened anyway without the campaign",
+        "Which keyword has the most search volume",
+        "How to write better ad creative"
+      ],
+      "correctIndex": 1,
+      "explanation": "By comparing an exposed group to a held-out control, incrementality testing measures the true lift the marketing caused, isolating effect from demand that already existed."
+    },
+    {
+      "text": "Which set of actions best reflects responsible and compliant AI marketing?",
+      "options": [
+        "Present AI testimonials as real and skip the unsubscribe link to boost engagement",
+        "Paste the full customer list into a public AI tool for faster personalization",
+        "Disclose synthetic media, verify claims, honor opt-outs, and keep a working unsubscribe",
+        "Rely on the model's confidence and publish its facts without checking"
+      ],
+      "correctIndex": 2,
+      "explanation": "Responsible practice combines disclosure of misleading synthetic content, fact verification to avoid misinformation, respect for opt-outs and consent, and CAN-SPAM-style honesty with a working unsubscribe."
+    }
+  ]
+}

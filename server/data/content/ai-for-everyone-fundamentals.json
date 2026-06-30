@@ -1,0 +1,245 @@
+{
+  "version": 2,
+  "modules": [
+    {
+      "order": 1,
+      "title": "AI in Everyday Life",
+      "objectives": [
+        "Recognize common places where AI already shows up in daily routines",
+        "Describe in plain words what people mean when they say artificial intelligence",
+        "Explain why AI has become so widely used in recent years"
+      ],
+      "body": [
+        "Artificial intelligence, often shortened to AI, is already woven into the small moments of an ordinary day, usually without any announcement. When your phone suggests the next word as you type a message, when a map app reroutes you around traffic, or when a streaming service lines up a show you end up loving, that is AI quietly at work. You do not need a technical background to use these tools any more than you need to understand an engine to drive a car. The goal of this course is to make that invisible helper visible, so you feel confident rather than mystified.",
+        "A simple way to picture AI is to imagine a very patient assistant that has reviewed an enormous number of examples and learned to spot patterns in them. It does not think or feel the way a person does. Instead, it makes educated guesses based on what it has seen before. When your email folder automatically pushes junk mail into a spam box, the system is recognizing patterns that look like the unwanted messages it studied earlier. The more examples it reviews, the sharper those guesses tend to become, which is why these tools seem to improve over time.",
+        "AI feels new, but the ideas behind it have been developing for decades. What changed recently is the combination of three things: far more digital information to learn from, much faster and cheaper computers to do the learning, and clever new methods for organizing all of it. Think of it like baking. The recipe existed for a long time, but only lately have the ingredients become plentiful and the ovens powerful enough to bake at a grand scale. That shift is why AI suddenly seems to be everywhere at once.",
+        "It helps to separate the everyday reality of AI from the dramatic stories we see in movies. Films often show machines that want to take over the world, but the AI you actually meet is far more humble and far more useful. It finishes your sentences, sorts your photos by the faces in them, and helps a doctor flag a blurry detail on a scan. None of these tools have desires or plans of their own. They are powerful pattern finders, and understanding them as helpful instruments, rather than rivals, is the healthiest starting point."
+      ],
+      "keyPoints": [
+        "AI already appears in messaging, maps, streaming, photos, and email without you noticing",
+        "At its core, AI learns patterns from many examples and makes educated guesses",
+        "AI does not think or feel like a person; it recognizes and predicts",
+        "Recent growth comes from more data, faster computers, and better methods",
+        "Real AI is far more practical and modest than the versions shown in movies",
+        "You do not need technical skills to benefit from everyday AI tools"
+      ],
+      "example": "When you open a photo app and it instantly groups every picture of your dog together, AI recognized the same furry pattern across hundreds of images, just as it might group photos of a friend by their face.",
+      "summary": "AI is a pattern-spotting helper already present in many daily tools, and it grew popular because of more data, faster computers, and better methods rather than any movie-style intelligence."
+    },
+    {
+      "order": 2,
+      "title": "The Big Ideas Behind AI",
+      "objectives": [
+        "Understand the idea of learning from data using a friendly analogy",
+        "Distinguish between training an AI and using a trained AI",
+        "Appreciate why the quality of examples shapes the quality of results"
+      ],
+      "body": [
+        "The heart of modern AI is a simple idea: learning from examples. Picture teaching a child to recognize a cat. You do not hand them a strict rulebook about whiskers and tails. Instead, you point at many cats over time and say the word cat, and eventually the child can spot a cat they have never seen before. AI learns in a strikingly similar way. It is shown thousands or millions of examples, and gradually it builds an internal sense of what each thing tends to look or sound like, without being given rigid rules for every case.",
+        "It helps to split the AI journey into two stages. The first stage is training, where the system studies a large pile of examples and slowly tunes itself to make better guesses. This stage can take a lot of time and computing power, much like the years a student spends in school. The second stage is using the finished tool, which feels instant from your side, like asking that graduate a quick question. When you tap a button and get an answer in a second, you are enjoying the results of training that happened long before you arrived.",
+        "Because AI learns from examples, the examples matter enormously. If you only ever showed the child pictures of orange cats, they might be puzzled by a black one. In the same way, an AI trained on narrow or lopsided information will carry those gaps forward into its answers. This is why people who build AI care deeply about gathering broad, balanced, and accurate examples. Good ingredients tend to produce good results, and poor ingredients tend to produce poor ones, no matter how clever the underlying method may be.",
+        "You may hear words like algorithm or model, and they are gentler than they sound. An algorithm is simply a set of steps for getting something done, like a recipe or a route on a map. A model is the finished result of training, the seasoned assistant that holds everything it learned. You do not need to peek inside the model to use it well, just as you do not need to understand how a microwave heats food in order to warm your lunch. Knowing the basic vocabulary is enough to follow most conversations about AI with confidence."
+      ],
+      "keyPoints": [
+        "AI learns from many examples rather than from rigid, hand-written rules",
+        "Training is the learning stage; using the tool is the quick, everyday stage",
+        "The variety and quality of training examples strongly shape the results",
+        "An algorithm is just a set of steps, like a recipe",
+        "A model is the trained result that holds what the AI has learned",
+        "Narrow or lopsided examples lead to gaps and weaker answers"
+      ],
+      "example": "Teaching an AI to recognize spam is like teaching a new mail clerk by showing them stacks of junk letters until they can sort new mail correctly on their own.",
+      "summary": "AI learns by studying many examples during a training stage, and the breadth and quality of those examples largely determine how good the finished, easy-to-use tool will be."
+    },
+    {
+      "order": 3,
+      "title": "What AI Can and Can't Do",
+      "objectives": [
+        "Identify tasks where AI tends to perform well",
+        "Recognize the common limitations and blind spots of AI",
+        "Explain why human judgment remains essential alongside AI"
+      ],
+      "body": [
+        "AI shines at certain kinds of work, especially tasks that involve spotting patterns in large amounts of information or repeating a process tirelessly. It can scan thousands of documents in moments, suggest a draft email, translate between languages, summarize a long report, or sort pictures by what they show. These are jobs where speed, patience, and pattern recognition matter most. If a task feels tedious and repetitive to a person, there is a good chance AI can lend a helpful hand and free you to focus on the parts that need a human touch.",
+        "Yet AI has real limits that are easy to overlook because its answers can sound so confident. It does not truly understand meaning the way you do, and it has no lived experience of the world. It can state something incorrect with the same smooth tone it uses for a correct fact, a habit sometimes called making things up. It can also stumble on common sense, miss the emotional weight of a situation, or fail in ways that seem obvious to any person. Treating its output as a helpful draft rather than a final verdict keeps you on safe ground.",
+        "Another limitation is that AI reflects the world it learned from, including the gaps and slants in that information. It cannot reliably know about events that happened after its training, and it may be shaky on rare or very specific situations it saw little of. It also does not know you personally unless you tell it, so it cannot read your intentions or fill in context you leave out. The clearer and more complete you are, the better it tends to respond, much like giving good directions to a capable but unfamiliar helper.",
+        "All of this points to a simple partnership. The best results usually come from people and AI working together, each doing what they do best. AI handles the heavy lifting of drafting, sorting, and searching, while you supply judgment, ethics, real-world awareness, and the final decision. In areas that carry real consequences, such as health, money, or legal matters, a knowledgeable human should always review what the tool produces. Used this way, AI becomes a powerful assistant rather than an unquestioned authority, and you stay firmly in the driver seat."
+      ],
+      "keyPoints": [
+        "AI excels at pattern spotting, repetition, drafting, sorting, and summarizing",
+        "AI can sound confident while being wrong, sometimes inventing details",
+        "AI lacks genuine understanding, common sense, and lived experience",
+        "AI may not know recent events or rare, highly specific situations",
+        "Clear, complete instructions lead to noticeably better results",
+        "Human review is essential for decisions about health, money, or legal matters"
+      ],
+      "example": "An AI can draft a polished thank-you letter in seconds, but if it confidently invents a meeting date that never happened, only you would catch the mistake before sending it.",
+      "summary": "AI is excellent at fast, repetitive, pattern-based tasks but lacks true understanding and can be confidently wrong, so it works best as an assistant under thoughtful human review."
+    },
+    {
+      "order": 4,
+      "title": "Talking to AI Assistants",
+      "objectives": [
+        "Write clear requests that help an AI assistant respond well",
+        "Use follow-up messages to refine and improve answers",
+        "Recognize when to double-check what an assistant tells you"
+      ],
+      "body": [
+        "Talking to an AI assistant is a skill anyone can learn, and it starts with being clear about what you want. The request you type is often called a prompt, which is just a fancy word for your instruction. Imagine you are handing a task to a brand-new but eager helper who knows a great deal but cannot read your mind. The more context you give, such as who the answer is for, how long it should be, and what tone you want, the closer the result will land to what you had in mind.",
+        "A reliable habit is to include three things in your request: the task, any helpful background, and the form you want the answer to take. For example, instead of asking for help with a letter, you might ask for a short, friendly letter to a neighbor apologizing for a noisy party, written in plain language. Notice how each detail narrows the target. You do not need perfect wording or special phrases; everyday language works beautifully. Speaking to the assistant the way you would brief a thoughtful coworker is usually the most natural and effective approach.",
+        "One of the most useful things to know is that the first answer is rarely the end of the conversation. If a response misses the mark, you can simply say so and ask for a change, such as making it shorter, warmer, simpler, or more detailed. The assistant remembers the recent exchange and adjusts. This back-and-forth is a strength, not a failure. Think of it as sculpting: you start with a rough shape and refine it with each comment until it fits your needs, rather than expecting a perfect statue from the first chisel.",
+        "Finally, stay gently skeptical, especially when facts matter. An assistant can be a wonderful starting point for ideas, explanations, and drafts, but it can also state something inaccurate with total confidence. For anything important, verify names, numbers, dates, and claims against a trustworthy source before relying on them. Avoid pasting in sensitive personal details you would not want stored or shared. Used with a clear request, a willingness to refine, and a habit of checking, an AI assistant becomes a friendly and dependable part of your daily toolkit."
+      ],
+      "keyPoints": [
+        "A prompt is simply your instruction to the assistant, written in plain language",
+        "Include the task, helpful background, and the form you want the answer in",
+        "Speak to the assistant as you would brief a capable new coworker",
+        "Refine answers with follow-up messages rather than expecting perfection first",
+        "Verify important facts, names, numbers, and dates against trusted sources",
+        "Avoid sharing sensitive personal details you would not want stored"
+      ],
+      "example": "Asking 'write a short, cheerful birthday message for my coworker who loves hiking' gives a far better result than just 'write a birthday message,' because the extra details guide the assistant.",
+      "summary": "Getting great help from an AI assistant comes down to clear requests, friendly follow-up refinements, and a steady habit of checking anything that truly matters."
+    },
+    {
+      "order": 5,
+      "title": "Staying Safe: Privacy, Bias, Misinformation",
+      "objectives": [
+        "Protect personal information when using AI tools",
+        "Understand how bias can appear in AI results and why it happens",
+        "Spot and resist AI-generated misinformation"
+      ],
+      "body": [
+        "Using AI safely begins with guarding your personal information. Many AI tools learn from or store the text you type, so it is wise to treat the chat box like a public counter rather than a private diary. Avoid sharing things like passwords, financial account numbers, medical details, or other private facts about yourself or other people. A good rule of thumb is to ask whether you would be comfortable seeing your message on a bulletin board. If the answer is no, leave it out or describe the situation in a general way that protects everyone involved.",
+        "AI can also carry hidden bias, which simply means it may treat some groups or ideas unevenly because of the examples it learned from. If the information used to train a tool leaned in one direction, the tool can quietly echo that slant, even when no one intended it. This might show up as suggestions that favor one kind of person, or descriptions that lean on tired stereotypes. Being aware of this helps you read AI output with a thoughtful eye, question results that feel one-sided, and remember that a confident answer is not always a fair or complete one.",
+        "Misinformation is another real concern, because AI can produce text, images, and even voices that look and sound convincingly genuine. This makes it easier for false stories, fake quotes, and doctored pictures to spread. The danger is not only that AI might be wrong by accident, but that bad actors can use it on purpose to mislead. Approaching surprising or emotional content with a pause is a healthy instinct. Ask yourself who created it, whether a trusted source confirms it, and whether it seems designed to provoke a strong reaction rather than to inform.",
+        "The encouraging news is that a few simple habits keep you well protected. Share less, question more, and confirm important claims with reliable sources before you accept or pass them along. Be especially careful with anything that asks for money, urges immediate action, or seems too perfect or too alarming to be true. When you spot something that looks fake or harmful, you do not have to engage with it. By combining caution about your own data with a healthy skepticism about what you see, you can enjoy the benefits of AI while sidestepping most of its risks."
+      ],
+      "keyPoints": [
+        "Treat AI chat boxes like public spaces and keep private details out",
+        "Bias can appear when training examples lean in one direction",
+        "Confident AI answers are not always fair, complete, or correct",
+        "AI can create convincing fake text, images, and voices",
+        "Pause and verify surprising or emotional content before trusting it",
+        "Be wary of messages demanding money, urgency, or that seem too perfect"
+      ],
+      "example": "If you receive a video of a public figure saying something shocking, AI may have created it, so checking a trusted news source before believing or sharing it protects you and others.",
+      "summary": "Staying safe with AI means protecting your personal information, watching for hidden bias, and verifying surprising content so you avoid being misled by misinformation."
+    },
+    {
+      "order": 6,
+      "title": "Bringing AI Into Your Day",
+      "objectives": [
+        "Choose small, low-risk tasks where AI can genuinely help",
+        "Build simple, repeatable habits for using AI well",
+        "Keep a balanced and confident mindset about AI going forward"
+      ],
+      "body": [
+        "The best way to grow comfortable with AI is to start small and personal. Pick a low-stakes task you already do and let an assistant lighten the load. You might ask it to draft a grocery list around a few meals, suggest questions to ask before a doctor visit, rewrite a confusing paragraph in plainer words, or brainstorm gift ideas for a friend. Because none of these carry serious consequences, you can experiment freely, learn what the tool does well, and build confidence without worrying that a mistake will cause real harm.",
+        "As you find tasks that work, turn them into simple habits. Many people keep a short mental list of go-to uses, such as summarizing long messages, drafting polite replies, or explaining an unfamiliar term in everyday language. You can save requests that worked nicely and reuse them later with small changes. Over time these little routines add up, quietly returning minutes to your day. The aim is not to use AI for everything, but to let it handle the dull or fiddly parts so you have more energy for the things only you can do.",
+        "Keep a balanced mindset as AI becomes more common. It is neither a magic genie that solves every problem nor a menace to be feared and avoided. Like any tool, it has strengths and limits, and it serves you best when you stay in charge. Remember the lessons from this course: it learns from examples, it can be confidently wrong, it works wonders on repetitive tasks, and it deserves a careful eye when facts or feelings are at stake. Holding both its promise and its limits in view keeps you grounded and practical.",
+        "Finally, let your learning continue gently and at your own pace. The tools will keep changing, but the fundamentals you now understand will carry you a long way. Stay curious, try new uses as they appear, and lean on trusted sources when you want to go deeper. You do not need to become an expert to benefit, only a thoughtful and willing user. With clear requests, healthy skepticism, and care for your privacy, you are well prepared to bring AI into your day in a way that feels helpful, safe, and entirely your own."
+      ],
+      "keyPoints": [
+        "Begin with small, low-risk tasks to build confidence safely",
+        "Turn successful uses into simple, repeatable habits",
+        "Let AI handle dull or fiddly work so you focus on what matters",
+        "View AI as a useful tool with real strengths and real limits",
+        "Stay in charge and apply care when facts or feelings are involved",
+        "Keep learning gently and lean on trusted sources to go deeper"
+      ],
+      "example": "Before a busy week, you might ask an assistant to turn three dinner ideas into one tidy shopping list, saving you time on a chore you would have done anyway.",
+      "summary": "Bringing AI into your day works best when you start with small tasks, build easy habits, and keep a balanced mindset that treats AI as a helpful tool while you stay in control."
+    }
+  ],
+  "questions": [
+    {
+      "text": "Which of the following is the best everyday description of how most AI works?",
+      "options": [
+        "It thinks and feels exactly the way a human being does",
+        "It learns patterns from many examples and makes educated guesses",
+        "It follows a fixed rulebook written by hand for every situation",
+        "It connects to a human expert who secretly answers each question"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI is best understood as a pattern finder that studies many examples and predicts likely answers, rather than thinking like a person or following hand-written rules for every case."
+    },
+    {
+      "text": "Why has AI become so widespread in recent years?",
+      "options": [
+        "Because machines finally developed their own goals and desires",
+        "Because governments required every company to use it",
+        "Because of more data, faster computers, and better methods",
+        "Because older computers were simply switched back on"
+      ],
+      "correctIndex": 2,
+      "explanation": "The recent surge comes from a combination of far more digital information to learn from, much faster and cheaper computing, and improved methods, not from machines gaining intentions."
+    },
+    {
+      "text": "What does the training stage of building an AI refer to?",
+      "options": [
+        "The quick moment when you tap a button and get an answer",
+        "The stage where the system studies many examples to improve its guesses",
+        "The process of deleting an AI that no longer works",
+        "The step where a person manually answers every user question"
+      ],
+      "correctIndex": 1,
+      "explanation": "Training is the learning stage, where the AI studies a large set of examples and tunes itself; using the finished tool afterward is the quick, everyday stage."
+    },
+    {
+      "text": "Why does the quality of training examples matter so much?",
+      "options": [
+        "Because narrow or lopsided examples lead to gaps and weaker answers",
+        "Because examples are only decorative and have no real effect",
+        "Because more examples always make an AI slower to respond",
+        "Because the AI ignores examples and invents everything fresh"
+      ],
+      "correctIndex": 0,
+      "explanation": "AI learns from its examples, so narrow or unbalanced information carries forward as gaps and slants, while broad, balanced, accurate examples tend to produce better results."
+    },
+    {
+      "text": "Which task is AI generally well suited to handle?",
+      "options": [
+        "Making the final decision on a serious medical diagnosis alone",
+        "Summarizing a long report or sorting many photos quickly",
+        "Knowing your private intentions without being told",
+        "Reliably reporting events that happened after its training"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI excels at fast, repetitive, pattern-based work like summarizing and sorting, while serious decisions, unspoken intentions, and very recent events fall outside its reliable strengths."
+    },
+    {
+      "text": "What is the smartest way to handle an AI answer that involves important facts?",
+      "options": [
+        "Accept it immediately because it sounds confident",
+        "Share it widely before anyone can check it",
+        "Verify the facts against a trusted source before relying on them",
+        "Assume it is always wrong and ignore it completely"
+      ],
+      "correctIndex": 2,
+      "explanation": "AI can state incorrect information in a confident tone, so for anything that matters you should confirm names, numbers, dates, and claims against a trustworthy source."
+    },
+    {
+      "text": "Which habit best protects your privacy when using an AI assistant?",
+      "options": [
+        "Typing in passwords and account numbers to save time",
+        "Keeping private details out, as if writing in a public space",
+        "Sharing other people's medical information to get better help",
+        "Assuming nothing you type is ever stored anywhere"
+      ],
+      "correctIndex": 1,
+      "explanation": "Because tools may store or learn from what you type, treat the chat like a public counter and avoid entering passwords, financial details, or private information about yourself or others."
+    },
+    {
+      "text": "What is a balanced mindset to carry as AI becomes more common?",
+      "options": [
+        "It is a magic genie that can solve absolutely any problem",
+        "It is a dangerous menace that should always be avoided",
+        "It is a useful tool with real strengths and limits that you stay in charge of",
+        "It is unimportant and will disappear within a year"
+      ],
+      "correctIndex": 2,
+      "explanation": "The healthiest view treats AI as a helpful tool with genuine strengths and clear limits, used best when you remain in control and apply judgment where facts or feelings are at stake."
+    }
+  ]
+}

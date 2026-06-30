@@ -59,11 +59,12 @@
       const m = mods.find((x) => x.order === current) || mods[0];
       if (!m) { $('#lesson').innerHTML = '<p class="muted">No modules yet.</p>'; return; }
 
-      const hasBody = m.objectives || m.keyPoints || m.summary;
+      const hasBody = m.objectives || m.keyPoints || m.summary || m.body;
       let html = `<div class="crumbs"><a href="/course.html?slug=${encodeURIComponent(slug)}">${esc(course.name)}</a> / Module ${m.order}</div>
         <h1>${esc(m.title)}</h1>`;
       if (hasBody) {
         if (m.objectives) html += `<h3>Learning objectives</h3><ul>${m.objectives.map((o)=>`<li>${esc(o)}</li>`).join('')}</ul>`;
+        if (m.body) html += `<h3>Lesson</h3>` + (Array.isArray(m.body) ? m.body : [m.body]).map((para)=>`<p>${esc(para)}</p>`).join('');
         if (m.keyPoints) html += `<h3>Key points</h3><ul>${m.keyPoints.map((o)=>`<li>${esc(o)}</li>`).join('')}</ul>`;
         if (m.example) html += `<h3>Example</h3><div class="callout">${esc(m.example)}</div>`;
         if (m.summary) html += `<h3>Summary</h3><p>${esc(m.summary)}</p>`;

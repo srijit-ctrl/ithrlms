@@ -1,0 +1,292 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "The LLM App Developer's Mindset",
+      "objectives": [
+        "Explain how building on an LLM differs from writing traditional deterministic code",
+        "Describe tokens, context windows, and probabilistic outputs at a working level",
+        "Identify when an LLM is the right tool versus conventional logic"
+      ],
+      "body": [
+        "Building applications on large language models requires a shift in mindset. Traditional code is deterministic: given the same input, a function returns the same output every time. An LLM is probabilistic. It predicts the next token from a distribution, so the same prompt can yield slightly different responses, especially when the temperature setting is above zero. As a developer you stop thinking about exact return values and start thinking about ranges of acceptable behavior, validation, and graceful handling of surprising outputs. This single shift influences how you design, test, and monitor everything downstream.",
+        "Models do not read characters or words directly. They operate on tokens, which are sub-word chunks produced by a tokenizer. A rough rule of thumb in English is that one token is about four characters or three-quarters of a word, so roughly 750 words equal about 1000 tokens. Both your input and the model output consume tokens, and you are billed on both. Understanding tokenization helps you estimate cost, predict latency, and reason about why a prompt that looks short in characters might still be expensive when it contains code, JSON, or non-English text that tokenizes inefficiently.",
+        "Every model has a context window, the maximum number of tokens it can consider at once across the prompt plus the generated completion. If your conversation history, retrieved documents, and instructions exceed that window, the request fails or older content must be dropped. The window is shared, so a long system prompt leaves less room for the answer. Larger windows are not free either: more input tokens mean higher cost and slower responses. Designing within the window, rather than dumping everything in, is a core skill for an LLM app developer.",
+        "Knowing when to reach for an LLM matters as much as knowing how to call one. LLMs excel at fuzzy, language-heavy tasks such as summarizing, classifying free text, extracting structure from messy input, and drafting content. They are a poor fit for tasks that demand exact arithmetic, guaranteed correctness, or strict determinism, where a database query, a rule engine, or plain code is cheaper and more reliable. Good architecture often combines both: let the model interpret intent, then hand precise work to deterministic systems."
+      ],
+      "keyPoints": [
+        "LLM outputs are probabilistic, not deterministic; design for variability",
+        "Models process tokens, not raw words; you pay for input and output tokens",
+        "The context window caps total prompt plus completion tokens",
+        "Roughly 1000 tokens is about 750 English words",
+        "Use LLMs for language and ambiguity, deterministic code for exact logic",
+        "Combine model reasoning with traditional systems for reliability"
+      ],
+      "example": "A support ticket router uses an LLM to read a free-text complaint and classify it into one of five categories, then a normal switch statement assigns the ticket to the right queue. The model handles ambiguity; the deterministic code handles routing.",
+      "summary": "LLM development trades determinism for flexibility, so you must understand tokens and context windows and reserve the model for the language tasks it does best."
+    },
+    {
+      "order": 2,
+      "title": "Working with Model APIs",
+      "objectives": [
+        "Make a chat completion request using roles, messages, and key parameters",
+        "Control output with temperature, max tokens, and structured output settings",
+        "Handle rate limits, retries, and streaming responses robustly"
+      ],
+      "body": [
+        "Most modern LLM APIs expose a chat completions style endpoint. You send a list of messages, each with a role: a system message that sets behavior and constraints, user messages carrying input, and assistant messages representing prior model turns. The API is stateless, meaning the server does not remember earlier calls; you must resend the relevant history on each request. The model replies with an assistant message plus metadata such as token usage and a finish reason that tells you whether it stopped naturally or hit the token limit.",
+        "Several parameters shape the output. Temperature controls randomness: near zero gives focused, repeatable answers, while higher values increase diversity and creativity. The max tokens or max output setting caps how long the completion can be and prevents runaway cost, but setting it too low truncates answers. Top-p offers an alternative way to control diversity. For tasks needing machine-readable output, many APIs support a JSON or structured output mode and function calling, which constrain the response to a schema so your code can parse it reliably instead of scraping prose.",
+        "Production calls fail in predictable ways, so build for resilience. APIs enforce rate limits expressed in requests per minute and tokens per minute; exceeding them returns a 429 status. The correct response is exponential backoff with jitter, retrying after increasing delays rather than hammering the endpoint. Transient 500 errors also warrant retries, but you should not retry on 400-level validation errors, which signal a malformed request. Always set timeouts and treat the model call as an unreliable network dependency, wrapping it with sensible error handling.",
+        "Latency matters to users, and streaming helps. Instead of waiting for the full completion, you can stream tokens as they are generated, displaying text incrementally so the interface feels responsive. Streaming does not reduce total cost or total time, but it dramatically improves perceived speed. On the cost side, log the token usage returned with each response, since input and output tokens are billed at different rates and output is usually more expensive. Tracking usage per feature lets you spot runaway prompts before the bill arrives."
+      ],
+      "keyPoints": [
+        "Chat APIs use system, user, and assistant roles and are stateless",
+        "Resend conversation history each call; the server keeps no memory",
+        "Temperature and max tokens trade off creativity, length, and cost",
+        "Use JSON or function-calling modes for parseable structured output",
+        "Handle 429 rate limits with exponential backoff and jitter; do not retry 400 errors",
+        "Stream responses to improve perceived latency and log token usage to track spend"
+      ],
+      "example": "A client sets temperature to 0.2 and a JSON output schema to extract an invoice number, date, and total from pasted text. On a 429 response it waits 1s, then 2s, then 4s with random jitter before retrying, and gives up after three attempts.",
+      "summary": "Calling a model API means managing stateless messages, tuning parameters for the task, and engineering around rate limits, errors, and latency like any unreliable network service."
+    },
+    {
+      "order": 3,
+      "title": "Prompt & Context Engineering for Apps",
+      "objectives": [
+        "Write clear, role-based prompts that produce consistent application output",
+        "Apply few-shot examples and delimiters to steer model behavior",
+        "Manage and assemble context efficiently within the token budget"
+      ],
+      "body": [
+        "Prompt engineering for applications differs from casual chatting. You are writing instructions that must work across thousands of varied inputs, not crafting one clever question. Effective prompts are explicit about the role, the task, the format of the desired output, and the constraints. Put stable instructions in the system message and the variable user input in the user message. Be specific: instead of asking the model to summarize, tell it to produce three bullet points under twenty words each in plain language. Ambiguity in the prompt becomes inconsistency in production.",
+        "Two reliable techniques are few-shot prompting and clear delimiters. Few-shot prompting includes a handful of input-output examples directly in the prompt so the model infers the pattern and matches your desired style and format. Delimiters such as triple backticks or XML-style tags separate instructions from user-supplied content, which both improves clarity and reduces the risk of injected text being read as commands. For multi-step reasoning, asking the model to think step by step before answering can improve accuracy, though it adds output tokens and latency.",
+        "Context engineering is the broader discipline of deciding what information goes into the limited window and in what order. Beyond the static prompt, you assemble dynamic context: relevant conversation history, retrieved documents, tool results, and user profile data. Because the window is finite and every token costs money, you cannot include everything. Summarize old turns, retrieve only the most relevant passages, and place the most important instructions where the model attends to them well, typically near the start and end. Treat the context as a curated package, not a dumping ground.",
+        "Prompts should be versioned and tested like code. Small wording changes can shift behavior, so keep prompt templates in your repository, track changes, and evaluate new versions against a fixed set of test cases before shipping. Separate the template from the injected variables so user data never accidentally overrides instructions. When output must be structured, combine a precise prompt with the API structured-output mode and still validate the result, because the model can occasionally drift from the requested format."
+      ],
+      "keyPoints": [
+        "Be explicit about role, task, output format, and constraints",
+        "Keep stable instructions in the system message and variable input in the user message",
+        "Few-shot examples teach pattern and style; delimiters separate instructions from data",
+        "Context engineering curates history, retrieved docs, and tool output within the token budget",
+        "Place key instructions near the start and end of the context",
+        "Version prompts and test them against fixed cases before deploying"
+      ],
+      "example": "A product-review classifier uses a system prompt defining three sentiment labels, includes four labeled example reviews as few-shot guidance, wraps the incoming review in XML tags, and requests a one-word label as JSON so the application can branch on the result.",
+      "summary": "Application prompts must be explicit, example-driven, and version-controlled, while context engineering decides which limited tokens of history and retrieved data earn a place in the window."
+    },
+    {
+      "order": 4,
+      "title": "Retrieval-Augmented Generation (RAG)",
+      "objectives": [
+        "Explain why RAG grounds models in external, current, or private knowledge",
+        "Describe the embedding, chunking, indexing, and retrieval pipeline",
+        "Diagnose common RAG failure modes and improve retrieval quality"
+      ],
+      "body": [
+        "Retrieval-augmented generation addresses two limits of LLMs: their knowledge is frozen at training time, and they cannot see your private documents. Rather than retraining the model, RAG retrieves relevant text from an external knowledge base at query time and injects it into the prompt as context, so the model answers from supplied facts. This grounds responses in current or proprietary information and reduces hallucination, because the model is asked to answer using provided passages. RAG is often the fastest, cheapest way to make a general model useful on domain-specific content.",
+        "The pipeline starts by preparing the knowledge base. Documents are split into chunks, typically a few hundred tokens with some overlap so meaning is not severed at boundaries. Each chunk is converted into an embedding, a numeric vector that captures semantic meaning so that similar text lands near it in vector space. These vectors are stored in a vector database or index. The choice of chunk size matters: too large and retrieval pulls in irrelevant text and wastes tokens; too small and chunks lose the context needed to be meaningful.",
+        "At query time the user question is embedded with the same model, and the system performs a similarity search, usually cosine similarity, to find the top matching chunks. Those chunks are inserted into the prompt alongside the question and an instruction to answer only from the provided context, ideally with citations. Because retrieval drives quality, many systems improve it with hybrid search that combines keyword and vector matching, and with re-ranking, where a second model reorders candidates so the most relevant passages reach the prompt first.",
+        "RAG fails in characteristic ways, and recognizing them speeds debugging. If retrieval returns the wrong chunks, the model answers confidently from irrelevant text; the fix lives in chunking, embeddings, or re-ranking, not in the prompt. If the right chunk is retrieved but the model ignores or contradicts it, tighten the instruction to ground answers in context and to say when the answer is not present. Stale or duplicated documents pollute results, so keep the index fresh. Measure retrieval separately from generation so you know which stage to improve."
+      ],
+      "keyPoints": [
+        "RAG injects retrieved external text into the prompt to ground answers in current or private data",
+        "Documents are chunked with overlap, embedded into vectors, and stored in a vector index",
+        "Queries are embedded and matched by similarity, commonly cosine, to find top chunks",
+        "Hybrid search and re-ranking improve which passages reach the prompt",
+        "Instruct the model to answer only from context and to admit when information is missing",
+        "Debug retrieval and generation separately; bad retrieval cannot be fixed by prompting"
+      ],
+      "example": "An internal HR assistant chunks the employee handbook into 300-token overlapping segments, embeds them into a vector store, and on each question retrieves the top five chunks, passing them to the model with the instruction to cite the section and reply 'not covered in the handbook' when no chunk answers.",
+      "summary": "RAG grounds an LLM in external knowledge by chunking and embedding documents, retrieving the most similar passages at query time, and instructing the model to answer from that context."
+    },
+    {
+      "order": 5,
+      "title": "Building AI Agents & Tool Use",
+      "objectives": [
+        "Explain how function and tool calling lets a model act on external systems",
+        "Describe the agent loop of reasoning, acting, observing, and repeating",
+        "Apply guardrails to keep agents safe, bounded, and debuggable"
+      ],
+      "body": [
+        "Tool calling, sometimes called function calling, lets a model do more than produce text. You describe available tools to the model as named functions with parameter schemas. When a request needs one, the model does not run the function itself; instead it returns a structured request naming the tool and arguments. Your application executes that function, captures the result, and feeds it back to the model in a follow-up message. This separation is essential: the model decides what to call, but your trusted code controls whether and how it actually runs.",
+        "An agent extends tool calling into a loop. Rather than answering in one shot, the model reasons about a goal, chooses an action such as calling a tool, observes the result, and decides the next step, repeating until the task is complete. This reason-act-observe cycle lets an agent break a complex request into steps, gather information, and adapt. A coding agent might list files, read one, run a test, see it fail, and edit the code, all within a single user request, using each observation to inform the next action.",
+        "Agents are powerful but error-prone, so bounding them is critical. Always cap the number of loop iterations so a confused agent cannot run forever and rack up cost. Validate every tool argument before execution, since the model can produce malformed or unsafe inputs. Prefer read-only or low-risk tools where possible, and require explicit confirmation for destructive actions like deleting data or sending money. Give each tool a clear description and narrow scope; vague or overlapping tools confuse the model into wrong choices.",
+        "Observability turns an opaque agent into a maintainable system. Log every step: the model reasoning, the chosen tool, the arguments, and the returned observation. These traces let you see where an agent went wrong, whether it picked the wrong tool, misread a result, or looped pointlessly. Start simple, since a single well-prompted tool call often beats a sprawling autonomous agent, and add complexity only when the task genuinely requires multi-step reasoning. Many production agents are deliberately constrained workflows rather than fully open-ended loops."
+      ],
+      "keyPoints": [
+        "Tool calling returns a structured request; your code, not the model, executes the function",
+        "Agents loop through reasoning, acting, observing, and deciding the next step",
+        "Cap loop iterations to prevent runaway cost and infinite loops",
+        "Validate tool arguments and gate destructive actions behind confirmation",
+        "Give tools clear, narrow descriptions so the model chooses correctly",
+        "Log every step to make agent behavior debuggable; prefer simple workflows over open-ended autonomy"
+      ],
+      "example": "A travel-booking agent is told it can call search_flights and book_flight. It searches, reviews options, and proposes a flight, but book_flight is gated so the application asks the user to confirm before the agent's requested booking call is executed.",
+      "summary": "Agents combine tool calling with an iterative reason-act-observe loop, and they require iteration caps, argument validation, confirmation gates, and thorough logging to stay safe and debuggable."
+    },
+    {
+      "order": 6,
+      "title": "Evaluation, Testing & Guardrails",
+      "objectives": [
+        "Build an evaluation set and measure LLM output quality systematically",
+        "Compare automated, model-graded, and human evaluation approaches",
+        "Apply input and output guardrails to catch unsafe or invalid responses"
+      ],
+      "body": [
+        "Because LLM output is probabilistic, you cannot rely on a single manual check. You need evaluations, or evals: a curated set of representative inputs paired with criteria for a good answer. Run candidate prompts or models against this set and score the results so you can compare versions objectively. Evals turn vague impressions like 'this feels better' into measurable signals, and they protect against regressions when you change a prompt, swap a model, or adjust retrieval. Building even a small eval set early pays off across the project's life.",
+        "Evaluation methods sit on a spectrum. For tasks with a known correct answer, such as classification or extraction, use deterministic checks against ground truth and report accuracy or F1. For open-ended output like summaries, exact matching fails, so teams use model-graded evaluation, where a separate LLM scores responses against a rubric. This scales well but is imperfect and can be biased, so calibrate it against human judgments. Human evaluation remains the gold standard for nuance and should anchor your most important quality decisions.",
+        "Guardrails are runtime checks that protect users and your system regardless of what the model produces. Input guardrails screen incoming requests for prohibited content or injection attempts before they reach the model. Output guardrails validate the response afterward: verifying it matches the required schema, contains no leaked secrets, stays on topic, and avoids unsafe content. When a guardrail trips, the system can retry, fall back to a safe default, or escalate to a human rather than passing a bad answer straight through to the user.",
+        "Treat evaluation and guardrails as part of continuous delivery, not a one-time gate. Run your eval suite automatically when prompts or models change, the same way unit tests run on code commits. In production, monitor real traffic for latency, cost, error rates, and quality signals such as user thumbs-down or guardrail triggers. Sample real interactions to grow your eval set with cases that actually occur. This feedback loop, from production back into evals, is how an LLM application steadily improves instead of silently drifting."
+      ],
+      "keyPoints": [
+        "Build an eval set of representative inputs with quality criteria to compare versions objectively",
+        "Use ground-truth checks for closed tasks and model-graded scoring for open-ended output",
+        "Human evaluation is the gold standard; calibrate automated graders against it",
+        "Input guardrails screen requests; output guardrails validate responses before delivery",
+        "On a tripped guardrail, retry, fall back safely, or escalate to a human",
+        "Run evals on every prompt or model change and feed production cases back into the suite"
+      ],
+      "example": "Before swapping to a cheaper model, a team runs both models against 200 saved support questions, scores answers with a model-graded rubric calibrated on 30 human-rated samples, and only switches because the cheaper model scores within two percent at half the cost.",
+      "summary": "Systematic evals measure quality across versions while input and output guardrails catch unsafe or invalid responses at runtime, together forming a feedback loop that keeps the application improving."
+    },
+    {
+      "order": 7,
+      "title": "Security, Cost & Deployment",
+      "objectives": [
+        "Recognize and mitigate prompt injection and data-leakage risks",
+        "Control LLM cost and latency with model choice, caching, and token discipline",
+        "Apply deployment practices for keys, versioning, and monitoring in production"
+      ],
+      "body": [
+        "Prompt injection is the signature security risk of LLM applications. Because the model cannot reliably distinguish trusted instructions from untrusted text, an attacker can embed commands inside user input, a web page, or a retrieved document that hijack the model's behavior, such as ignoring its rules or exfiltrating data. There is no perfect fix, so defend in layers: separate instructions from data with clear delimiters, never trust model output that triggers a privileged action without validation, and apply least privilege so the model and its tools can only access what the task truly needs.",
+        "Data handling deserves equal care. Treat anything sent to a third-party API as leaving your trust boundary, and avoid sending secrets, credentials, or unnecessary personal data in prompts. Understand the provider's data retention and training policies, and use appropriate enterprise or zero-retention options for sensitive workloads. On the output side, never echo back system prompts or internal details, and scrub responses for leaked keys or confidential content. Keep API keys in secret managers and on the server, never in client-side code where users could extract them.",
+        "Cost and latency are engineering constraints you actively manage. Choose the smallest model that meets quality needs, since capable small models are far cheaper and faster than frontier models for routine tasks; route easy requests to a cheap model and escalate only hard ones. Trim prompts and retrieved context to cut input tokens. Cache aggressively: store responses for repeated queries, and use provider prompt caching to reuse large stable prefixes at reduced cost. Stream output to improve perceived latency. Always log per-request token usage so cost stays visible.",
+        "Deployment follows familiar software discipline plus LLM-specific concerns. Pin specific model versions rather than floating aliases so behavior does not change silently under you, and re-run your evals before adopting a new version. Set timeouts, retries with backoff, and fallback models for when a provider degrades. Add rate limiting and spend caps to protect against abuse and runaway loops. Monitor latency, error rates, token cost, and quality signals in dashboards, and roll out prompt or model changes gradually so you can catch regressions before they reach every user."
+      ],
+      "keyPoints": [
+        "Prompt injection has no perfect fix; defend in layers with delimiters, validation, and least privilege",
+        "Treat API calls as leaving your trust boundary; never send secrets and keep keys server-side",
+        "Know provider data-retention and training policies; use zero-retention options for sensitive data",
+        "Control cost by choosing the smallest sufficient model and routing easy requests to it",
+        "Cache responses and reuse stable prompt prefixes; trim tokens and stream for latency",
+        "Pin model versions, set spend caps and fallbacks, and monitor cost, latency, and quality"
+      ],
+      "example": "A document assistant pins a specific model version, wraps untrusted file text in delimiters with an instruction never to follow embedded commands, caches the system prompt prefix to cut cost, and enforces a daily per-user spend cap with a fallback model if the primary provider returns errors.",
+      "summary": "Production LLM apps must defend against prompt injection and data leakage, actively manage cost and latency through model choice and caching, and deploy with pinned versions, spend caps, fallbacks, and monitoring."
+    }
+  ],
+  "questions": [
+    {
+      "text": "Why must an LLM application developer design differently than for traditional deterministic code?",
+      "options": [
+        "Because LLMs always return identical output for identical input",
+        "Because LLM output is probabilistic and can vary, requiring validation and tolerance for variability",
+        "Because LLMs cannot process any text input",
+        "Because APIs guarantee responses never contain errors"
+      ],
+      "correctIndex": 1,
+      "explanation": "LLMs predict tokens from a probability distribution, so the same prompt can produce different outputs, especially at higher temperature. Developers must validate output and design for variability rather than expecting fixed return values."
+    },
+    {
+      "text": "Approximately how many English words correspond to 1000 tokens?",
+      "options": [
+        "About 250 words",
+        "About 750 words",
+        "About 1000 words",
+        "About 4000 words"
+      ],
+      "correctIndex": 1,
+      "explanation": "A common rule of thumb is that one token is roughly three-quarters of an English word, so about 1000 tokens equals roughly 750 words. Both input and output tokens count toward cost and the context window."
+    },
+    {
+      "text": "A chat completions API returns a 429 status code. What is the correct response?",
+      "options": [
+        "Immediately resend the request in a tight loop until it succeeds",
+        "Treat it as a permanent failure and stop using the API",
+        "Retry with exponential backoff and jitter after increasing delays",
+        "Switch the request from a 400 to a 200 status manually"
+      ],
+      "correctIndex": 2,
+      "explanation": "A 429 indicates a rate limit was exceeded. The proper approach is exponential backoff with jitter, waiting progressively longer between retries. Hammering the endpoint worsens the problem, and 429s are transient, not permanent."
+    },
+    {
+      "text": "What does the stateless nature of most chat completion APIs require from the developer?",
+      "options": [
+        "Sending the relevant conversation history with every request",
+        "Storing the model weights locally before each call",
+        "Never including a system message",
+        "Setting temperature to zero on every request"
+      ],
+      "correctIndex": 0,
+      "explanation": "Because the server does not remember prior turns, the application must resend the needed prior messages each time so the model has the conversational context it requires to respond correctly."
+    },
+    {
+      "text": "In a prompt template, why should user-supplied input be wrapped in delimiters such as XML-style tags?",
+      "options": [
+        "It compresses the input to use fewer tokens",
+        "It clearly separates instructions from data and reduces the risk of injected text being read as commands",
+        "It guarantees the model output will be valid JSON",
+        "It removes the need to set a max tokens limit"
+      ],
+      "correctIndex": 1,
+      "explanation": "Delimiters mark a clear boundary between trusted instructions and untrusted user content, improving clarity and helping defend against prompt injection where embedded text tries to act as commands."
+    },
+    {
+      "text": "In a RAG pipeline, what is stored in the vector database?",
+      "options": [
+        "The full raw documents with no processing",
+        "The model weights fine-tuned on the documents",
+        "Embedding vectors representing the semantic meaning of document chunks",
+        "Only the user questions submitted so far"
+      ],
+      "correctIndex": 2,
+      "explanation": "RAG splits documents into chunks, converts each chunk into an embedding vector capturing its meaning, and stores those vectors. At query time the question is embedded and matched by similarity to retrieve the most relevant chunks."
+    },
+    {
+      "text": "A RAG system retrieves an irrelevant passage and the model answers confidently from it. Where should you focus the fix?",
+      "options": [
+        "Only on raising the temperature of the generation step",
+        "On the retrieval stage, such as chunking, embeddings, or re-ranking",
+        "On increasing max tokens for the output",
+        "On removing the system message entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": "If the wrong chunk is retrieved, the generation prompt cannot save the answer. The problem lives in retrieval, so improve chunking, embeddings, hybrid search, or re-ranking. Debug retrieval and generation as separate stages."
+    },
+    {
+      "text": "When a model uses tool or function calling, what actually executes the function?",
+      "options": [
+        "The model runs the function internally and returns the result",
+        "The API provider executes all functions on its servers automatically",
+        "The application code executes the function after the model returns a structured request",
+        "The function never executes; the model only describes it"
+      ],
+      "correctIndex": 2,
+      "explanation": "The model returns a structured request naming the tool and arguments but does not run it. The application executes the function, then feeds the result back to the model. This keeps execution under the control of trusted code."
+    },
+    {
+      "text": "Which control most directly prevents an autonomous agent from running forever and accumulating cost?",
+      "options": [
+        "Setting temperature to a high value",
+        "Capping the maximum number of loop iterations",
+        "Removing all tool descriptions",
+        "Disabling logging of agent steps"
+      ],
+      "correctIndex": 1,
+      "explanation": "Agents loop through reason, act, and observe. A confused agent can loop indefinitely, so capping iterations bounds cost and time. Clear tool descriptions and logging help correctness and debugging but do not by themselves stop runaway loops."
+    },
+    {
+      "text": "Which combination best controls LLM cost in production without simply degrading all quality?",
+      "options": [
+        "Always use the largest frontier model and never cache anything",
+        "Route easy requests to a smaller cheap model, cache repeated responses, and trim prompt tokens",
+        "Store API keys in client-side code to reduce server load",
+        "Disable token usage logging to save processing time"
+      ],
+      "correctIndex": 1,
+      "explanation": "Choosing the smallest sufficient model for routine tasks, caching repeated or stable content, and trimming input tokens cut cost while preserving quality where it matters. Keys must stay server-side, and usage logging is essential for cost visibility."
+    }
+  ]
+}

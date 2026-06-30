@@ -1,0 +1,317 @@
+{
+  "version": 2,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of AI in Supply Chain",
+      "objectives": [
+        "Explain how AI differs from traditional rules-based and statistical supply-chain methods",
+        "Identify the data foundations AI models depend on across plan, source, make, and deliver",
+        "Frame a defensible AI business case using value, feasibility, and risk"
+      ],
+      "body": [
+        "Artificial intelligence in supply chain refers to systems that learn patterns from historical and real-time data rather than following hand-coded rules alone. Classical planning often relies on fixed formulas and human-set parameters, which struggle when demand shifts or disruptions cascade. Machine learning models instead detect relationships across thousands of variables, such as promotions, weather, lead times, and macro signals, and update their predictions as new data arrives. For a practitioner, the key shift is from managing static assumptions to curating the data and feedback loops that let models stay accurate over time.",
+        "Most supply-chain AI value comes from three capabilities: prediction, optimization, and automation. Prediction estimates what will happen, such as next month demand or the probability a shipment is late. Optimization recommends the best decision given constraints, such as how much to reorder or which route to run. Automation executes routine decisions without manual touch, freeing planners for exceptions. These capabilities build on each other: a good forecast feeds an inventory optimizer, which feeds an automated replenishment workflow. Understanding which capability a tool actually delivers prevents over-promising and helps you measure the right outcome.",
+        "AI runs on data, and supply-chain data is famously messy. Models need clean, well-labeled, and reasonably complete records covering orders, inventory positions, lead times, costs, and external factors. Poor master data, duplicate SKUs, or inconsistent units quietly degrade model quality, a problem summarized as garbage in, garbage out. Practitioners should treat data readiness as the first project milestone, not an afterthought, and confirm that the signals a model needs are captured reliably and refreshed on a cadence that matches the decision being supported.",
+        "Building an AI business case means tying the technology to a measurable operational metric and a financial outcome. A strong case states the baseline today, the expected improvement, the investment required, and the payback period. It also accounts for change management, since adoption fails when planners do not trust or understand the recommendations. The most credible cases start small with a single high-value use case, prove value against a clear baseline, and then scale. Avoid vague claims of efficiency and instead commit to numbers such as forecast error reduction or service-level gains."
+      ],
+      "keyPoints": [
+        "AI learns patterns from data instead of relying only on fixed rules and human-set parameters",
+        "Supply-chain AI delivers value through prediction, optimization, and automation",
+        "Data readiness, including clean master data, is the foundation of any model",
+        "A credible AI business case links technology to a measurable KPI and a payback period",
+        "Starting with one high-value use case beats attempting broad transformation at once",
+        "Adoption and trust matter as much as model accuracy"
+      ],
+      "example": "A mid-sized distributor wants to reduce stockouts. Instead of a company-wide AI program, the team scopes one use case: predicting weekly demand for the top 200 SKUs that drive 70 percent of revenue. The baseline is a 22 percent forecast error and a 91 percent service level. The business case projects cutting error to 16 percent and lifting service to 95 percent, freeing roughly 300,000 dollars in excess safety stock with a six-month payback, giving leadership a concrete number to approve.",
+      "summary": "AI in supply chain learns from data to predict, optimize, and automate decisions, and its value depends on clean data and a measurable business case tied to real KPIs."
+    },
+    {
+      "order": 2,
+      "title": "Demand Forecasting & Planning with AI",
+      "objectives": [
+        "Distinguish AI-driven forecasting from traditional time-series methods",
+        "Interpret forecast accuracy using MAPE and forecast bias correctly",
+        "Apply demand sensing and exception-based planning in a practitioner workflow"
+      ],
+      "body": [
+        "Demand forecasting predicts future customer demand so the business can plan supply, inventory, and capacity. Traditional methods such as moving averages and exponential smoothing project history forward and work well for stable items. Machine learning extends this by incorporating many drivers at once, including price, promotions, seasonality, weather, and related product demand, and by learning nonlinear patterns. AI forecasting tends to help most for items with rich data and external influences, while simple methods may still win for slow-moving or brand-new products where there is little signal to learn from.",
+        "Measuring accuracy is essential, and the most common metric is Mean Absolute Percentage Error, or MAPE. MAPE averages the absolute difference between forecast and actual, divided by actual, expressed as a percentage. A MAPE of 15 percent means forecasts are off by 15 percent on average. MAPE is intuitive but has weaknesses: it is undefined when actual demand is zero and it penalizes over-forecasting and under-forecasting unevenly. Practitioners often pair it with other measures and always check it at the level where decisions are made, since aggregate MAPE can look far better than item-level error.",
+        "Bias is a different and equally important concept. Forecast bias measures whether forecasts are systematically too high or too low over time, calculated as the average signed error rather than the absolute error. A model can have acceptable MAPE yet be consistently biased upward, which quietly inflates inventory, or biased downward, which causes chronic stockouts. Healthy forecasting tracks both accuracy and bias, because reducing bias toward zero often delivers more financial benefit than squeezing out the last point of accuracy.",
+        "Modern planning pairs forecasting with demand sensing and exception management. Demand sensing uses short-term, high-frequency signals such as point-of-sale data and orders to adjust the near-term forecast quickly, capturing shifts before they appear in monthly trends. Exception-based planning then directs planner attention only to forecasts that breach a tolerance, so people focus on the items where judgment adds value while the system handles the stable majority. This human-and-machine division keeps planning scalable as the number of SKUs and locations grows."
+      ],
+      "keyPoints": [
+        "AI forecasting incorporates many demand drivers and nonlinear patterns beyond simple history",
+        "MAPE expresses average percentage error but breaks down when demand is zero or very low",
+        "Forecast bias measures systematic over- or under-forecasting using signed, not absolute, error",
+        "Low bias often delivers more value than marginal accuracy gains",
+        "Demand sensing adjusts near-term forecasts from high-frequency signals",
+        "Exception-based planning focuses planner effort on the forecasts that matter most"
+      ],
+      "example": "A planner reviews two months of data for one SKU. Forecasts were 100, 120, 90 and actuals were 110, 100, 95. Absolute percentage errors are about 9, 20, and 5 percent, giving a MAPE near 11 percent. The signed errors are minus 10, plus 20, and minus 5, averaging plus 1.7 units, so bias is slightly positive but small. The planner concludes accuracy is acceptable and bias is near zero, so no systematic correction is needed.",
+      "summary": "AI forecasting blends many drivers to improve predictions, and practitioners must track both MAPE for accuracy and bias for systematic error while using demand sensing and exceptions to scale planning."
+    },
+    {
+      "order": 3,
+      "title": "Inventory Optimization",
+      "objectives": [
+        "Define safety stock and reorder point and compute them with a worked example",
+        "Explain how AI improves inventory parameters over static rules",
+        "Connect service-level targets to inventory cost trade-offs"
+      ],
+      "body": [
+        "Inventory optimization sets how much stock to hold and when to replenish so that service targets are met at the lowest total cost. Two foundational concepts are safety stock and the reorder point. Safety stock is the buffer held to absorb variability in demand and lead time, protecting against stockouts when reality exceeds the forecast. The reorder point is the inventory level that triggers a new order. The core relationship every practitioner should memorize is: reorder point equals expected demand during the lead time plus safety stock.",
+        "Safety stock depends on three things: how much demand and lead time vary, how long the lead time is, and the service level you target. Higher variability or longer lead times require more buffer. The service level reflects how often you are willing to avoid a stockout during replenishment, and it maps to a statistical service factor. Targeting a 95 percent service level uses a factor of about 1.65, while 98 percent uses about 2.05. Pushing service levels higher always costs disproportionately more inventory, which is why setting the right target by item matters.",
+        "A simple safety stock formula, when lead time is fixed and only demand varies, is service factor multiplied by the standard deviation of demand multiplied by the square root of the lead time. Consider a SKU with average daily demand of 50 units, a lead time of 9 days, a demand standard deviation of 10 units per day, and a 95 percent target. Safety stock equals 1.65 times 10 times the square root of 9, which is 1.65 times 10 times 3, or about 50 units. Lead-time demand is 50 times 9, which is 450 units. The reorder point is therefore 450 plus 50, equaling 500 units.",
+        "Traditional systems often use static, manually set safety stock or simple rules of thumb that ignore changing variability. AI improves this by continuously estimating demand and lead-time variability per item and location, segmenting items by behavior, and recommending parameters that flex with seasonality and supplier performance. The result is usually lower total inventory at the same or better service level, because buffers are placed where uncertainty truly lives rather than spread evenly. Practitioners should still review AI recommendations against business rules, minimum order quantities, and shelf-life limits."
+      ],
+      "keyPoints": [
+        "Safety stock is the buffer that absorbs demand and lead-time variability",
+        "Reorder point equals lead-time demand plus safety stock",
+        "Safety stock rises with variability, lead time, and the chosen service level",
+        "A 95 percent service level uses a service factor of roughly 1.65",
+        "AI flexes inventory parameters per item rather than relying on static rules",
+        "Higher service levels cost disproportionately more inventory"
+      ],
+      "example": "For a SKU with daily demand of 50 units, a 9-day lead time, demand standard deviation of 10 units per day, and a 95 percent service target: safety stock equals 1.65 times 10 times the square root of 9, which is about 50 units. Lead-time demand equals 50 times 9, which is 450 units. Reorder point equals 450 plus 50, or 500 units, so the system reorders when stock drops to 500.",
+      "summary": "Inventory optimization balances service and cost using safety stock and a reorder point of lead-time demand plus safety stock, and AI improves on static rules by flexing buffers to real, item-level variability."
+    },
+    {
+      "order": 4,
+      "title": "Logistics, Routing & Transportation",
+      "objectives": [
+        "Describe how route optimization works and the constraints it must respect",
+        "Explain how AI improves ETAs, load building, and carrier decisions",
+        "Identify where optimization adds value versus where data limits it"
+      ],
+      "body": [
+        "Transportation is one of the largest controllable costs in most supply chains, and route optimization is a core AI application. At its heart, route optimization solves a version of the vehicle routing problem: deciding which stops each vehicle visits and in what order to minimize cost or time. What makes it hard is the constraints. Real routes must respect vehicle capacity, driver hours-of-service rules, delivery time windows, road restrictions, vehicle type compatibility, and sometimes priority customers. Ignoring any constraint produces plans that look efficient on paper but cannot actually be executed.",
+        "Because the number of possible route combinations explodes with each added stop, exact solutions are impractical at scale. Optimization engines use heuristics and metaheuristics to find very good, though not always provably perfect, solutions within seconds or minutes. AI strengthens this by predicting inputs more accurately, such as realistic travel times by time of day, service durations at each stop, and the probability of delays. Better inputs lead to plans that hold up in the real world, reducing the gap between the planned route and what drivers actually experience.",
+        "Estimated time of arrival prediction is a high-impact use case. Machine learning models trained on historical trips, traffic patterns, weather, and dwell times produce dynamic ETAs that update as conditions change. Accurate ETAs improve customer communication, reduce detention at docks, and let dispatchers reroute proactively. The same predictive foundation supports load building, where AI packs orders into trucks to maximize utilization within weight and volume limits, and carrier selection, where models weigh cost, reliability, and capacity to choose the best carrier for each lane.",
+        "Practitioners should be clear about where optimization helps and where it stalls. The technology shines when there are many stops, tight constraints, and reliable location and order data. It struggles when address data is dirty, time windows are unrealistic, or constraints are not captured in the system, since the optimizer can only honor rules it knows about. The practical workflow is to validate constraint data first, let the engine generate plans, and keep dispatcher override for the local knowledge that no model fully captures."
+      ],
+      "keyPoints": [
+        "Route optimization assigns stops to vehicles and sequences them to minimize cost or time",
+        "Real routes must respect capacity, time windows, driver hours, and road restrictions",
+        "Heuristics find near-optimal routes quickly because exact solutions do not scale",
+        "AI improves ETAs by learning from traffic, weather, and dwell-time history",
+        "Load building and carrier selection are common AI transportation use cases",
+        "Optimization quality depends on clean location data and accurately captured constraints"
+      ],
+      "example": "A delivery operation with 8 trucks and 240 daily stops sets constraints: each truck holds 1,000 kg, drivers work 9-hour shifts, and 60 customers require morning windows. The optimizer sequences stops to honor every constraint and predicts realistic travel times by time of day, cutting total distance by 12 percent and lifting on-time delivery from 88 to 96 percent, while the dispatcher retains override for a construction closure the model did not yet know about.",
+      "summary": "AI route optimization assigns and sequences stops under real-world constraints and sharpens ETAs and load plans, but its value depends on clean data and correctly captured constraints."
+    },
+    {
+      "order": 5,
+      "title": "Procurement & Supplier Intelligence",
+      "objectives": [
+        "Explain how AI supports spend analysis and sourcing decisions",
+        "Describe multi-factor supplier risk scoring and its inputs",
+        "Apply supplier intelligence to segmentation and mitigation actions"
+      ],
+      "body": [
+        "Procurement turns demand into purchased goods and services, and AI helps at several points in that cycle. Spend analysis uses machine learning to automatically classify millions of transaction lines into clean categories, revealing maverick spend, duplicate suppliers, and consolidation opportunities that manual analysis misses. With categorized spend, sourcing teams can negotiate from facts, identify where they have leverage, and target savings. AI also supports contract analysis by extracting key terms and flagging unfavorable clauses, accelerating reviews that previously consumed analyst hours.",
+        "Supplier risk is rarely about a single number. Effective AI risk scoring is multi-factor, combining signals across several dimensions: financial health such as credit scores and payment behavior, operational performance such as on-time delivery and quality defects, geographic and geopolitical exposure, environmental and social governance compliance, and concentration risk when too much spend sits with one supplier or region. A model blends these into a composite score and, importantly, explains the drivers so a category manager understands why a supplier is rated high risk and can act on the specific weakness.",
+        "These scores are most useful when refreshed continuously from external and internal data. AI can monitor news, financial filings, weather events, and sanction lists to detect emerging risk before it shows up as a missed shipment. Pairing this monitoring with internal performance data gives an early-warning view across the supply base. The practitioner value is moving from annual supplier reviews to ongoing awareness, so that a deteriorating supplier triggers a mitigation conversation rather than a surprise disruption.",
+        "Supplier intelligence feeds concrete decisions. Risk and performance scores support segmentation, separating strategic partners that warrant deep collaboration from transactional suppliers managed by exception. High composite risk on a sole-source, high-spend item points clearly toward mitigation such as qualifying a second source, increasing buffer stock, or renegotiating terms. The goal is not to eliminate every risk but to allocate attention and protective action where the combination of likelihood and business impact is greatest, which is exactly what a good multi-factor model surfaces."
+      ],
+      "keyPoints": [
+        "AI spend analysis auto-classifies transactions to reveal savings and consolidation opportunities",
+        "Supplier risk scoring should be multi-factor, not based on a single metric",
+        "Risk inputs span financial, operational, geographic, ESG, and concentration dimensions",
+        "Explainable scores let category managers act on the specific risk driver",
+        "Continuous monitoring of external signals gives early warning of supplier trouble",
+        "Risk scores drive supplier segmentation and targeted mitigation actions"
+      ],
+      "example": "A category manager reviews a key resin supplier. The model scores it high risk, driven by three factors: a declining financial-health score, on-time delivery slipping from 97 to 89 percent, and 80 percent of category spend concentrated with this one supplier. Because the score is explainable, the team acts directly on the drivers by qualifying a second source and raising safety stock on the affected SKUs while monitoring the financial trend monthly.",
+      "summary": "AI in procurement classifies spend and scores suppliers across multiple risk dimensions, and explainable, continuously updated scores let teams target mitigation where likelihood and impact are highest."
+    },
+    {
+      "order": 6,
+      "title": "Warehouse Automation & Robotics",
+      "objectives": [
+        "Identify common warehouse automation and robotics technologies and their roles",
+        "Explain how AI coordinates picking, slotting, and inventory accuracy",
+        "Weigh automation trade-offs including cost, flexibility, and labor"
+      ],
+      "body": [
+        "Warehouse automation spans a spectrum from conveyor and sortation systems to autonomous mobile robots, goods-to-person systems, and robotic arms for picking. AI is the coordination layer that makes these assets productive. Rather than each machine acting alone, a warehouse management and control system uses algorithms to orchestrate where robots go, which orders to release, and how work flows to minimize travel and congestion. For a practitioner, the important distinction is between fixed automation, which is fast but rigid, and flexible robotics, which adapts to changing volumes and layouts at some cost in peak throughput.",
+        "Several AI applications drive warehouse productivity. Computer vision reads barcodes, inspects items for damage, and helps robotic arms grasp varied products. Slotting optimization uses demand and affinity data to place fast-moving and frequently co-picked items in the most accessible locations, cutting picker travel. Pick-path optimization sequences the stops within an order to shorten walking, much like route optimization inside the building. Together these reduce the single largest cost in many warehouses, which is the time workers spend traveling rather than picking.",
+        "Inventory accuracy is another area where AI adds value. Vision-equipped drones and robots can cycle-count shelves continuously, and machine learning flags discrepancies between recorded and observed stock. Accurate, real-time inventory is the precondition for reliable fulfillment promises and for the upstream forecasting and replenishment models to work, since those models trust the on-hand numbers the warehouse reports. Poor accuracy quietly undermines the entire chain, so automation that keeps counts honest has outsized value.",
+        "Automation decisions are economic and operational, not purely technical. Fixed systems demand large capital and assume stable, high volumes, while robotic fleets offer modular scaling and faster redeployment but may cost more per unit at peak. Labor strategy matters too, since automation usually shifts roles toward exception handling and equipment supervision rather than eliminating people outright. A sound practitioner approach models throughput needs, volume variability, labor availability, and payback before committing, and often phases automation to preserve flexibility as the business evolves."
+      ],
+      "keyPoints": [
+        "Warehouse automation ranges from fixed conveyors to flexible autonomous mobile robots",
+        "AI orchestrates robots, order release, and workflow to cut travel and congestion",
+        "Slotting and pick-path optimization reduce the costly time workers spend traveling",
+        "Computer vision supports scanning, quality inspection, and robotic grasping",
+        "AI-driven cycle counting sustains the inventory accuracy that downstream models rely on",
+        "Automation choices weigh capital, volume variability, flexibility, and labor strategy"
+      ],
+      "example": "A fulfillment center deploys autonomous mobile robots plus AI slotting. The system relocates the top 15 percent of fast-moving SKUs to prime golden-zone locations and assigns robots to bring shelves to stationary pickers. Picker walking time falls by 40 percent, units picked per hour rise from 80 to 120, and continuous robot cycle counting lifts inventory accuracy from 96 to 99.5 percent, improving the reliability of fulfillment promises and upstream replenishment.",
+      "summary": "AI coordinates warehouse robotics and optimizes slotting, pick paths, and counting to cut travel and sustain accuracy, but automation choices must balance cost, volume variability, flexibility, and labor."
+    },
+    {
+      "order": 7,
+      "title": "Risk, Resilience & End-to-End Visibility",
+      "objectives": [
+        "Explain control towers and how they enable end-to-end visibility",
+        "Describe digital twins and their use in scenario and resilience planning",
+        "Apply predictive risk detection to early warning and response"
+      ],
+      "body": [
+        "End-to-end visibility means seeing the status of orders, inventory, and shipments across the whole chain, from suppliers through to customers, in near real time. The technology that delivers this is often called a control tower: a centralized hub that ingests data from many systems and partners, presents a single view, and surfaces alerts when something deviates from plan. AI elevates a control tower from a dashboard to a decision aid by detecting anomalies, predicting where problems will emerge, and even recommending responses, so teams act on issues before they become customer-facing failures.",
+        "A digital twin is a dynamic virtual model of the supply chain, or part of it, built from real data and kept in sync with the physical operation. Because it mirrors the network, planners can run what-if scenarios safely, such as testing the impact of closing a distribution center, a supplier outage, or a demand surge, without disturbing live operations. AI makes the twin more powerful by populating it with learned behaviors and probabilities, so simulations reflect realistic variability rather than idealized assumptions, producing more trustworthy stress tests.",
+        "Resilience comes from anticipating disruptions and preparing responses. Predictive risk models scan internal performance and external signals, including weather, geopolitical events, port congestion, and supplier health, to flag emerging threats early. The value is lead time: knowing days or weeks ahead that a typhoon may disrupt a key port lets a team pre-position inventory, book alternate capacity, or expedite critical orders. Without prediction, the same disruption arrives as a surprise and forces costly reactive scrambling with fewer options available.",
+        "Visibility and prediction only matter if they drive action, which is why response design is essential. Mature programs pre-define playbooks for common disruption types and connect them to the control tower so a detected risk triggers a recommended set of actions and the right people to approve them. Practitioners should resist alert overload by tuning thresholds to genuinely material events and by routing alerts to clear owners. The combination of a control tower, a digital twin, predictive detection, and ready playbooks turns resilience from a slogan into an operational capability."
+      ],
+      "keyPoints": [
+        "End-to-end visibility shows order, inventory, and shipment status across the whole chain",
+        "A control tower centralizes data into a single view and surfaces alerts and recommendations",
+        "A digital twin is a live virtual model used to test scenarios without disrupting operations",
+        "Predictive risk models give lead time to act before disruptions hit",
+        "Pre-defined playbooks turn alerts into fast, consistent responses",
+        "Alert thresholds must be tuned to avoid overload and ensure clear ownership"
+      ],
+      "example": "A control tower flags rising congestion at a key import port and predicts a 6-day delay for three inbound containers of a critical component. The linked digital twin simulates the impact and shows a likely stockout in 11 days. The system recommends a pre-built playbook: expedite air freight for the highest-priority SKU and draw down safety stock elsewhere. The planning lead approves within hours, avoiding a line-down event that reactive handling would have caused.",
+      "summary": "Control towers and digital twins deliver end-to-end visibility and safe scenario testing, and when paired with predictive risk detection and ready playbooks they convert resilience into concrete, timely action."
+    },
+    {
+      "order": 8,
+      "title": "Responsible AI, Governance & Implementation",
+      "objectives": [
+        "Explain the role of human-in-the-loop oversight in supply-chain AI",
+        "Identify governance practices for fairness, transparency, and model monitoring",
+        "Outline a practical implementation path from pilot to scaled adoption"
+      ],
+      "body": [
+        "Responsible AI means deploying models in ways that are transparent, accountable, and aligned with business and ethical standards. In supply chain, a central practice is human-in-the-loop oversight, where people review and can override AI recommendations rather than letting models act unchecked on high-stakes decisions. The right level of automation depends on the decision: routine, low-risk replenishment can run automatically, while large capital, supplier termination, or safety-related choices keep a human firmly in control. Designing this division deliberately protects against costly model errors and builds the trust that drives adoption.",
+        "Governance turns good intentions into repeatable practice. Key elements include clear ownership of each model, documentation of what data it uses and how it decides, monitoring for performance degradation, and explainability so users understand recommendations. Models drift as conditions change, so a model that was accurate last year may quietly decay, which is why ongoing monitoring against live outcomes is essential rather than a one-time validation. Bias and fairness also matter, for example ensuring supplier-scoring models do not unfairly penalize smaller or regional vendors based on proxies rather than real performance.",
+        "Data privacy, security, and contractual considerations sit alongside model governance. Supply-chain AI often uses partner and supplier data, so teams must respect data-sharing agreements, protect sensitive commercial information, and comply with relevant regulations. A governance forum that brings together operations, IT, data, and compliance keeps these threads connected, reviews new use cases, and sets the rules for when and how AI may act autonomously. Without this structure, individual projects make inconsistent choices that create risk and erode confidence.",
+        "Implementation succeeds through a disciplined path rather than a big-bang launch. The proven sequence is to pick a high-value, well-bounded use case, confirm data readiness, run a pilot with a clear baseline and success metric, measure honestly, and only then scale to more SKUs, sites, or use cases. Change management runs throughout, since planners must understand, trust, and adapt their workflows around the new tools. The practitioner mindset treats AI as an ongoing capability that needs owners, monitoring, and continuous improvement, not a project that ends at go-live."
+      ],
+      "keyPoints": [
+        "Human-in-the-loop keeps people in control of high-stakes AI decisions",
+        "Automation level should match the risk and stakes of each decision",
+        "Governance requires model ownership, documentation, monitoring, and explainability",
+        "Models drift over time, so ongoing monitoring against outcomes is essential",
+        "Privacy, security, and data-sharing agreements must be respected for partner data",
+        "Implementation works best as pilot-to-scale with a baseline, metric, and change management"
+      ],
+      "example": "A company launches an AI replenishment tool. Governance sets the rule that the system auto-approves orders under 10,000 dollars but routes larger orders to a planner for sign-off, a clear human-in-the-loop boundary. A monitoring dashboard tracks forecast bias monthly and flags drift. After a successful 3-month pilot on 200 SKUs that cut inventory 8 percent at a steady service level, the team scales to 2,000 SKUs with the same governance and monitoring in place.",
+      "summary": "Responsible supply-chain AI pairs human-in-the-loop oversight and governance for fairness, monitoring, and privacy with a disciplined pilot-to-scale rollout supported by ongoing change management."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What most fundamentally distinguishes AI-based supply-chain methods from traditional rules-based planning?",
+      "options": [
+        "AI never requires any human input or oversight",
+        "AI learns patterns from data and updates as new data arrives",
+        "AI eliminates the need for clean master data",
+        "AI only works for transportation problems"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI systems learn relationships from historical and real-time data and adapt as conditions change, rather than relying solely on fixed, hand-coded rules and static parameters."
+    },
+    {
+      "text": "A SKU has a forecast MAPE of 12 percent but its signed errors average plus 18 units month after month. What does this indicate?",
+      "options": [
+        "The forecast is unbiased and accurate",
+        "The forecast has good accuracy but a systematic upward bias",
+        "MAPE cannot be calculated in this case",
+        "The forecast has high bias but poor accuracy"
+      ],
+      "correctIndex": 1,
+      "explanation": "MAPE of 12 percent reflects reasonable accuracy, but a consistently positive average signed error means the forecast systematically over-forecasts, which is upward bias that tends to inflate inventory."
+    },
+    {
+      "text": "Which statement correctly defines the reorder point?",
+      "options": [
+        "Safety stock minus expected lead-time demand",
+        "Average demand multiplied by the service factor",
+        "Expected demand during the lead time plus safety stock",
+        "The economic order quantity divided by lead time"
+      ],
+      "correctIndex": 2,
+      "explanation": "The reorder point is lead-time demand plus safety stock, so an order is triggered while enough stock remains to cover demand during replenishment plus a buffer for variability."
+    },
+    {
+      "text": "For a SKU with 50 units average daily demand, a 9-day lead time, a 95 percent target with service factor 1.65, and a safety stock of 50 units, what is the reorder point?",
+      "options": [
+        "450 units",
+        "500 units",
+        "550 units",
+        "405 units"
+      ],
+      "correctIndex": 1,
+      "explanation": "Lead-time demand is 50 times 9, which equals 450 units. Adding safety stock of 50 units gives a reorder point of 500 units."
+    },
+    {
+      "text": "Why do route optimization engines rely on heuristics rather than exact solutions at scale?",
+      "options": [
+        "Heuristics ignore all delivery constraints to run faster",
+        "The number of route combinations grows too large to solve exactly in reasonable time",
+        "Exact methods cannot handle time windows at all",
+        "Heuristics are always provably optimal"
+      ],
+      "correctIndex": 1,
+      "explanation": "The vehicle routing problem grows combinatorially with each stop, so exact optimization is impractical at scale; heuristics find very good solutions quickly while still respecting constraints."
+    },
+    {
+      "text": "What best describes effective AI-based supplier risk scoring?",
+      "options": [
+        "A single financial credit score used in isolation",
+        "A multi-factor composite covering financial, operational, geographic, ESG, and concentration risk",
+        "A score based only on the most recent late shipment",
+        "A fixed annual rating that does not change"
+      ],
+      "correctIndex": 1,
+      "explanation": "Robust supplier risk scoring blends multiple dimensions into an explainable composite, since real supplier risk is rarely captured by any single metric and should update continuously."
+    },
+    {
+      "text": "In a warehouse, what is the primary purpose of slotting optimization?",
+      "options": [
+        "To increase the number of SKUs stored regardless of demand",
+        "To place fast-moving and co-picked items in accessible locations to cut picker travel",
+        "To eliminate the need for any inventory counting",
+        "To set carrier rates for outbound shipments"
+      ],
+      "correctIndex": 1,
+      "explanation": "Slotting uses demand and affinity data to position frequently picked and co-picked items where they are easiest to reach, reducing the costly travel time that dominates many picking operations."
+    },
+    {
+      "text": "What is a digital twin in a supply-chain context?",
+      "options": [
+        "A backup copy of the ERP database",
+        "A live virtual model of the network used to run what-if scenarios safely",
+        "A duplicate physical warehouse kept on standby",
+        "A second forecasting model run for comparison"
+      ],
+      "correctIndex": 1,
+      "explanation": "A digital twin is a dynamic virtual model kept in sync with the real operation, letting planners simulate disruptions and decisions without affecting live operations."
+    },
+    {
+      "text": "Which decision is the best candidate for keeping a human firmly in the loop rather than full automation?",
+      "options": [
+        "Routine replenishment of a low-cost, stable SKU",
+        "Auto-generating a daily cycle-count task list",
+        "Terminating a strategic sole-source supplier",
+        "Updating an ETA based on current traffic"
+      ],
+      "correctIndex": 2,
+      "explanation": "High-stakes, high-impact decisions such as terminating a sole-source supplier warrant human-in-the-loop oversight, while low-risk routine tasks are appropriate for automation."
+    },
+    {
+      "text": "What is the recommended implementation path for adopting supply-chain AI?",
+      "options": [
+        "Launch all use cases company-wide at once for maximum impact",
+        "Start with a bounded high-value pilot, prove value against a baseline, then scale",
+        "Deploy models without monitoring to save effort",
+        "Avoid defining metrics so results are not constraining"
+      ],
+      "correctIndex": 1,
+      "explanation": "A disciplined pilot-to-scale approach with a clear baseline and success metric reduces risk, builds trust, and creates the evidence needed to justify scaling, unlike a big-bang launch."
+    }
+  ]
+}

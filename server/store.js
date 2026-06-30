@@ -10,8 +10,17 @@ const fs = require('fs');
 const path = require('path');
 const { CATEGORIES, COURSES } = require('./data/catalog');
 const { generateForCourse } = require('./data/questions');
+// Authored course content: legacy content.json (if present) merged with any
+// per-course files in data/content/*.json (per-course files take precedence).
 let CONTENT = {};
-try { CONTENT = require('./data/content.json'); } catch {}
+try { CONTENT = { ...require('./data/content.json') }; } catch {}
+try {
+  const dir = path.join(__dirname, 'data', 'content');
+  for (const f of fs.readdirSync(dir)) {
+    if (!f.endsWith('.json')) continue;
+    try { CONTENT[f.replace(/\.json$/, '')] = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')); } catch (e) { console.error('content load failed for', f, e.message); }
+  }
+} catch {}
 
 const DATA_DIR = process.env.DATA_DIR || __dirname;
 const DATA_PATH = path.join(DATA_DIR, 'data.json');
