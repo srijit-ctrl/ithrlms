@@ -1,0 +1,291 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of AI in Network Operations",
+      "objectives": [
+        "Explain why traditional threshold-based monitoring struggles with modern network scale",
+        "Describe the categories of machine learning relevant to network analysis",
+        "Identify where AI adds value across the network operations lifecycle"
+      ],
+      "body": [
+        "Modern networks generate telemetry at a volume and velocity that overwhelms manual review. A single distribution switch can emit thousands of interface counters, flow records, and log lines per minute, and a regional fabric multiplies that by hundreds of devices. Static thresholds, the historic backbone of monitoring, fire constantly during normal busy periods and stay silent during slow-building faults. AI techniques help by learning what normal looks like for each device and time window, then surfacing the deviations that actually matter rather than every breach of a fixed number.",
+        "Three families of machine learning recur throughout network work. Supervised learning maps labeled inputs to known outputs, such as classifying a flow as malware or benign once you have examples of both. Unsupervised learning finds structure without labels, which suits anomaly detection where you rarely know every fault in advance. Reinforcement learning, less common operationally, optimizes sequential decisions like routing or congestion control by rewarding good outcomes over time. Choosing the right family depends on whether you have labels, how rare the events are, and how interpretable the result must be.",
+        "AI does not replace network engineers; it shifts their attention. Instead of staring at dashboards, engineers curate the data that feeds models, validate the alerts those models raise, and encode their domain knowledge into features and rules. A useful mental model is the human-in-the-loop pipeline: data is collected and cleaned, a model scores it, a person reviews high-confidence findings, and feedback returns to improve the next iteration. The quality of that loop, not the sophistication of any single algorithm, usually determines whether an AI initiative succeeds in production.",
+        "Value appears across the operations lifecycle. In planning, models forecast capacity needs from historical growth. In daily operations, anomaly detection and event correlation cut alert noise. In troubleshooting, AI groups related symptoms to point at a probable root cause. In security, behavioral models flag traffic that signatures miss. The common thread is converting raw telemetry into prioritized, actionable signals so that scarce expert time lands on the few problems that genuinely threaten service."
+      ],
+      "keyPoints": [
+        "Static thresholds produce noise during peaks and miss slow-developing faults",
+        "Supervised learning needs labels; unsupervised learning suits unknown anomalies",
+        "AI augments engineers by prioritizing signals, not by removing humans",
+        "A strong data-and-feedback loop matters more than any single algorithm",
+        "AI adds value across planning, operations, troubleshooting, and security"
+      ],
+      "example": "A campus network sets a fixed 80 percent utilization alarm on uplinks. It pages the team every weekday at lunchtime when traffic is normally high, yet stays quiet when a memory leak slowly degrades a core router overnight. A model that learns each link hourly baseline would suppress the lunchtime noise and flag the abnormal overnight pattern instead.",
+      "summary": "AI in network operations learns normal behavior from telemetry and prioritizes meaningful deviations, augmenting engineers rather than replacing them."
+    },
+    {
+      "order": 2,
+      "title": "Network Telemetry, Observability, and Data Pipelines",
+      "objectives": [
+        "Distinguish monitoring from observability in a network context",
+        "Compare common telemetry sources and their trade-offs",
+        "Design a data pipeline suitable for feeding AI models"
+      ],
+      "body": [
+        "Monitoring answers questions you already knew to ask, such as whether an interface is up or CPU exceeds a limit. Observability is the broader ability to ask new questions about system state from the data it emits, including questions you did not anticipate. For AI work this distinction matters because models are only as good as the signals available to them. Rich, well-labeled, time-aligned telemetry enables a model to characterize behavior precisely, while sparse polled metrics force it to guess at what happened between samples.",
+        "Network telemetry arrives from several sources, each with trade-offs. SNMP polling is universal but coarse, sampling counters every minute or five. Streaming telemetry, where devices push metrics continuously over protocols like gNMI, gives second-level resolution and lower overhead at scale. Flow data such as NetFlow, IPFIX, and sFlow summarizes conversations between endpoints, ideal for traffic analysis. Syslog and structured logs capture discrete events. Packet capture offers ground truth but is expensive to store. Effective AI pipelines blend sources so that metrics, flows, and events can be correlated on a shared timeline.",
+        "Raw telemetry is rarely model-ready. A pipeline must collect data, normalize units and timestamps, handle missing samples, and enrich records with context like device role, site, and topology position. Time-series data usually needs resampling to a consistent interval and careful treatment of counter resets and gaps. Feature engineering then derives the inputs a model actually consumes, such as rolling averages, rates of change, and ratios between related counters. These transformations encode engineering knowledge and frequently influence model accuracy more than the choice of algorithm.",
+        "Storage and retention decisions shape what AI can learn. High-resolution data is invaluable for diagnosing fast transients but costly to keep for months, so many teams downsample older data while retaining recent detail. Models that detect seasonality, such as weekly business cycles, need enough history to see the pattern repeat several times. A practical pipeline therefore tiers storage: short-term high-resolution buffers for real-time detection and longer-term aggregates for trend analysis, forecasting, and model retraining."
+      ],
+      "keyPoints": [
+        "Observability lets you ask new questions; monitoring checks known ones",
+        "SNMP is universal but coarse; streaming telemetry offers higher resolution",
+        "Flow data summarizes conversations; logs capture discrete events",
+        "Pipelines must normalize timestamps, handle gaps, and enrich with topology",
+        "Feature engineering often affects accuracy more than algorithm choice",
+        "Retention tiers balance high-resolution detail against long-term history"
+      ],
+      "example": "An operator correlates a customer complaint by aligning second-level gNMI interface drops, an IPFIX spike in UDP flows to one destination, and a syslog BGP flap, all on one timeline. SNMP alone, polling every five minutes, would have averaged away the brief drop burst and hidden the cause entirely.",
+      "summary": "Good observability and a well-engineered pipeline that normalizes, enriches, and tiers multi-source telemetry are prerequisites for any effective network AI."
+    },
+    {
+      "order": 3,
+      "title": "Anomaly Detection for Network Behavior",
+      "objectives": [
+        "Define types of anomalies found in network data",
+        "Apply statistical and machine learning methods to detect anomalies",
+        "Tune detectors to balance sensitivity against false alarms"
+      ],
+      "body": [
+        "An anomaly is an observation that departs from expected behavior. Networks exhibit three broad kinds. Point anomalies are single readings far from normal, such as a sudden traffic spike. Contextual anomalies are normal in one situation but abnormal in another, like heavy traffic at 3 a.m. on a link that idles overnight. Collective anomalies are sequences that are individually unremarkable but jointly suspicious, such as a slow steady climb in retransmissions over hours. Recognizing which kind you face guides the method you choose and the features you extract.",
+        "Simpler statistical methods remain surprisingly effective. Computing a rolling mean and standard deviation and flagging points beyond a few deviations works for stable metrics, though it assumes a roughly normal distribution and reacts poorly to trends. More robust variants use the median and interquartile range, which resist outliers. Seasonal decomposition separates a series into trend, repeating seasonal pattern, and residual, then hunts for anomalies in the residual. These approaches are transparent and cheap, making them a sensible first line before reaching for heavier models.",
+        "Machine learning extends detection to high-dimensional and nonlinear data. Isolation Forest isolates rare points with few random splits and scales well. Clustering methods such as DBSCAN label points in sparse regions as outliers. Autoencoders learn to reconstruct normal traffic and flag inputs they reconstruct poorly, useful when many correlated metrics move together. Most of these are unsupervised, a major advantage because labeled network faults are scarce. The cost is interpretability: explaining why a neural model flagged a flow is harder than explaining a threshold breach.",
+        "Every detector trades sensitivity against specificity. Too sensitive and engineers drown in false positives until they ignore alerts; too conservative and real faults slip through. Tuning relies on a feedback loop where reviewed alerts label the data, on choosing thresholds from historical error rates, and on suppressing alerts during known maintenance windows. Techniques like requiring an anomaly to persist for several intervals, or correlating multiple weak signals before alerting, reduce noise. The goal is not zero false positives but an alert stream an on-call engineer can trust and act on."
+      ],
+      "keyPoints": [
+        "Point, contextual, and collective anomalies each need different handling",
+        "Robust statistics like median and IQR resist outliers better than mean methods",
+        "Seasonal decomposition isolates anomalies in the residual after removing trend",
+        "Isolation Forest and autoencoders detect anomalies without labels",
+        "Persistence and correlation requirements cut false positives",
+        "The aim is a trustworthy alert stream, not zero false alarms"
+      ],
+      "example": "A provider monitors DNS query volume per resolver. A point detector ignores the nightly dip, but seasonal decomposition flags a residual spike when a botnet drives queries 6 standard deviations above the expected pattern for that hour, while a normal evening peak of the same raw value stays unflagged.",
+      "summary": "Effective anomaly detection matches the method to the anomaly type and tunes sensitivity through feedback so engineers receive actionable, trustworthy alerts."
+    },
+    {
+      "order": 4,
+      "title": "AI-Driven Traffic Analysis and Classification",
+      "objectives": [
+        "Describe how AI classifies traffic when payloads are encrypted",
+        "Explain feature extraction from flow and packet metadata",
+        "Identify applications and limits of traffic classification models"
+      ],
+      "body": [
+        "Traffic classification assigns flows to categories such as application type, protocol, or risk level. Historically this relied on port numbers and deep packet inspection of payloads. Both have eroded: applications share ports, use dynamic ports, and increasingly encrypt payloads with TLS, hiding content from inspection. AI shifts the focus to behavioral fingerprints. Even when bytes are encrypted, the timing, size, and direction of packets form patterns that distinguish a video stream from a file transfer or an interactive session, letting models classify traffic without reading the contents.",
+        "Feature extraction turns flows into model inputs. Flow records yield duration, byte and packet counts, and average rates. Statistical features capture the distribution of packet sizes and inter-arrival times, often summarized by mean, variance, and percentiles. Sequence-based features preserve the order of the first several packets in a flow, which carries strong signal because handshakes and application startup behave consistently. TLS handshake metadata, such as the offered cipher suites and the structure of the client hello, adds discriminating power without decrypting anything. Careful feature design here directly determines how well classes separate.",
+        "Models range from gradient-boosted trees, which work well on tabular flow features and remain interpretable, to recurrent and convolutional networks that learn directly from packet sequences. Supervised classification needs a labeled dataset, typically built by capturing traffic from known applications. Class imbalance is common, since some applications dominate volume, and must be addressed through resampling or weighting. A model trained on one network or time period can degrade elsewhere as applications update, so classification systems require periodic retraining against fresh, representative captures.",
+        "Applications include enforcing quality-of-service policy, detecting prohibited applications, capacity planning by application mix, and feeding security analytics. Limits deserve equal attention. Encrypted-traffic classification infers categories probabilistically and can be wrong, so it should inform rather than silently block. Adversaries can pad or reshape traffic to evade fingerprints. Privacy and regulatory constraints govern how much metadata may be retained. Used responsibly, AI traffic analysis restores visibility lost to encryption while respecting that its outputs are estimates carrying uncertainty."
+      ],
+      "keyPoints": [
+        "Encryption and port reuse broke port-based and payload-based classification",
+        "Packet timing, size, and direction form fingerprints visible despite encryption",
+        "Useful features include flow stats, packet-size distributions, and TLS metadata",
+        "Tree ensembles suit tabular features; sequence models learn from packet order",
+        "Models drift as applications change and need periodic retraining",
+        "Classification outputs are probabilistic and can be evaded or constrained by privacy rules"
+      ],
+      "example": "An enterprise wants to throttle recreational video on a congested WAN, but the traffic is TLS-encrypted on port 443. A gradient-boosted model trained on packet-size and inter-arrival features identifies streaming flows by their bursty large-packet pattern and tags them for a lower QoS class, never inspecting any payload.",
+      "summary": "AI classifies encrypted traffic from behavioral metadata such as packet timing and size, restoring visibility lost to encryption while remaining probabilistic and subject to drift."
+    },
+    {
+      "order": 5,
+      "title": "Predictive Maintenance and Capacity Forecasting",
+      "objectives": [
+        "Differentiate reactive, preventive, and predictive maintenance",
+        "Apply forecasting techniques to network capacity and failures",
+        "Evaluate forecast quality and act on predictions responsibly"
+      ],
+      "body": [
+        "Maintenance strategies form a spectrum. Reactive maintenance fixes things after they break, maximizing unplanned outages. Preventive maintenance acts on a fixed schedule regardless of condition, which wastes effort on healthy equipment and can still miss early failures. Predictive maintenance uses data to estimate when a component or link is likely to fail or saturate, so action is taken just in time. For networks this means watching for the leading indicators of degradation: rising optical error rates, climbing memory utilization, increasing interface errors, or fan speed trends in hardware, and intervening before users notice.",
+        "Capacity forecasting predicts future demand so links and devices are upgraded before they saturate. Time-series methods underpin this work. Classical models like ARIMA capture autocorrelation and trend, while seasonal models add repeating daily and weekly cycles common in network load. Modern approaches use gradient-boosted regressors on engineered calendar and lag features, or neural sequence models for complex patterns. The practical aim is a forecast with a confidence interval, so planners see not only the expected utilization months ahead but also the range of plausible outcomes to size headroom appropriately.",
+        "Predicting discrete failures differs from forecasting continuous load. Failure prediction is often framed as estimating the probability that a device fails within a horizon, using features that trend before faults, such as correctable memory errors preceding uncorrectable ones, or optical receive power drifting toward a threshold. Survival analysis and classification both apply. Because true failures are rare, datasets are highly imbalanced and naive accuracy is misleading; metrics like precision, recall, and lead time matter more. A prediction is only useful if it arrives early enough to act and is right often enough to justify the maintenance cost.",
+        "Acting on predictions requires judgment. A forecast that a link saturates in eight weeks should trigger a procurement and change process with margin for delay. A failure probability must be weighed against the cost of premature replacement and the cost of an outage. Teams should track forecast error over time, comparing predictions to actuals, and recalibrate models as the network evolves. Crucially, predictions inform planning; they do not absolve engineers of validating that the underlying data and assumptions still hold before committing budget or scheduling disruptive work."
+      ],
+      "keyPoints": [
+        "Predictive maintenance acts on condition-based leading indicators, not schedules",
+        "Seasonal time-series models capture daily and weekly network load cycles",
+        "Forecasts should include confidence intervals to size headroom",
+        "Failure prediction is imbalanced; lead time, precision, and recall beat accuracy",
+        "Predictions must arrive early enough and be reliable enough to justify action",
+        "Track forecast error against actuals and recalibrate as the network changes"
+      ],
+      "example": "A data-center fabric monitors optical transceiver receive power. A model notices one link drifting downward at a steady rate and projects it will cross the sensitivity threshold in roughly twelve days. The operator schedules a transceiver swap during a maintenance window, avoiding the link flap and packet loss that would otherwise hit during business hours.",
+      "summary": "Predictive maintenance and forecasting use time-series and classification models on leading indicators to act before saturation or failure, provided predictions are calibrated and validated before driving spend."
+    },
+    {
+      "order": 6,
+      "title": "AIOps: Automated Correlation and Response",
+      "objectives": [
+        "Explain the role of AIOps in reducing alert fatigue",
+        "Describe event correlation, deduplication, and root-cause grouping",
+        "Design safe automated and semi-automated response workflows"
+      ],
+      "body": [
+        "AIOps applies analytics and machine learning to operations data so teams can manage scale that manual processes cannot. Its first job is taming alert fatigue. A single fault often cascades into dozens of alarms as dependent components react, and operators waste effort triaging duplicates. AIOps platforms ingest events from many tools, normalize them into a common format, and reduce the flood through deduplication, suppression of known-benign noise, and grouping of related events. The output is a far smaller set of meaningful incidents, each bundling the symptoms that belong together.",
+        "Correlation is the analytic heart of AIOps. Temporal correlation groups events that occur close in time. Topological correlation uses the network model to link events along the path of a fault, recognizing that an upstream link failure explains downstream device unreachability. Pattern-based correlation learns from history which alarm combinations have previously signaled a single underlying issue. Together these techniques compress raw events into candidate incidents and often nominate a probable root cause, turning a screen full of red into a short prioritized list an engineer can reason about quickly.",
+        "Response sits on a spectrum of automation. At the cautious end, AIOps enriches an incident with context and runs diagnostics, leaving the fix to a human. In the middle, it proposes a remediation that an engineer approves before execution. At the automated end, it executes a runbook directly, such as restarting a process, rerouting traffic, or rolling back a recent change. The right level depends on confidence, blast radius, and reversibility. Low-risk reversible actions on high-confidence detections are good automation candidates; ambiguous or wide-impact actions should keep a human in the loop.",
+        "Safe automation demands guardrails. Every automated action needs clear preconditions, a bounded scope, logging, and a tested rollback path. Closed-loop systems should include circuit breakers that halt automation if it acts too frequently or if conditions look abnormal, preventing a faulty rule from amplifying an outage. Teams build trust incrementally, first running automation in recommend-only mode to validate its decisions against human judgment before granting it authority to act. Maintaining an audit trail of what was done and why is essential for both troubleshooting and accountability."
+      ],
+      "keyPoints": [
+        "AIOps reduces alert fatigue via normalization, deduplication, and suppression",
+        "Correlation can be temporal, topological, or learned from historical patterns",
+        "Correlated incidents often nominate a probable root cause for faster triage",
+        "Automation spans enrichment, approval-gated actions, and full closed-loop remediation",
+        "Match automation level to confidence, blast radius, and reversibility",
+        "Guardrails include preconditions, rollback, circuit breakers, and audit trails"
+      ],
+      "example": "A core switch loses power and triggers 60 alarms across dependent access switches and monitored services. The AIOps platform uses topology to collapse them into one incident pointing at the failed switch, then runs in recommend-only mode by suggesting a failover to the redundant path, which the on-call engineer approves with one click.",
+      "summary": "AIOps compresses alert floods through correlation and nominates root causes, then enables graded, guardrailed automation matched to the confidence and risk of each action."
+    },
+    {
+      "order": 7,
+      "title": "AI for Network Security Signals",
+      "objectives": [
+        "Contrast signature-based and behavioral detection of threats",
+        "Apply AI to detect intrusions, anomalies, and lateral movement",
+        "Recognize adversarial and operational risks in AI security tooling"
+      ],
+      "body": [
+        "Signature-based detection matches traffic against known patterns of malicious activity and is fast, precise, and explainable for threats it already knows. Its blind spot is novelty: it cannot catch attacks for which no signature exists, including zero-day exploits and slow, customized intrusions. Behavioral detection complements it by modeling normal activity for hosts, users, and flows, then flagging deviations. AI excels at this behavioral side, learning baselines across many dimensions that no analyst could track by hand, and surfacing the subtle shifts that precede or accompany compromise.",
+        "Several security tasks map naturally to AI. Network intrusion detection uses classifiers or anomaly models on flow features to spot scanning, exfiltration, or command-and-control beaconing, which often shows telltale periodic connections to an external host. User and entity behavior analytics profiles each account and device, raising risk scores when behavior diverges, such as a workstation suddenly probing many internal hosts in a way that suggests lateral movement. DNS analytics catches algorithmically generated domains used by malware. In each case AI converts high-volume telemetry into ranked risk signals for analysts to investigate.",
+        "AI security tooling carries distinctive risks. False positives are operationally expensive because each must be triaged by a scarce analyst, so precision and clear context matter as much as raw detection power. Models trained on historical data may miss genuinely new attack styles and can encode the biases of their training traffic. Most importantly, adversaries adapt. They probe detectors, shape traffic to look benign, and may attempt data poisoning by feeding misleading examples during training. Defensive AI must therefore be monitored, retrained, and never treated as a static, set-and-forget control.",
+        "The practical posture is layered and human-centered. AI signals augment, not replace, signature engines, firewalls, and human analysts, each catching what the others miss. Detections should arrive with explanation: which behavior was abnormal, against what baseline, and with what supporting evidence, so an analyst can act with confidence and the organization can defend the decision. Feedback from confirmed incidents and false alarms continuously sharpens the models. The objective is to raise the cost and lower the dwell time of attackers while keeping human judgment firmly in command of consequential responses."
+      ],
+      "keyPoints": [
+        "Signatures are precise for known threats but blind to novel attacks",
+        "Behavioral models learn baselines and flag deviations across many dimensions",
+        "AI suits intrusion detection, UEBA, beaconing, and malicious-domain detection",
+        "False positives are costly, so precision and clear context are critical",
+        "Adversaries adapt through evasion and potential training-data poisoning",
+        "Defensive AI is one layer that augments, not replaces, analysts and signatures"
+      ],
+      "example": "A behavioral model notices an internal server making a small, near-identical HTTPS connection to an unfamiliar external IP every 47 seconds for hours. No signature matches, but the regular beaconing pattern against the server normal baseline scores high risk, and the analyst confirms command-and-control traffic from a compromised host.",
+      "summary": "AI security analytics adds behavioral detection that catches novel threats signatures miss, but must stay layered, explainable, and continually retrained against adaptive adversaries."
+    }
+  ],
+  "questions": [
+    {
+      "text": "Why do static threshold alarms perform poorly on modern networks?",
+      "options": [
+        "They require encrypted telemetry that most devices cannot produce",
+        "They fire during normal busy periods yet miss slow-developing faults",
+        "They only work with supervised machine learning models",
+        "They cannot be configured on devices that support SNMP"
+      ],
+      "correctIndex": 1,
+      "explanation": "Fixed thresholds breach during normal peaks, creating noise, while gradual degradations that stay under the threshold go undetected. Learned baselines address both problems."
+    },
+    {
+      "text": "Which learning approach is most appropriate when labeled examples of network faults are scarce?",
+      "options": [
+        "Supervised classification",
+        "Reinforcement learning",
+        "Unsupervised anomaly detection",
+        "Manual signature writing"
+      ],
+      "correctIndex": 2,
+      "explanation": "Unsupervised methods such as Isolation Forest or autoencoders learn normal behavior without labels, which fits network anomalies where you rarely know every fault in advance."
+    },
+    {
+      "text": "What distinguishes observability from monitoring?",
+      "options": [
+        "Observability only uses SNMP while monitoring uses streaming telemetry",
+        "Observability lets you ask new questions about system state, not just known ones",
+        "Monitoring is for security and observability is for capacity only",
+        "Monitoring requires AI while observability does not"
+      ],
+      "correctIndex": 1,
+      "explanation": "Monitoring checks predefined conditions; observability is the broader capability to explore and answer unanticipated questions from emitted data, which gives AI richer signals."
+    },
+    {
+      "text": "A traffic pattern is normal at midday but abnormal at 3 a.m. on a link that usually idles overnight. What kind of anomaly is this?",
+      "options": [
+        "Point anomaly",
+        "Collective anomaly",
+        "Contextual anomaly",
+        "Signature anomaly"
+      ],
+      "correctIndex": 2,
+      "explanation": "A contextual anomaly is normal in one context but abnormal in another. The same value is unremarkable at noon but suspicious overnight, so time context determines the verdict."
+    },
+    {
+      "text": "How can AI classify application traffic when payloads are encrypted with TLS?",
+      "options": [
+        "By decrypting the TLS session with a stored key",
+        "By relying solely on the destination port number",
+        "By using behavioral metadata like packet size, timing, and direction",
+        "By reading the HTTP headers inside the payload"
+      ],
+      "correctIndex": 2,
+      "explanation": "Encryption hides payload content, but the timing, size, and direction of packets form behavioral fingerprints that let models classify flows without reading any payload."
+    },
+    {
+      "text": "Why is naive accuracy a misleading metric for network failure prediction?",
+      "options": [
+        "Because failures are rare, so a model predicting no failure is almost always correct",
+        "Because accuracy cannot be computed on time-series data",
+        "Because accuracy requires unsupervised learning",
+        "Because failure prediction never uses labeled data"
+      ],
+      "correctIndex": 0,
+      "explanation": "With highly imbalanced data, always predicting no failure yields high accuracy yet catches nothing. Precision, recall, and lead time are more meaningful for rare-event prediction."
+    },
+    {
+      "text": "In AIOps, what does topological correlation use to group related events?",
+      "options": [
+        "The alphabetical order of device hostnames",
+        "The network model and dependency paths between components",
+        "The random sampling rate of sFlow",
+        "The TLS cipher suites in each flow"
+      ],
+      "correctIndex": 1,
+      "explanation": "Topological correlation uses the network topology and dependencies to link events along a fault path, recognizing that an upstream failure explains downstream unreachability."
+    },
+    {
+      "text": "Which response action is the best candidate for full automation in a closed-loop AIOps system?",
+      "options": [
+        "An ambiguous, wide-impact change with no rollback path",
+        "A low-risk, reversible action triggered by a high-confidence detection",
+        "Any action, regardless of confidence, to save engineer time",
+        "A manual configuration edit requiring expert judgment"
+      ],
+      "correctIndex": 1,
+      "explanation": "Automation suits actions that are low risk, reversible, and triggered by high-confidence detections. Ambiguous or wide-impact actions should keep a human in the loop."
+    },
+    {
+      "text": "What is a key limitation of signature-based threat detection that behavioral AI helps address?",
+      "options": [
+        "It cannot run on encrypted networks at all",
+        "It is too slow to inspect any traffic in real time",
+        "It cannot detect novel attacks for which no signature exists",
+        "It always produces more false positives than behavioral models"
+      ],
+      "correctIndex": 2,
+      "explanation": "Signatures only match known patterns, leaving zero-day and customized attacks undetected. Behavioral models flag deviations from learned baselines, catching novel activity."
+    },
+    {
+      "text": "Why must defensive security AI be continually monitored and retrained rather than set and forget?",
+      "options": [
+        "Because adversaries adapt through evasion and possible data poisoning",
+        "Because machine learning models expire after a fixed number of days",
+        "Because retraining is required to keep SNMP polling active",
+        "Because models cannot store more than one baseline at a time"
+      ],
+      "correctIndex": 0,
+      "explanation": "Attackers probe detectors, reshape traffic to appear benign, and may poison training data. Continuous monitoring and retraining keep defensive models effective against adaptive threats."
+    }
+  ]
+}

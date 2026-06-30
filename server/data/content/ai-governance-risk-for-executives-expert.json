@@ -1,0 +1,294 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Framing AI Governance as an Executive Mandate",
+      "objectives": [
+        "Define AI governance and distinguish it from general data or IT governance",
+        "Explain why accountability for AI risk sits with the board and senior leadership",
+        "Map the strategic value of governance to enterprise risk appetite"
+      ],
+      "body": [
+        "AI governance is the system of policies, roles, decision rights, and controls through which an organization directs and oversees how artificial intelligence is built, bought, and used. Unlike narrow technical oversight, governance connects model behavior to corporate strategy, legal obligations, and stakeholder trust. For executives, the central question is not whether a model performs well in a lab, but whether the organization can demonstrate, on demand, that its AI systems are lawful, fair, reliable, and aligned with stated values. Governance turns scattered good intentions into repeatable, auditable practice.",
+        "Accountability cannot be delegated to data scientists alone. Boards and senior leaders set risk appetite, approve high-stakes deployments, and answer to regulators, customers, and shareholders when something goes wrong. The NIST AI Risk Management Framework places this responsibility at the heart of its Govern function, which establishes a culture of risk awareness across the organization. Executives who treat AI as a purely technical concern tend to discover, often through an incident, that legal and reputational exposure lands squarely on leadership.",
+        "Effective governance balances enablement and restraint. Overly rigid controls drive teams toward shadow AI and unvetted vendor tools, while permissive cultures invite harm and regulatory penalties. The executive task is to define where AI may be used freely, where it requires review, and where it is prohibited, then to fund the controls that make those boundaries real. This requires a shared taxonomy of AI use cases, clear ownership, and a governance body empowered to say no when evidence warrants caution.",
+        "Mature programs treat governance as an investment in durability rather than a compliance tax. Organizations that can explain their AI decisions, trace data lineage, and show evidence of testing move faster through procurement, audits, and regulatory reviews. They also recover more credibly from failures because they can point to disciplined process. Framing governance as a source of competitive trust, not merely a brake, helps leaders secure the resources and cultural buy-in the program needs to succeed."
+      ],
+      "keyPoints": [
+        "AI governance links model behavior to strategy, law, and stakeholder trust, not just technical performance",
+        "Accountability for AI risk rests with the board and senior leadership and cannot be fully delegated",
+        "The NIST AI RMF Govern function anchors organizational culture and oversight of AI risk",
+        "Governance must balance enablement with restraint to avoid both shadow AI and harmful deployments",
+        "Demonstrable governance becomes a source of competitive trust and faster regulatory clearance"
+      ],
+      "example": "A bank forms an AI oversight committee chaired by the chief risk officer with legal, compliance, and business representation. Before a credit-decisioning model can deploy, the committee reviews documented testing for disparate impact, approves the risk tier, and records its decision in a governance log that auditors can later inspect.",
+      "summary": "AI governance is an executive-owned system of decision rights and controls that aligns AI use with strategy and law. Leadership accountability and a balance of enablement and restraint distinguish mature programs."
+    },
+    {
+      "order": 2,
+      "title": "The NIST AI Risk Management Framework in Practice",
+      "objectives": [
+        "Describe the four core functions of the NIST AI RMF and how they interact",
+        "Apply Map, Measure, and Manage activities to a concrete AI use case",
+        "Use the framework to structure executive reporting on AI risk"
+      ],
+      "body": [
+        "The NIST AI Risk Management Framework is a voluntary, sector-agnostic structure organized around four functions: Govern, Map, Measure, and Manage. Govern is cross-cutting, establishing policies, roles, and a culture of accountability that the other three functions operate within. The framework is intended to be flexible and outcome-oriented rather than prescriptive, which lets organizations tailor it to their context, risk appetite, and resources. Executives value it because it provides a common vocabulary that bridges technical teams, legal, and the board.",
+        "Map is about context. It asks the organization to understand where and how an AI system will be used, who it affects, what could go wrong, and what assumptions underlie its design. Mapping surfaces foreseeable harms, intended and unintended uses, and the surrounding sociotechnical environment. Without rigorous mapping, later measurement and management efforts target the wrong risks. For a hiring tool, mapping would identify affected candidate populations, legal constraints, and the consequences of false rejections before any metric is chosen.",
+        "Measure addresses how risks are assessed using quantitative and qualitative methods. It covers performance, fairness, robustness, security, and the validity of the metrics themselves. Measurement should be ongoing, not a one-time gate, because models and data drift over time. Manage then allocates resources to treat, transfer, or accept risks based on their priority and the organization's appetite, and it includes incident response and continuous monitoring. Together, Measure and Manage convert understanding into evidence and action.",
+        "For executives, the framework is most useful as a reporting backbone. Leadership can ask, for any significant AI system, whether it has been governed, mapped, measured, and managed, and demand evidence for each. This structure turns vague reassurances into specific artifacts: risk tiers, test results, monitoring dashboards, and documented decisions. Because the framework is widely recognized, aligning to it also signals diligence to regulators, partners, and customers who increasingly expect a credible risk methodology."
+      ],
+      "keyPoints": [
+        "The NIST AI RMF comprises Govern, Map, Measure, and Manage, with Govern cutting across the others",
+        "Map establishes context, affected parties, and foreseeable harms before metrics are chosen",
+        "Measure assesses performance, fairness, robustness, and security on an ongoing basis",
+        "Manage prioritizes, treats, and monitors risks and includes incident response",
+        "The framework gives executives a structured backbone for evidence-based AI risk reporting"
+      ],
+      "example": "A health system applies the framework to a sepsis-prediction model. Map identifies affected patient groups and clinical workflow risks, Measure quantifies sensitivity and subgroup performance, and Manage sets monitoring thresholds with a rollback plan. The CRO reports each function's status to the board quarterly using a single one-page scorecard.",
+      "summary": "The NIST AI RMF organizes AI risk work into Govern, Map, Measure, and Manage. Executives can use these functions as a reporting backbone that demands concrete evidence for every significant system."
+    },
+    {
+      "order": 3,
+      "title": "ISO/IEC 42001 and Building an AI Management System",
+      "objectives": [
+        "Explain what an AI management system is and how ISO/IEC 42001 structures it",
+        "Contrast a certifiable management system with a voluntary risk framework",
+        "Identify executive responsibilities under a management-system approach"
+      ],
+      "body": [
+        "ISO/IEC 42001 is an international standard that specifies requirements for establishing, implementing, maintaining, and continually improving an AI management system, often abbreviated as an AIMS. It follows the familiar management-system structure used by standards such as ISO/IEC 27001, built on a plan-do-check-act cycle. Rather than prescribing specific technical tests, it requires an organization to define objectives, assign responsibilities, manage risks and impacts, and demonstrate continual improvement through documented processes. Crucially, conformity can be assessed and certified by an accredited third party.",
+        "The distinction between a management system and a risk framework matters for executives. The NIST AI RMF offers guidance on how to think about and treat AI risk, but it is voluntary and not certifiable. ISO/IEC 42001 provides an auditable scaffold that wraps around such risk work, requiring leadership commitment, defined scope, policies, competence, and internal audits. Many organizations use the two together: the management system supplies governance discipline and certifiability, while a risk framework supplies the substantive methodology for identifying and measuring AI-specific harms.",
+        "A management-system approach formalizes leadership accountability. The standard expects top management to establish an AI policy, ensure resources, define roles, and review the system's performance. This converts governance from informal habit into documented obligation, which is exactly what auditors and increasingly regulators want to see. Internal audits, management reviews, and corrective-action processes create a feedback loop, so weaknesses are surfaced and remediated systematically rather than discovered through external failure.",
+        "For executives weighing the effort, certification offers a recognizable signal of maturity to customers, partners, and procurement teams who must vet AI suppliers. It also reduces the cost of demonstrating diligence across many overlapping regulatory regimes, because one disciplined system can produce evidence reusable in multiple contexts. The investment is meaningful, requiring documentation, training, and ongoing audits, so leaders should scope the management system to the AI activities where trust and risk are highest rather than attempting to cover everything at once."
+      ],
+      "keyPoints": [
+        "ISO/IEC 42001 specifies requirements for a certifiable AI management system using a plan-do-check-act cycle",
+        "Unlike the voluntary NIST AI RMF, ISO/IEC 42001 conformity can be certified by an accredited third party",
+        "The standard requires top-management commitment, defined policies, roles, and internal audits",
+        "Organizations often pair the management system with a risk framework for substantive methodology",
+        "Certification signals maturity to customers and reduces the cost of proving diligence across regimes"
+      ],
+      "example": "A software vendor pursuing enterprise contracts implements ISO/IEC 42001, defining an AI policy, naming an AIMS owner, and running internal audits of its model-release process. When a prospective client sends a security and AI questionnaire, the vendor points to its certification and audit records instead of answering each item from scratch.",
+      "summary": "ISO/IEC 42001 provides a certifiable AI management system built on continual improvement and leadership accountability. It complements voluntary risk frameworks by adding auditable governance discipline."
+    },
+    {
+      "order": 4,
+      "title": "The EU AI Act and Regulatory Readiness",
+      "objectives": [
+        "Explain the risk-based structure of the EU AI Act and its main risk categories",
+        "Identify obligations that attach to high-risk AI systems",
+        "Help leadership assess extraterritorial reach and readiness gaps"
+      ],
+      "body": [
+        "The EU AI Act establishes a risk-based regulatory approach, sorting AI systems into categories with obligations that scale to potential harm. At the top sit prohibited practices, such as certain forms of social scoring and manipulative systems, which are banned outright. Below them are high-risk systems, which carry the heaviest compliance burden. Most general-purpose and lower-risk applications face lighter transparency duties or fall largely outside the strictest requirements. This tiering lets organizations focus their heaviest controls where the law concentrates risk.",
+        "High-risk systems, which include certain uses in areas like employment, credit, biometrics, and critical infrastructure, attract obligations such as risk management processes, data governance, technical documentation, record-keeping, human oversight, transparency to users, and appropriate accuracy and robustness. Providers must generally demonstrate conformity before placing such systems on the market, and deployers carry their own duties. Executives should understand that classification drives obligation, so accurate categorization of each AI use case is the first and most consequential compliance step.",
+        "The Act has extraterritorial reach. Organizations outside the European Union can fall within scope when their AI systems are placed on the EU market or when outputs are used in the Union. This means readiness is not only a concern for EU-headquartered firms. Leaders should inventory which systems touch EU users or markets, determine likely risk classifications, and assess whether current documentation, oversight, and testing would satisfy the relevant obligations. Phased application timelines mean different requirements take effect at different points, so a dated roadmap is essential.",
+        "Regulatory readiness is best treated as a program rather than a one-time project. Because frameworks like the NIST AI RMF and standards like ISO/IEC 42001 generate much of the same evidence the Act expects, an organization with disciplined governance is already partway to readiness. Executives should avoid overclaiming precise legal conclusions, instead engaging qualified counsel to confirm classifications and obligations, while ensuring internal teams maintain the inventories, documentation, and oversight that any defensible compliance posture requires."
+      ],
+      "keyPoints": [
+        "The EU AI Act uses a risk-based approach spanning prohibited, high-risk, and lower-risk categories",
+        "High-risk systems carry obligations such as risk management, data governance, documentation, and human oversight",
+        "Accurate classification of each use case is the decisive first compliance step",
+        "The Act can apply extraterritorially when systems reach the EU market or outputs are used in the Union",
+        "Disciplined governance under NIST AI RMF and ISO/IEC 42001 generates much of the evidence readiness requires"
+      ],
+      "example": "A US-based HR software company sells a resume-screening tool to European employers. Recognizing that employment screening is treated as high-risk, leadership commissions counsel to confirm classification, then builds technical documentation, bias testing records, and human-oversight features so the product can demonstrate conformity before EU sale.",
+      "summary": "The EU AI Act regulates AI by risk tier, placing the heaviest duties on high-risk systems and reaching organizations beyond the EU. Accurate classification and disciplined evidence are the foundation of readiness."
+    },
+    {
+      "order": 5,
+      "title": "Model and Data Risk Across the Lifecycle",
+      "objectives": [
+        "Identify the principal categories of model and data risk in AI systems",
+        "Explain how risks evolve across the AI lifecycle from data to deployment",
+        "Connect lifecycle risks to specific governance controls and metrics"
+      ],
+      "body": [
+        "Model and data risk begins long before a model is trained. Data risks include unrepresentative or biased training data, poor labeling quality, privacy violations, unclear provenance, and silent changes in upstream sources. Because models learn the patterns present in their data, governance must scrutinize data lineage, consent, and representativeness early. The Map and Measure functions of the NIST AI RMF push organizations to document where data comes from, who it represents, and what assumptions it encodes, so that downstream failures can be traced to their roots.",
+        "During development and validation, risks include overfitting, brittle performance on edge cases, lack of robustness to adversarial or out-of-distribution inputs, and metrics that flatter the model while hiding subgroup harms. A single aggregate accuracy figure can mask serious disparities across populations. Sound governance requires disaggregated evaluation, stress testing, and validation by parties independent of the development team. Documentation of these tests becomes the evidence base that audits, regulators, and the EU AI Act technical-documentation expectations rely upon.",
+        "After deployment, the dominant risks shift toward drift, where data or relationships change so model performance silently degrades, and toward misuse, automation bias, and feedback loops in which a model's outputs reshape the very environment it predicts. Generative systems add hallucination, intellectual property, and confidentiality concerns. The Manage function calls for continuous monitoring, defined thresholds, and clear rollback or human-escalation paths so that degradation is caught and corrected before it causes material harm.",
+        "Executives should insist that each significant model carry a documented risk profile spanning its full lifecycle, with named owners and defined metrics at each stage. This profile links data risks to validation evidence and to live monitoring, creating an auditable thread from source to outcome. When leaders ask for this artifact and review it periodically, they convert abstract concern about model risk into concrete accountability, and they ensure that the organization can answer the inevitable question of how it knew the system was working as intended."
+      ],
+      "keyPoints": [
+        "Data risks include bias, poor labeling, privacy issues, and unclear provenance that propagate into models",
+        "Development risks include overfitting, brittleness, and aggregate metrics that hide subgroup harms",
+        "Post-deployment, drift, misuse, automation bias, and feedback loops dominate, with added generative-AI concerns",
+        "Disaggregated evaluation and independent validation produce the evidence audits and regulators expect",
+        "Each significant model should carry a lifecycle risk profile with named owners and stage-specific metrics"
+      ],
+      "example": "A retailer's demand-forecasting model performs well at launch but degrades after a supply-chain shift changes buying patterns. Because governance had set drift-monitoring thresholds and an escalation path, the data team is alerted, retrains the model, and documents the incident, avoiding weeks of mispriced inventory.",
+      "summary": "Model and data risks evolve from biased or opaque data through brittle validation to post-deployment drift and misuse. A documented lifecycle risk profile with owners and metrics makes these risks accountable and auditable."
+    },
+    {
+      "order": 6,
+      "title": "Third-Party and Vendor AI Risk",
+      "objectives": [
+        "Explain why third-party AI introduces distinctive governance challenges",
+        "Define the due-diligence and contractual controls executives should require",
+        "Describe how to maintain oversight of vendor AI after onboarding"
+      ],
+      "body": [
+        "Most organizations consume far more AI than they build, embedding third-party models, APIs, and AI-enabled features purchased from vendors. This creates distinctive risk because the organization remains accountable to its customers and regulators for outcomes it can no longer fully observe. Vendor models may be opaque, trained on undisclosed data, updated without notice, or dependent on further subcontractors. Governance must therefore extend the same scrutiny applied to internal systems across the supply chain, recognizing that accountability does not transfer with the technology.",
+        "Due diligence is the first line of defense. Before procurement, executives should require evidence of the vendor's own governance: how the model was trained and tested, what fairness and security evaluations exist, how data is handled and retained, and whether the vendor aligns to recognized frameworks or holds certifications such as ISO/IEC 42001. Where a use case is high-risk under the EU AI Act, the division of obligations between provider and deployer must be clarified, since buying a system does not eliminate the deployer's duties.",
+        "Contracts translate diligence into enforceable obligations. Effective agreements specify data-use and confidentiality terms, prohibit unauthorized training on customer data, require notification of material model changes, define performance and security commitments, allocate liability, and grant audit or evidence rights. They should also address incident notification timelines and the vendor's subprocessors. Without these provisions, an organization may find itself exposed to harms it cannot investigate and cannot contractually compel the vendor to remediate.",
+        "Oversight cannot end at signing. Vendor AI changes over time, so governance needs ongoing monitoring of performance, periodic reassessment of risk tier, tracking of model-version changes, and a maintained inventory of every third-party AI dependency. Concentration risk, where many critical functions rely on a single provider, deserves explicit board attention. Treating vendor AI as part of the enterprise risk register, with named owners and review cadences, ensures that outsourced capability does not become unmanaged exposure."
+      ],
+      "keyPoints": [
+        "Accountability for AI outcomes stays with the organization even when the model is supplied by a vendor",
+        "Pre-procurement due diligence should examine the vendor's training, testing, data handling, and certifications",
+        "Contracts must address data use, change notification, audit rights, liability, and subprocessors",
+        "High-risk use cases require clarifying the split of obligations between provider and deployer",
+        "Ongoing monitoring, a vendor AI inventory, and attention to concentration risk sustain oversight after onboarding"
+      ],
+      "example": "A logistics firm adopts a vendor route-optimization API. Procurement requires the vendor to document its testing, contractually prohibits training on the firm's shipment data, and mandates 30-day notice of model changes. The firm logs the dependency in its AI inventory and reassesses it each quarter alongside its internal systems.",
+      "summary": "Third-party AI keeps accountability with the buyer while reducing visibility, so governance must extend through due diligence, contracts, and ongoing oversight. A maintained vendor inventory and attention to concentration risk are essential."
+    },
+    {
+      "order": 7,
+      "title": "Designing Controls, Roles, and Accountability Structures",
+      "objectives": [
+        "Define the layers of control that operationalize AI governance",
+        "Map governance roles and decision rights across the organization",
+        "Explain how risk tiering proportions controls to potential harm"
+      ],
+      "body": [
+        "Controls are the mechanisms that turn governance policy into daily practice. They span preventive controls such as access restrictions, approval gates, and pre-deployment testing; detective controls such as monitoring, logging, and audit trails; and corrective controls such as rollback procedures, incident response, and retraining triggers. A balanced control environment combines all three, because prevention alone cannot anticipate every failure and detection without correction merely documents harm. Mapping controls to the NIST AI RMF functions helps ensure none of these layers is neglected.",
+        "Clear roles and decision rights prevent governance from collapsing into ambiguity. Many organizations adopt a three-lines model: business and development teams own and operate risks in the first line, risk and compliance functions set policy and challenge in the second line, and internal audit provides independent assurance in the third. Layered atop this, an AI governance committee with executive sponsorship adjudicates high-stakes decisions. Each significant system should have a named owner accountable for its risk profile, closing the gap where everyone is responsible and therefore no one is.",
+        "Risk tiering makes governance proportionate and affordable. Not every AI use deserves the same scrutiny, so organizations classify systems by potential impact, often echoing the EU AI Act logic of escalating obligations with escalating harm. Low-risk uses may proceed with lightweight registration, while high-risk uses require formal review, independent validation, documented human oversight, and committee approval. Tiering concentrates limited governance capacity where it matters and gives teams a predictable, transparent path rather than an arbitrary gauntlet.",
+        "Human oversight is itself a control that must be designed rather than assumed. Meaningful oversight requires that the human reviewer has the authority, information, and time to override or halt an AI system, and that the system is built to support intervention. Poorly designed oversight produces automation bias, where people rubber-stamp machine outputs. Executives should verify that for consequential decisions, oversight is genuine and tested, not a checkbox, and that escalation paths are clear when a system behaves outside expected bounds."
+      ],
+      "keyPoints": [
+        "Effective control environments combine preventive, detective, and corrective controls",
+        "A three-lines model plus an executive governance committee clarifies decision rights",
+        "Every significant system needs a named owner accountable for its risk profile",
+        "Risk tiering proportions controls to potential harm, echoing the EU AI Act escalation logic",
+        "Human oversight must be designed and tested so it provides real intervention, not rubber-stamping"
+      ],
+      "example": "An insurer tiers its AI systems into three levels. A marketing-copy generator is low tier and self-registers, while an automated claims-denial model is high tier, requiring independent validation, a documented adjuster review step with override authority, and sign-off from the AI governance committee before launch.",
+      "summary": "Operational governance depends on layered controls, clear roles, and risk tiering that proportions scrutiny to harm. Human oversight must be deliberately designed so intervention is genuine rather than a formality."
+    },
+    {
+      "order": 8,
+      "title": "Audits, Assurance, and Continuous Improvement",
+      "objectives": [
+        "Distinguish among internal audit, independent assurance, and conformity assessment",
+        "Identify the evidence and artifacts that make AI systems auditable",
+        "Establish a cadence for continuous improvement of the governance program"
+      ],
+      "body": [
+        "Audit and assurance test whether governance works in practice rather than only on paper. Internal audit, operating as the third line, independently evaluates whether controls are designed well and operating effectively, reporting findings to the board or audit committee. External or independent assurance brings outside expertise and credibility, while conformity assessment, central to ISO/IEC 42001 certification and to demonstrating EU AI Act compliance for high-risk systems, evaluates whether an organization or system meets a defined standard. Executives should understand which form of assurance each stakeholder expects.",
+        "Auditability depends on artifacts created during normal operation, not reconstructed afterward. Useful evidence includes the AI system inventory, risk classifications, data lineage and provenance records, model documentation, validation and bias-test results, monitoring logs, human-oversight records, incident reports, and minutes of governance decisions. When these artifacts exist as a byproduct of disciplined process, audits become confirmations rather than fire drills. The NIST AI RMF and ISO/IEC 42001 both push organizations toward this documentation discipline precisely because evidence enables trust.",
+        "Incidents are a critical input to improvement. A defined process for detecting, escalating, investigating, and learning from AI failures turns harm into prevention. Post-incident reviews should ask not only what failed technically but where governance gaps allowed the failure, then feed corrective actions back into policy, controls, and training. This mirrors the plan-do-check-act logic of a management system and the Manage function of the NIST AI RMF, ensuring the program adapts as technology, threats, and regulation evolve.",
+        "Continuous improvement requires a deliberate cadence. Management reviews, periodic re-tiering of systems, refreshed risk assessments, and updates to policy in response to new regulation keep governance current rather than ossified. Executives should receive regular, evidence-based reporting and should sponsor the resources that improvement demands. A governance program that audits itself, learns from incidents, and revisits its assumptions on a schedule is the strongest defense against both regulatory exposure and the operational and reputational damage that uncontrolled AI can cause."
+      ],
+      "keyPoints": [
+        "Internal audit, independent assurance, and conformity assessment serve different stakeholders and purposes",
+        "Auditability depends on artifacts generated during normal operation, such as inventories, test records, and decision logs",
+        "Conformity assessment underpins ISO/IEC 42001 certification and EU AI Act high-risk demonstrations",
+        "Post-incident reviews should surface governance gaps and feed corrective actions back into the program",
+        "A deliberate cadence of reviews, re-tiering, and policy updates keeps governance current and defensible"
+      ],
+      "example": "After a chatbot exposes a confidential internal document, a company runs a post-incident review that traces the cause to a missing data-access control and an untested oversight step. The findings update the deployment checklist, internal audit verifies the fix next cycle, and the board sees the corrected control in its quarterly governance report.",
+      "summary": "Audits and assurance verify that governance works, relying on evidence produced through disciplined operation. Incident learning and a regular improvement cadence keep the program current and defensible over time."
+    }
+  ],
+  "questions": [
+    {
+      "text": "Under the NIST AI Risk Management Framework, which function is cross-cutting and establishes the organizational culture, policies, and accountability within which the others operate?",
+      "options": ["Govern", "Map", "Measure", "Manage"],
+      "correctIndex": 0,
+      "explanation": "Govern is the cross-cutting function of the NIST AI RMF. It establishes the culture, policies, roles, and accountability structures within which Map, Measure, and Manage are carried out."
+    },
+    {
+      "text": "What best distinguishes ISO/IEC 42001 from the NIST AI Risk Management Framework?",
+      "options": [
+        "ISO/IEC 42001 specifies a certifiable AI management system, whereas the NIST AI RMF is a voluntary, non-certifiable framework",
+        "The NIST AI RMF is legally binding, whereas ISO/IEC 42001 is voluntary",
+        "ISO/IEC 42001 applies only inside the European Union",
+        "The NIST AI RMF prohibits specific AI practices outright"
+      ],
+      "correctIndex": 0,
+      "explanation": "ISO/IEC 42001 sets requirements for a certifiable AI management system that an accredited body can assess. The NIST AI RMF is voluntary guidance and is not itself certifiable; neither is legally binding on its own."
+    },
+    {
+      "text": "In the NIST AI RMF, which function is primarily concerned with establishing context, identifying affected parties, and surfacing foreseeable harms before metrics are selected?",
+      "options": ["Map", "Govern", "Measure", "Manage"],
+      "correctIndex": 0,
+      "explanation": "Map establishes the context of an AI system, including who it affects and what could go wrong, so that subsequent measurement targets the right risks."
+    },
+    {
+      "text": "The EU AI Act is best described as taking which regulatory approach?",
+      "options": [
+        "A risk-based approach that scales obligations to the potential harm of the AI system",
+        "A one-size-fits-all approach applying identical rules to every AI system",
+        "A voluntary approach with no enforceable obligations",
+        "An approach that regulates only generative AI models"
+      ],
+      "correctIndex": 0,
+      "explanation": "The EU AI Act uses a risk-based structure, sorting systems into categories such as prohibited, high-risk, and lower-risk, with obligations that increase as potential harm increases."
+    },
+    {
+      "text": "A company headquartered outside the EU sells an AI hiring tool whose outputs are used by employers within the EU. Regarding the EU AI Act, which statement is most accurate?",
+      "options": [
+        "The Act can apply extraterritorially, so the company may fall within scope and should assess its obligations",
+        "The Act never applies to companies based outside the EU",
+        "Hiring tools are always exempt from the Act",
+        "Only the EU employer bears any responsibility, never the provider"
+      ],
+      "correctIndex": 0,
+      "explanation": "The EU AI Act can reach organizations outside the EU when their systems are placed on the EU market or their outputs are used in the Union. Employment screening is commonly treated as high-risk, so the provider should assess its obligations."
+    },
+    {
+      "text": "Which post-deployment risk describes a model silently losing accuracy because the real-world data or relationships it sees have changed over time?",
+      "options": ["Drift", "Overfitting", "Mislabeling", "Prohibited use"],
+      "correctIndex": 0,
+      "explanation": "Drift occurs when data distributions or underlying relationships change after deployment, causing performance to degrade silently. Continuous monitoring under the Manage function is intended to detect it."
+    },
+    {
+      "text": "Why is a single aggregate accuracy metric often insufficient when evaluating an AI system for fairness?",
+      "options": [
+        "It can mask serious performance disparities across different subgroups",
+        "It is always lower than the true performance of the model",
+        "It cannot be calculated for classification models",
+        "It is prohibited under the NIST AI RMF"
+      ],
+      "correctIndex": 0,
+      "explanation": "Aggregate metrics can hide harms that fall disproportionately on particular subgroups. Disaggregated evaluation is needed to surface disparities, which is why the Measure function emphasizes appropriate, valid metrics."
+    },
+    {
+      "text": "When an organization deploys a third-party vendor's AI model, what happens to accountability for the outcomes it produces for customers and regulators?",
+      "options": [
+        "Accountability generally remains with the deploying organization despite reduced visibility into the model",
+        "Accountability transfers entirely to the vendor once the contract is signed",
+        "Accountability disappears because no single party built and deployed the system",
+        "Accountability shifts automatically to the customer who experiences the outcome"
+      ],
+      "correctIndex": 0,
+      "explanation": "Buying AI does not transfer accountability. The deploying organization remains answerable to its customers and regulators, which is why due diligence, contractual controls, and ongoing oversight of vendor AI are essential."
+    },
+    {
+      "text": "An organization classifies its AI systems into low, medium, and high tiers and applies progressively heavier controls as the tier rises. This practice is best described as which of the following?",
+      "options": [
+        "Risk tiering, which proportions controls to potential harm",
+        "Conformity assessment of every system",
+        "Eliminating the need for human oversight",
+        "Replacing internal audit with self-certification"
+      ],
+      "correctIndex": 0,
+      "explanation": "Risk tiering proportions governance scrutiny to potential harm, concentrating heavier controls on higher-risk systems. This mirrors the escalating-obligation logic of the EU AI Act and conserves limited governance capacity."
+    },
+    {
+      "text": "Which set of items best represents the artifacts that make an AI system auditable?",
+      "options": [
+        "System inventory, risk classifications, data lineage, validation and bias-test results, monitoring logs, and governance decision records",
+        "Marketing materials, press releases, and customer testimonials",
+        "Only the final aggregate accuracy score of the model",
+        "The vendor's invoice and a signed nondisclosure agreement"
+      ],
+      "correctIndex": 0,
+      "explanation": "Auditability relies on evidence produced during normal operation, including inventories, risk classifications, data lineage, test results, monitoring logs, and decision records. These artifacts let audits confirm that controls work as intended."
+    }
+  ]
+}

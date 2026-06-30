@@ -1,0 +1,291 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "The AI Compliance Landscape and Why Mapping Matters",
+      "objectives": [
+        "Explain the difference between voluntary standards, risk frameworks, and binding regulation",
+        "Identify the primary instruments that govern AI systems today",
+        "Describe how a single AI system can fall under multiple overlapping obligations"
+      ],
+      "body": [
+        "Organisations deploying artificial intelligence rarely face a single rulebook. Instead they encounter a layered landscape of voluntary management standards, government risk frameworks, sector rules, and binding law. A practitioner must learn to read each instrument for what it actually requires. ISO/IEC 42001 is a certifiable management system standard. The NIST AI Risk Management Framework is a voluntary set of practices. The EU AI Act is enforceable law. The GDPR governs personal data wherever it is processed. Knowing the legal weight of each source is the first practical skill.",
+        "Mapping means connecting the concrete features of an AI system to the obligations that apply to it. A facial recognition tool, a credit scoring model, and a customer chatbot trigger very different duties even within the same company. The practitioner inventories each system, records its purpose, its data, its users, and its potential harms, then matches those attributes against each applicable instrument. Without this disciplined mapping, teams either over-comply and waste effort or miss obligations that create legal and reputational exposure.",
+        "Overlap is the norm, not the exception. A recruitment algorithm in Europe may simultaneously be a high-risk system under the EU AI Act, a processing activity under the GDPR, and a control area inside an ISO/IEC 42001 management system that an organisation runs using NIST AI RMF practices. These instruments are not contradictory, but they use different vocabulary and demand different evidence. The practitioner builds a single internal model of the system and then projects it onto each framework rather than maintaining separate, disconnected compliance efforts.",
+        "Finally, mapping is continuous. AI systems change as models are retrained, features added, and new markets entered. An instrument that did not apply at launch may apply after a change of purpose. Treating compliance as a one-time exercise is the most common failure mode. A mature programme schedules periodic re-assessment, ties it to change management, and keeps the mapping artefacts current so that evidence is always ready for an auditor or regulator."
+      ],
+      "keyPoints": [
+        "Standards, frameworks, and regulation carry different legal weight and demand different responses",
+        "ISO/IEC 42001 is certifiable, NIST AI RMF is voluntary, the EU AI Act is law, the GDPR governs personal data",
+        "Mapping links concrete system attributes to specific obligations",
+        "A single AI system commonly falls under several instruments at once",
+        "Mapping must be continuous and tied to change management"
+      ],
+      "example": "A bank deploys an AI model to decide consumer loan approvals in the EU. The practitioner maps it as likely high-risk under the EU AI Act, a personal data processing activity under the GDPR requiring a lawful basis and a data protection impact assessment, and a controlled risk within the bank ISO/IEC 42001 management system. One system, three overlapping obligation sets, one shared internal model.",
+      "summary": "AI compliance is a layered landscape, and the practitioner skill is mapping each system to every instrument that applies to it on a continuous basis."
+    },
+    {
+      "order": 2,
+      "title": "ISO/IEC 42001: Building an AI Management System",
+      "objectives": [
+        "Describe the purpose and structure of an AI management system standard",
+        "Explain how the plan-do-check-act cycle applies to AI governance",
+        "Identify the core artefacts an organisation maintains for certification"
+      ],
+      "body": [
+        "ISO/IEC 42001 is the first international management system standard dedicated to artificial intelligence. Like ISO 27001 for information security, it does not prescribe specific technical controls for every situation. Instead it defines how an organisation should govern AI in a structured, auditable way through an AI management system. The standard expects leadership commitment, a defined scope, assignment of roles and responsibilities, and a programme of continual improvement. A practitioner treats it as the organising backbone onto which other obligations can be attached.",
+        "The standard follows the familiar plan-do-check-act cycle shared by ISO management standards. Plan means understanding the organisation context, defining objectives, and assessing AI-related risks and impacts. Do means implementing controls and operating the system. Check means monitoring, internal audit, and measuring performance against objectives. Act means corrective action and improvement. This rhythm turns AI governance from ad hoc decisions into a repeatable process that produces evidence as a natural by-product of running the system.",
+        "A distinctive feature is the emphasis on AI-specific impacts, including effects on individuals and society, not only on the organisation itself. The standard pushes organisations to consider fairness, transparency, safety, and the consequences of automated decisions. It also expects an organisation to manage the full AI life cycle, from design and data handling through deployment and decommissioning, and to govern third-party and supplier relationships where AI components are sourced externally.",
+        "Certification is granted by an accredited body after an audit confirms the management system is designed and operating effectively. For the practitioner the value is less the certificate than the discipline. A working ISO/IEC 42001 system gives the organisation a defensible story: documented policies, a risk register, defined controls, monitoring records, and management review minutes. These same artefacts can be reused as evidence toward the EU AI Act, GDPR accountability, and customer assurance requests."
+      ],
+      "keyPoints": [
+        "ISO/IEC 42001 is a certifiable AI management system standard, not a technical checklist",
+        "It uses the plan-do-check-act improvement cycle common to ISO standards",
+        "It requires leadership commitment, defined scope, roles, and continual improvement",
+        "It emphasises impacts on individuals and society, not only the organisation",
+        "It covers the full AI life cycle and third-party relationships",
+        "Its artefacts can be reused as evidence for other obligations"
+      ],
+      "example": "A software vendor seeking ISO/IEC 42001 certification establishes an AI policy, appoints an AI governance lead, builds an AI system inventory and risk register, defines controls for data quality and human oversight, and holds quarterly management reviews. An accredited auditor then samples records to confirm the system operates as designed before issuing certification.",
+      "summary": "ISO/IEC 42001 provides a certifiable, life-cycle management system for AI built on continual improvement, and its artefacts form a reusable evidence base."
+    },
+    {
+      "order": 3,
+      "title": "NIST AI RMF: A Voluntary Framework for Trustworthy AI",
+      "objectives": [
+        "Explain the purpose and voluntary nature of the NIST AI Risk Management Framework",
+        "Describe the four core functions used to manage AI risk",
+        "Map NIST AI RMF practices to characteristics of trustworthy AI"
+      ],
+      "body": [
+        "The NIST AI Risk Management Framework, published by the United States National Institute of Standards and Technology, is a voluntary, non-regulatory resource for managing risks across the AI life cycle. It is designed to be flexible and usable by organisations of any size or sector. Because it is voluntary, no one enforces it directly, but it has become a common reference point. Practitioners use it to structure their thinking and to demonstrate good practice even where law does not yet require a specific approach.",
+        "The framework organises activity around four core functions: Govern, Map, Measure, and Manage. Govern establishes the culture, policies, and accountability that surround all other work. Map develops the context and identifies risks for a given AI system and its intended use. Measure analyses and tracks those risks using quantitative and qualitative methods. Manage prioritises and acts on risks, allocating resources and responding to incidents. Govern is intended to run throughout rather than as a single step.",
+        "NIST frames the goal as trustworthy AI and describes characteristics such as being valid and reliable, safe, secure and resilient, accountable and transparent, explainable and interpretable, privacy-enhanced, and fair with harmful bias managed. These characteristics give the practitioner a vocabulary for talking about what good looks like. They translate naturally into measurable objectives and into control areas that can be tested and evidenced.",
+        "Because the framework is descriptive rather than prescriptive, the practitioner must turn its functions into concrete internal practices. The accompanying playbook and profiles help organisations tailor the framework to their context and to specific use cases or sectors. A common pattern is to use NIST AI RMF as the operating method for risk activities while using ISO/IEC 42001 as the certifiable management wrapper, since the two are complementary in vocabulary and intent."
+      ],
+      "keyPoints": [
+        "NIST AI RMF is a voluntary, non-regulatory framework usable by any organisation",
+        "Its four core functions are Govern, Map, Measure, and Manage",
+        "Govern runs throughout rather than as a one-off step",
+        "It defines characteristics of trustworthy AI as shared vocabulary",
+        "It is descriptive, so organisations must translate it into concrete practices",
+        "It pairs well with ISO/IEC 42001 as a certifiable wrapper"
+      ],
+      "example": "A health-tech startup adopts NIST AI RMF to govern a diagnostic support model. Under Govern it sets an AI policy and accountable owner, under Map it documents intended use and clinical risks, under Measure it tracks accuracy and bias across patient groups, and under Manage it sets thresholds that trigger retraining or human review.",
+      "summary": "The NIST AI RMF is a voluntary framework structured around Govern, Map, Measure, and Manage that gives practitioners a shared vocabulary for building trustworthy AI."
+    },
+    {
+      "order": 4,
+      "title": "The EU AI Act: Risk-Based Regulation of AI",
+      "objectives": [
+        "Explain the risk-based structure of the EU AI Act",
+        "Distinguish prohibited, high-risk, and limited-risk categories",
+        "Describe the kinds of obligations placed on high-risk system providers"
+      ],
+      "body": [
+        "The EU AI Act is the European Union landmark law regulating artificial intelligence. Unlike a voluntary framework, it creates binding legal obligations with potential penalties for non-compliance, and it applies to providers and deployers whose systems affect people in the EU regardless of where the organisation is based. Its central design idea is a risk-based approach: the obligations scale with the level of risk a system poses to health, safety, and fundamental rights. A practitioner must first classify a system before deciding what it requires.",
+        "The Act sorts systems into broad tiers. A small set of practices considered to pose unacceptable risk are prohibited. A larger category of high-risk systems, such as certain uses in employment, education, essential services, and critical infrastructure, is permitted but heavily regulated. Systems with limited risk, such as chatbots or certain generated content, mainly face transparency duties so that people know they are interacting with or seeing AI output. Minimal-risk systems carry few specific obligations. The Act also introduced dedicated rules for general-purpose AI models.",
+        "High-risk systems attract the heaviest duties. Providers are generally expected to operate a risk management process, ensure appropriate data governance and quality, maintain technical documentation and record-keeping, provide clear information to deployers, enable effective human oversight, and achieve appropriate levels of accuracy, robustness, and cybersecurity. Conformity must be demonstrated before the system is placed on the market, and providers must monitor performance after deployment. Deployers also carry their own responsibilities for using the system as intended.",
+        "For the practitioner the Act is a classification and evidence exercise. The first task is to determine, honestly and with documentation, which tier a system falls into, because misclassification is itself a risk. The second task is to assemble the technical documentation and management processes the Act expects. Much of this overlaps with ISO/IEC 42001 artefacts and NIST AI RMF practices, which is why an integrated programme is far more efficient than treating the Act in isolation. Phased application dates mean obligations arrive on a staggered timetable."
+      ],
+      "keyPoints": [
+        "The EU AI Act is binding law with a risk-based structure and extraterritorial reach",
+        "Tiers run from prohibited practices to high-risk, limited-risk, and minimal-risk systems",
+        "High-risk systems require risk management, data governance, documentation, and human oversight",
+        "Conformity must be shown before market placement, with monitoring afterwards",
+        "Both providers and deployers carry obligations",
+        "Its requirements overlap heavily with ISO/IEC 42001 and NIST AI RMF"
+      ],
+      "example": "A company sells an AI tool that screens job applicants in the EU. Because employment screening is treated as high-risk, the provider must document the system, govern its training data, ensure recruiters can meaningfully oversee outcomes, demonstrate conformity before sale, and monitor for problems after deployment, while the employer that uses it carries deployer duties.",
+      "summary": "The EU AI Act is binding, risk-based law where obligations scale with risk, and the practitioner classifies each system before assembling the required documentation and controls."
+    },
+    {
+      "order": 5,
+      "title": "GDPR and Data Protection in AI Systems",
+      "objectives": [
+        "Explain how core GDPR principles apply to AI that processes personal data",
+        "Describe the role of lawful basis and data protection impact assessments",
+        "Identify rights relevant to automated decision-making"
+      ],
+      "body": [
+        "The General Data Protection Regulation governs the processing of personal data of people in the European Union, and most AI systems touch personal data at some stage, whether in training data, inputs, or outputs. Its principles apply directly: lawfulness, fairness and transparency, purpose limitation, data minimisation, accuracy, storage limitation, integrity and confidentiality, and accountability. A practitioner cannot treat AI compliance and data protection as separate worlds, because the data that fuels AI is exactly what the GDPR protects.",
+        "Every processing activity needs a lawful basis, such as consent, contract, legal obligation, or legitimate interests, and the chosen basis shapes what is permitted. Purpose limitation is especially important for AI, because data collected for one purpose cannot simply be repurposed to train an unrelated model without fresh justification. Data minimisation challenges the instinct to gather as much data as possible. Transparency requires that individuals receive clear information about how their data is used, which is harder but not optional when complex models are involved.",
+        "Where processing is likely to result in high risk to individuals, the GDPR expects a data protection impact assessment that describes the processing, assesses necessity and proportionality, evaluates risks to people, and identifies mitigations. Many AI deployments meet this threshold, particularly those involving profiling, large-scale processing, or sensitive data. The assessment is both a compliance obligation and a genuinely useful design tool that surfaces risks before they materialise, and it overlaps with the impact thinking found in ISO/IEC 42001 and the EU AI Act.",
+        "The GDPR also addresses automated decision-making. Individuals have protections concerning decisions based solely on automated processing that produce legal or similarly significant effects, including rights to information and to obtain human involvement in appropriate cases. Data subject rights such as access, rectification, and erasure can be technically challenging in AI contexts, for example when personal data is embedded in a trained model. The practitioner must design systems so these rights can be honoured rather than treating them as an afterthought."
+      ],
+      "keyPoints": [
+        "GDPR principles apply wherever AI processes personal data",
+        "Every processing activity needs a lawful basis, and purpose limitation constrains reuse of data for training",
+        "Data minimisation and transparency apply even to complex models",
+        "High-risk processing requires a data protection impact assessment",
+        "Automated decisions with significant effects carry special protections",
+        "Data subject rights must be designed into AI systems from the start"
+      ],
+      "example": "A retailer wants to reuse customer purchase histories to train a recommendation model. The data protection lead checks that the original lawful basis and stated purpose cover this new use, runs a data protection impact assessment because the profiling is large-scale, applies data minimisation, and ensures customers can exercise access and objection rights against the model outputs.",
+      "summary": "The GDPR governs the personal data that powers AI, so lawful basis, purpose limitation, impact assessments, and data subject rights must be built into every AI system handling personal data."
+    },
+    {
+      "order": 6,
+      "title": "Controls, Evidence, and Documentation",
+      "objectives": [
+        "Distinguish between a control, evidence, and documentation",
+        "Explain how to design controls that satisfy multiple frameworks at once",
+        "Describe what makes evidence credible to an auditor"
+      ],
+      "body": [
+        "Compliance ultimately rests on controls, evidence, and documentation, and practitioners must keep these concepts distinct. A control is a measure that reduces a risk, such as requiring human review before an automated decision takes effect. Evidence is proof that a control exists and operates, such as a log of reviews actually performed. Documentation is the written description of policies, processes, and system characteristics. Frameworks describe expected outcomes, but it is controls that deliver them and evidence that proves they work.",
+        "A core practitioner skill is designing controls that satisfy several instruments simultaneously. A human oversight control, for example, can help meet EU AI Act expectations for high-risk systems, support GDPR protections around automated decisions, and serve as an ISO/IEC 42001 control mapped to a NIST Manage activity. Building one well-designed control and mapping it to multiple obligations is far more efficient than creating separate controls per framework. A control mapping matrix that links each control to the obligations it serves is one of the most valuable artefacts a programme can maintain.",
+        "Evidence is only useful if it is credible. Credible evidence is contemporaneous, meaning created at the time the activity occurred rather than reconstructed later; attributable, meaning it shows who did what; and complete enough to demonstrate the control operated consistently, not just once. Auditors look for evidence that is hard to fabricate, such as system-generated logs, signed approvals, version-controlled documents, and dated meeting records. Designing systems to produce evidence automatically reduces effort and increases trust.",
+        "Documentation ties the picture together. Good AI documentation typically includes an AI system inventory, descriptions of intended purpose and limitations, data provenance and governance records, risk assessments and impact assessments, control descriptions, and records of testing and monitoring. The aim is that a reasonable third party could understand how the system works, what risks it poses, and how those risks are managed. Documentation should be living, versioned, and updated whenever the system changes, so it never drifts away from reality."
+      ],
+      "keyPoints": [
+        "A control reduces risk, evidence proves the control works, documentation describes the system and processes",
+        "Well-designed controls can satisfy several frameworks at once",
+        "A control mapping matrix links each control to the obligations it serves",
+        "Credible evidence is contemporaneous, attributable, and complete",
+        "System-generated logs and signed approvals are stronger than reconstructed records",
+        "Documentation must be living, versioned, and kept current with the system"
+      ],
+      "example": "A team builds one human-in-the-loop control for a loan model. They map it in a matrix to the EU AI Act human oversight expectation, the GDPR safeguard on automated decisions, and an ISO/IEC 42001 control. The control automatically logs each reviewer, decision, and timestamp, producing contemporaneous, attributable evidence that one auditor can verify across all three obligations.",
+      "summary": "Controls reduce risk, evidence proves they work, and documentation describes the system; designing shared controls and automatic, credible evidence lets one effort satisfy many frameworks."
+    },
+    {
+      "order": 7,
+      "title": "Audits, Conformity, and Continuous Assurance",
+      "objectives": [
+        "Distinguish internal audits, certification audits, and regulatory assessment",
+        "Explain how to prepare for and respond to an audit",
+        "Describe how to maintain assurance as AI systems change over time"
+      ],
+      "body": [
+        "Assurance comes in several forms, and the practitioner should know which is which. Internal audits are conducted by the organisation itself to check that controls operate as intended and to drive improvement before anyone external looks. Certification audits, such as those for ISO/IEC 42001, are performed by an accredited independent body that decides whether to grant or maintain certification. Regulatory assessment is different again: a supervisory authority may investigate compliance with binding law such as the EU AI Act or the GDPR, often after a complaint or incident. Each has a different purpose, audience, and consequence.",
+        "Preparing for any audit follows a common pattern. The practitioner confirms the scope, gathers the relevant documentation and evidence, and tests a sample internally to find gaps first. A readiness review walks the same path an auditor will: pick a control, ask for the evidence, and confirm it demonstrates consistent operation. Gaps found internally can be remediated calmly; gaps found by an external auditor or regulator are far more costly. The strongest position is one where evidence is always current because it is generated as a by-product of normal operations.",
+        "During an audit, clarity and honesty matter more than polish. The practitioner answers what is asked, provides the specific evidence requested, and avoids overstating capabilities. When a finding is raised, the right response is a documented corrective action plan with an owner and a deadline, followed by evidence that the fix was implemented and is effective. Treating findings as opportunities to improve rather than failures to hide builds long-term credibility with auditors and regulators alike.",
+        "Assurance is not a moment but a state that must be maintained. AI systems drift as models are retrained, data shifts, and new features ship, so a control that worked at certification can quietly stop working. Continuous assurance means scheduled monitoring, periodic re-assessment tied to change management, and regular management review of metrics and incidents. The practitioner closes the loop back to the plan-do-check-act cycle, ensuring that the mapping, controls, evidence, and documentation built across all frameworks stay accurate as the AI estate evolves."
+      ],
+      "keyPoints": [
+        "Internal audits, certification audits, and regulatory assessment differ in purpose and consequence",
+        "Audit preparation means confirming scope, gathering evidence, and testing a sample internally first",
+        "The best position is evidence that is always current as a by-product of operations",
+        "Honest answers and documented corrective action plans build credibility",
+        "AI systems drift, so controls must be re-checked over time",
+        "Continuous assurance ties monitoring and re-assessment back to plan-do-check-act"
+      ],
+      "example": "Before an ISO/IEC 42001 surveillance audit, a practitioner runs a readiness review, samples the human oversight control, and finds review logs stopped after a model update. They document a corrective action, restore logging, gather fresh evidence, and present the timeline to the auditor, demonstrating that the management system detects and fixes drift rather than hiding it.",
+      "summary": "Assurance comes from internal audits, certification, and regulatory assessment, and the practitioner sustains it through honest audit response and continuous re-assessment as AI systems change."
+    }
+  ],
+  "questions": [
+    {
+      "text": "Which statement best describes the legal status of the four main instruments a practitioner works with?",
+      "options": [
+        "ISO/IEC 42001 and NIST AI RMF are binding law, while the EU AI Act and GDPR are voluntary",
+        "The EU AI Act and GDPR are binding law, ISO/IEC 42001 is a certifiable standard, and NIST AI RMF is voluntary",
+        "All four are voluntary frameworks with no enforcement",
+        "All four are binding laws enforced by the same regulator"
+      ],
+      "correctIndex": 1,
+      "explanation": "The EU AI Act and the GDPR are enforceable law, ISO/IEC 42001 is a certifiable management standard, and the NIST AI RMF is a voluntary, non-regulatory framework. Recognising this difference in legal weight is fundamental to mapping obligations."
+    },
+    {
+      "text": "What does it mean to map an AI system to a set of obligations?",
+      "options": [
+        "Drawing a network diagram of the model architecture",
+        "Connecting the concrete attributes of the system to the specific obligations that apply to it",
+        "Translating the user interface into multiple languages",
+        "Copying another company compliance documents and renaming them"
+      ],
+      "correctIndex": 1,
+      "explanation": "Mapping links the real attributes of a system, such as its purpose, data, users, and potential harms, to the obligations each instrument imposes. It is the central practitioner skill and must be kept current as systems change."
+    },
+    {
+      "text": "ISO/IEC 42001 is best characterised as which of the following?",
+      "options": [
+        "A certifiable management system standard for governing AI through continual improvement",
+        "A binding regulation with financial penalties",
+        "A fixed list of mandatory technical controls for every AI model",
+        "A voluntary US government risk framework"
+      ],
+      "correctIndex": 0,
+      "explanation": "ISO/IEC 42001 is a certifiable management system standard. It defines how an organisation governs AI using leadership commitment, defined scope, and continual improvement rather than prescribing a fixed technical checklist."
+    },
+    {
+      "text": "Which four core functions structure the NIST AI Risk Management Framework?",
+      "options": [
+        "Plan, Do, Check, Act",
+        "Identify, Protect, Detect, Respond",
+        "Govern, Map, Measure, Manage",
+        "Collect, Train, Deploy, Retire"
+      ],
+      "correctIndex": 2,
+      "explanation": "The NIST AI RMF is organised around Govern, Map, Measure, and Manage. Govern is intended to run throughout the others rather than as a single sequential step."
+    },
+    {
+      "text": "What is the central organising idea of the EU AI Act?",
+      "options": [
+        "Every AI system carries identical obligations regardless of use",
+        "Obligations scale with the level of risk a system poses, following a risk-based approach",
+        "Only systems built inside the EU are regulated",
+        "AI is banned unless individually licensed by a regulator"
+      ],
+      "correctIndex": 1,
+      "explanation": "The EU AI Act takes a risk-based approach. Obligations scale with risk, running from prohibited practices through high-risk and limited-risk systems to minimal-risk systems, and the Act can apply to organisations outside the EU whose systems affect people in the EU."
+    },
+    {
+      "text": "Under the EU AI Act, high-risk systems are generally expected to have all of the following EXCEPT:",
+      "options": [
+        "A risk management process and appropriate data governance",
+        "Technical documentation and effective human oversight",
+        "Conformity demonstrated before market placement and monitoring afterwards",
+        "A guarantee of perfect accuracy with zero errors in all conditions"
+      ],
+      "correctIndex": 3,
+      "explanation": "High-risk systems must have risk management, data governance, documentation, human oversight, and appropriate accuracy and robustness, with conformity shown before market placement. No framework requires perfect, error-free performance, which is not achievable."
+    },
+    {
+      "text": "Why does purpose limitation under the GDPR matter especially for AI training?",
+      "options": [
+        "It requires all data to be deleted after one day",
+        "It means data collected for one purpose cannot simply be reused to train an unrelated model without fresh justification",
+        "It forbids any use of personal data in AI entirely",
+        "It only applies to data stored outside the EU"
+      ],
+      "correctIndex": 1,
+      "explanation": "Purpose limitation restricts using data beyond the purpose for which it was collected. Reusing personal data to train an unrelated model generally needs a fresh lawful basis and justification, not an automatic right."
+    },
+    {
+      "text": "A data protection impact assessment under the GDPR is expected when:",
+      "options": [
+        "Any software is installed on a company laptop",
+        "Processing is likely to result in a high risk to individuals, such as large-scale profiling",
+        "An organisation has more than ten employees",
+        "A system is hosted on physical servers rather than the cloud"
+      ],
+      "correctIndex": 1,
+      "explanation": "A data protection impact assessment is expected where processing is likely to result in high risk to individuals, which commonly includes profiling, large-scale processing, or sensitive data. Many AI deployments meet this threshold."
+    },
+    {
+      "text": "In compliance terms, what is the difference between a control and evidence?",
+      "options": [
+        "They are the same thing with different names",
+        "A control is the measure that reduces risk, while evidence is proof that the control exists and operates",
+        "Evidence reduces risk, while a control merely describes the system",
+        "A control is written only for regulators, while evidence is only for customers"
+      ],
+      "correctIndex": 1,
+      "explanation": "A control is a measure that reduces a risk, such as human review before an automated decision. Evidence is proof the control operates, such as logs of reviews actually performed. Documentation, separately, describes the system and processes."
+    },
+    {
+      "text": "What makes audit evidence most credible to an auditor?",
+      "options": [
+        "It is reconstructed neatly the week before the audit",
+        "It is contemporaneous, attributable, and shows the control operated consistently",
+        "It consists only of verbal assurances from staff",
+        "It is stored where the auditor cannot review it"
+      ],
+      "correctIndex": 1,
+      "explanation": "Credible evidence is created at the time the activity occurred, shows who did what, and demonstrates consistent operation over time. System-generated logs and signed approvals are stronger than records reconstructed after the fact."
+    }
+  ]
+}

@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of AI Workloads in the Cloud",
+      "objectives": [
+        "Describe how AI workloads differ from traditional applications in resource and lifecycle terms",
+        "Identify the major categories of cloud AI services and where each fits",
+        "Explain the shared responsibility model as it applies to managed AI services"
+      ],
+      "body": [
+        "Operating AI workloads in the cloud means treating models, data, and serving infrastructure as a connected system rather than a single application. Unlike conventional software, AI workloads have two distinct phases with very different resource profiles. Training is bursty and compute-heavy, often needing many accelerators for hours or days, while inference is steady and latency-sensitive, running continuously to serve user requests. The cloud is attractive because it lets teams rent expensive hardware on demand, scale serving capacity with traffic, and avoid the long lead times of buying and racking physical accelerators that may sit idle between projects.",
+        "Cloud providers expose AI capability at several layers, and choosing the right layer is a core practitioner skill. At the highest level sit prebuilt API services for vision, speech, translation, and language that require no model training. Below that are platform services for building, training, and deploying custom models with managed tooling. At the lowest level are raw compute instances with accelerators, where teams control everything. AWS SageMaker, Azure Machine Learning, and Google Vertex AI are examples of platform-level offerings, while services like Amazon Rekognition or Azure AI Vision are higher-level prebuilt APIs.",
+        "The shared responsibility model still governs cloud AI, but the boundary shifts depending on the layer chosen. With a prebuilt API, the provider manages the model, its infrastructure, and its scaling, while the customer is responsible for the data they send and how they use the output. With a platform service, the customer owns the model code, data preparation, and training choices, while the provider runs the underlying compute and orchestration. Understanding exactly where your responsibility begins prevents both security gaps and wasted effort duplicating what the provider already handles.",
+        "A practitioner must also weigh trade-offs beyond raw capability. Higher-level services reduce time to value and operational burden but offer less control and can be harder to customize for niche domains. Lower-level approaches maximize flexibility but demand deep expertise in distributed training, hardware selection, and reliability engineering. Most production systems blend layers, for example using a managed platform to fine-tune a model while calling a prebuilt API for a secondary task like content moderation. Matching the layer to the team's skills and the problem's requirements is more important than always reaching for the most powerful option."
+      ],
+      "keyPoints": [
+        "AI workloads split into bursty, compute-heavy training and steady, latency-sensitive inference",
+        "Cloud AI is offered at three broad layers: prebuilt APIs, managed platforms, and raw accelerated compute",
+        "The shared responsibility boundary moves depending on which layer you adopt",
+        "Higher layers trade control for speed and lower operational burden",
+        "Real systems often combine multiple layers rather than picking one"
+      ],
+      "example": "A retailer uses a prebuilt cloud vision API to tag product photos, a managed platform such as Vertex AI to fine-tune a demand-forecasting model, and GPU instances only during the monthly retraining window, releasing them afterward to avoid idle cost.",
+      "summary": "AI workloads have distinct training and inference phases, and the cloud serves them through layered services whose responsibility boundaries and trade-offs a practitioner must understand to choose well."
+    },
+    {
+      "order": 2,
+      "title": "Compute and Accelerators for AI",
+      "objectives": [
+        "Compare CPUs, GPUs, and specialized accelerators for AI tasks",
+        "Select appropriate instance types for training versus inference",
+        "Apply strategies that reduce accelerator cost without harming performance"
+      ],
+      "body": [
+        "Accelerators are the engine of modern AI, and selecting them well is one of the largest levers a practitioner controls. GPUs dominate training because their thousands of parallel cores suit the matrix math at the heart of neural networks. CPUs remain useful for data preprocessing, classical machine learning, and light inference. Cloud providers also offer custom silicon, such as Google TPUs and AWS Trainium and Inferentia chips, designed specifically for AI and often delivering better price-performance for supported frameworks. The right choice depends on the model, the framework, and whether the job is training or serving.",
+        "Training and inference call for different hardware decisions. Training large models benefits from accelerators with abundant high-bandwidth memory and fast interconnects so many devices can cooperate on one job. Inference usually needs less memory per request but values low latency and high throughput, so smaller or specialized inference chips frequently win on cost. A common mistake is serving production traffic on the same oversized training instances used to build the model, which wastes money since inference rarely needs that much capacity continuously.",
+        "Memory is often the binding constraint rather than raw compute. A model must fit in accelerator memory along with its activations and, during training, its optimizer state and gradients. When a model is too large for one device, teams distribute it across several using data, tensor, or pipeline parallelism. These techniques add networking overhead, so fast interconnects between devices matter as much as the devices themselves. Practitioners should size memory needs early, because discovering a model does not fit only after launching an expensive cluster is a costly lesson.",
+        "Cost discipline around accelerators is essential because they are among the priciest cloud resources. Spot or preemptible instances can cut training costs dramatically for fault-tolerant jobs that checkpoint regularly, since interrupted work resumes from the last checkpoint. Reserved capacity or committed-use discounts suit steady inference workloads. Right-sizing, shutting down idle instances, and using autoscaling for serving all prevent the most common source of runaway bills: powerful hardware left running with nothing to do."
+      ],
+      "keyPoints": [
+        "GPUs excel at training; CPUs suit preprocessing and light tasks; custom chips like TPUs, Trainium, and Inferentia can improve price-performance",
+        "Training favors large memory and fast interconnects; inference favors low latency and throughput",
+        "Accelerator memory, not just compute, frequently limits which models you can run",
+        "Spot or preemptible instances suit checkpointed training; reserved capacity suits steady inference",
+        "Idle accelerators are the leading cause of unexpected AI cloud costs"
+      ],
+      "example": "A team trains a model on a cluster of GPU spot instances that checkpoint every fifteen minutes, then deploys the finished model to smaller inference-optimized instances behind an autoscaler, cutting serving cost by more than half versus reusing the training hardware.",
+      "summary": "Matching accelerator type, memory, and purchasing model to whether you are training or serving is the single biggest factor in both performance and cost for cloud AI workloads."
+    },
+    {
+      "order": 3,
+      "title": "Data Pipelines and Feature Management",
+      "objectives": [
+        "Outline the stages of a cloud data pipeline that feeds AI models",
+        "Distinguish batch from streaming ingestion and when each applies",
+        "Explain the role of feature stores in keeping training and serving consistent"
+      ],
+      "body": [
+        "Models are only as good as the data feeding them, so a reliable pipeline is foundational. A typical cloud pipeline ingests raw data, stores it cheaply, transforms it into clean usable form, and delivers it to training or serving systems. Object storage services such as Amazon S3, Azure Blob Storage, or Google Cloud Storage usually act as the durable, inexpensive landing zone, often called a data lake. From there, processing services transform data at scale. Designing this flow so it is repeatable and observable matters as much as the modeling itself, because silent data problems quietly degrade model quality.",
+        "Ingestion happens in two main modes. Batch ingestion processes large volumes on a schedule and suits training datasets and periodic analytics where some delay is acceptable. Streaming ingestion handles continuous events in near real time and suits use cases like fraud detection or live personalization that must react quickly. Services such as managed Kafka, Amazon Kinesis, or Google Pub/Sub carry streaming data, while batch jobs often run on managed Spark or serverless processing. Many systems use both, landing streams for immediate use while also archiving them for later batch retraining.",
+        "Transforming raw data into model-ready features is where much engineering effort concentrates. Features must be computed consistently, validated for quality, and versioned so experiments are reproducible. A subtle but damaging problem is training-serving skew, where features are computed one way during training and a different way during live serving, causing the deployed model to behave unexpectedly. Catching this requires disciplined, shared feature logic rather than two separate code paths that drift apart over time.",
+        "Feature stores address this consistency challenge directly. A feature store is a managed system that computes, stores, and serves features for both training and inference using the same definitions, so the model sees identical inputs in both phases. It also enables feature reuse across teams and provides point-in-time correctness for historical training data. While not every project needs one, feature stores become valuable as the number of models and shared features grows, reducing duplicated work and a whole class of skew bugs."
+      ],
+      "keyPoints": [
+        "Cloud AI pipelines ingest, store, transform, and serve data, usually anchored by an object-storage data lake",
+        "Batch ingestion suits periodic training; streaming suits real-time reaction",
+        "Training-serving skew arises when features are computed differently in training and serving",
+        "Feature stores share one feature definition across training and inference to prevent skew",
+        "Repeatable, observable pipelines protect model quality as much as the model code does"
+      ],
+      "example": "A bank streams transaction events through a managed message service for real-time fraud scoring while also archiving them to a data lake; a feature store computes account-level aggregates once and serves them identically to both the live model and nightly retraining jobs.",
+      "summary": "Robust cloud data pipelines combine batch and streaming ingestion with consistent, versioned feature computation, and feature stores keep training and serving aligned to avoid skew."
+    },
+    {
+      "order": 4,
+      "title": "Model Deployment and Serving Patterns",
+      "objectives": [
+        "Compare real-time, batch, and asynchronous inference patterns",
+        "Describe how containers and managed endpoints package models for serving",
+        "Choose a deployment strategy that balances latency, throughput, and cost"
+      ],
+      "body": [
+        "Deploying a model means turning a trained artifact into a service that reliably answers requests. The first decision is the serving pattern. Real-time inference returns predictions synchronously within milliseconds and suits interactive features like recommendations or chat. Batch inference scores large datasets on a schedule and suits tasks like nightly churn scoring where immediacy is unnecessary. Asynchronous inference accepts a request, processes it in the background, and returns results later, which suits large inputs or long-running jobs. Choosing the wrong pattern leads either to wasted always-on capacity or to unacceptable user-facing latency.",
+        "Containers have become the standard packaging unit for model serving because they bundle the model, its dependencies, and its serving code into one portable artifact. This consistency means a model behaves the same in testing and production. Cloud platforms offer managed endpoints, such as SageMaker endpoints or Vertex AI endpoints, that host these containers, handle scaling, and expose a stable interface. Teams wanting more control may run containers on managed Kubernetes instead, gaining flexibility at the cost of operating more infrastructure themselves.",
+        "Serving cost and latency are shaped by how requests are handled. Batching multiple requests together improves accelerator utilization and throughput but adds a little latency, so practitioners tune batch size to balance the two. Keeping a model loaded in memory avoids slow cold starts, but idle loaded models consume resources. For traffic that drops to zero at times, scale-to-zero serving saves money at the cost of a cold-start delay on the next request. There is rarely a single correct setting; the right balance depends on traffic shape and the latency users will tolerate.",
+        "Reliability practices from general operations apply directly to serving. Health checks let the platform replace unhealthy instances, autoscaling adjusts capacity to traffic, and separating staging from production prevents experiments from harming live users. Versioning deployed models so a faulty release can be rolled back quickly is essential, since model regressions are often subtle and only visible in aggregate metrics rather than outright errors. Treating a model endpoint as a production service, with the same rigor as any critical API, is what separates a demo from a dependable system."
+      ],
+      "keyPoints": [
+        "Real-time, batch, and asynchronous inference each fit different latency and volume needs",
+        "Containers package model, dependencies, and serving code into one portable artifact",
+        "Managed endpoints simplify scaling; Kubernetes offers more control with more operational burden",
+        "Request batching, warm models, and scale-to-zero each trade latency against cost",
+        "Model versioning and rollback are essential because regressions are often subtle"
+      ],
+      "example": "A media app serves personalized feeds through a real-time managed endpoint with request batching for efficiency, while a separate nightly batch job scores every user for an email campaign, each pattern matched to its latency and volume needs.",
+      "summary": "Effective serving means picking the right inference pattern, packaging models in containers on managed or self-run infrastructure, and tuning batching, scaling, and versioning to balance latency, throughput, and cost."
+    },
+    {
+      "order": 5,
+      "title": "MLOps and the Model Lifecycle",
+      "objectives": [
+        "Explain why MLOps extends DevOps practices to machine learning",
+        "Describe the stages of an automated training and deployment pipeline",
+        "Identify what to monitor in production to detect model degradation"
+      ],
+      "body": [
+        "MLOps applies the discipline of DevOps to the machine learning lifecycle, but it must account for an extra moving part: data. Traditional software behaves predictably given code, but a model's behavior depends on the data it was trained on, which changes over time. MLOps therefore adds versioning of data and models alongside code, automated retraining triggers, and continuous monitoring of prediction quality. The goal is to make the path from experiment to production repeatable and auditable, so that improving and operating models becomes routine engineering rather than heroic manual effort each time.",
+        "An automated pipeline typically chains several stages. It begins with data validation to catch quality problems early, proceeds to training and evaluation against held-out data, and gates promotion on whether the new model beats the current one on agreed metrics. If it passes, the pipeline registers the model in a model registry, packages it, and deploys it through staging to production. Tools like managed pipelines in SageMaker, Azure ML, or Vertex AI orchestrate these steps, while a model registry provides a versioned catalog recording which data and code produced each model, supporting reproducibility and rollback.",
+        "Deploying a new model safely usually avoids switching all traffic at once. Canary deployments route a small slice of traffic to the new model and watch its metrics before widening. Shadow deployments send real traffic to the new model without using its responses, comparing them against the live model to spot regressions risk-free. Blue-green deployments keep two environments and switch between them for fast rollback. These strategies let teams gain confidence in a model under real conditions while limiting the blast radius if something goes wrong.",
+        "Production monitoring is what keeps models trustworthy after launch. Beyond standard service metrics like latency and errors, teams watch for data drift, where incoming data diverges from training data, and concept drift, where the relationship the model learned changes. Because true labels often arrive late, proxy signals and input-distribution checks provide early warnings. When drift crosses a threshold, an alert or automated retraining can restore quality. Without this feedback loop, a model silently decays as the world moves on from the data it learned, often without any obvious error."
+      ],
+      "keyPoints": [
+        "MLOps extends DevOps by versioning data and models, not just code",
+        "Automated pipelines chain validation, training, evaluation, registration, and deployment",
+        "A model registry catalogs versions for reproducibility and rollback",
+        "Canary, shadow, and blue-green strategies reduce deployment risk",
+        "Data drift and concept drift cause silent model decay and must be monitored"
+      ],
+      "example": "A logistics firm runs a Vertex AI pipeline that retrains a delivery-time model weekly, promotes it only if accuracy improves, deploys it as a canary to five percent of traffic, and monitors input drift so a sudden shift in order patterns triggers an early alert.",
+      "summary": "MLOps makes the model lifecycle repeatable through automated pipelines, versioned registries, safe deployment strategies, and drift monitoring that catches the silent decay unique to machine learning."
+    },
+    {
+      "order": 6,
+      "title": "Scaling and Cost Optimization",
+      "objectives": [
+        "Apply autoscaling strategies suited to AI serving workloads",
+        "Identify the main cost drivers in cloud AI and how to control them",
+        "Balance performance, reliability, and spending through architectural choices"
+      ],
+      "body": [
+        "Scaling AI workloads means matching capacity to demand without overpaying for idle resources or starving users during spikes. Inference traffic often varies by time of day or season, making autoscaling valuable: the platform adds serving instances as load rises and removes them as it falls. Autoscaling on AI workloads can be trickier than on stateless web apps because loading a large model onto a new accelerator takes time, creating cold starts. Practitioners mitigate this by keeping a warm minimum capacity and scaling on predictive or queue-based signals rather than reacting only after latency has already climbed.",
+        "Cost in cloud AI is driven mainly by accelerator hours, data storage and movement, and the overhead of always-on services. Accelerators dominate, so the largest savings come from right-sizing instances, releasing them when idle, and using spot or preemptible capacity for interruptible work. Data transfer between regions or out to the internet carries fees that surprise teams who move large datasets carelessly, so co-locating compute with data reduces both cost and latency. Storage costs are usually smaller but grow with the many model versions and datasets that accumulate, making lifecycle policies that archive or delete stale artifacts worthwhile.",
+        "Architectural choices quietly shape spending more than any single setting. Serving a small distilled model instead of a large one can cut inference cost by an order of magnitude while preserving acceptable accuracy for many tasks. Caching frequent predictions avoids recomputing identical results. Routing easy requests to a cheap model and only escalating hard ones to an expensive model, sometimes called a cascade, balances quality and cost. These design decisions often save far more than haggling over instance types, because they reduce how much expensive computation is needed in the first place.",
+        "Cost optimization is an ongoing practice, not a one-time cleanup. Tagging resources by team and project makes spending visible and accountable, and budgets with alerts catch runaway costs before the monthly bill arrives. Regular reviews of utilization reveal over-provisioned instances and forgotten experiments still running. The healthiest organizations treat cost as a shared engineering metric alongside latency and accuracy, so that efficiency is designed in from the start rather than bolted on after finance raises concerns about an alarming invoice."
+      ],
+      "keyPoints": [
+        "Autoscaling matches capacity to demand but must handle model cold starts with warm minimums",
+        "Accelerator hours, data transfer, and always-on services are the main cost drivers",
+        "Co-locating compute with data avoids costly cross-region transfer fees",
+        "Distillation, caching, and model cascades cut cost by reducing expensive computation",
+        "Tagging, budgets, alerts, and regular utilization reviews keep spending accountable"
+      ],
+      "example": "A support platform routes routine questions to a small cheap model and escalates only ambiguous ones to a larger model, caches common answers, and autoscales with a warm minimum of two instances, cutting monthly inference spend by roughly seventy percent without hurting response quality.",
+      "summary": "Controlling cost and scaling AI workloads relies on smart autoscaling, co-locating compute with data, and architectural choices like distillation and caching, backed by continuous visibility into spending."
+    },
+    {
+      "order": 7,
+      "title": "Security and Governance for Cloud AI",
+      "objectives": [
+        "Apply least-privilege access and encryption to AI data and models",
+        "Describe governance practices that support compliance and accountability",
+        "Recognize AI-specific threats and responsible-use considerations"
+      ],
+      "body": [
+        "Securing AI workloads builds on standard cloud security but adds concerns unique to data and models. The starting point is identity and access management with least privilege, granting each user and service only the permissions it needs. Training data, models, and prediction logs are sensitive assets that should be encrypted at rest and in transit, with keys managed through a cloud key service. Network controls such as private endpoints keep model traffic off the public internet. These foundations matter because a model trained on confidential data can itself become a target if access is left too broad.",
+        "Governance turns scattered good intentions into accountable, repeatable practice. Data governance tracks where data came from, who may use it, and for how long, which is essential when regulations restrict how personal data is processed. Model governance records who approved a model, what data trained it, and how it performed, creating an audit trail. Many organizations maintain documentation such as model cards that describe a model's intended use, limitations, and evaluation results. This lineage matters both for compliance with frameworks like GDPR and for investigating problems when a model produces a harmful or unexpected result.",
+        "AI systems face threats that traditional applications do not. Adversarial inputs can be crafted to fool a model into wrong predictions. Data poisoning corrupts training data to plant hidden flaws. Models can also memorize and leak sensitive training examples, and prompt injection can manipulate language-model applications into ignoring their instructions. Practitioners reduce these risks by validating and sanitizing inputs, controlling who can influence training data, monitoring for anomalous behavior, and limiting what an AI system is permitted to do automatically without human review.",
+        "Responsible use extends security into fairness, transparency, and accountability. A model may be perfectly secure yet still cause harm through biased outputs or decisions that affect people without recourse. Practitioners should evaluate models for bias across relevant groups, keep humans in the loop for high-stakes decisions, and be transparent about when AI is being used. Cloud providers increasingly offer tooling for bias detection, explainability, and content safety, but the responsibility for using these tools and judging acceptable risk remains with the organization deploying the system."
+      ],
+      "keyPoints": [
+        "Least-privilege access and encryption of data, models, and logs are the security foundation",
+        "Data and model governance create lineage and audit trails needed for compliance",
+        "Model cards document intended use, limitations, and evaluation results",
+        "AI-specific threats include adversarial inputs, data poisoning, leakage, and prompt injection",
+        "Responsible use adds bias evaluation, human oversight, and transparency beyond security"
+      ],
+      "example": "A healthcare provider encrypts patient training data with customer-managed keys, restricts model access through private endpoints and least-privilege roles, maintains a model card and approval record for each deployed model, and requires clinician review before any AI recommendation affects a treatment decision.",
+      "summary": "Cloud AI security combines least-privilege access and encryption with governance for lineage and compliance, defenses against AI-specific threats, and responsible-use practices like bias evaluation and human oversight."
+    }
+  ],
+  "questions": [
+    {
+      "text": "Which statement best captures the difference between the training and inference phases of an AI workload?",
+      "options": [
+        "Training is steady and latency-sensitive, while inference is bursty and compute-heavy",
+        "Training is bursty and compute-heavy, while inference is steady and latency-sensitive",
+        "Both phases have identical resource profiles and can share the same instances",
+        "Inference always requires more accelerator memory than training"
+      ],
+      "correctIndex": 1,
+      "explanation": "Training is typically bursty and compute-heavy, needing many accelerators for a limited time, while inference runs continuously and is sensitive to latency. This difference is why teams often use different hardware and purchasing models for each phase."
+    },
+    {
+      "text": "When using a higher-level prebuilt cloud AI API, who is generally responsible for managing the underlying model and its scaling?",
+      "options": [
+        "The customer, who must train and host the model themselves",
+        "The cloud provider, while the customer remains responsible for the data sent and how output is used",
+        "Neither party, since prebuilt APIs require no management at all",
+        "A third-party vendor independent of both the provider and customer"
+      ],
+      "correctIndex": 1,
+      "explanation": "With prebuilt APIs the provider manages the model, infrastructure, and scaling. The customer is still responsible for the data they submit and how they use the results, reflecting how the shared responsibility boundary shifts by service layer."
+    },
+    {
+      "text": "A team needs to train a model that is too large to fit in a single accelerator's memory. What is the most appropriate approach?",
+      "options": [
+        "Reduce the dataset until the model fits on one device",
+        "Switch entirely to CPUs since they have more system memory",
+        "Distribute the model across multiple devices using parallelism, relying on fast interconnects",
+        "Run inference instead, which never has memory limits"
+      ],
+      "correctIndex": 2,
+      "explanation": "When a model exceeds a single device's memory, teams distribute it across multiple accelerators using data, tensor, or pipeline parallelism. Because this adds communication overhead, fast interconnects between devices are important for performance."
+    },
+    {
+      "text": "Which purchasing option is best suited to a fault-tolerant training job that checkpoints regularly?",
+      "options": [
+        "Spot or preemptible instances",
+        "On-demand instances reserved for a full year",
+        "The largest available instance regardless of need",
+        "Dedicated bare-metal hosts only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Spot or preemptible instances offer large discounts but can be interrupted. A training job that checkpoints regularly can resume from its last checkpoint after an interruption, making this a strong cost-saving fit for that kind of work."
+    },
+    {
+      "text": "What problem does a feature store primarily help prevent?",
+      "options": [
+        "Accelerator memory exhaustion during training",
+        "Training-serving skew caused by features computed differently in each phase",
+        "Network latency between cloud regions",
+        "Overly aggressive autoscaling of serving endpoints"
+      ],
+      "correctIndex": 1,
+      "explanation": "A feature store computes and serves features from shared definitions for both training and inference, so the model receives identical inputs in both phases. This directly addresses training-serving skew, a common and damaging source of unexpected model behavior."
+    },
+    {
+      "text": "An application must score an entire customer database every night for an email campaign with no real-time requirement. Which inference pattern fits best?",
+      "options": [
+        "Real-time synchronous inference on an always-on endpoint",
+        "Batch inference run on a schedule",
+        "Asynchronous inference for each individual record",
+        "Streaming inference over a message queue"
+      ],
+      "correctIndex": 1,
+      "explanation": "Scoring a full dataset on a schedule with no immediacy requirement is the classic case for batch inference. It avoids paying for always-on real-time capacity that the workload does not need."
+    },
+    {
+      "text": "Which deployment strategy sends real production traffic to a new model without using its responses, purely to compare against the live model?",
+      "options": [
+        "Canary deployment",
+        "Blue-green deployment",
+        "Shadow deployment",
+        "Rolling restart"
+      ],
+      "correctIndex": 2,
+      "explanation": "A shadow deployment mirrors real traffic to the new model while discarding its outputs, letting teams compare it against the live model without affecting users. It is a low-risk way to validate a model under real conditions."
+    },
+    {
+      "text": "In production, a model's accuracy slowly declines even though no errors appear in the service logs. What is the most likely cause?",
+      "options": [
+        "The accelerator firmware is out of date",
+        "Data drift or concept drift as incoming data diverges from training conditions",
+        "The container image is too large",
+        "The model registry has run out of storage"
+      ],
+      "correctIndex": 1,
+      "explanation": "Models can decay silently when incoming data diverges from training data (data drift) or when the underlying relationship changes (concept drift). This produces gradually worse predictions without any outright service error, which is why drift monitoring is essential."
+    },
+    {
+      "text": "Which architectural choice most directly reduces inference cost by limiting how much expensive computation is performed?",
+      "options": [
+        "Storing more model versions in object storage",
+        "Routing easy requests to a small cheap model and escalating only hard ones to a larger model",
+        "Increasing the autoscaling maximum to a very high number",
+        "Transferring data across more regions for redundancy"
+      ],
+      "correctIndex": 1,
+      "explanation": "A model cascade routes easy requests to a small inexpensive model and reserves the larger, costlier model for difficult cases. By reducing how often expensive computation runs, it cuts cost while preserving quality where it matters."
+    },
+    {
+      "text": "Which threat is specific to AI systems rather than traditional applications?",
+      "options": [
+        "A misconfigured firewall exposing a database port",
+        "Data poisoning that corrupts training data to plant hidden flaws in a model",
+        "An expired TLS certificate on a web server",
+        "A disk filling up and halting a logging service"
+      ],
+      "correctIndex": 1,
+      "explanation": "Data poisoning is an AI-specific threat in which an attacker corrupts training data so the resulting model behaves incorrectly in targeted ways. Defending against it requires controlling who can influence training data, beyond standard application security."
+    }
+  ]
+}

@@ -1,0 +1,309 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Threat Modeling for AI Systems",
+      "objectives": [
+        "Adapt classical threat modeling to machine learning pipelines and model assets",
+        "Identify trust boundaries unique to training data, models, and inference endpoints",
+        "Prioritize threats using likelihood and business impact for AI components"
+      ],
+      "body": [
+        "Threat modeling for AI extends familiar frameworks such as STRIDE and attack trees by treating data, models, and inference services as first-class assets. Defenders begin by drawing data-flow diagrams that span collection, labeling, training, registry storage, deployment, and serving. Each transition is a trust boundary where an adversary might tamper with inputs or extract value. The goal is to reason systematically about what could go wrong before an attacker does, producing a prioritized list of risks rather than an exhaustive catalog of every conceivable failure.",
+        "AI introduces threat categories absent from conventional software. Training-data poisoning targets integrity at the source. Model extraction and membership inference threaten confidentiality of proprietary weights and the people in the dataset. Evasion attacks manipulate inputs at inference time to force misclassification. Defenders map these against the lifecycle stage where they apply, because a control that protects training has no effect on a live evasion attempt. Clear mapping prevents teams from spending scarce effort on mismatched defenses.",
+        "A useful practice is to define abuse cases alongside use cases. For every intended behavior, the team asks how that capability could be subverted, who would benefit, and what they would need. This adversarial framing surfaces assumptions that engineers rarely question, such as trusting that uploaded images are benign or that an upstream feature store is authoritative. Documenting these assumptions turns implicit faith into explicit, testable controls.",
+        "Threat models are living documents. As architectures shift toward retrieval augmentation, agents, and third-party model APIs, the boundaries move and new risks appear. Mature organizations revisit the model at each significant design change and tie identified threats to owners, mitigations, and verification methods. This traceability lets leadership see which risks are accepted, mitigated, or transferred, and provides an audit trail when regulators or customers ask how AI risk is governed."
+      ],
+      "keyPoints": [
+        "Treat data, models, and inference endpoints as distinct assets with their own trust boundaries",
+        "Map AI-specific threats such as poisoning, extraction, and evasion to lifecycle stages",
+        "Pair every use case with an abuse case to surface hidden assumptions",
+        "Prioritize by likelihood and business impact rather than cataloging every possibility",
+        "Maintain the threat model as a living artifact tied to owners and verification"
+      ],
+      "example": "A bank building a fraud model diagrams its pipeline and flags the third-party transaction feed as a poisoning boundary. It assigns an owner to add statistical anomaly checks on incoming labels and records the residual risk in its governance register.",
+      "summary": "AI threat modeling adapts classical methods to data, models, and inference, mapping AI-specific threats to lifecycle stages so defenses are prioritized and traceable."
+    },
+    {
+      "order": 2,
+      "title": "Designing a Red-Teaming Program",
+      "objectives": [
+        "Establish scope, rules of engagement, and authorization for AI red-team exercises",
+        "Differentiate red-teaming from automated testing and benchmark evaluation",
+        "Translate red-team findings into prioritized, trackable remediation"
+      ],
+      "body": [
+        "An AI red-teaming program is a structured, authorized effort to probe systems for weaknesses from an adversary's perspective. Unlike a one-time penetration test, it is a continuous capability with charter, budget, and executive sponsorship. The program defines what is in scope, such as a customer-facing chatbot or an internal classifier, and what is explicitly off limits. Written rules of engagement protect both the testers and production systems, specifying data handling, blast-radius limits, and escalation paths if a serious flaw is discovered.",
+        "Red-teaming complements rather than replaces automated evaluation. Benchmarks measure average-case performance, while red teams hunt for the worst case: the rare prompt, crafted input, or sequence of interactions that causes harmful or unexpected behavior. Effective teams blend disciplines, combining security engineers, machine-learning specialists, and domain experts who understand what real-world misuse looks like. Diversity of perspective matters because blind spots in the build team are often exactly what an attacker exploits.",
+        "Programs should plan exercises around defined objectives drawn from the threat model. An objective might be to determine whether the system can be induced to leak training data, bypass content controls, or produce biased outputs against a protected group. Framing goals at the level of impact keeps the work conceptual and defense-oriented rather than a hunt for novel exploit recipes. Each exercise produces evidence of whether a control held, which is more valuable than a single clever bypass.",
+        "The output of red-teaming is only useful if it drives change. Findings flow into a tracked backlog with severity ratings, reproduction conditions, and suggested mitigations. Leadership reviews trends over time to see whether the same weakness recurs across releases. Mature programs measure coverage, time to remediate, and the rate at which previously found issues are prevented by new guardrails, turning red-teaming into a feedback loop that steadily raises the cost of attack."
+      ],
+      "keyPoints": [
+        "Run red-teaming as a chartered, continuous capability, not a single test",
+        "Use written rules of engagement to protect testers and production systems",
+        "Blend security, ML, and domain expertise to cover blind spots",
+        "Frame exercises around impact-level objectives from the threat model",
+        "Feed findings into a tracked backlog and measure remediation trends"
+      ],
+      "example": "A health-tech firm charters a quarterly red team whose objective is to test whether its triage assistant can be steered into giving unsafe advice. Findings are logged with severity, and a dashboard tracks whether guardrails added last quarter still hold.",
+      "summary": "A mature red-teaming program is a continuous, authorized capability with clear scope and objectives that feeds prioritized findings into measurable remediation."
+    },
+    {
+      "order": 3,
+      "title": "Model Hardening and Robustness",
+      "objectives": [
+        "Explain defensive techniques that increase model resilience to manipulated inputs",
+        "Weigh robustness trade-offs against accuracy, cost, and latency",
+        "Select layered defenses appropriate to a model's threat profile"
+      ],
+      "body": [
+        "Model hardening is the practice of making a model harder to fool, extract, or degrade. A foundational technique is adversarial training, where the model is exposed to perturbed examples during learning so it generalizes to manipulated inputs at deployment. This raises robustness but increases training cost and can slightly reduce clean accuracy. Defenders treat the trade-off explicitly, deciding how much performance they are willing to spend to reduce worst-case failure in a given threat environment.",
+        "Input and output controls form a second layer around the model. Validation and sanitization reject malformed or out-of-distribution inputs before they reach the model, while output filtering screens responses for policy violations. For generative systems, these guardrails catch unsafe content that the core model might otherwise produce. Because no single filter is perfect, defenders layer complementary checks so that bypassing one does not bypass all, an approach borrowed from defense-in-depth thinking in traditional security.",
+        "Confidentiality of the model itself is another hardening dimension. Rate limiting, query monitoring, and output coarsening make it more expensive for an adversary to reconstruct a model through repeated queries. Watermarking and fingerprinting help prove ownership if weights are stolen. None of these eliminates risk, but together they shift the economics so that copying the model costs more than it is worth to most attackers, which is often the realistic goal of defense.",
+        "Hardening choices must match the deployment context. A high-stakes medical classifier justifies expensive robustness investments and conservative thresholds, while a low-risk internal tool may not. Defenders document which techniques are applied, why, and what residual risk remains. They also retest robustness whenever the model is retrained, because new data or architectures can silently erode previously verified protections. Hardening is therefore ongoing maintenance rather than a one-time configuration."
+      ],
+      "keyPoints": [
+        "Adversarial training improves resilience but trades off cost and clean accuracy",
+        "Layer input validation and output filtering as guardrails around the model",
+        "Use rate limiting and monitoring to raise the cost of model extraction",
+        "Match hardening intensity to the model's stakes and threat profile",
+        "Re-verify robustness after every retraining, since protections can erode"
+      ],
+      "example": "An autonomous-inspection vendor adversarially trains its defect detector and adds out-of-distribution rejection so blurred or tampered photos are flagged for human review rather than silently misclassified, accepting a small drop in clean accuracy for far better worst-case behavior.",
+      "summary": "Model hardening layers adversarial training, input and output controls, and extraction defenses, with intensity matched to stakes and re-verified after retraining."
+    },
+    {
+      "order": 4,
+      "title": "Detection and Monitoring for AI",
+      "objectives": [
+        "Design telemetry that reveals abuse, drift, and attack patterns in production",
+        "Distinguish data drift from active adversarial behavior",
+        "Define alerting thresholds that balance sensitivity and operational noise"
+      ],
+      "body": [
+        "Detection begins with deciding what to observe. For AI systems, valuable signals include input distributions, prediction confidence, output content, query volume per client, and latency. Logging these consistently lets defenders establish a baseline of normal behavior. Without a baseline, anomalies are invisible, so instrumentation is a prerequisite for any meaningful monitoring. Defenders also log enough context to investigate an alert later, while respecting privacy by minimizing and protecting sensitive data captured in the process.",
+        "Two distinct phenomena require monitoring: natural drift and deliberate attack. Drift occurs when real-world data gradually diverges from training data, quietly degrading accuracy. Attacks are intentional, often showing as bursts of unusual queries, inputs near decision boundaries, or systematic probing. Statistical tests on input distributions catch drift, while behavioral analytics on client activity surface probing. Treating both under one monitoring program ensures that a slow accuracy decline and a fast extraction attempt are each caught by the appropriate signal.",
+        "Alerting must balance sensitivity against noise. Overly aggressive thresholds bury analysts in false positives until real alerts are ignored, while loose thresholds miss genuine incidents. Defenders tune thresholds against historical data and layer detections so that a single weak signal escalates only when corroborated by others. Correlating model telemetry with conventional security logs, such as authentication and network events, often reveals attacks that neither view shows alone.",
+        "Monitoring is only effective when paired with response readiness. Each alert type should map to a documented action: investigate, throttle a client, roll back a model, or invoke incident response. Defenders rehearse these paths so that when an alert fires at an inconvenient hour, the on-call engineer knows exactly what to do. Continuous review of which alerts fired, which were actionable, and which were noise keeps the monitoring system tuned as the threat landscape and the model both evolve."
+      ],
+      "keyPoints": [
+        "Instrument inputs, confidence, outputs, and query patterns to build a baseline",
+        "Separate gradual data drift from deliberate adversarial probing",
+        "Tune alert thresholds and corroborate weak signals to control noise",
+        "Correlate model telemetry with conventional security logs",
+        "Map each alert type to a rehearsed response action"
+      ],
+      "example": "A SaaS platform monitors per-API-key query volume and confidence distributions on its recommendation model. A single key issuing thousands of near-boundary queries triggers throttling and an investigation, catching a suspected extraction attempt before it succeeds.",
+      "summary": "AI monitoring instruments inputs and behavior to baseline normal activity, separates drift from attack, tunes alerts to reduce noise, and ties each alert to a rehearsed response."
+    },
+    {
+      "order": 5,
+      "title": "Incident Response for AI Systems",
+      "objectives": [
+        "Adapt the incident response lifecycle to AI-specific incidents",
+        "Define containment options unique to models, such as rollback and disablement",
+        "Capture lessons learned to prevent recurrence across the model lifecycle"
+      ],
+      "body": [
+        "Incident response for AI follows the familiar phases of preparation, detection, containment, eradication, recovery, and lessons learned, but each phase carries AI-specific considerations. Preparation means defining what counts as an AI incident, such as a confirmed poisoning, a data-leakage event, or a model producing harmful output at scale. Clear definitions prevent debate during a crisis about whether something even qualifies, and they let the team pre-authorize certain protective actions so responders are not waiting for approval while harm accumulates.",
+        "Containment for models offers options that traditional systems lack. Responders can roll back to a previously validated model version, disable a specific capability, tighten guardrails, or route traffic to a conservative fallback. Each option has trade-offs in availability and user impact, so the response plan should pre-rank them by severity tier. Having a clean, signed registry of prior model versions makes rollback fast and trustworthy, which is why secure versioning is itself an incident-response control.",
+        "Eradication and recovery require understanding root cause. If a model began misbehaving, responders ask whether the cause was poisoned data, a prompt-based manipulation, a configuration change, or genuine drift. The remedy differs sharply: retraining on cleaned data, strengthening input controls, or reverting a deployment. Recovery is not complete until the team verifies that the fix holds under the conditions that triggered the incident, ideally by reproducing the scenario in a safe test environment before restoring full service.",
+        "The final phase turns pain into improvement. A blameless review documents the timeline, what detection caught or missed, how long containment took, and what controls would have prevented the incident. These lessons feed the threat model, the monitoring rules, and the red-team backlog, closing the loop across the program. Organizations that treat every incident as input to a learning system steadily reduce both the frequency and the severity of future events."
+      ],
+      "keyPoints": [
+        "Define AI incidents precisely and pre-authorize protective actions",
+        "Use model-specific containment such as rollback, disablement, and fallbacks",
+        "Maintain a signed model registry so rollback is fast and trustworthy",
+        "Identify root cause before choosing between retraining, controls, or revert",
+        "Run blameless reviews that feed lessons back into the wider program"
+      ],
+      "example": "After a content model starts emitting policy-violating text, the team routes traffic to a conservative fallback within minutes, rolls back to the last signed version, traces the cause to a flawed fine-tuning batch, and adds a pre-deployment evaluation gate so it cannot recur.",
+      "summary": "AI incident response applies the classic lifecycle with model-specific containment like rollback and fallbacks, root-cause analysis, and blameless reviews that improve the program."
+    },
+    {
+      "order": 6,
+      "title": "Secure MLOps and Pipeline Integrity",
+      "objectives": [
+        "Embed security controls across the machine-learning operations lifecycle",
+        "Protect training pipelines, registries, and deployment from tampering",
+        "Apply least privilege and reproducibility to ML infrastructure"
+      ],
+      "body": [
+        "Secure MLOps integrates security into the automated machinery that builds, tests, and deploys models. The pipeline that ingests data, trains, evaluates, registers, and serves a model is itself an attack surface. If an adversary can alter a training job, swap a dataset, or modify a model artifact in transit, they can compromise every downstream prediction. Defenders therefore apply the same rigor to ML pipelines that mature teams apply to software supply chains, treating each stage as code that must be reviewed, tested, and protected.",
+        "Access control and least privilege are foundational. Training infrastructure, feature stores, and model registries should grant only the permissions each role genuinely needs, with separate credentials for automated jobs and human operators. Secrets such as cloud keys and registry tokens must be stored in managed vaults rather than embedded in notebooks or scripts. Strong identity and segmentation limit how far an attacker can move if a single account or runner is compromised, containing the blast radius of any breach.",
+        "Reproducibility and integrity verification turn the pipeline into something defenders can trust. Pinning data versions, recording training configurations, and producing deterministic builds let teams reproduce a model and confirm it matches what was deployed. Cryptographically signing model artifacts and verifying signatures before deployment prevents an attacker from quietly substituting a tampered model. These practices also support audits and incident investigation, because the team can prove exactly what data and code produced a given model version.",
+        "Continuous testing extends beyond accuracy to security. Automated checks can scan dependencies for known vulnerabilities, validate that data passes integrity rules, and run a battery of safety evaluations before promotion to production. Gating deployment on these checks ensures that no model reaches users without passing security criteria. As pipelines grow more automated, the controls that govern them become the primary line of defense, so investing in pipeline integrity yields outsized security returns."
+      ],
+      "keyPoints": [
+        "Treat the ML pipeline as a protected supply chain, not just plumbing",
+        "Enforce least privilege and store secrets in managed vaults",
+        "Pin data and config for reproducible, verifiable model builds",
+        "Sign model artifacts and verify signatures before deployment",
+        "Gate promotion on automated security and safety checks"
+      ],
+      "example": "A team signs every model artifact at registration and configures the deployment system to reject any model whose signature does not verify, so a tampered artifact pushed to the registry by a compromised runner is automatically blocked from reaching production.",
+      "summary": "Secure MLOps protects the pipeline as a supply chain through least privilege, reproducible signed builds, and security gates that block compromised models from deployment."
+    },
+    {
+      "order": 7,
+      "title": "Supply-Chain Integrity for AI",
+      "objectives": [
+        "Assess risks introduced by third-party models, datasets, and dependencies",
+        "Apply provenance and verification to externally sourced AI components",
+        "Manage ongoing trust in vendor models and open-source artifacts"
+      ],
+      "body": [
+        "Modern AI systems are assembled from external parts: pretrained base models, public datasets, open-source libraries, and vendor APIs. Each component carries inherited risk. A pretrained model may contain hidden behaviors, a public dataset may include poisoned or mislabeled samples, and a library may harbor vulnerabilities. Supply-chain security for AI begins with inventory, knowing precisely which external components a system depends on, because an organization cannot defend against risks in components it does not even know it is using.",
+        "Provenance is the cornerstone of supply-chain trust. Defenders prefer components from reputable sources that publish verifiable information about how a model was trained or a dataset was assembled. Verifying checksums and signatures on downloaded artifacts confirms they were not altered in transit. Where provenance is weak, the component should be treated as untrusted and subjected to additional scrutiny, such as evaluation in an isolated environment before it touches sensitive data or production traffic.",
+        "Third-party model APIs introduce a different shape of risk. The provider controls the model, may change it without notice, and processes whatever data is sent to it. Defenders manage this through contracts, data-handling reviews, and by avoiding sending sensitive inputs to external services unless protections are in place. They also design for change, so that a silent provider update does not break safety assumptions, by re-running evaluations periodically rather than trusting a one-time assessment.",
+        "Supply-chain trust is continuous, not a single approval. Components that were safe at adoption can become risky as vulnerabilities are disclosed or as upstream maintainers change. Defenders maintain a software and model bill of materials, monitor for new advisories affecting their inventory, and have a process to patch or replace components quickly. This ongoing diligence mirrors traditional dependency management but extends it to the model and dataset layers that are unique to AI."
+      ],
+      "keyPoints": [
+        "Inventory every external model, dataset, library, and API a system depends on",
+        "Prefer components with strong, verifiable provenance and check signatures",
+        "Treat third-party model APIs as changeable and review their data handling",
+        "Maintain a model and software bill of materials for the AI stack",
+        "Monitor advisories continuously and patch or replace risky components"
+      ],
+      "example": "Before adopting an open-source base model, a team verifies its published checksum, evaluates it in an isolated sandbox for unexpected behavior, records it in a model bill of materials, and subscribes to advisories so a later disclosure triggers prompt review.",
+      "summary": "AI supply-chain integrity rests on inventory, verifiable provenance, scrutiny of vendor APIs, and continuous monitoring so external components remain trustworthy over time."
+    },
+    {
+      "order": 8,
+      "title": "Governance, Assurance, and Continuous Improvement",
+      "objectives": [
+        "Connect technical AI security controls to governance and accountability",
+        "Use frameworks and metrics to demonstrate and improve assurance",
+        "Build a culture that sustains AI security beyond individual projects"
+      ],
+      "body": [
+        "Technical controls only deliver lasting value when anchored in governance. Governance assigns accountability, defines acceptable risk, and ensures that security decisions align with legal, ethical, and business obligations. For AI, this means a clear chain from executive ownership down to the engineers who implement guardrails, with documented policies on data use, model approval, and acceptable applications. Without this structure, security depends on individual initiative and erodes the moment a key person leaves or a deadline pressures a team to cut corners.",
+        "Established frameworks help organizations structure their efforts and communicate maturity. Risk-management frameworks for AI provide common vocabulary and a checklist of functions to govern, map, measure, and manage AI risk. Defenders adapt these rather than adopting them blindly, selecting the practices that fit their context. The value lies less in any single framework than in the discipline of systematically covering the full lifecycle and being able to show customers, auditors, and regulators how risk is handled.",
+        "Assurance depends on evidence and metrics. Leadership should be able to answer how many models are in production, which have been threat-modeled and red-teamed, how quickly findings are remediated, and how monitoring coverage is trending. These metrics turn an abstract claim of security into something measurable and improvable. They also reveal where investment is needed, such as a class of models lacking monitoring or a recurring weakness that hardening has not yet addressed.",
+        "Sustaining AI security is ultimately cultural. Training keeps practitioners current as threats evolve, and incentives that reward raising concerns rather than hiding them keep risks visible. Mature organizations run a continuous improvement loop in which threat models, red-team findings, incident lessons, and monitoring data all feed back into stronger controls and updated policy. Security becomes a property of how the organization works rather than a feature bolted onto individual models, which is the defining mark of an expert defensive program."
+      ],
+      "keyPoints": [
+        "Anchor technical controls in governance with clear executive accountability",
+        "Adapt established AI risk frameworks rather than adopting them blindly",
+        "Track metrics such as coverage and remediation time to demonstrate assurance",
+        "Use evidence to direct investment toward the weakest areas",
+        "Sustain security through training, incentives, and a continuous improvement loop"
+      ],
+      "example": "A company maintains a register showing every production model, its threat-model and red-team status, and remediation timelines. Quarterly governance reviews use these metrics to direct funding toward the models with the weakest monitoring coverage.",
+      "summary": "Durable AI security joins technical controls to governance, framework-guided practice, evidence-based metrics, and a culture of continuous improvement."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What distinguishes AI threat modeling from threat modeling for conventional software?",
+      "options": [
+        "It treats data, models, and inference endpoints as first-class assets with their own trust boundaries",
+        "It eliminates the need for data-flow diagrams entirely",
+        "It only considers network-layer attacks",
+        "It replaces business-impact prioritization with exhaustive enumeration"
+      ],
+      "correctIndex": 0,
+      "explanation": "AI threat modeling extends classical methods by treating training data, models, and inference services as distinct assets, each with trust boundaries where AI-specific threats like poisoning, extraction, and evasion can occur."
+    },
+    {
+      "text": "Why should an AI red-teaming program operate under written rules of engagement?",
+      "options": [
+        "To guarantee that no vulnerabilities will ever be found",
+        "To protect both the testers and production systems by defining scope, data handling, and escalation",
+        "To replace the need for any automated evaluation",
+        "To ensure findings are never shared with leadership"
+      ],
+      "correctIndex": 1,
+      "explanation": "Rules of engagement define what is in scope, how data is handled, blast-radius limits, and escalation paths, protecting testers from liability and production systems from harm during exercises."
+    },
+    {
+      "text": "What is a recognized trade-off of adversarial training as a hardening technique?",
+      "options": [
+        "It removes the need for any output filtering",
+        "It makes models impossible to extract",
+        "It increases training cost and can slightly reduce clean accuracy",
+        "It eliminates all forms of data drift"
+      ],
+      "correctIndex": 2,
+      "explanation": "Adversarial training exposes a model to perturbed examples to improve robustness, but this raises training cost and can lower accuracy on clean inputs, a trade-off defenders weigh against the threat environment."
+    },
+    {
+      "text": "In AI monitoring, how do data drift and adversarial attack typically differ?",
+      "options": [
+        "Drift is a gradual divergence of real data from training data, while attacks are deliberate, often appearing as bursts of unusual or boundary-probing queries",
+        "They are identical and need no separate detection",
+        "Drift is always malicious and attacks are always accidental",
+        "Attacks only affect training while drift only affects inference"
+      ],
+      "correctIndex": 0,
+      "explanation": "Drift is natural and gradual, quietly degrading accuracy, whereas attacks are intentional and often manifest as bursts of unusual queries or systematic probing near decision boundaries, so each needs its own detection signal."
+    },
+    {
+      "text": "Why is a clean, signed model registry considered an incident-response control?",
+      "options": [
+        "It prevents all models from ever misbehaving",
+        "It removes the need for root-cause analysis",
+        "It eliminates the need for monitoring",
+        "It makes rollback to a previously validated version fast and trustworthy during containment"
+      ],
+      "correctIndex": 3,
+      "explanation": "When an AI incident occurs, rolling back to a prior validated model is a key containment option, and a clean, signed registry of versions makes that rollback fast and trustworthy."
+    },
+    {
+      "text": "What is the purpose of signing model artifacts in a secure MLOps pipeline?",
+      "options": [
+        "To improve the model's predictive accuracy",
+        "To verify integrity before deployment so a tampered artifact is blocked from production",
+        "To compress the model for faster serving",
+        "To remove the need for access controls"
+      ],
+      "correctIndex": 1,
+      "explanation": "Cryptographically signing artifacts and verifying signatures before deployment ensures a tampered or substituted model is automatically rejected, protecting pipeline integrity."
+    },
+    {
+      "text": "What is the first step in securing the AI supply chain?",
+      "options": [
+        "Immediately replacing all open-source components with proprietary ones",
+        "Disabling all third-party model APIs",
+        "Inventorying every external model, dataset, library, and API the system depends on",
+        "Encrypting only the network traffic"
+      ],
+      "correctIndex": 2,
+      "explanation": "An organization cannot defend against risks in components it does not know it uses, so supply-chain security begins with a complete inventory of external models, datasets, libraries, and APIs."
+    },
+    {
+      "text": "Why must trust in a third-party model API be treated as continuous rather than a one-time approval?",
+      "options": [
+        "Because the provider may change the model without notice, so safety assumptions must be re-verified periodically",
+        "Because APIs never change once deployed",
+        "Because contracts make any review unnecessary",
+        "Because external models cannot process sensitive data"
+      ],
+      "correctIndex": 0,
+      "explanation": "A provider controls the model and may update it silently, potentially breaking prior safety assumptions, so defenders re-run evaluations periodically instead of trusting a single assessment."
+    },
+    {
+      "text": "Why are layered guardrails preferred over a single input or output filter?",
+      "options": [
+        "Because a single filter is cheaper to maintain",
+        "Because filters are unnecessary for generative systems",
+        "Because one strong filter guarantees complete safety",
+        "Because no single filter is perfect, so layering ensures that bypassing one does not bypass all"
+      ],
+      "correctIndex": 3,
+      "explanation": "Following defense-in-depth, defenders layer complementary input and output checks so that evading one control does not defeat the entire protection scheme."
+    },
+    {
+      "text": "What role does governance play in sustaining AI security?",
+      "options": [
+        "It replaces the need for any technical controls",
+        "It assigns accountability and defines acceptable risk so security does not depend on individual initiative",
+        "It guarantees that no incidents will occur",
+        "It applies only to the legal department and not to engineering"
+      ],
+      "correctIndex": 1,
+      "explanation": "Governance anchors technical controls by assigning ownership, defining acceptable risk, and aligning decisions with obligations, so security persists even when individuals or deadlines change."
+    }
+  ]
+}

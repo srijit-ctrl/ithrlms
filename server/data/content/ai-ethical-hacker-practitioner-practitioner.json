@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Foundations of Ethical AI Security Testing",
+      "objectives": [
+        "Define the role and ethical obligations of an AI ethical hacker",
+        "Distinguish authorized security testing from malicious activity",
+        "Explain why AI systems require testing approaches beyond traditional application security"
+      ],
+      "body": [
+        "An AI ethical hacker evaluates machine learning systems the way a defender would imagine an adversary behaving, but always under explicit authorization and with the goal of strengthening security. The discipline borrows methodology from traditional penetration testing yet adds concerns unique to learned systems, such as how a model behaves on inputs it never saw during training. The defining feature of ethical work is consent: a tester operates inside an agreed scope, documents everything, and reports findings to the owner so they can be fixed. Without that authorization, the same actions become criminal regardless of intent.",
+        "AI systems differ from conventional software because their behavior emerges from data rather than from code written line by line. A model has no source file that fully explains every decision it makes, which means weaknesses can hide in the training data, the learned parameters, or the way the model responds to crafted inputs. Testers therefore reason about the entire lifecycle, from data collection through deployment and ongoing inference. Familiar controls like access management still matter, but they do not address risks such as a model leaking memorized data or being steered by manipulated input.",
+        "Ethical conduct rests on a small set of principles that every practitioner internalizes. Act only within written authorization, minimize harm to systems and people, protect any sensitive data encountered, and disclose findings responsibly to the owner rather than the public. Testers avoid actions that could degrade a production service or expose real users, and they prefer isolated or staging environments whenever a test could be disruptive. These habits separate professional security work from reckless experimentation and protect both the tester and the organization being assessed.",
+        "The value an ethical hacker delivers is not a list of clever tricks but a clear picture of risk that an organization can act on. A useful engagement explains which weaknesses are realistic, how serious their impact would be, and what should be prioritized for remediation. This requires the tester to think like a defender throughout, framing every observation in terms of how it could be detected, mitigated, or designed away. The mindset is constructive: the objective is a more resilient system, not a trophy."
+      ],
+      "keyPoints": [
+        "Authorization and written scope are what make security testing legal and ethical",
+        "AI behavior emerges from data, so weaknesses can live outside the source code",
+        "Testing must cover the whole lifecycle: data, training, deployment, and inference",
+        "Minimize harm, protect sensitive data, and disclose findings responsibly",
+        "The goal is actionable risk reduction, not demonstration of cleverness"
+      ],
+      "example": "A consultancy is engaged to assess a client chatbot. Before any testing begins, both parties sign a statement of work naming the in-scope endpoints, a staging environment to use, prohibited actions, and a contact for emergencies. The tester works only against the agreed staging system and logs every interaction for the final report.",
+      "summary": "Ethical AI security testing combines penetration testing methodology with concerns unique to learned systems, and it is defined by authorization, harm minimization, and responsible disclosure aimed at reducing real risk."
+    },
+    {
+      "order": 2,
+      "title": "Scoping, Authorization, and Rules of Engagement",
+      "objectives": [
+        "Build a scope document that defines targets, boundaries, and prohibited actions",
+        "Explain the legal and contractual basis required before testing AI systems",
+        "Establish rules of engagement that protect data, users, and production stability"
+      ],
+      "body": [
+        "Scoping is the most important phase of any engagement because it converts a vague request into a precise, authorized plan. A good scope names the exact systems, model endpoints, datasets, and interfaces that may be tested, and it just as clearly lists what is off limits. For AI systems this includes deciding whether training pipelines, fine-tuning data, and supporting infrastructure are in scope or only the inference API. Ambiguity here creates legal risk and operational danger, so testers and clients resolve every uncertainty in writing before work begins.",
+        "Authorization must come from someone with the authority to grant it, and it must be documented. A statement of work or engagement letter typically records the parties, the time window, the permitted techniques, and the data-handling expectations. When third parties are involved, such as a cloud host or a model provider, their terms of service may require separate permission, because testing a system you do not fully own can violate agreements even when your direct client consents. Confirming this chain of authorization protects the tester from liability and the client from surprises.",
+        "Rules of engagement translate the scope into day-to-day operating constraints. They define testing windows that avoid peak usage, rate limits that prevent denial of service, escalation contacts for emergencies, and a clear stop condition if something goes wrong. For AI systems, the rules should address how to handle any sensitive or personal data the model might reveal, and they should require testing against non-production environments wherever a probe could disrupt real users. These constraints keep an assessment safe and professional.",
+        "Scoping also sets expectations about evidence and reporting. The parties agree on how findings will be recorded, how proof will be captured without exposing real data, and how results will be transmitted securely. Defining these details up front prevents disputes later and ensures the final deliverable is something the organization can act on. A disciplined scoping phase is what distinguishes a controlled professional engagement from an open-ended and risky exploration."
+      ],
+      "keyPoints": [
+        "Scope names exact in-scope targets and explicitly lists prohibited actions",
+        "Authorization must come from an empowered party and be documented in writing",
+        "Third-party terms of service may require separate permission to test",
+        "Rules of engagement cover testing windows, rate limits, and stop conditions",
+        "Agree on evidence handling and secure reporting before testing starts"
+      ],
+      "example": "Before assessing a recommendation model, a tester confirms the client owns the inference service but rents the hosting platform. The team obtains written authorization from the client and verifies the cloud provider allows the planned testing, then sets a nightly testing window with a strict request rate cap and a named on-call contact.",
+      "summary": "A rigorous scoping and authorization phase defines exactly what may be tested, secures documented permission from all relevant parties, and sets operating rules that protect data, users, and production stability."
+    },
+    {
+      "order": 3,
+      "title": "Threat Modeling AI-Enabled Systems",
+      "objectives": [
+        "Map the attack surface of an AI system across its lifecycle",
+        "Identify likely adversary goals and the assets they would target",
+        "Prioritize testing effort using realistic threat scenarios"
+      ],
+      "body": [
+        "Threat modeling is the structured practice of asking what could go wrong before testing begins. For an AI system it starts by mapping the full lifecycle: where training data comes from, how the model is built and validated, how it is deployed, and how users and other systems interact with it at inference time. Each stage is a potential entry point, and drawing this map helps the tester see assets a narrow focus on the API alone would miss, such as a fine-tuning dataset or a feedback loop that retrains the model on user input.",
+        "A useful threat model names the adversaries and what they want. Some attackers seek to extract confidential information the model memorized, some want to manipulate its outputs to commit fraud or spread misinformation, and others aim to degrade availability or steal the model itself as intellectual property. Mapping these goals to the assets that enable them, such as the training data, the model parameters, or the inference endpoint, lets the tester reason about confidentiality, integrity, and availability in concrete terms rather than abstractly.",
+        "Threat modeling also weighs likelihood and impact so that limited testing time goes where it matters. A weakness that is easy to exploit and would cause serious harm deserves attention before one that is theoretical or low impact. For AI systems the tester considers exposure, such as whether the model is public or internal, and the sensitivity of what it handles. This prioritization keeps an engagement focused on realistic risk rather than an exhaustive but shallow sweep of every conceivable issue.",
+        "The output of threat modeling is a set of testable hypotheses that guide the rest of the engagement. Each hypothesis describes a plausible attack scenario, the asset at risk, and what a successful compromise would look like, all framed so that the tester can evaluate it within scope. Revisiting the model as new information emerges keeps it accurate, because early probing often reveals architecture details that change which scenarios are realistic. A living threat model is more valuable than a static checklist."
+      ],
+      "keyPoints": [
+        "Map the full lifecycle to reveal assets beyond the inference endpoint",
+        "Name adversaries and tie their goals to specific assets",
+        "Frame risk in terms of confidentiality, integrity, and availability",
+        "Prioritize by likelihood and impact, not exhaustive coverage",
+        "Treat the threat model as a living document refined during testing"
+      ],
+      "example": "For an internal HR assistant, a tester builds a threat model identifying the resume dataset, the model parameters, and the chat endpoint as key assets. The highest-priority scenario is an employee coaxing the assistant into revealing another person's salary, so testing focuses there first, in staging, with synthetic records.",
+      "summary": "Threat modeling maps the AI lifecycle, names realistic adversaries and their targets, and prioritizes testing by likelihood and impact so the engagement focuses on risk that actually matters."
+    },
+    {
+      "order": 4,
+      "title": "Categories of AI Weakness: Input Manipulation and Prompt Injection",
+      "objectives": [
+        "Explain prompt injection and adversarial inputs at a conceptual level",
+        "Describe why language models struggle to separate instructions from data",
+        "Outline defensive patterns that reduce input manipulation risk"
+      ],
+      "body": [
+        "Input manipulation is a family of weaknesses where carefully shaped input causes a model to behave in ways its operators did not intend. In language models this is often called prompt injection, where text supplied by a user or hidden in a retrieved document is interpreted by the model as instructions rather than as data to be processed. The root cause is that these systems blend trusted instructions and untrusted content into a single stream, and the model has no inherent way to know which parts it should obey and which it should merely read.",
+        "A particularly important variant is indirect injection, where the malicious content arrives not from the user but from data the model consumes, such as a web page, a file, or an email it summarizes. Because the model treats that content as part of its context, an instruction buried in the document can influence the response. Conceptually this matters because it expands the trust boundary far beyond the immediate user, and a tester evaluates whether the system properly distrusts external content rather than treating everything in context as authoritative.",
+        "Adversarial inputs are a broader category that also affects perception models such as image or audio classifiers. Small, deliberate changes that a human would barely notice can cause a model to misclassify, because the model relies on statistical patterns rather than human understanding. Ethical testers study these phenomena conceptually to assess how robust a system is, without producing or distributing working attack artifacts. The aim is to characterize fragility so defenders can add validation, monitoring, and fallback behavior.",
+        "Defenses against input manipulation are layered rather than absolute. Useful patterns include clearly separating trusted instructions from untrusted content, constraining what actions a model is permitted to take, validating and sanitizing inputs, and applying output checks before results trigger consequential actions. For systems that act on the world, such as agents that call tools, the strongest mitigation is to require human confirmation for sensitive operations. A tester evaluates whether these layers exist and reports gaps as opportunities to harden the design."
+      ],
+      "keyPoints": [
+        "Prompt injection arises because models blend trusted instructions with untrusted data",
+        "Indirect injection delivers malicious content through documents the model consumes",
+        "Adversarial inputs exploit statistical pattern matching in perception models",
+        "Ethical testers characterize fragility conceptually, not by distributing exploits",
+        "Layered defenses include input separation, action limits, and human confirmation"
+      ],
+      "example": "Testing an authorized document-summarization assistant in staging, a tester places a benign marker phrase inside a sample file to check whether instructions embedded in content can influence behavior. The assistant follows the embedded text, so the report recommends treating retrieved content as untrusted and adding output validation.",
+      "summary": "Input manipulation, including prompt injection and adversarial inputs, exploits a model's inability to separate trusted instructions from untrusted data, and ethical testers characterize this fragility conceptually to drive layered defenses."
+    },
+    {
+      "order": 5,
+      "title": "Categories of AI Weakness: Data, Model, and Privacy Risks",
+      "objectives": [
+        "Explain data poisoning, model extraction, and inference privacy risks conceptually",
+        "Relate each weakness category to the asset it threatens",
+        "Describe high-level defensive and monitoring strategies for each"
+      ],
+      "body": [
+        "Data poisoning targets the integrity of the training process. If an adversary can influence the data a model learns from, they may bias its behavior or plant hidden triggers that activate under specific conditions. This is especially relevant for systems that retrain on user-supplied content or that scrape data from open sources. Conceptually, the tester assesses how much an organization trusts and controls its data supply chain, since a model is only as trustworthy as the data behind it. Defenses center on provenance tracking, data validation, and careful curation of any feedback that influences future training.",
+        "Model extraction and theft threaten the confidentiality of the model as intellectual property. By observing a model's outputs across many inputs, an adversary may attempt to approximate its behavior or reconstruct a functional copy without ever accessing the parameters directly. A related concern is the exposure of the model itself if it is stored or deployed insecurely. Ethical testers evaluate whether query patterns are monitored and rate limited, and whether the model and its weights are protected by the same access controls applied to other valuable assets.",
+        "Privacy risks at inference time concern whether a model reveals information it should not. A model trained on sensitive data may memorize and regurgitate fragments of it, and membership inference attacks attempt to determine whether a particular record was in the training set. These risks matter wherever personal or confidential data was used in training. Testers assess them conceptually using synthetic or authorized data, never by exfiltrating real personal information, and they focus on whether the system limits how much it discloses and logs unusual extraction attempts.",
+        "Each of these categories maps to a defensive posture rather than a single fix. Integrity risks call for data governance and provenance controls; confidentiality risks call for access control, monitoring, and rate limiting; privacy risks call for careful training-data hygiene, techniques that reduce memorization, and output filtering. A practitioner reports findings by connecting the observed weakness to the asset it threatens and the specific control that would reduce the risk, giving the organization a clear remediation path."
+      ],
+      "keyPoints": [
+        "Data poisoning attacks training integrity through an untrusted data supply chain",
+        "Model extraction threatens confidentiality by approximating behavior from outputs",
+        "Inference privacy risks include memorization leakage and membership inference",
+        "Always assess privacy conceptually with synthetic or authorized data only",
+        "Each category maps to a distinct defensive posture and control set"
+      ],
+      "example": "Assessing a model trained on customer support transcripts, a tester uses synthetic records seeded into a staging dataset to evaluate whether the model can be coaxed into repeating training content. Finding it reproduces seeded phrases, the report recommends training-data hygiene, output filtering, and monitoring for extraction-style query patterns.",
+      "summary": "Data poisoning, model extraction, and inference privacy risks threaten integrity, confidentiality, and privacy respectively, and each maps to a defensive posture spanning data governance, access control, and training-data hygiene."
+    },
+    {
+      "order": 6,
+      "title": "Testing Methodology and Evidence Handling",
+      "objectives": [
+        "Apply a repeatable phased methodology to an AI security engagement",
+        "Capture reliable evidence while protecting sensitive data",
+        "Maintain safety and reproducibility throughout testing"
+      ],
+      "body": [
+        "A disciplined methodology turns scattered probing into a defensible assessment. A common structure moves from reconnaissance, where the tester learns how the system is built and exposed, through threat modeling, focused testing of prioritized hypotheses, and finally analysis and reporting. Each phase builds on the last, and documenting the transition between phases keeps the work organized and repeatable. For AI systems, reconnaissance includes understanding the model's purpose, its inputs and outputs, and any tools or data sources it relies on, since these shape which weaknesses are plausible.",
+        "Reproducibility is what makes a finding credible. A tester records the exact conditions that produced a result, including the environment, the configuration, and the sequence of interactions, so that the client can confirm the issue and later verify it has been fixed. Because models can behave non-deterministically, testers note this variability and describe how consistently a behavior appears rather than implying it is guaranteed. Clear, reproducible evidence is far more useful to a defender than a dramatic but unrepeatable demonstration.",
+        "Evidence handling requires special care when sensitive data is involved. The professional standard is to prove a weakness exists without unnecessarily collecting or exposing real personal or confidential information. Where possible, testers use synthetic data, redact captured material, and store evidence securely with limited access. If a test reveals genuine sensitive data, the tester handles it according to the agreed rules of engagement and reports the exposure promptly rather than retaining it. This protects the people whose data the system holds.",
+        "Safety threads through the entire methodology. Testers prefer staging environments, throttle their activity to avoid disruption, and halt immediately if they observe instability or unintended impact. They keep the client informed of significant findings as they emerge rather than waiting for the final report, especially when a serious issue could be actively harmful. This continuous, communicative, and cautious approach is the hallmark of a mature engagement and builds the trust that makes future testing possible."
+      ],
+      "keyPoints": [
+        "Use a phased flow: reconnaissance, threat modeling, focused testing, reporting",
+        "Record exact conditions so findings are reproducible and verifiable",
+        "Note model non-determinism and how consistently a behavior appears",
+        "Prove weaknesses without collecting or exposing real sensitive data",
+        "Prefer staging, throttle activity, and stop at signs of instability"
+      ],
+      "example": "While assessing an AI agent, a tester documents each prioritized hypothesis with the staging configuration, the interaction sequence, and how often the behavior recurred across repeated trials. Sensitive outputs are redacted and stored in an access-controlled location, and a serious finding is reported to the client the same day it is observed.",
+      "summary": "A repeatable phased methodology with reproducible evidence, careful protection of sensitive data, and continuous safety measures turns AI security testing into a credible, defensible assessment."
+    },
+    {
+      "order": 7,
+      "title": "Reporting, Responsible Disclosure, and Remediation",
+      "objectives": [
+        "Structure a clear, prioritized findings report for technical and business readers",
+        "Apply responsible disclosure principles when reporting AI weaknesses",
+        "Recommend layered remediation and support verification of fixes"
+      ],
+      "body": [
+        "The report is the product of an engagement, and its quality determines whether testing actually improves security. A strong report explains each finding in plain terms, rates its severity by combining likelihood and impact, and orders findings so the most important work comes first. It serves two audiences at once: technical staff who need enough detail to reproduce and fix an issue, and leaders who need to understand business risk and make decisions about priorities. Writing for both, without burying either, is a core professional skill.",
+        "Responsible disclosure governs how findings move from the tester to the people who can fix them. The principle is to share weaknesses privately with the owner first, give them reasonable time to remediate, and avoid publicizing details that could enable harm before a fix exists. For AI systems this also means describing weaknesses at a level that informs defenders without handing adversaries a ready-made recipe. Coordinated, private disclosure protects users and reflects the cooperative relationship between testers and the organizations they help.",
+        "Effective remediation guidance is specific and layered. Rather than only naming a problem, the tester recommends concrete controls and explains why they help, acknowledging that AI risks rarely have a single perfect fix. For input manipulation this might mean separating instructions from data and requiring confirmation for sensitive actions; for privacy risks it might mean training-data hygiene and output filtering; for extraction it might mean monitoring and rate limiting. Presenting defense in depth helps the organization build resilience rather than chasing one weakness at a time.",
+        "The engagement is not complete until fixes are verified. A responsible tester offers to retest after remediation, using the reproducible evidence captured earlier to confirm that an issue is genuinely resolved and that the fix did not introduce new problems. This closing loop turns a report into measurable improvement and reinforces a culture of continuous security. Over time, repeated cycles of testing, disclosure, remediation, and verification make AI systems steadily more trustworthy."
+      ],
+      "keyPoints": [
+        "Rate findings by likelihood and impact, and order them by priority",
+        "Write for both technical staff and business decision makers",
+        "Disclose privately first and avoid publishing harmful detail before fixes",
+        "Recommend specific, layered defenses rather than a single fix",
+        "Verify remediation by retesting against the original reproducible evidence"
+      ],
+      "example": "After assessing a customer-facing assistant, the tester delivers a report that ranks an indirect injection finding as high severity, explains the business risk in one paragraph for leadership, and gives engineers detailed remediation steps. Weeks later the tester retests the staged fix and confirms the behavior no longer occurs.",
+      "summary": "A prioritized report written for mixed audiences, combined with responsible private disclosure, layered remediation guidance, and verification retesting, ensures that AI security testing produces lasting risk reduction."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What single factor most clearly separates ethical AI security testing from malicious activity?",
+      "options": [
+        "Documented authorization and an agreed scope from the system owner",
+        "The technical sophistication of the techniques used",
+        "Whether the tester eventually publishes the findings",
+        "The number of weaknesses discovered during the engagement"
+      ],
+      "correctIndex": 0,
+      "explanation": "The same actions are professional or criminal depending on consent. Documented authorization within an agreed scope is what makes security testing legal and ethical, regardless of technique or outcome."
+    },
+    {
+      "text": "Why do AI systems require testing approaches beyond traditional application security?",
+      "options": [
+        "Their behavior emerges from data, so weaknesses can exist outside the source code",
+        "They are always written in languages that lack security tooling",
+        "They never use networks, so conventional controls do not apply",
+        "They cannot be tested in staging environments"
+      ],
+      "correctIndex": 0,
+      "explanation": "Because model behavior emerges from training data rather than hand-written logic, weaknesses can hide in the data, the learned parameters, or how the model responds to crafted inputs, which traditional code-focused testing may miss."
+    },
+    {
+      "text": "During scoping, a client owns the model service but rents the hosting platform. What is the correct step?",
+      "options": [
+        "Verify the hosting provider's terms permit the planned testing before proceeding",
+        "Proceed immediately since the direct client gave permission",
+        "Skip the hosting platform entirely from any documentation",
+        "Assume cloud providers always allow security testing"
+      ],
+      "correctIndex": 0,
+      "explanation": "Testing systems you do not fully own can violate third-party agreements even with the client's consent. Confirming the hosting provider's terms protects the tester from liability and the client from surprises."
+    },
+    {
+      "text": "What is the primary purpose of threat modeling before testing an AI system?",
+      "options": [
+        "To map assets and prioritize realistic scenarios by likelihood and impact",
+        "To produce a complete list of every theoretical issue regardless of relevance",
+        "To replace the need for any authorization documents",
+        "To guarantee that all weaknesses will be found automatically"
+      ],
+      "correctIndex": 0,
+      "explanation": "Threat modeling maps the lifecycle and assets, names realistic adversaries, and prioritizes by likelihood and impact so limited testing time focuses on the risks that actually matter rather than an exhaustive shallow sweep."
+    },
+    {
+      "text": "What is the root cause of prompt injection in language models?",
+      "options": [
+        "The model blends trusted instructions and untrusted content into one stream it cannot reliably separate",
+        "The model is connected to too many external databases",
+        "The model is trained on too little data to function",
+        "The hosting server has weak password policies"
+      ],
+      "correctIndex": 0,
+      "explanation": "Prompt injection arises because the model receives trusted instructions and untrusted data together and has no inherent way to know which parts to obey versus merely read, so crafted content can be interpreted as instructions."
+    },
+    {
+      "text": "How does indirect prompt injection differ from a direct attempt?",
+      "options": [
+        "Malicious content arrives through data the model consumes, such as a document or web page",
+        "It only affects image classifiers and never language models",
+        "It requires direct access to the model's training parameters",
+        "It can only occur when the user has administrator privileges"
+      ],
+      "correctIndex": 0,
+      "explanation": "Indirect injection delivers instructions through external content the model processes, such as a file or web page, expanding the trust boundary beyond the immediate user and requiring the system to distrust retrieved content."
+    },
+    {
+      "text": "Which weakness category most directly threatens the integrity of a model's training process?",
+      "options": [
+        "Data poisoning",
+        "Model extraction",
+        "Membership inference",
+        "Denial of service against the endpoint"
+      ],
+      "correctIndex": 0,
+      "explanation": "Data poisoning influences the data a model learns from, biasing behavior or planting hidden triggers. It targets training integrity, which is why data provenance and validation are key defenses."
+    },
+    {
+      "text": "When conceptually assessing a model for privacy leakage, what is the professional standard for data?",
+      "options": [
+        "Use synthetic or authorized data and never exfiltrate real personal information",
+        "Collect as much real personal data as possible to maximize coverage",
+        "Publish any sensitive data found to demonstrate the severity",
+        "Retain discovered personal data indefinitely as evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ethical testers prove privacy weaknesses without harming real people, using synthetic or authorized data. If genuine sensitive data is revealed, it is handled per the rules of engagement and reported promptly, not retained."
+    },
+    {
+      "text": "Why must a tester document the exact conditions that produced a finding?",
+      "options": [
+        "So the client can reproduce, confirm, and later verify the fix, accounting for model non-determinism",
+        "So the finding looks more impressive in the report",
+        "Because regulations require all evidence to be deleted afterward",
+        "To ensure the behavior can never be reproduced again"
+      ],
+      "correctIndex": 0,
+      "explanation": "Reproducible evidence makes a finding credible and lets the client confirm and later verify remediation. Because models can behave non-deterministically, testers also note how consistently a behavior appears."
+    },
+    {
+      "text": "What does responsible disclosure of an AI weakness require?",
+      "options": [
+        "Sharing privately with the owner first and avoiding harmful detail before a fix exists",
+        "Publishing full exploit details publicly as soon as they are found",
+        "Withholding the finding from the owner indefinitely",
+        "Selling the finding to the highest bidder"
+      ],
+      "correctIndex": 0,
+      "explanation": "Responsible disclosure means reporting privately to the owner, allowing reasonable time to remediate, and describing weaknesses at a level that informs defenders without handing adversaries a ready-made recipe."
+    }
+  ]
+}

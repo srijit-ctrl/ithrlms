@@ -1,0 +1,290 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Coordinated Assurance and the Three Lines Model for AI",
+      "objectives": [
+        "Explain how the three lines model assigns ownership, oversight, and assurance roles for AI systems",
+        "Distinguish coordinated assurance from siloed or duplicated control activity",
+        "Map common AI accountabilities to first, second, and third line responsibilities"
+      ],
+      "body": [
+        "Coordinated assurance applies the Institute of Internal Auditors three lines model to the specific challenges of artificial intelligence. The first line owns and operates AI systems: data scientists, product teams, and the business units that deploy models bear primary responsibility for managing risk where the work happens. They build controls into model development, deployment pipelines, and day-to-day operations rather than treating risk as someone elses problem. Clear first line ownership prevents the common failure where everyone assumes another function is watching the model.",
+        "The second line provides oversight, frameworks, and challenge. Functions such as model risk management, compliance, data governance, and a dedicated AI risk office set policy, define risk appetite, and monitor first line activity. They do not own the controls but they design the framework the first line operates within and independently scrutinise whether risks are being managed. In AI contexts the second line often hosts the inventory of models, the risk tiering methodology, and the standards that govern fairness, robustness, and transparency.",
+        "The third line is internal audit, which provides independent and objective assurance to the governing body over the effectiveness of governance, risk management, and the first two lines themselves. Internal audit must preserve independence: it does not design or operate the controls it evaluates. For AI, the third line assesses whether the model risk framework actually works in practice, whether second line oversight has teeth, and whether reported assurance to the board reflects reality.",
+        "Coordinated assurance means these lines share a common risk language, a single model inventory, and aligned testing so that coverage is complete without wasteful duplication. Assurance mapping documents who tests what, how often, and to what depth, exposing gaps where no line covers a material risk and overlaps where three functions test the same control. The aim is reliable, efficient confidence for decision makers, not a paper trail that satisfies process while leaving real exposures unexamined."
+      ],
+      "keyPoints": [
+        "First line owns and operates AI risk; second line oversees and challenges; third line provides independent assurance",
+        "Internal audit must not design or run the controls it evaluates, preserving objectivity",
+        "A shared model inventory and common risk taxonomy underpin coordinated assurance",
+        "Assurance mapping reveals both gaps where no line covers a risk and wasteful overlaps",
+        "Coordinated assurance delivers efficient, reliable confidence rather than duplicated effort"
+      ],
+      "example": "A bank deploying a credit decisioning model assigns the lending product team as first line owner, model risk management as second line setting validation standards and risk tiers, and internal audit as third line testing whether validations were performed and acted upon. An assurance map shows fairness testing is owned by the second line but never independently re-performed, prompting audit to add it to the annual plan.",
+      "summary": "The three lines model assigns AI risk ownership to the business, oversight to risk and compliance functions, and independent assurance to internal audit, coordinated through a shared inventory and taxonomy."
+    },
+    {
+      "order": 2,
+      "title": "An AI Risk Taxonomy Grounded in the NIST AI RMF",
+      "objectives": [
+        "Describe the four functions of the NIST AI Risk Management Framework",
+        "Build an AI risk taxonomy covering technical, governance, and societal harm categories",
+        "Use trustworthiness characteristics to structure risk identification"
+      ],
+      "body": [
+        "A practitioner needs a structured way to name and group AI risks so that controls and tests can be mapped to them consistently. The NIST AI Risk Management Framework, published in 2023 as a voluntary framework, organises practice around four core functions: Govern, Map, Measure, and Manage. Govern establishes a culture of risk management across the organisation. Map establishes context and identifies risks. Measure analyses and tracks risk using quantitative and qualitative methods. Manage prioritises and acts on risks. Govern is cross cutting and informs the other three rather than being a one time step.",
+        "The framework also defines characteristics of trustworthy AI that make a useful backbone for a taxonomy. These include validity and reliability, safety, security and resilience, accountability and transparency, explainability and interpretability, privacy enhancement, and fairness with harmful bias managed. Each characteristic suggests a family of risks: a model that is not valid produces unreliable outputs, a model lacking transparency cannot be challenged, and a model with unmanaged bias produces discriminatory outcomes. Anchoring the taxonomy to these characteristics keeps it comprehensive and recognisable to regulators.",
+        "A practical taxonomy layers these characteristics with risk sources. Data risks include poor quality, unrepresentative samples, leakage, and drift. Model risks include overfitting, instability, and adversarial vulnerability. Operational risks include integration failures, monitoring gaps, and human over reliance on automated output. Governance risks include unclear ownership, inadequate documentation, and weak escalation. Generative and agentic systems add categories such as hallucination, prompt injection, and unsafe tool use that warrant their own taxonomy branches.",
+        "The taxonomy is only useful if it drives action. Each leaf risk should connect to candidate controls, the line of defence that owns them, and the assurance activity that tests them. Maintaining the taxonomy as a living artefact, reviewed as the AI estate and threat landscape evolve, prevents it from becoming a static compliance document. Practitioners should resist inventing bespoke categories where established frameworks already provide vocabulary that auditors, regulators, and engineers can all understand."
+      ],
+      "keyPoints": [
+        "The NIST AI RMF is organised around four functions: Govern, Map, Measure, and Manage",
+        "Govern is cross cutting and informs Map, Measure, and Manage rather than running once",
+        "Trustworthiness characteristics such as validity, safety, fairness, and transparency anchor the taxonomy",
+        "Layer characteristics with risk sources across data, model, operational, and governance domains",
+        "Generative and agentic AI add risks such as hallucination, prompt injection, and unsafe tool use",
+        "Every leaf risk should link to candidate controls, an owning line, and an assurance test"
+      ],
+      "example": "An insurer maps its claims triage model against the NIST AI RMF. Under Map it identifies a bias risk tied to the fairness characteristic; under Measure it defines disparate impact metrics; under Manage it sets thresholds and remediation triggers; and Govern assigns the AI risk office to maintain the taxonomy. Audit later uses the same taxonomy to plan its fieldwork.",
+      "summary": "A sound AI risk taxonomy anchors to the NIST AI RMF functions and trustworthiness characteristics, layering them with concrete risk sources so each risk connects to controls and assurance activity."
+    },
+    {
+      "order": 3,
+      "title": "Designing Controls Across the AI Lifecycle",
+      "objectives": [
+        "Identify control points across the AI lifecycle from problem framing to retirement",
+        "Differentiate preventive, detective, and corrective controls in an AI context",
+        "Assess whether a control design is adequate before testing its operation"
+      ],
+      "body": [
+        "Effective assurance begins with control design, because a control that is poorly designed cannot operate effectively no matter how diligently it is performed. AI controls should be positioned across the lifecycle: problem framing and use case approval, data sourcing and preparation, model development and validation, deployment and change management, ongoing monitoring, and eventual retirement or replacement. Placing controls only at deployment misses risks that originate far earlier, such as an inappropriate use case or biased training data baked in during preparation.",
+        "Practitioners distinguish control types by purpose. Preventive controls stop problems before they occur, such as approval gates that block deployment without a completed validation, or data quality checks that reject unrepresentative datasets. Detective controls surface issues that have already happened, such as drift monitoring, fairness dashboards, and exception reports. Corrective controls restore a safe state, such as rollback procedures, model kill switches, and incident response playbooks. A resilient design uses all three rather than relying on detection alone.",
+        "Controls also vary by whether they are automated, manual, or hybrid. Automated controls like input validation and threshold alerts scale well and run consistently, but they can fail silently. Manual controls such as human review of high impact decisions add judgement but introduce variability and fatigue. Documentation controls, including model cards and decision logs, create the evidence trail that assurance depends on. Strong design specifies the control owner, frequency, threshold, and the action triggered when the control fires.",
+        "Before testing operation, the practitioner evaluates design adequacy: would the control, if it worked exactly as described, actually mitigate the risk it targets? A drift monitor that no one is assigned to review, or a fairness threshold set so loose it never triggers, is poorly designed even if technically running. Design assessment also checks for single points of failure and for controls that depend on assumptions, such as stable input distributions, that may not hold once the model meets real world data."
+      ],
+      "keyPoints": [
+        "Position controls across the whole lifecycle, not only at deployment",
+        "Use preventive, detective, and corrective controls together rather than relying on one type",
+        "Specify owner, frequency, threshold, and triggered action for every control",
+        "Documentation controls like model cards create the evidence trail assurance depends on",
+        "Assess design adequacy before operating effectiveness: would the control mitigate the risk if it worked as described"
+      ],
+      "example": "A retailer designs a preventive approval gate that blocks any pricing model from production until validation sign off, a detective drift monitor reviewed weekly by the data team, and a corrective rollback runbook. Audit reviews the design first and finds the drift threshold was never calibrated, so the detective control would not have fired even during a known pricing anomaly.",
+      "summary": "Strong AI control design spans the full lifecycle and combines preventive, detective, and corrective controls with clear owners and triggers, assessed for adequacy before any operating test."
+    },
+    {
+      "order": 4,
+      "title": "Testing Controls and Gathering Audit Evidence",
+      "objectives": [
+        "Select appropriate test procedures for AI controls including reperformance and inspection",
+        "Apply the qualities of sufficient and appropriate audit evidence to AI engagements",
+        "Document evidence so conclusions are supportable and repeatable"
+      ],
+      "body": [
+        "Once design is assessed, the practitioner tests operating effectiveness: did the control actually function as intended over the period under review? Common procedures include inquiry, observation, inspection of records, and reperformance. Inquiry alone is the weakest evidence and should never stand on its own. For AI, reperformance is powerful: an auditor can re-run a fairness metric on the production dataset, recompute a drift statistic, or re-execute a validation script to confirm the reported results rather than trusting a screenshot supplied by the first line.",
+        "Audit evidence must be both sufficient and appropriate. Sufficiency concerns quantity, addressed through sampling or full population testing where data volumes allow automated analysis. Appropriateness concerns relevance and reliability: evidence generated by the auditor or obtained directly from systems of record is more reliable than evidence prepared by the auditee. In AI engagements, system generated logs, version controlled code, and immutable pipeline records are typically stronger than narrative descriptions or manually maintained spreadsheets.",
+        "AI introduces distinctive evidence challenges. Models change frequently, so evidence is tied to a specific model version and date, and the practitioner must confirm which version served which decisions. Training data may be large, sensitive, or no longer retained, complicating reproduction. Vendor and third party models can be opaque, requiring reliance on the providers documentation, independent test results, or contractual attestations. The practitioner records the limitations of any evidence relied upon so conclusions are honestly scoped.",
+        "Good documentation lets another competent practitioner reach the same conclusion from the same evidence. Each test should record the control tested, the population, the sample basis, the procedure performed, the results, exceptions identified, and the conclusion. For reperformed analytics, the practitioner retains the query or script, the input data reference, and the output so the work can be reviewed and repeated. Disciplined documentation is what converts technical activity into defensible assurance."
+      ],
+      "keyPoints": [
+        "Test operating effectiveness only after design is assessed as adequate",
+        "Inquiry is the weakest evidence; reperformance and inspection of system records are far stronger",
+        "Evidence must be sufficient in quantity and appropriate in relevance and reliability",
+        "Tie AI evidence to a specific model version and date, since models change frequently",
+        "Document control, population, sample, procedure, results, exceptions, and conclusion so work is repeatable",
+        "Record limitations honestly when relying on vendor or third party model evidence"
+      ],
+      "example": "To test a fairness control, an auditor obtains the production scoring dataset directly from the data warehouse, reperforms the disparate impact calculation using an independent script, and compares the result to the first line dashboard. The numbers differ because the dashboard filtered out declined applicants, an exception the auditor documents with the dataset reference and both scripts retained.",
+      "summary": "Control testing gathers sufficient and appropriate evidence through procedures like reperformance and inspection, tied to specific model versions and documented so an independent reviewer could reach the same conclusion."
+    },
+    {
+      "order": 5,
+      "title": "Continuous Monitoring and Automated Assurance",
+      "objectives": [
+        "Explain how continuous monitoring complements periodic assurance for AI systems",
+        "Identify metrics and triggers suitable for automated control monitoring",
+        "Recognise the governance needed to make monitoring outputs actionable"
+      ],
+      "body": [
+        "AI systems degrade between audits. Data distributions shift, user behaviour changes, and upstream systems are modified, so a model validated as fair and accurate in January may behave very differently by June. Periodic point in time assurance cannot catch this drift on its own, which is why continuous monitoring has become central to AI assurance. The NIST AI RMF Manage function explicitly calls for ongoing monitoring of deployed systems, treating risk management as a continuing activity rather than a launch gate.",
+        "Continuous monitoring instruments the production environment to track performance and risk indicators in near real time. Useful signals include prediction drift, input data drift, accuracy against delayed ground truth, fairness metrics across protected groups, latency and error rates, and volumes of human overrides. Each metric needs a defined threshold and an owner who acts when it breaches. Monitoring without a response process generates dashboards no one reads; the value lies in the escalation and remediation that follows an alert.",
+        "Automated assurance lets the second and third lines test continuously rather than annually. Scripts can verify that every production model has a current validation, that no model is serving decisions without an approved owner, and that monitoring jobs actually ran. Internal audit can deploy independent analytics over the same population the first line monitors, comparing results to confirm that first line monitoring is complete and accurate. This shifts audit from sampling a moment to assessing whether the monitoring system itself is reliable.",
+        "Governance turns monitoring into assurance. Alerts must route to accountable owners, with defined service levels for triage, thresholds calibrated to balance false alarms against missed events, and a feedback loop that tunes the monitoring as the model and environment change. The practitioner also guards against monitoring theatre, where extensive dashboards create an illusion of control while no one is empowered to pause a failing model. Clear authority to intervene, including a documented path to suspend a model, is what makes monitoring meaningful."
+      ],
+      "keyPoints": [
+        "AI models drift between audits, so periodic assurance alone is insufficient",
+        "The NIST AI RMF Manage function calls for ongoing monitoring of deployed systems",
+        "Monitor drift, accuracy, fairness, error rates, and human override volumes against defined thresholds",
+        "Every metric needs an owner and a response process, not just a dashboard",
+        "Automated assurance lets audit independently re-perform monitoring over the full population",
+        "A documented authority to pause a failing model prevents monitoring theatre"
+      ],
+      "example": "A lender instruments its fraud model with daily drift and false positive monitoring, routing breaches to the model owner with a 24 hour triage standard. Internal audit runs an independent monthly script confirming every production model has monitoring enabled and a current validation, and discovers two shadow models running without either, escalating them to the risk committee.",
+      "summary": "Continuous monitoring tracks drift, accuracy, and fairness in production with owned thresholds and escalation, while automated assurance lets audit independently confirm the monitoring system itself is complete and reliable."
+    },
+    {
+      "order": 6,
+      "title": "Reporting to Risk Committees and the Board",
+      "objectives": [
+        "Structure assurance reporting that informs risk committee and board decisions",
+        "Communicate technical AI findings to non technical governance audiences",
+        "Frame conclusions, ratings, and recommendations with appropriate balance and clarity"
+      ],
+      "body": [
+        "Assurance has no value until it reaches decision makers in a form they can act on. Risk committees and boards do not need model architecture diagrams; they need to understand whether AI risk is being managed within appetite, where the material exposures lie, and what must change. Effective reporting translates technical findings into business consequences: not the model drifted, but customers in a protected group were increasingly declined without the bias being detected for three months. The reader should grasp the so what without a data science background.",
+        "A strong assurance report opens with a clear overall conclusion and rationale, then presents findings prioritised by risk rather than by the order work was performed. Each finding states the condition observed, the criteria it breached, the cause, the consequence, and a recommendation, with an agreed management action and owner. Ratings should be defined consistently so a high risk finding means the same thing across reports. Balance matters: acknowledging effective controls alongside weaknesses builds credibility and helps the committee calibrate where attention is warranted.",
+        "Reporting should connect to the risk appetite and taxonomy the organisation has adopted, so the committee sees findings against agreed tolerance rather than in isolation. Trend information across reporting periods shows whether the AI control environment is improving or deteriorating, which is often more decision relevant than a single snapshot. Where assurance relied on limited or vendor supplied evidence, the report states the limitation plainly so the committee does not over rely on a qualified conclusion.",
+        "The practitioner also manages independence and tone. Internal audit reports objectively and does not soften conclusions to avoid friction with the first line, yet recommendations should be practical and risk proportionate rather than counsels of perfection. Sensitive findings, such as a model making consequential decisions without adequate human oversight, warrant escalation outside the normal cycle. The goal is to give the board justified confidence, or justified concern, so it can direct resources and hold management accountable."
+      ],
+      "keyPoints": [
+        "Translate technical AI findings into business consequences the board can act on",
+        "Lead with a clear overall conclusion, then prioritise findings by risk",
+        "Structure each finding as condition, criteria, cause, consequence, and recommendation with an owner",
+        "Report against agreed risk appetite and show trends across periods, not just a snapshot",
+        "State evidence limitations plainly so the committee does not over rely on qualified conclusions",
+        "Maintain independence and tone: objective conclusions with practical, risk proportionate recommendations"
+      ],
+      "example": "Internal audit reports to the risk committee that the customer chatbot deployed to production without sign off from the second line and lacks any monitoring for harmful outputs. Rather than citing log file details, the report states the consequence in plain terms, rates the finding high, links it to the firms breached AI governance appetite, and escalates it for immediate management action.",
+      "summary": "Effective assurance reporting translates technical AI findings into business consequences, leads with a clear conclusion, prioritises by risk, reports against appetite, and preserves independence so the board can act."
+    },
+    {
+      "order": 7,
+      "title": "Building and Running the AI Assurance Programme",
+      "objectives": [
+        "Plan a risk based AI assurance programme aligned to the model inventory and taxonomy",
+        "Coordinate the three lines to maximise coverage and minimise duplication",
+        "Adapt the programme as regulation, technology, and the AI estate evolve"
+      ],
+      "body": [
+        "A sustainable AI assurance programme starts from a complete and trusted inventory of AI systems, since you cannot assure what you cannot see. Shadow AI, including tools adopted by business units without governance and generative features embedded in purchased software, is a persistent inventory risk. The programme uses risk tiering to focus effort: models that make consequential decisions about people, operate autonomously, or face regulatory scrutiny receive deeper and more frequent assurance than low impact internal tools, consistent with the risk based posture the NIST AI RMF promotes.",
+        "The annual plan allocates assurance across the inventory using the risk taxonomy to ensure every material risk category is covered by at least one line over a reasonable cycle. Assurance mapping coordinates the three lines so that first line self assessment, second line oversight testing, and third line independent assurance combine into coherent coverage without three functions testing the same control while a material risk goes unexamined. Reliance on the work of others, where it meets quality standards, lets internal audit extend coverage efficiently while preserving its own independent conclusion.",
+        "Capability and tooling determine whether the programme can deliver. AI assurance demands skills in data analysis, model concepts, and the relevant regulatory landscape, so teams blend auditors with technical specialists or co source expertise. Analytics platforms let assurance functions re-perform fairness and drift calculations at scale rather than sampling by hand. Investment in repeatable scripts and standard testing approaches pays back across engagements and supports the automated assurance described earlier.",
+        "Finally the programme must be adaptive. The AI estate grows, generative and agentic systems introduce new risk categories, and regulation such as the EU AI Act imposes new obligations on a rolling basis. The practitioner reviews the taxonomy, risk tiers, and plan periodically and after significant events, retiring tests that no longer add value and adding coverage for emerging risks. A programme that codifies last years risks while the technology moves on provides false comfort, so continuous learning and recalibration are part of running it well."
+      ],
+      "keyPoints": [
+        "A complete, trusted model inventory is the foundation; shadow AI is a persistent inventory risk",
+        "Use risk tiering so consequential and autonomous systems receive deeper, more frequent assurance",
+        "Coordinate the three lines through assurance mapping to maximise coverage and cut duplication",
+        "Reliance on others work, where quality permits, extends coverage while audit keeps an independent conclusion",
+        "Blend audit and technical skills and invest in reusable analytics for fairness and drift",
+        "Review taxonomy, tiers, and plan as technology and regulation such as the EU AI Act evolve"
+      ],
+      "example": "An assurance team builds a tiered AI inventory, discovers an unregistered generative tool drafting customer communications, and tiers it as high risk. The annual plan assigns first line attestations, second line oversight testing, and third line independent reperformance, mapped so coverage is complete; the plan is refreshed mid year when the EU AI Act phases in new transparency duties.",
+      "summary": "A risk based AI assurance programme rests on a trusted inventory and taxonomy, coordinates the three lines through assurance mapping, invests in technical capability, and continuously adapts as technology and regulation evolve."
+    }
+  ],
+  "questions": [
+    {
+      "text": "In the three lines model applied to AI, which function holds primary responsibility for owning and operating AI risk controls?",
+      "options": [
+        "The first line: the business units and teams that build and deploy the AI systems",
+        "The second line: model risk management and compliance functions",
+        "The third line: internal audit",
+        "The external regulator overseeing the organisation"
+      ],
+      "correctIndex": 0,
+      "explanation": "In the three lines model, the first line owns and manages risk where the work happens. The teams that build and operate AI systems hold primary responsibility for the controls, while the second line oversees and the third line provides independent assurance."
+    },
+    {
+      "text": "Why must internal audit, as the third line, avoid designing or operating the AI controls it evaluates?",
+      "options": [
+        "Because auditors lack the technical skill to design controls",
+        "To preserve the independence and objectivity required to provide unbiased assurance",
+        "Because designing controls is always the regulator's responsibility",
+        "Because control design is too time consuming for audit teams"
+      ],
+      "correctIndex": 1,
+      "explanation": "The third line provides independent and objective assurance to the governing body. If audit designed or ran the controls, it would be assuring its own work, destroying the independence that gives its conclusions value."
+    },
+    {
+      "text": "What are the four core functions of the NIST AI Risk Management Framework?",
+      "options": [
+        "Plan, Build, Test, Deploy",
+        "Identify, Protect, Detect, Respond",
+        "Govern, Map, Measure, Manage",
+        "Assess, Approve, Monitor, Retire"
+      ],
+      "correctIndex": 2,
+      "explanation": "The NIST AI RMF is organised around Govern, Map, Measure, and Manage. Govern is cross cutting and informs the other three, which respectively establish context, analyse risk, and act on it."
+    },
+    {
+      "text": "A practitioner is building an AI risk taxonomy. Which approach best anchors it to a recognised framework?",
+      "options": [
+        "Invent bespoke categories unique to the organisation so they are tailored",
+        "Structure it around the NIST AI RMF trustworthiness characteristics such as validity, fairness, security, and transparency",
+        "Copy the firm's financial fraud risk list without modification",
+        "List only generative AI risks since those are the most current"
+      ],
+      "correctIndex": 1,
+      "explanation": "Anchoring a taxonomy to the NIST AI RMF trustworthiness characteristics keeps it comprehensive and recognisable to engineers, auditors, and regulators, and each characteristic naturally suggests a family of risks to control and test."
+    },
+    {
+      "text": "Before testing whether an AI control operates effectively, what should the practitioner assess first?",
+      "options": [
+        "The control's design adequacy: whether it would mitigate the target risk if it worked as described",
+        "The cost of the control relative to its benefit",
+        "Whether the vendor has certified the control",
+        "How many staff are assigned to the control"
+      ],
+      "correctIndex": 0,
+      "explanation": "A poorly designed control cannot be effective no matter how diligently it is performed. The practitioner first assesses design adequacy, asking whether the control would mitigate the risk if it functioned exactly as described, before testing its operation."
+    },
+    {
+      "text": "Which type of audit evidence is generally the weakest and should not stand on its own for an AI control?",
+      "options": [
+        "Reperformance of a fairness calculation by the auditor",
+        "Inspection of version controlled code and system logs",
+        "Inquiry, such as a verbal or written statement from the auditee",
+        "Direct extraction of data from the system of record"
+      ],
+      "correctIndex": 2,
+      "explanation": "Inquiry is the weakest form of evidence and should never stand alone. Reperformance and inspection of system generated records are far stronger because they are more reliable and, when generated by the auditor, more objective."
+    },
+    {
+      "text": "Why is continuous monitoring considered essential for AI assurance rather than relying on periodic audits alone?",
+      "options": [
+        "Because regulators forbid any periodic point in time auditing of AI",
+        "Because AI models can drift as data and behaviour change, degrading between audits in ways a snapshot misses",
+        "Because continuous monitoring removes the need for any human oversight",
+        "Because it is cheaper than performing any control design work"
+      ],
+      "correctIndex": 1,
+      "explanation": "AI systems degrade between audits as data distributions and behaviour shift. The NIST AI RMF Manage function calls for ongoing monitoring, since periodic point in time assurance cannot catch drift that emerges between reviews."
+    },
+    {
+      "text": "A continuous monitoring dashboard tracks model drift and fairness but no one is assigned to act on breaches. What is the main weakness?",
+      "options": [
+        "The metrics chosen are inherently invalid",
+        "Monitoring without an owner and response process produces dashboards no one acts on, creating monitoring theatre",
+        "Continuous monitoring should never include fairness metrics",
+        "The dashboard duplicates the work of the regulator"
+      ],
+      "correctIndex": 1,
+      "explanation": "Monitoring delivers value only through the escalation and remediation that follow an alert. Without an accountable owner, defined thresholds, and authority to intervene, dashboards create an illusion of control known as monitoring theatre."
+    },
+    {
+      "text": "When reporting AI assurance findings to a board risk committee, which practice is most effective?",
+      "options": [
+        "Provide detailed model architecture and log file extracts so the committee can judge the technical depth",
+        "Translate findings into business consequences, lead with a clear conclusion, and prioritise findings by risk",
+        "Report findings strictly in the order the audit work was performed",
+        "Omit effective controls and report only weaknesses to save time"
+      ],
+      "correctIndex": 1,
+      "explanation": "Boards need to act, not read architecture diagrams. Effective reporting translates technical findings into business consequences, opens with a clear conclusion, and prioritises findings by risk while acknowledging effective controls to maintain balance and credibility."
+    },
+    {
+      "text": "When planning a risk based AI assurance programme, what is the foundational first step and why?",
+      "options": [
+        "Purchase an analytics platform before doing anything else",
+        "Establish a complete, trusted model inventory, because you cannot assure systems you cannot see",
+        "Test every model to the same depth regardless of impact",
+        "Wait until regulation is finalised before assessing any models"
+      ],
+      "correctIndex": 1,
+      "explanation": "A programme rests on a complete and trusted inventory, since unseen shadow AI cannot be assured. Risk tiering then focuses deeper, more frequent assurance on consequential and autonomous systems, consistent with the risk based posture the NIST AI RMF promotes."
+    }
+  ]
+}

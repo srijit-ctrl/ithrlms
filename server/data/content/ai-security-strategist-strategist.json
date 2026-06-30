@@ -1,0 +1,309 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "order": 1,
+      "title": "Framing the AI Security Strategy and Charter",
+      "objectives": [
+        "Define the scope and mission of an enterprise AI security program",
+        "Connect AI security objectives to business risk appetite and regulatory drivers",
+        "Establish a charter that grants authority, funding, and decision rights"
+      ],
+      "body": [
+        "An AI security strategy begins with a clear statement of why the program exists and what it protects. Unlike generic cybersecurity, AI security must address risks that emerge from data, models, and probabilistic behavior, not just networks and endpoints. The strategist articulates a mission that covers the full lifecycle: data sourcing, training, deployment, monitoring, and decommissioning. Without an explicit scope, programs drift toward whatever incident is loudest, leaving systemic exposures untouched. A good charter names the assets, threats, and outcomes the program owns and, just as importantly, what it does not.",
+        "Strategy must be anchored to business value and risk appetite rather than technology fashion. The strategist translates board-level tolerance for loss, regulatory penalty, and reputational harm into concrete guardrails for AI use. This means mapping which use cases are encouraged, which require heightened review, and which are prohibited. By tying security posture to revenue-generating or mission-critical AI, the strategist earns the credibility to influence funding decisions and avoids being seen as a brake on innovation.",
+        "Regulatory and standards drivers shape the charter from the outset. The NIST AI Risk Management Framework offers a voluntary, outcome-oriented structure built around four functions: Govern, Map, Measure, and Manage. ISO/IEC 42001 provides a certifiable management-system standard for artificial intelligence, comparable in structure to ISO/IEC 27001 for information security. A strategist references these deliberately so the program speaks a recognized language to auditors, regulators, and partners, and so investments map to defensible, externally validated expectations.",
+        "Finally, the charter must grant real authority. A program with responsibility but no decision rights cannot stop a risky launch or compel remediation. The strategist secures executive sponsorship, a reporting line that reaches senior leadership, and explicit escalation paths. The charter should define how the program intersects with existing security, privacy, legal, and data-governance functions to prevent duplicated effort and turf conflict. Authority paired with clear boundaries is what turns a strategy document into an operating capability."
+      ],
+      "keyPoints": [
+        "AI security covers the full lifecycle from data sourcing through decommissioning, not just infrastructure",
+        "Scope and mission must be explicit so the program addresses systemic risk rather than only loud incidents",
+        "Strategy is anchored to business risk appetite and value, not technology trends",
+        "NIST AI RMF (Govern, Map, Measure, Manage) and ISO/IEC 42001 give the charter recognized language",
+        "Real authority, executive sponsorship, and escalation rights distinguish a strategy from a wish list"
+      ],
+      "example": "A global insurer launches an AI security program after deploying claims-triage models. The strategist drafts a charter scoping the program to all models that influence underwriting or claims decisions, names the CISO as sponsor, references NIST AI RMF as the operating framework and ISO/IEC 42001 as the target certification, and secures the right to block any model release that lacks a completed risk assessment.",
+      "summary": "An AI security strategy starts with an explicit charter that defines scope, ties posture to business risk appetite, references recognized frameworks, and grants genuine authority to act."
+    },
+    {
+      "order": 2,
+      "title": "Designing the AI Security Operating Model",
+      "objectives": [
+        "Define roles, responsibilities, and decision rights across the AI lifecycle",
+        "Choose between centralized, federated, and hybrid operating structures",
+        "Embed security accountability into existing teams using a RACI approach"
+      ],
+      "body": [
+        "An operating model turns strategy into repeatable execution by deciding who does what. For AI security the strategist must clarify ownership across data scientists, ML engineers, platform teams, security operations, privacy, and legal. Ambiguity here is the most common cause of program failure: everyone assumes someone else is testing the model for adversarial robustness or reviewing the training data for poisoning. A documented RACI that names who is responsible, accountable, consulted, and informed for each lifecycle stage removes that ambiguity and makes gaps visible.",
+        "Structure choice is consequential. A centralized model concentrates expertise in one AI security team that reviews everything, giving consistency but creating bottlenecks at scale. A federated model embeds security specialists within product teams, improving speed and context but risking inconsistent standards. Most mature enterprises adopt a hybrid: a small central function owns policy, tooling, and high-risk reviews, while embedded champions handle day-to-day security work. The strategist selects the structure that fits the organization's size, AI maturity, and risk profile.",
+        "The operating model must integrate with, not replace, existing functions. Identity, vulnerability management, incident response, and data governance already exist; AI security extends them with model-specific concerns such as prompt injection, model theft, and data leakage through outputs. The strategist defines interfaces so an AI incident routes through the established security operations center with the right enrichment, and so model risk feeds into enterprise risk registers rather than living in a silo.",
+        "People and skills underpin everything. AI security demands a blend of machine-learning literacy and traditional security judgment that few individuals possess fully. The strategist plans for capability building through training, hiring, and partnerships, and defines a community of practice so embedded champions stay aligned. A realistic operating model accounts for scarce talent by automating routine checks and reserving expert attention for novel or high-impact decisions."
+      ],
+      "keyPoints": [
+        "A documented RACI across the AI lifecycle removes the ambiguity that causes program failure",
+        "Centralized models give consistency, federated models give speed, hybrid balances both",
+        "AI security extends existing functions rather than replacing identity, vulnerability, and incident capabilities",
+        "Model-specific risks such as prompt injection and model theft must route into established security operations",
+        "Scarce AI security talent is conserved by automating routine checks and building a community of practice"
+      ],
+      "example": "A retail bank adopts a hybrid operating model: a central AI security team of six owns the model-review gate and tooling, while each of twelve product squads names an embedded security champion. A RACI document makes the central team accountable for high-risk model approvals and the champions responsible for routine threat modeling, with the security operations center informed of every production deployment.",
+      "summary": "The operating model assigns clear roles through a RACI, selects a centralized, federated, or hybrid structure, and integrates AI-specific risks into existing security functions while building scarce talent deliberately."
+    },
+    {
+      "order": 3,
+      "title": "AI Security Policy and Standards Architecture",
+      "objectives": [
+        "Distinguish policies, standards, procedures, and guidelines for AI use",
+        "Author acceptable-use and model-development policies that are enforceable",
+        "Map policy controls to NIST AI RMF and ISO/IEC 42001 requirements"
+      ],
+      "body": [
+        "Policy is the connective tissue that makes strategy actionable and auditable. The strategist builds a layered document architecture: high-level policies state intent and mandate compliance, standards specify measurable requirements, procedures give step-by-step instructions, and guidelines offer recommended practice. Conflating these layers produces documents that are either too vague to enforce or too detailed to maintain. An AI acceptable-use policy, for example, states that employees may not enter regulated data into unapproved generative tools, while a paired standard lists the approved tools and the data classifications permitted in each.",
+        "Effective AI policy addresses concerns absent from traditional IT policy. It must cover data provenance and consent for training, model documentation and transparency, human oversight requirements for consequential decisions, and rules for using third-party foundation models. The strategist writes these to be enforceable, meaning each requirement has an owner, a verification method, and a consequence for violation. A policy that cannot be checked or enforced erodes the credibility of the entire program.",
+        "Policies should map explicitly to recognized frameworks so the organization can demonstrate diligence. The NIST AI RMF Govern function calls for policies, accountability structures, and a culture of risk management; the strategist points each policy at the relevant subcategories. ISO/IEC 42001 requires a documented AI management system with defined objectives, controls, and continual improvement, so policies become the evidence base for certification. This mapping turns scattered documents into a coherent, defensible control set.",
+        "Policy lives only if it is governed. The strategist establishes ownership, a review cadence, version control, and an exception process with time-bound, risk-accepted approvals. Exceptions are inevitable; an undocumented exception is a hidden risk, while a documented one is a managed decision. Communication and training ensure that the people bound by policy actually understand it, because a policy unknown to its audience provides legal cover but no real protection."
+      ],
+      "keyPoints": [
+        "Layer documents as policies, standards, procedures, and guidelines to keep them enforceable and maintainable",
+        "AI policy must cover data provenance, transparency, human oversight, and third-party model use",
+        "Every requirement needs an owner, a verification method, and a consequence to be enforceable",
+        "Map policies to NIST AI RMF Govern subcategories and ISO/IEC 42001 management-system clauses",
+        "A governed exception process converts inevitable deviations from hidden risk into managed decisions"
+      ],
+      "example": "A healthcare provider issues a three-tier policy set: an AI acceptable-use policy prohibiting protected health information in public chatbots, a model-development standard requiring documented training-data lineage and bias testing, and a procedure for the quarterly review of approved tools. Each requirement is mapped to NIST AI RMF Govern subcategories and ISO/IEC 42001 controls, with a logged exception process for time-limited pilots.",
+      "summary": "A layered, enforceable policy architecture covering AI-specific concerns and mapped to NIST AI RMF and ISO/IEC 42001 turns strategy into auditable, governed practice."
+    },
+    {
+      "order": 4,
+      "title": "AI Risk Governance and Assessment",
+      "objectives": [
+        "Operationalize the NIST AI RMF Map, Measure, and Manage functions",
+        "Build a tiered risk-assessment process proportional to use-case impact",
+        "Integrate AI risk into enterprise risk management and risk registers"
+      ],
+      "body": [
+        "Risk governance is where the program decides which AI systems deserve scrutiny and how much. The strategist operationalizes the NIST AI RMF Map function by cataloging AI use cases and their context: purpose, data, affected stakeholders, and potential harms. Mapping surfaces risks that are easy to miss, such as a low-revenue model that nonetheless makes decisions affecting protected groups. A complete inventory is the prerequisite for everything else; you cannot govern systems you have not identified, and shadow AI is a pervasive blind spot.",
+        "Assessment must be proportional. A tiered model classifies use cases by impact, for example minimal, limited, high, and unacceptable, and applies controls accordingly. A spam filter warrants light review; a model influencing credit, hiring, or clinical decisions demands deep assessment of robustness, bias, explainability, and security. This proportionality, echoed in the NIST AI RMF Measure function and in emerging regulation, concentrates scarce expert effort where harm potential is greatest and prevents the program from drowning in low-value reviews.",
+        "Measurement requires concrete techniques. The strategist defines how teams test for adversarial robustness, data poisoning, model inversion, membership inference, and prompt injection, and how they evaluate fairness and drift over time. The Measure function emphasizes that risks should be assessed with appropriate methods and metrics, tracked rather than assumed. Where quantitative measures are immature, structured qualitative judgment and red-teaming fill the gap, with results documented so they inform the Manage function.",
+        "Governance closes the loop by managing identified risks: prioritizing them, assigning treatments, and accepting residual risk at the right level of authority. The NIST AI RMF Manage function stresses allocating resources to the highest risks and monitoring continuously. The strategist integrates AI risk into the enterprise risk register so it competes for attention alongside financial and operational risks, and ensures a named accountable owner signs off on each material residual risk rather than letting it accumulate unowned."
+      ],
+      "keyPoints": [
+        "The Map function requires a complete AI inventory, including discovery of shadow AI",
+        "Tiered, impact-proportional assessment concentrates effort on high-harm use cases",
+        "The Measure function demands concrete testing for robustness, poisoning, inversion, drift, and bias",
+        "Red-teaming and structured qualitative judgment cover gaps where metrics are immature",
+        "The Manage function prioritizes treatments and requires accountable sign-off on residual risk"
+      ],
+      "example": "A telecom maps its AI inventory and finds forty models, eight of which influence customer pricing. Using a four-tier scheme, it subjects those eight to deep assessment including adversarial robustness testing and bias evaluation, logs the results against NIST AI RMF Measure outcomes, and records each residual risk in the enterprise risk register with a vice-president sign-off.",
+      "summary": "Risk governance applies the NIST AI RMF Map, Measure, and Manage functions through a complete inventory, impact-proportional assessment, concrete testing, and accountable residual-risk ownership in the enterprise register."
+    },
+    {
+      "order": 5,
+      "title": "Security Architecture for AI Systems",
+      "objectives": [
+        "Apply defense-in-depth across the AI pipeline and supporting infrastructure",
+        "Design controls against AI-specific threats such as prompt injection and model theft",
+        "Establish secure MLOps, secrets management, and output handling patterns"
+      ],
+      "body": [
+        "Security architecture for AI extends established principles to a new attack surface. The strategist applies defense-in-depth across the pipeline: securing data ingestion and storage, hardening training environments, protecting model artifacts, and controlling inference endpoints. Each stage has distinct exposures. Training data can be poisoned, model weights can be stolen, and inference APIs can be abused to extract training data or manipulate outputs. A reference architecture documents the controls expected at every layer so teams build securely by default rather than retrofitting protection.",
+        "AI introduces threats with no clean traditional analog. Prompt injection lets attackers smuggle instructions through user input or retrieved content to subvert a model's behavior, a risk amplified in agentic systems with tool access. Model inversion and membership inference can leak sensitive training data through outputs. Model theft via repeated querying can reconstruct proprietary models. The strategist ensures the architecture includes input validation, output filtering, rate limiting, least-privilege tool permissions, and isolation between untrusted content and privileged actions.",
+        "Secure MLOps is the backbone of trustworthy AI delivery. The strategist mandates that pipelines enforce code and data version control, signed and scanned model artifacts, reproducible builds, and a software bill of materials extended to model and dataset dependencies. Secrets such as API keys and model-serving credentials must be managed through a vault rather than embedded in notebooks. These controls give the program the provenance and integrity guarantees needed to investigate incidents and prove compliance.",
+        "Output and integration handling deserve dedicated attention because models increasingly act, not just answer. When a model triggers downstream actions, drafts emails, executes code, or calls APIs, its output becomes an input to other systems and must be treated as untrusted. The strategist designs for human-in-the-loop checkpoints on consequential actions, strict authorization on any tools the model can invoke, and logging that captures prompts, responses, and actions for monitoring and forensics."
+      ],
+      "keyPoints": [
+        "Defense-in-depth spans data ingestion, training, model artifacts, and inference endpoints",
+        "Prompt injection, model inversion, membership inference, and model theft have no clean traditional analog",
+        "Treat model output as untrusted input when it triggers downstream actions or tool calls",
+        "Secure MLOps requires version control, signed artifacts, an extended SBOM, and vault-based secrets",
+        "Consequential actions need human-in-the-loop checkpoints, least-privilege tools, and full logging"
+      ],
+      "example": "A software firm building a customer-support agent isolates retrieved documents from the system prompt to blunt prompt injection, signs and scans every model artifact in its MLOps pipeline, stores serving credentials in a secrets vault, and requires human approval before the agent issues any refund, with all prompts and tool calls logged for monitoring.",
+      "summary": "AI security architecture applies defense-in-depth across the pipeline, counters AI-specific threats like prompt injection and model theft, and enforces secure MLOps with strict handling of model outputs that trigger actions."
+    },
+    {
+      "order": 6,
+      "title": "Vendor and Third-Party AI Risk Management",
+      "objectives": [
+        "Assess the security and governance posture of AI vendors and foundation models",
+        "Define contractual controls for data use, model behavior, and incident notification",
+        "Manage the extended AI supply chain including datasets, models, and plugins"
+      ],
+      "body": [
+        "Most enterprises consume far more AI than they build, so third-party risk often dominates the exposure. The strategist establishes a due-diligence process for AI vendors that goes beyond a generic security questionnaire to probe how training data is sourced and protected, whether customer data is used to train shared models, how the vendor handles prompt and output logging, and what assurances exist around model updates that could change behavior unexpectedly. The goal is to understand inherited risk before it becomes the enterprise's own.",
+        "Foundation models and managed AI services bring opacity that complicates assessment. The provider controls the model, its training data, and its update cadence, leaving the customer with limited visibility. The strategist compensates by requiring transparency artifacts such as model cards, documented evaluation results, and a clear shared-responsibility model that states which security controls belong to the provider and which remain the customer's duty. Where transparency is insufficient, the strategist treats the model as a higher-risk component and compensates with stronger surrounding controls.",
+        "Contracts are a primary control surface for third-party AI. The strategist works with legal to secure terms covering data ownership and deletion, prohibitions on training shared models with the enterprise's data unless explicitly permitted, security and compliance commitments, audit or attestation rights, and timely breach and incident notification. Provisions addressing model performance, harmful-output liability, and the right to exit are increasingly important as AI moves into critical workflows.",
+        "The AI supply chain extends well past the headline vendor. Pretrained models from public hubs, open datasets, embedding services, vector databases, and agent plugins each introduce risk, including tampered weights, poisoned data, and malicious extensions. The strategist maintains an inventory of these dependencies, applies provenance and integrity checks, and aligns the approach with frameworks such as NIST AI RMF, which treats third-party and supply-chain risk as a core governance concern requiring ongoing monitoring rather than a one-time check."
+      ],
+      "keyPoints": [
+        "Third-party AI often dominates enterprise exposure because most organizations buy more than they build",
+        "Probe vendor data sourcing, training-data reuse, logging practices, and model-update behavior",
+        "Foundation-model opacity is offset by model cards, evaluation evidence, and a clear shared-responsibility model",
+        "Contracts must cover data deletion, no-train clauses, audit rights, and incident notification",
+        "The AI supply chain includes datasets, pretrained models, vector stores, and plugins requiring provenance checks"
+      ],
+      "example": "A manufacturer adopting a vendor copilot requires the vendor to confirm in writing that enterprise prompts will not train shared models, supply a model card and evaluation results, accept a forty-eight-hour breach-notification clause, and grant annual audit rights. Internally it inventories every pretrained model and plugin the tool depends on and verifies their provenance before approval.",
+      "summary": "Third-party AI risk management combines deep vendor due diligence, transparency artifacts for opaque foundation models, strong contractual controls, and provenance checks across the extended AI supply chain."
+    },
+    {
+      "order": 7,
+      "title": "Metrics, Monitoring, and Continuous Assurance",
+      "objectives": [
+        "Define leading and lagging metrics that measure AI security program health",
+        "Design continuous monitoring for model behavior, drift, and abuse",
+        "Use metrics to drive maturity improvement and the NIST AI RMF Manage loop"
+      ],
+      "body": [
+        "Metrics turn an AI security program from an act of faith into a managed discipline. The strategist selects measures that answer real questions: Are we discovering AI use before it ships? Are high-risk models assessed on time? How quickly are findings remediated? A balanced set mixes leading indicators that predict future risk, such as coverage of model inventory and percentage of systems with completed assessments, with lagging indicators such as the number of AI security incidents and their impact. Vanity metrics that count activity without revealing risk should be avoided.",
+        "Continuous monitoring is essential because AI systems change after deployment in ways traditional software does not. Models drift as input distributions shift, and behavior can degrade silently without code changes. The strategist instruments production systems to watch for data and concept drift, anomalous query patterns that suggest model extraction or abuse, spikes in refusal or jailbreak attempts, and unexpected output distributions. This monitoring feeds detection capabilities so an AI incident is caught in production rather than discovered through customer harm.",
+        "Assurance ties measurement to independent confidence. The strategist schedules periodic control testing, red-team exercises against priority models, and internal audits that verify policies are followed in practice, not just on paper. Where the organization pursues ISO/IEC 42001 certification, these activities generate the evidence of operation and continual improvement the standard requires. External attestations and benchmarking against frameworks give stakeholders justified confidence that the program works as designed.",
+        "Metrics exist to drive action, embodying the NIST AI RMF Manage function's emphasis on continuous monitoring and improvement. The strategist reviews trends on a regular cadence, identifies where the program is falling short, and reallocates resources accordingly. A maturity model lets the organization track progress over time and set realistic next-stage targets. The discipline is a closed loop: measure, interpret, act, and remeasure, so the program improves deliberately rather than reacting to whatever incident happens last."
+      ],
+      "keyPoints": [
+        "Balance leading indicators like inventory coverage with lagging indicators like incident count and impact",
+        "Avoid vanity metrics that count activity without revealing actual risk",
+        "Continuous monitoring watches for drift, model-extraction patterns, jailbreak attempts, and output anomalies",
+        "Independent assurance through audits and red-teaming generates ISO/IEC 42001 evidence of operation",
+        "Metrics close the NIST AI RMF Manage loop: measure, interpret, act, and remeasure to drive maturity"
+      ],
+      "example": "A logistics company tracks four headline metrics monthly: model-inventory coverage, percentage of high-risk models with current assessments, mean time to remediate AI findings, and AI security incidents by severity. Production models are monitored for drift and extraction-style query patterns, and a quarterly red-team plus annual internal audit supply the evidence stream for its ISO/IEC 42001 certification.",
+      "summary": "A balanced metric set, continuous behavioral monitoring, and independent assurance close the NIST AI RMF Manage loop and drive deliberate maturity improvement, supplying evidence for ISO/IEC 42001."
+    },
+    {
+      "order": 8,
+      "title": "Board Reporting and Executive Communication",
+      "objectives": [
+        "Translate technical AI risk into business language for the board and executives",
+        "Structure recurring reporting that supports oversight and decision-making",
+        "Use reporting to secure investment and demonstrate due diligence and accountability"
+      ],
+      "body": [
+        "Boards and executives govern AI risk but rarely understand its technical detail, so the strategist's job is translation. Effective reporting frames AI security in terms of business outcomes: potential financial loss, regulatory penalty, reputational damage, and impact on strategic objectives. Rather than reporting that a model failed an adversarial-robustness test, the strategist explains that a customer-facing model could be manipulated to approve fraudulent transactions, the likely exposure, and what is being done about it. This framing lets non-technical leaders exercise genuine oversight.",
+        "Structure and consistency make reporting useful over time. The strategist establishes a recurring format that covers the current risk posture, significant changes since the last report, status of major initiatives, notable incidents and lessons learned, and decisions or resources required from leadership. A stable structure lets the board track trends and hold the program accountable to commitments. Dashboards and a small number of well-chosen metrics convey posture at a glance, with supporting detail available on request for those who want it.",
+        "Reporting is also how the program earns support and demonstrates diligence. By presenting risk clearly and proposing proportionate investment, the strategist helps leadership make informed trade-offs between risk reduction and cost. Documented board engagement on AI risk is increasingly an expectation of regulators and a marker of sound governance; referencing recognized frameworks such as the NIST AI RMF and progress toward ISO/IEC 42001 certification shows the organization is following accepted practice rather than improvising. This record matters if an incident later draws scrutiny.",
+        "Honesty and calibration build the credibility the program depends on. The strategist reports bad news promptly and avoids both alarmism and false reassurance, because a board that catches the program hiding problems will lose trust permanently. Communication should be tailored to the audience: a board audit committee wants assurance and trend lines, while the executive team may need operational detail to make resourcing calls. The strategist aligns the message to each audience's decisions without distorting the underlying truth."
+      ],
+      "keyPoints": [
+        "Translate technical findings into financial, regulatory, reputational, and strategic business impact",
+        "Use a stable recurring report structure so the board can track trends and hold the program accountable",
+        "Clear risk presentation with proportionate proposals earns investment and informed trade-offs",
+        "Documented board engagement and framework references demonstrate due diligence to regulators",
+        "Calibrated honesty, neither alarmist nor falsely reassuring, sustains long-term credibility"
+      ],
+      "example": "An energy company's strategist delivers a quarterly board report with a one-page risk dashboard showing posture trends, a plain-language summary of the top three AI risks framed as potential financial and regulatory exposure, progress toward ISO/IEC 42001 certification against the NIST AI RMF, and a single funding request for monitoring tooling justified by the risk it reduces.",
+      "summary": "Board reporting translates technical AI risk into business impact through a consistent, honest, audience-tailored structure that supports oversight, earns investment, and documents due diligence against recognized frameworks."
+    }
+  ],
+  "questions": [
+    {
+      "text": "What is the most important characteristic that distinguishes an AI security program charter from a mere strategy document?",
+      "options": [
+        "It lists every machine-learning algorithm the organization uses",
+        "It grants real authority, executive sponsorship, and escalation rights to act",
+        "It is written exclusively by the data science team",
+        "It focuses only on network and endpoint defenses"
+      ],
+      "correctIndex": 1,
+      "explanation": "A charter becomes an operating capability when it grants genuine decision rights, executive sponsorship, and escalation paths. Responsibility without authority cannot stop a risky launch or compel remediation, so authority paired with clear boundaries is what separates a charter from a wish list."
+    },
+    {
+      "text": "The NIST AI Risk Management Framework is organized around which four core functions?",
+      "options": [
+        "Plan, Do, Check, Act",
+        "Identify, Protect, Detect, Respond",
+        "Govern, Map, Measure, Manage",
+        "Predict, Prevent, Detect, Recover"
+      ],
+      "correctIndex": 2,
+      "explanation": "The NIST AI RMF is structured around Govern, Map, Measure, and Manage. Govern establishes culture and accountability, Map provides context and inventory, Measure assesses risks with appropriate methods, and Manage prioritizes and treats risks while monitoring continuously."
+    },
+    {
+      "text": "What does ISO/IEC 42001 provide for organizations using artificial intelligence?",
+      "options": [
+        "A certifiable AI management-system standard, comparable in structure to ISO/IEC 27001",
+        "A list of banned AI algorithms",
+        "A free open-source large language model",
+        "A mandatory government licensing scheme for all AI"
+      ],
+      "correctIndex": 0,
+      "explanation": "ISO/IEC 42001 is a certifiable management-system standard for artificial intelligence, structured similarly to ISO/IEC 27001 for information security. It requires a documented management system with objectives, controls, and continual improvement, providing an externally validated basis for AI governance."
+    },
+    {
+      "text": "In designing an AI security operating model, what is the primary advantage of a hybrid structure over a purely centralized one?",
+      "options": [
+        "It eliminates the need for any policy or standards",
+        "It removes all AI risk automatically",
+        "It balances consistent central standards with the speed and context of embedded champions",
+        "It guarantees the organization never needs security talent"
+      ],
+      "correctIndex": 2,
+      "explanation": "A hybrid model keeps a small central function owning policy, tooling, and high-risk reviews for consistency, while embedded champions handle day-to-day work for speed and context. This balances the bottleneck risk of full centralization against the inconsistency risk of full federation."
+    },
+    {
+      "text": "Within a layered policy architecture, what is the correct relationship between a policy and a standard?",
+      "options": [
+        "They are identical and interchangeable terms",
+        "A policy states intent and mandates compliance, while a standard specifies measurable requirements",
+        "A standard is always vaguer than a policy",
+        "A policy gives step-by-step instructions while a standard states intent"
+      ],
+      "correctIndex": 1,
+      "explanation": "In a layered architecture, policies state high-level intent and mandate compliance, standards specify measurable requirements, procedures give step-by-step instructions, and guidelines offer recommended practice. Conflating these layers produces documents that are either unenforceable or unmaintainable."
+    },
+    {
+      "text": "Why is a complete AI inventory described as the prerequisite for the NIST AI RMF Map function?",
+      "options": [
+        "Because regulators require exactly one hundred entries",
+        "Because you cannot govern systems you have not identified, and shadow AI is a pervasive blind spot",
+        "Because inventories replace the need for any risk assessment",
+        "Because only the most expensive models carry any risk"
+      ],
+      "correctIndex": 1,
+      "explanation": "The Map function requires cataloging AI use cases and their context. A complete inventory, including discovery of shadow AI, is foundational because unidentified systems cannot be assessed or governed, and even low-revenue models can carry significant harm potential."
+    },
+    {
+      "text": "An attacker smuggles hidden instructions through user input or retrieved content to subvert a model's intended behavior. Which AI-specific threat is this?",
+      "options": [
+        "Prompt injection",
+        "A standard SQL injection only",
+        "A denial-of-service flood",
+        "A physical theft of a server"
+      ],
+      "correctIndex": 0,
+      "explanation": "Prompt injection lets attackers smuggle instructions through user input or retrieved content to subvert a model's behavior, a risk amplified in agentic systems with tool access. Defenses include isolating untrusted content from privileged actions, input validation, and least-privilege tool permissions."
+    },
+    {
+      "text": "When a model's output triggers downstream actions such as calling an API or executing code, how should that output be treated?",
+      "options": [
+        "As fully trusted because the model generated it",
+        "As untrusted input requiring authorization controls and human-in-the-loop checkpoints for consequential actions",
+        "As irrelevant to security",
+        "As something only the legal team should review"
+      ],
+      "correctIndex": 1,
+      "explanation": "When a model acts rather than merely answers, its output becomes an input to other systems and must be treated as untrusted. The architecture should enforce strict authorization on invokable tools, human-in-the-loop checkpoints on consequential actions, and full logging of prompts, responses, and actions."
+    },
+    {
+      "text": "What is a critical contractual control to secure when adopting a third-party foundation model or AI service?",
+      "options": [
+        "A promise that the vendor will never release software updates",
+        "A clause prohibiting training of shared models with enterprise data unless explicitly permitted, plus timely incident notification",
+        "A requirement that the enterprise hand over all its source code",
+        "A guarantee that the model will never produce any output"
+      ],
+      "correctIndex": 1,
+      "explanation": "Contracts are a primary control surface for third-party AI. Key terms include data ownership and deletion, prohibitions on training shared models with enterprise data unless permitted, audit or attestation rights, and timely breach and incident notification, since foundation-model opacity limits other visibility."
+    },
+    {
+      "text": "What principle should guide how an AI security program reports risk to the board of directors?",
+      "options": [
+        "Use as much technical jargon as possible to demonstrate expertise",
+        "Only report good news to maintain confidence",
+        "Translate technical findings into business impact with calibrated honesty, neither alarmist nor falsely reassuring",
+        "Avoid referencing any external frameworks to keep reports short"
+      ],
+      "correctIndex": 2,
+      "explanation": "Boards govern AI risk but rarely grasp technical detail, so findings must be translated into financial, regulatory, reputational, and strategic impact. Calibrated honesty sustains credibility, and referencing frameworks such as the NIST AI RMF and progress toward ISO/IEC 42001 demonstrates documented due diligence."
+    }
+  ]
+}
