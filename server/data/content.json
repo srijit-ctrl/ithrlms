@@ -1,0 +1,341 @@
+{
+  "ai-foundation-fundamentals": {
+    "version": 1,
+    "modules": [
+      {
+        "order": 1,
+        "title": "What AI Is (and Isn't)",
+        "objectives": ["Define artificial intelligence in plain language", "Distinguish AI from ordinary software and from science-fiction myths", "Recognise everyday systems that already use AI"],
+        "keyPoints": ["AI is software that performs tasks we associate with human intelligence, such as recognising patterns, predicting, and generating language.", "Most real-world AI is narrow: it does one kind of task well, not everything.", "AI learns from data and probabilities rather than following only fixed, hand-written rules.", "AI does not understand or feel; it produces statistically likely outputs that can look intelligent."],
+        "example": "Your email spam filter is AI: it learned from millions of labelled emails which patterns signal spam, instead of a person writing a rule for every possible spam message.",
+        "summary": "AI is pattern-based software that mimics aspects of human intelligence. Today's AI is narrow and capable, but it is not conscious or all-knowing."
+      },
+      {
+        "order": 2,
+        "title": "How Machine Learning Learns",
+        "objectives": ["Explain how a model learns from examples (training)", "Describe the role of data quality", "Understand why models can be wrong or biased"],
+        "keyPoints": ["Machine learning finds patterns in training data and uses them to make predictions on new data.", "Garbage in, garbage out: biased or incomplete data produces biased or unreliable models.", "Models are evaluated on accuracy, but high accuracy does not guarantee fairness or safety.", "A model generalises from the past, so it can fail when the world changes (data drift)."],
+        "example": "A model trained only on photos taken in daylight may perform poorly at night, because its training data never represented that situation.",
+        "summary": "Machine learning generalises patterns from data. The quality and representativeness of that data largely determines how trustworthy the model is."
+      },
+      {
+        "order": 3,
+        "title": "Generative AI & Large Language Models",
+        "objectives": ["Describe what generative AI does", "Explain at a high level how an LLM produces text", "Define tokens, context window, and hallucination"],
+        "keyPoints": ["Generative AI creates new content (text, images, audio, code) rather than only classifying or predicting.", "A Large Language Model (LLM) predicts the next token (a piece of a word) over and over to produce fluent text.", "The context window is how much text the model can consider at once; older text outside it is forgotten.", "Hallucination is when a model produces confident but false information; outputs must be verified."],
+        "example": "Ask an LLM for a citation and it may invent a real-looking but non-existent source. The text is plausible because the model optimises for likely wording, not truth.",
+        "summary": "Generative AI and LLMs produce fluent new content by predicting likely tokens. They are powerful but can hallucinate, so human verification is essential."
+      },
+      {
+        "order": 4,
+        "title": "Using AI Tools Effectively",
+        "objectives": ["Write clearer instructions to AI tools", "Choose the right tool for a task", "Keep a human in the loop"],
+        "keyPoints": ["Give context, a clear task, and the desired format to get better results.", "Treat AI as a fast junior assistant: helpful for drafts, summaries, and ideas, but check its work.", "Break big requests into steps; review and refine outputs iteratively.", "Never paste confidential or personal data into tools that are not approved for it."],
+        "example": "Instead of 'write about marketing', try 'write a 150-word LinkedIn post for small-business owners about email marketing, friendly tone, one call to action'.",
+        "summary": "You get the most from AI by giving clear context and format, working iteratively, and always reviewing outputs before relying on them."
+      },
+      {
+        "order": 5,
+        "title": "Responsible & Ethical AI",
+        "objectives": ["Identify common AI risks", "Apply basic responsible-use practices", "Know when to escalate or seek oversight"],
+        "keyPoints": ["Key risks: bias, privacy violations, misinformation, over-reliance, and lack of transparency.", "Protect privacy by minimising and anonymising data; follow your organisation's policies.", "Be transparent that AI was used where it matters, and keep accountability with a person.", "High-impact decisions (hiring, lending, health) need extra scrutiny and human oversight."],
+        "example": "An AI resume screener that learned from past hiring may favour one group; auditing for bias and keeping a human reviewer helps prevent unfair outcomes.",
+        "summary": "Responsible AI means actively managing bias, privacy, and accuracy risks, being transparent, and keeping humans accountable for important decisions."
+      },
+      {
+        "order": 6,
+        "title": "AI at Work: Putting It Together",
+        "objectives": ["Spot good AI use cases in your own work", "Estimate value and risk of a use case", "Plan a small, safe first project"],
+        "keyPoints": ["Good first use cases are repetitive, text-heavy, low-risk, and easy to verify.", "Estimate value by time saved or quality gained; estimate risk by impact if the AI is wrong.", "Start small, measure results, and expand what works.", "Skills compound: combine prompting, tool choice, and responsible use for real impact."],
+        "example": "Drafting first-pass replies to common customer questions is a great starter: high volume, easy to review, and low risk when a human approves each send.",
+        "summary": "Begin with repetitive, low-risk, easy-to-verify tasks, measure the benefit, and scale up responsibly. That is how AI literacy turns into real value."
+      }
+    ],
+    "questions": [
+      {"text": "Which best describes today's artificial intelligence?", "options": ["Narrow software that performs specific intelligent-seeming tasks", "Conscious machines that understand like humans", "Only robots with physical bodies", "A single program that can do anything"], "correctIndex": 0, "explanation": "Modern AI is narrow and task-specific, not conscious or general."},
+      {"text": "Why does data quality matter so much in machine learning?", "options": ["Models learn patterns from data, so biased or poor data yields poor models", "Because more data always means perfect accuracy", "Data quality only affects speed, not results", "It does not matter once the model is trained"], "correctIndex": 0, "explanation": "Models generalise from their training data; flawed data produces flawed results."},
+      {"text": "What does an LLM actually do to produce text?", "options": ["Predicts the next token repeatedly based on patterns", "Looks up answers in a fixed database", "Copies sentences from the internet verbatim", "Reasons with guaranteed factual accuracy"], "correctIndex": 0, "explanation": "LLMs generate text by predicting likely next tokens."},
+      {"text": "A 'hallucination' in generative AI is:", "options": ["Confident output that is actually false", "A type of image filter", "When the model refuses to answer", "A hardware error"], "correctIndex": 0, "explanation": "Hallucination is plausible-sounding but incorrect output, so verification is needed."},
+      {"text": "The 'context window' refers to:", "options": ["How much text the model can consider at once", "The app's settings menu", "The model's training cost", "The number of users online"], "correctIndex": 0, "explanation": "It is the span of text the model attends to in one interaction."},
+      {"text": "Which makes a prompt more effective?", "options": ["Clear context, a specific task, and the desired format", "Being as vague as possible", "Using only one word", "Avoiding any instructions"], "correctIndex": 0, "explanation": "Context, task, and format guide the model to useful output."},
+      {"text": "Before pasting information into an unapproved AI tool, you should:", "options": ["Ensure no confidential or personal data is exposed", "Paste everything to get the best answer", "Assume privacy rules never apply online", "Share it publicly first"], "correctIndex": 0, "explanation": "Data minimisation and policy compliance protect privacy."},
+      {"text": "A responsible way to use an AI-generated answer is to:", "options": ["Verify it against reliable sources before relying on it", "Publish it immediately without review", "Treat it as always correct", "Never question it"], "correctIndex": 0, "explanation": "AI output should be checked before it is trusted."},
+      {"text": "Which is the best first AI use case at work?", "options": ["A repetitive, low-risk, easy-to-verify task", "The most complex, high-stakes decision", "Something impossible to measure", "A task where errors are catastrophic"], "correctIndex": 0, "explanation": "Low-risk, verifiable, repetitive tasks are ideal starting points."},
+      {"text": "For high-impact decisions like hiring or lending, AI should:", "options": ["Support a human who remains accountable", "Make the final decision alone", "Be used without any review", "Replace all oversight"], "correctIndex": 0, "explanation": "High-impact contexts require human oversight and accountability."}
+    ]
+  },
+
+  "ai-prompting-fundamentals-fundamentals": {
+    "version": 1,
+    "modules": [
+      {
+        "order": 1,
+        "title": "What a Prompt Really Is",
+        "objectives": ["Define a prompt", "Understand why wording changes results", "Set a goal before prompting"],
+        "keyPoints": ["A prompt is the instruction and context you give an AI to steer its output.", "Because the model predicts likely text, clearer prompts produce more relevant results.", "Start from the outcome you want and work backwards into the instruction.", "Vague prompts force the model to guess, which lowers quality."],
+        "example": "Prompt 'help with my email' is vague; 'rewrite this email to sound warmer and shorter, keep the meeting time' gives the model a clear target.",
+        "summary": "A prompt is how you steer an AI. The clearer your goal and wording, the better and more relevant the output."
+      },
+      {
+        "order": 2,
+        "title": "The Anatomy of a Strong Prompt",
+        "objectives": ["Apply a repeatable prompt structure", "Specify role, task, and constraints", "Avoid common omissions"],
+        "keyPoints": ["A strong prompt usually includes: context, a clear task, constraints, and desired format.", "Assigning a role ('act as a financial analyst') focuses the response.", "State constraints: length, audience, tone, and what to avoid.", "Specify the output shape: bullet list, table, email, JSON, and so on."],
+        "example": "'Act as a recruiter. Write 3 interview questions for a junior data analyst. Keep each under 20 words. Return as a numbered list.'",
+        "summary": "Structure prompts with context, task, constraints, and format. Adding a role and explicit limits dramatically improves results."
+      },
+      {
+        "order": 3,
+        "title": "Giving Context and Examples",
+        "objectives": ["Provide useful background", "Use examples to set a pattern (few-shot)", "Know when examples help"],
+        "keyPoints": ["Context (audience, purpose, source text) grounds the answer in your situation.", "Few-shot prompting means showing one or more examples of the desired input-output pattern.", "Examples are powerful when you need a consistent style or format.", "Too much irrelevant context can distract the model; include what matters."],
+        "example": "Show two sample product descriptions you like, then ask the model to write a third in the same style for a new product.",
+        "summary": "Relevant context and a few good examples teach the model your desired pattern, producing more consistent, on-target output."
+      },
+      {
+        "order": 4,
+        "title": "Controlling Format and Tone",
+        "objectives": ["Direct output format precisely", "Set tone and reading level", "Request structured outputs"],
+        "keyPoints": ["Ask for the exact format you need: table, checklist, email, or a specific word count.", "Name the tone (professional, friendly, persuasive) and the audience.", "You can request machine-readable formats like JSON for use in other tools.", "If the format is wrong, restate it explicitly and give an example."],
+        "example": "'Summarise this report as a 5-row table with columns Risk, Likelihood, and Action. Professional tone.'",
+        "summary": "Tell the model exactly how the answer should look and sound. Explicit format and tone instructions remove guesswork."
+      },
+      {
+        "order": 5,
+        "title": "Iterating and Troubleshooting",
+        "objectives": ["Improve outputs through iteration", "Diagnose why a prompt failed", "Use follow-ups effectively"],
+        "keyPoints": ["Treat prompting as a conversation: refine with follow-ups instead of starting over.", "If output is off, check for missing context, unclear task, or conflicting instructions.", "Ask the model to critique or improve its own answer.", "Save prompts that work well so you can reuse them."],
+        "example": "If a summary is too long, follow up with 'cut this to 80 words and keep only the top 3 points' rather than rewriting the whole prompt.",
+        "summary": "Good prompting is iterative. Refine with targeted follow-ups, diagnose what was missing, and reuse prompts that work."
+      },
+      {
+        "order": 6,
+        "title": "Prompting Safely and Responsibly",
+        "objectives": ["Protect sensitive data in prompts", "Recognise and reduce biased or false output", "Keep accountability"],
+        "keyPoints": ["Do not paste confidential, personal, or regulated data into unapproved tools.", "Verify facts and figures the model produces before using them.", "Watch for biased framing and ask the model for balanced perspectives.", "You remain responsible for anything you publish or act on."],
+        "example": "Before asking AI to draft a customer reply, remove personal account numbers and verify any policy details it includes.",
+        "summary": "Prompt responsibly: protect data, verify facts, check for bias, and remember that accountability for the output stays with you."
+      }
+    ],
+    "questions": [
+      {"text": "A prompt is best described as:", "options": ["The instruction and context that steer an AI's output", "A bug in the model", "The model's training data", "A type of password"], "correctIndex": 0, "explanation": "A prompt is how you direct the model."},
+      {"text": "Which elements make up a strong prompt?", "options": ["Context, task, constraints, and desired format", "Only a single keyword", "As much unrelated detail as possible", "No instructions at all"], "correctIndex": 0, "explanation": "These four elements guide high-quality output."},
+      {"text": "'Few-shot' prompting means:", "options": ["Showing examples of the desired input-output pattern", "Using as few words as possible", "Prompting only a few times per day", "Disabling the model's memory"], "correctIndex": 0, "explanation": "Few-shot provides examples to set a pattern."},
+      {"text": "To get a machine-readable result you might ask for:", "options": ["Output formatted as JSON", "A longer paragraph", "A friendlier tone", "More opinions"], "correctIndex": 0, "explanation": "Requesting JSON yields structured, machine-readable output."},
+      {"text": "If an answer is too long, the best next step is to:", "options": ["Follow up asking to shorten it to a set length", "Start a completely new chat each time", "Accept it as final", "Add more unrelated context"], "correctIndex": 0, "explanation": "Targeted follow-ups refine output efficiently."},
+      {"text": "Assigning the model a role (e.g. 'act as an editor') tends to:", "options": ["Focus and improve the response", "Slow the model down", "Erase the prompt", "Guarantee factual accuracy"], "correctIndex": 0, "explanation": "Roles focus the style and substance of the answer."},
+      {"text": "Before putting data into an unapproved AI tool you should:", "options": ["Remove confidential and personal information", "Include everything for accuracy", "Ignore privacy policies", "Post it publicly"], "correctIndex": 0, "explanation": "Protect sensitive data and follow policy."},
+      {"text": "Who is responsible for AI output you publish?", "options": ["You are", "The model vendor only", "No one", "The internet"], "correctIndex": 0, "explanation": "Accountability for published output stays with the user."}
+    ]
+  },
+
+  "ai-for-everyone-fundamentals": {
+    "version": 1,
+    "modules": [
+      {
+        "order": 1,
+        "title": "AI in Everyday Life",
+        "objectives": ["Notice where AI already helps you", "Describe AI without jargon", "Set a friendly, curious mindset"],
+        "keyPoints": ["AI already powers maps, recommendations, photo tagging, voice assistants, and spam filters.", "You do not need to code to use or understand AI.", "AI works by spotting patterns in lots of examples.", "Being curious and asking questions is the best way to learn it."],
+        "example": "When a streaming app suggests a show you end up loving, AI matched your viewing patterns to similar viewers.",
+        "summary": "AI is already woven into daily life through patterns learned from data. Anyone can understand and use it, no technical background required."
+      },
+      {
+        "order": 2,
+        "title": "The Big Ideas Behind AI",
+        "objectives": ["Grasp learning-from-examples", "Understand prediction vs understanding", "Demystify 'training'"],
+        "keyPoints": ["AI learns from examples rather than being told every rule.", "It predicts likely answers; it does not truly understand meaning.", "Training is the process of showing the system many examples until it spots patterns.", "More and better examples usually mean better predictions."],
+        "example": "Show a child many pictures of cats and dogs and they learn to tell them apart. AI training works similarly with data.",
+        "summary": "At heart, AI learns patterns from examples and predicts likely outcomes. It is clever pattern-matching, not human understanding."
+      },
+      {
+        "order": 3,
+        "title": "What AI Can and Can't Do",
+        "objectives": ["List realistic strengths", "Recognise real limits", "Avoid over-trust"],
+        "keyPoints": ["Strengths: summarising, drafting, translating, answering common questions, spotting patterns.", "Limits: it can be confidently wrong, lacks real-world judgement, and may be biased.", "It does not know today's private facts about you or your company unless given them.", "Always sanity-check important results."],
+        "example": "AI can draft a holiday itinerary in seconds, but it might list a museum that has closed, so you confirm details before booking.",
+        "summary": "AI is great for drafts, summaries, and patterns, but it can be wrong and lacks judgement. Trust it like a fast assistant whose work you check."
+      },
+      {
+        "order": 4,
+        "title": "Talking to AI Assistants",
+        "objectives": ["Ask clear questions", "Give helpful context", "Refine answers"],
+        "keyPoints": ["Say what you want, for whom, and in what form.", "Add context the assistant would not otherwise know.", "If the answer is not right, tell it what to change.", "It is fine to ask it to explain things more simply."],
+        "example": "'Explain compound interest to a 12-year-old in 3 short sentences' gets a clearer answer than 'explain compound interest'.",
+        "summary": "Clear questions with a little context get great results. Treat it as a conversation and refine until the answer fits."
+      },
+      {
+        "order": 5,
+        "title": "Staying Safe: Privacy, Bias, Misinformation",
+        "objectives": ["Protect your personal data", "Spot possible bias", "Avoid spreading false info"],
+        "keyPoints": ["Avoid sharing sensitive personal details with public AI tools.", "AI can reflect biases from its training data; question one-sided answers.", "AI can produce convincing falsehoods, so verify before sharing.", "Be cautious with AI-generated images, voices, and videos (deepfakes)."],
+        "example": "Before resharing a striking AI-written 'fact', check a trusted source; it may be a hallucination.",
+        "summary": "Use AI safely by guarding your data, questioning bias, and verifying claims before you trust or share them."
+      },
+      {
+        "order": 6,
+        "title": "Bringing AI Into Your Day",
+        "objectives": ["Pick simple personal use cases", "Build a small habit", "Keep learning"],
+        "keyPoints": ["Start with low-stakes tasks: drafting messages, summarising long text, brainstorming.", "Build a habit by using it for one routine task this week.", "Keep a note of prompts that work for you.", "Skills grow with practice and curiosity."],
+        "example": "Use AI to turn a messy list of notes into a tidy summary email before a meeting.",
+        "summary": "Adopt AI gently with small, everyday tasks, build a habit, and keep experimenting. Confidence comes from practice."
+      }
+    ],
+    "questions": [
+      {"text": "Which everyday tool commonly uses AI?", "options": ["Streaming recommendations", "A paper notebook", "A manual can opener", "A basic calculator"], "correctIndex": 0, "explanation": "Recommendations are a common everyday AI use."},
+      {"text": "How does AI mainly learn?", "options": ["By spotting patterns in many examples", "By being told every rule by hand", "By guessing randomly", "By copying one website"], "correctIndex": 0, "explanation": "AI learns patterns from examples."},
+      {"text": "A realistic limit of AI is that it:", "options": ["Can be confidently wrong", "Always tells the truth", "Knows all your private facts", "Has human judgement"], "correctIndex": 0, "explanation": "AI can produce confident but incorrect answers."},
+      {"text": "To get a clearer answer from an assistant, you should:", "options": ["Give context and say the format you want", "Use a single vague word", "Avoid explaining anything", "Demand it never explain"], "correctIndex": 0, "explanation": "Context and format improve answers."},
+      {"text": "A safe habit with public AI tools is to:", "options": ["Avoid sharing sensitive personal details", "Share your passwords", "Post private documents", "Ignore privacy entirely"], "correctIndex": 0, "explanation": "Protect personal data with public tools."},
+      {"text": "A 'deepfake' is:", "options": ["AI-generated fake image, audio, or video", "A deep-sea camera", "A type of password", "A search engine"], "correctIndex": 0, "explanation": "Deepfakes are synthetic media that can mislead."},
+      {"text": "Before sharing a surprising AI-written 'fact', you should:", "options": ["Verify it with a trusted source", "Share it immediately", "Assume it is true", "Add more excitement"], "correctIndex": 0, "explanation": "Verification prevents spreading misinformation."},
+      {"text": "A good first personal use of AI is:", "options": ["A low-stakes task like summarising notes", "A life-changing financial decision", "Anything irreversible", "A task you cannot check"], "correctIndex": 0, "explanation": "Start low-stakes and verifiable."}
+    ]
+  },
+
+  "ai-ethics-fundamentals-fundamentals": {
+    "version": 1,
+    "modules": [
+      {
+        "order": 1,
+        "title": "Why AI Ethics Matters",
+        "objectives": ["Explain why ethics is central to AI", "Identify stakeholders affected by AI", "Frame ethics as risk management plus values"],
+        "keyPoints": ["AI decisions can affect people's jobs, money, health, and rights at scale.", "Ethical failures cause real harm, legal exposure, and loss of trust.", "Stakeholders include users, the people decisions are made about, organisations, and society.", "Ethics is both doing right by people and managing organisational risk."],
+        "example": "An automated benefits system that wrongly denies claims can harm thousands quickly, showing why ethics is not optional.",
+        "summary": "AI acts at scale, so ethical lapses cause broad harm and risk. Ethics protects people and organisations alike."
+      },
+      {
+        "order": 2,
+        "title": "Bias and Fairness",
+        "objectives": ["Define algorithmic bias", "Trace where bias enters", "Apply basic mitigations"],
+        "keyPoints": ["Bias often enters through unrepresentative or historically skewed training data.", "A model can be accurate overall yet unfair to specific groups.", "Mitigations: diverse data, fairness testing across groups, and human review.", "Fairness has multiple definitions; choices should be explicit and documented."],
+        "example": "A hiring model trained on past hires may downgrade qualified candidates from under-represented groups, reproducing old bias.",
+        "summary": "Bias usually comes from the data and can make models unfair even when accurate. Test across groups and keep humans in the loop."
+      },
+      {
+        "order": 3,
+        "title": "Privacy and Data Protection",
+        "objectives": ["Apply data-minimisation", "Understand consent and purpose limits", "Recognise regulatory duties"],
+        "keyPoints": ["Collect and use the least personal data needed for the purpose.", "Use data only for the purpose people consented to.", "Regulations such as GDPR grant rights like access and deletion.", "Anonymisation and access controls reduce privacy risk."],
+        "example": "Training a model on customer chats requires removing personal identifiers and confirming the use is permitted.",
+        "summary": "Protect privacy by minimising data, respecting consent and purpose, and meeting legal duties such as GDPR rights."
+      },
+      {
+        "order": 4,
+        "title": "Transparency and Accountability",
+        "objectives": ["Explain explainability and disclosure", "Assign accountability", "Document decisions"],
+        "keyPoints": ["People affected by AI should be able to understand and, where appropriate, contest decisions.", "Disclose when AI is used in meaningful interactions or decisions.", "A named human or body must remain accountable for outcomes.", "Documentation (data, model, decisions) supports audits and trust."],
+        "example": "A bank using AI for loan scoring should explain key factors to applicants and let a human review disputes.",
+        "summary": "Be transparent about AI use and keep clear human accountability, supported by documentation people can rely on."
+      },
+      {
+        "order": 5,
+        "title": "Safety, Reliability and Human Oversight",
+        "objectives": ["Identify safety and reliability risks", "Design human oversight", "Plan for failure"],
+        "keyPoints": ["Models can fail silently when conditions change, so monitor performance over time.", "Higher-impact decisions need stronger human oversight (human-in-the-loop).", "Test for misuse, edge cases, and adversarial inputs before deployment.", "Have a fallback and an incident plan for when AI gets it wrong."],
+        "example": "A medical triage aid should flag uncertain cases to a clinician rather than deciding alone.",
+        "summary": "Ensure reliability through monitoring, oversight proportional to impact, and clear fallback plans for failures."
+      },
+      {
+        "order": 6,
+        "title": "Frameworks and Governance",
+        "objectives": ["Recognise major AI governance frameworks", "Map controls to a lifecycle", "Start an AI use inventory"],
+        "keyPoints": ["The NIST AI RMF organises practice around Govern, Map, Measure, and Manage.", "ISO/IEC 42001 defines an AI management system for organisations.", "The EU AI Act takes a risk-based approach, with stricter rules for higher-risk uses.", "Good governance starts with an inventory of where AI is used and its risk level."],
+        "example": "Classifying an AI use as 'high-risk' under the EU AI Act triggers extra obligations like risk assessment and documentation.",
+        "summary": "Frameworks like NIST AI RMF, ISO/IEC 42001, and the EU AI Act give structure to responsible AI. Governance begins with knowing where AI is used."
+      }
+    ],
+    "questions": [
+      {"text": "Why is AI ethics especially important?", "options": ["AI decisions can affect many people at scale", "AI is never wrong", "Ethics slows projects for no reason", "Only engineers are affected"], "correctIndex": 0, "explanation": "Scale magnifies both benefit and harm."},
+      {"text": "Algorithmic bias most often originates from:", "options": ["Unrepresentative or skewed training data", "Using too little electricity", "Fast internet", "Short prompts"], "correctIndex": 0, "explanation": "Data is the most common source of bias."},
+      {"text": "A core privacy practice is:", "options": ["Collect only the data you actually need", "Collect as much as possible", "Ignore consent", "Share data freely"], "correctIndex": 0, "explanation": "Data minimisation reduces privacy risk."},
+      {"text": "Transparency in AI includes:", "options": ["Disclosing AI use and enabling contestability", "Hiding that AI was used", "Refusing all explanation", "Removing human review"], "correctIndex": 0, "explanation": "People should know about and be able to challenge AI decisions."},
+      {"text": "Human oversight should be strongest when:", "options": ["The decision is high-impact", "The task is trivial", "Nobody is affected", "The model is fast"], "correctIndex": 0, "explanation": "Oversight should scale with impact."},
+      {"text": "The NIST AI RMF is organised around:", "options": ["Govern, Map, Measure, Manage", "Buy, Build, Sell", "Plan, Do, Forget", "Open, Close, Repeat"], "correctIndex": 0, "explanation": "These are the four NIST AI RMF functions."},
+      {"text": "ISO/IEC 42001 defines:", "options": ["An AI management system for organisations", "A programming language", "A type of GPU", "A social network"], "correctIndex": 0, "explanation": "It is a management-system standard for AI."},
+      {"text": "The EU AI Act primarily uses:", "options": ["A risk-based approach with stricter rules for higher-risk uses", "A total ban on all AI", "No rules at all", "Rules only for video games"], "correctIndex": 0, "explanation": "It tiers obligations by risk level."}
+    ]
+  },
+
+  "ai-supply-chain-practitioner-practitioner": {
+    "version": 1,
+    "modules": [
+      {
+        "order": 1,
+        "title": "Foundations of AI in Supply Chain",
+        "objectives": ["Distinguish AI from rules-based planning", "Identify high-value AI use cases", "Frame a use case around a decision"],
+        "keyPoints": ["AI/ML learns patterns from data rather than applying only fixed rules.", "Value comes from improving a specific decision, not from the technology itself.", "Good candidates: forecasting, inventory, routing, supplier risk, and visibility.", "Start where data exists and the decision is repeated often."],
+        "example": "Replacing a fixed reorder rule with a demand model that adapts to seasonality can cut both stockouts and excess stock.",
+        "summary": "AI in supply chain is about improving repeated decisions with data-driven models. Start where data and clear decisions already exist."
+      },
+      {
+        "order": 2,
+        "title": "Demand Forecasting & Planning with AI",
+        "objectives": ["Interpret forecast accuracy metrics", "Recognise demand sensing", "Judge a forecast critically"],
+        "keyPoints": ["MAPE measures average percentage error; bias shows consistent over- or under-forecasting.", "Demand sensing uses near-real-time signals to adjust short-term forecasts.", "A model can be accurate on average yet wrong for key items, so review at the SKU level.", "Forecasts feed planning, so errors cascade into inventory and service."],
+        "example": "If a product is consistently under-forecast (negative bias), safety stock and reorder points may be set too low, risking stockouts.",
+        "summary": "Use metrics like MAPE and bias to judge forecasts, watch key items, and remember forecast errors ripple through the whole plan."
+      },
+      {
+        "order": 3,
+        "title": "Inventory Optimization",
+        "objectives": ["Explain safety stock and reorder point", "Balance service level vs cost", "Use AI outputs in policy"],
+        "keyPoints": ["Safety stock buffers variability; the reorder point triggers replenishment.", "Reorder point covers expected demand during lead time plus safety stock.", "Higher service levels cost more inventory; the trade-off must be explicit.", "AI can set dynamic policies per SKU based on demand and lead-time variability."],
+        "example": "At 20 units/day with a 5-day lead time and 40 units of safety stock, the reorder point is 20x5 + 40 = 140 units.",
+        "summary": "Inventory policy balances service and cost. AI tailors safety stock and reorder points to each item's demand and lead-time variability."
+      },
+      {
+        "order": 4,
+        "title": "Logistics, Routing & Transportation",
+        "objectives": ["Describe route optimization", "Account for constraints", "Critically check AI routes"],
+        "keyPoints": ["Optimizers minimise cost or distance subject to constraints.", "Constraints include vehicle capacity, time windows, and driver hours.", "AI can re-plan dynamically as orders and conditions change.", "Outputs that break known constraints signal data or setup errors, not magic."],
+        "example": "A routing tool that proposes deliveries outside agreed time windows is flagging a data or configuration problem to investigate.",
+        "summary": "Routing AI optimises against real constraints. Treat constraint-violating output as a red flag to verify, not a result to trust blindly."
+      },
+      {
+        "order": 5,
+        "title": "Procurement & Supplier Intelligence",
+        "objectives": ["Build multi-factor supplier risk views", "Use spend analytics", "Support sourcing decisions"],
+        "keyPoints": ["Good supplier risk scores combine financial, delivery, geographic, and compliance signals, and update over time.", "Spend analytics reveals maverick spend and consolidation opportunities.", "AI can monitor news and data for early supplier-risk warnings.", "Decisions still need human judgement and supplier relationships."],
+        "example": "A rising risk score driven by a supplier's late deliveries and regional disruption prompts qualifying a second source early.",
+        "summary": "AI strengthens procurement with dynamic, multi-factor risk scoring and spend insight, while humans own the sourcing decisions."
+      },
+      {
+        "order": 6,
+        "title": "Warehouse Automation & Robotics",
+        "objectives": ["Identify warehouse AI use cases", "Plan a safe automation pilot", "Measure impact"],
+        "keyPoints": ["Computer vision supports scanning, sortation, and damage detection.", "Robotics and AI assist picking, putaway, and movement.", "Pilot a bounded, high-volume task first, then scale what proves out.", "Measure throughput, accuracy, and safety before and after."],
+        "example": "Piloting vision-based sortation on one high-volume lane proves value and safety before rolling it across the warehouse.",
+        "summary": "Warehouse AI spans vision and robotics. Start with a bounded pilot, measure impact and safety, then scale deliberately."
+      },
+      {
+        "order": 7,
+        "title": "Risk, Resilience & End-to-End Visibility",
+        "objectives": ["Explain control towers and digital twins", "Detect and respond to disruption", "Build resilience"],
+        "keyPoints": ["A control tower gives real-time end-to-end visibility to detect and manage exceptions.", "A digital twin simulates the network to test what-if scenarios safely.", "AI can flag emerging disruptions earlier than manual monitoring.", "Resilience means planning alternatives before disruptions hit."],
+        "example": "A digital twin can test how a port closure would ripple through deliveries, so contingency plans are ready in advance.",
+        "summary": "Visibility tools like control towers and digital twins, powered by AI, help detect disruption early and plan resilient responses."
+      },
+      {
+        "order": 8,
+        "title": "Responsible AI, Governance & Implementation",
+        "objectives": ["Apply responsible-AI checks", "Make an AI business case", "Plan adoption"],
+        "keyPoints": ["Keep humans in the loop on high-impact supply-chain decisions and watch for data bias.", "Make the business case by linking AI to a decision and its cost or service impact.", "Start small, measure, and scale; change management is as important as the model.", "Align with governance frameworks such as the NIST AI RMF."],
+        "example": "A pilot that cuts forecast error by a few points and quantifies the inventory savings makes a fundable, defensible case.",
+        "summary": "Responsible adoption pairs human oversight and governance with a quantified business case and staged, measured rollout."
+      }
+    ],
+    "questions": [
+      {"text": "What most distinguishes AI/ML from rules-based planning?", "options": ["It learns patterns from data instead of only fixed rules", "It never needs data", "It removes all human roles", "It only works in retail"], "correctIndex": 0, "explanation": "ML generalises from data; rules apply fixed logic."},
+      {"text": "MAPE measures:", "options": ["Average percentage error of a forecast", "Total revenue", "Supplier lead time", "Warehouse size"], "correctIndex": 0, "explanation": "MAPE is a forecast-accuracy metric."},
+      {"text": "The reorder point covers:", "options": ["Expected demand during lead time plus safety stock", "Only yesterday's sales", "The supplier's profit", "The warehouse rent"], "correctIndex": 0, "explanation": "Reorder point = lead-time demand + safety stock."},
+      {"text": "Holding more safety stock:", "options": ["Raises holding cost but lowers stockout risk", "Removes lead time", "Has no trade-offs", "Lowers service level"], "correctIndex": 0, "explanation": "It trades cost for protection against variability."},
+      {"text": "In route optimization, constraints include:", "options": ["Vehicle capacity, time windows, and driver hours", "Marketing slogans", "The number of SKUs only", "Forecast error"], "correctIndex": 0, "explanation": "Optimizers respect real operational limits."},
+      {"text": "A strong supplier risk score:", "options": ["Combines multiple signals and updates over time", "Is set once and never changes", "Reflects only price", "Is hidden from buyers"], "correctIndex": 0, "explanation": "Multi-factor, refreshed scoring is most useful."},
+      {"text": "Before automating a warehouse process, the soundest step is:", "options": ["Pilot a bounded, high-volume task and measure impact", "Automate the hardest task first", "Remove all staff immediately", "Skip measurement"], "correctIndex": 0, "explanation": "Bounded pilots prove value and safety first."},
+      {"text": "A control tower provides:", "options": ["Real-time end-to-end visibility to manage disruptions", "Pallet storage", "Payroll processing", "A pricing engine"], "correctIndex": 0, "explanation": "Control towers centralise visibility and exceptions."},
+      {"text": "A digital twin is:", "options": ["A virtual model to simulate and test scenarios", "A backup supplier", "A duplicate invoice", "A type of contract"], "correctIndex": 0, "explanation": "Digital twins enable safe what-if testing."},
+      {"text": "The strongest AI business case rests on:", "options": ["A quantified link to a decision and its cost/service impact", "A competitor's press release", "The model's parameter count", "The vendor's logo"], "correctIndex": 0, "explanation": "Funders back measurable decision improvements."}
+    ]
+  }
+}

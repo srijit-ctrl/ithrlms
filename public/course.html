@@ -70,8 +70,8 @@
           ${course.modules.map((m) => `
             <div class="module ${done.has(m.order) ? 'done' : ''}" data-order="${m.order}">
               <span class="num">${done.has(m.order) ? icon('check',15) : m.order}</span>
-              <div style="flex:1"><b>${esc(m.title)}</b></div>
-              ${enrollment ? `<button class="btn btn-ghost btn-sm toggle" data-order="${m.order}">${done.has(m.order) ? 'Completed' : 'Mark done'}</button>` : ''}
+              <div style="flex:1">${course.hasContent ? `<a href="/lesson.html?slug=${course.slug}&m=${m.order}" style="font-weight:600;color:var(--ink)">${esc(m.title)}</a>` : `<b>${esc(m.title)}</b>`}</div>
+              ${course.hasContent ? `<a class="btn btn-ghost btn-sm" href="/lesson.html?slug=${course.slug}&m=${m.order}">Open</a>` : (enrollment ? `<button class="btn btn-ghost btn-sm toggle" data-order="${m.order}">${done.has(m.order) ? 'Completed' : 'Mark done'}</button>` : '')}
             </div>`).join('')}
         </div>
 
@@ -111,7 +111,7 @@
           ${enrollment.status === 'completed'
             ? `<p style="margin-top:14px;color:var(--ok);font-weight:700;font-size:14px">${icon('check',15)} Certified — exam passed</p>
                <a class="btn btn-accent btn-block" style="margin-top:8px" href="/dashboard.html#certificates">View credential</a>`
-            : `<a class="btn btn-primary btn-block" style="margin-top:14px" href="/exam.html?slug=${course.slug}">Take certification exam</a>
+            : `${course.hasContent ? `<a class="btn btn-primary btn-block" style="margin-top:14px" href="/lesson.html?slug=${course.slug}&m=1">Start learning</a>` : ``}<a class="btn btn-primary btn-block" style="margin-top:14px" href="/exam.html?slug=${course.slug}">Take certification exam</a>
                <p style="margin-top:10px;font-size:13px" class="muted">Pass the ${course.exam.passPercent}% exam to earn your credential. We recommend finishing the modules first.</p>`}
           <a class="btn btn-accent btn-block" style="margin-top:10px" href="/tutor.html?slug=${course.slug}">${icon('sparkles',15)} Ask your AI Tutor</a>
           <a class="btn btn-ghost btn-block" style="margin-top:10px" href="/dashboard.html">Go to dashboard</a>`;

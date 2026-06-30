@@ -50,6 +50,7 @@ function publicCourse(c) {
     shortDescription: c.shortDescription, longDescription: c.longDescription,
     durationHours: c.durationHours, priceUsd: c.priceUsd, exam: c.exam,
     modules: c.modules, skills: c.skills, rating: c.rating, learners: c.learners,
+    hasContent: !!c.hasContent,
   };
 }
 function slugify(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }

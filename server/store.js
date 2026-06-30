@@ -10,6 +10,8 @@ const fs = require('fs');
 const path = require('path');
 const { CATEGORIES, COURSES } = require('./data/catalog');
 const { generateForCourse } = require('./data/questions');
+let CONTENT = {};
+try { CONTENT = require('./data/content.json'); } catch {}
 
 const DATA_DIR = process.env.DATA_DIR || __dirname;
 const DATA_PATH = path.join(DATA_DIR, 'data.json');
@@ -53,7 +55,33 @@ function seedCatalog() {
   }
 }
 
+// Apply authored lesson content + real question banks for courses defined in
+// content.json. Idempotent: only updates a course when its contentVersion
+// differs, so it upgrades existing live data without wiping users/enrollments.
+function applyContent() {
+  let changed = false;
+  for (const [slug, entry] of Object.entries(CONTENT)) {
+    const course = data.courses.find((c) => c.slug === slug);
+    if (!course) continue;
+    if (course.contentVersion === entry.version) continue;
+    if (Array.isArray(entry.modules) && entry.modules.length) {
+      course.modules = entry.modules.map((m, i) => ({ order: m.order || i + 1, ...m }));
+    }
+    if (Array.isArray(entry.questions) && entry.questions.length) {
+      data.questions = data.questions.filter((q) => q.courseId !== course.id);
+      for (const q of entry.questions) {
+        data.questions.push({ id: nextId('questions'), courseId: course.id, ...q });
+      }
+    }
+    course.contentVersion = entry.version;
+    course.hasContent = true;
+    changed = true;
+  }
+  if (changed) save();
+}
+
 load();
+applyContent();
 
 const api = {
   raw: () => data,
