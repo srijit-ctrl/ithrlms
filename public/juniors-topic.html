@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Topic — ITHR Juniors</title>
+  <link rel="icon" href="/assets/brand/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    body { background:#f3f8ff; }
+    .jtop { background:#fff; border-bottom:1px solid var(--line); }
+    .jtop .container { display:flex; align-items:center; height:84px; gap:12px; }
+    .jtop .logo-img { height:42px; }
+    .wrap { max-width:920px; margin:24px auto; padding:0 18px; }
+    .card { background:#fff; border:1px solid var(--line); border-radius:20px; padding:28px; margin-bottom:18px; }
+    .card h1 { font-size:clamp(24px,3.2vw,32px); }
+    .card h3 { font-size:15px; text-transform:uppercase; letter-spacing:.04em; color:#00A78B; margin-top:22px; }
+    .card ul { padding-left:20px; } .card li { margin:7px 0; }
+    .callout { background:#fff8ec; border:1px solid #f6dca0; border-left:4px solid #F6A41B; border-radius:12px; padding:14px 16px; }
+    .q { border:1.5px solid var(--line); border-radius:14px; padding:16px; margin-bottom:12px; }
+    .opt { display:flex; gap:10px; align-items:center; border:1.5px solid var(--line); border-radius:10px; padding:10px 13px; margin-top:8px; cursor:pointer; }
+    .opt:hover { border-color:#2E7FC1; background:#f3f8ff; }
+    .opt.sel { border-color:#2E7FC1; background:#eaf2fe; }
+    .opt.correct { border-color:#16a34a; background:#e7f7ee; } .opt.wrong { border-color:#dc2626; background:#fdecea; }
+    .buddy { background:#fff; border:1px solid var(--line); border-radius:20px; overflow:hidden; }
+    .buddy .head { background:linear-gradient(135deg,#2E7FC1,#00A78B); color:#fff; padding:14px 18px; display:flex; align-items:center; gap:10px; }
+    .buddy .avatar { width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.25);display:grid;place-items:center;font-weight:900; }
+    .msgs { padding:16px; display:flex; flex-direction:column; gap:10px; max-height:42vh; overflow:auto; }
+    .msg { max-width:82%; padding:10px 14px; border-radius:14px; font-size:15px; line-height:1.55; white-space:pre-wrap; }
+    .msg.bot { background:#f3f8ff; border:1px solid var(--line); align-self:flex-start; } .msg.me { background:#2E7FC1; color:#fff; align-self:flex-end; }
+    .chips { display:flex; gap:8px; flex-wrap:wrap; padding:0 16px 10px; }
+    .chip { border:1.5px solid var(--line); background:#fff; border-radius:999px; padding:7px 12px; font:inherit; font-size:13px; cursor:pointer; color:#2E7FC1; font-weight:600; }
+    .composer { display:flex; gap:8px; padding:12px; border-top:1px solid var(--line); }
+    .composer input { flex:1; border:1.5px solid var(--line); border-radius:12px; padding:11px 14px; font:inherit; }
+    .vbtn { width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);background:#fff;cursor:pointer;flex:none; }
+    .vbtn.on { background:#00A78B; color:#fff; border-color:#00A78B; } .vbtn.listening { background:#dc2626;color:#fff;border-color:#dc2626; }
+    .scorebanner { text-align:center; padding:16px; border-radius:14px; font-weight:800; font-size:18px; }
+  </style>
+</head>
+<body>
+  <div class="jtop"><div class="container">
+    <a class="logo" href="/juniors.html"><img class="logo-img" src="/assets/brand/ITHR_Logo_FullColor.svg" alt="ITHR"></a>
+    <b style="color:var(--brand-700)">Juniors</b>
+  </div></div>
+  <div class="wrap">
+    <div id="lesson" class="card"><div class="loading">Loading your lesson…</div></div>
+    <div id="quizcard" class="card" style="display:none"><h2 style="font-size:22px;margin-top:0">Practice quiz 📝</h2><div id="quiz"></div><button class="btn btn-primary" id="check">Check my answers</button><div id="result" style="margin-top:14px"></div></div>
+    <div class="buddy">
+      <div class="head"><div class="avatar">B</div><div><b style="color:#fff">Buddy</b><div style="font-size:12px;opacity:.92">Your study helper · ask me anything about this topic</div></div></div>
+      <div class="msgs" id="msgs"></div>
+      <div class="chips">
+        <button class="chip" data-send="Can you explain this topic simply?">Explain simply</button>
+        <button class="chip" data-send="Can you give me an example?">Give an example</button>
+        <button class="chip" data-send="Quiz me with one question">Quiz me</button>
+        <button class="chip" data-send="I don't understand, can you help?">I'm stuck</button>
+      </div>
+      <div class="composer">
+        <button class="vbtn" id="mic" title="Talk to Buddy" aria-label="Talk">🎤</button>
+        <input id="input" placeholder="Ask Buddy a question…">
+        <button class="vbtn" id="speak" title="Read aloud" aria-label="Read aloud">🔊</button>
+        <button class="btn btn-primary" id="send">Send</button>
+      </div>
+    </div>
+  </div>
+  <div id="site-footer"></div>
+  <script src="/js/app.js"></script>
+  <script>
+    renderFooter();
+    const id = qs('id'); let topic, history = [], busy=false;
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+    const SYNTH = window.speechSynthesis || null; let voiceOn=false, recog=null, listening=false;
+    async function init(){
+      try { topic = await api('/juniors/topic/'+encodeURIComponent(id)); }
+      catch { $('#lesson').innerHTML='<p class="muted">This topic isn\\'t ready yet. <a href="/juniors.html">Back to subjects →</a></p>'; return; }
+      document.title = topic.title + ' — ITHR Juniors';
+      let h = `<div class="muted" style="font-size:13px"><a href="/juniors.html">Juniors</a> / ${esc(topic.subject)}</div><h1>${esc(topic.title)}</h1>`;
+      if(topic.objectives.length) h += `<h3>What you'll learn</h3><ul>${topic.objectives.map((o)=>`<li>${esc(o)}</li>`).join('')}</ul>`;
+      h += `<h3>Lesson</h3>` + topic.body.map((p)=>`<p>${esc(p)}</p>`).join('');
+      if(topic.keyPoints.length) h += `<h3>Remember</h3><ul>${topic.keyPoints.map((o)=>`<li>${esc(o)}</li>`).join('')}</ul>`;
+      if(topic.example) h += `<h3>Example</h3><div class="callout">${esc(topic.example)}</div>`;
+      if(topic.summary) h += `<h3>In a nutshell</h3><p>${esc(topic.summary)}</p>`;
+      $('#lesson').innerHTML = h;
+      if(topic.quiz && topic.quiz.length){ $('#quizcard').style.display=''; renderQuiz(); }
+      addMsg('bot', `Hi! I'm Buddy 👋 I can help you with "${topic.title}". Ask me anything, or tap a button below!`);
+    }
+    let answers={};
+    function renderQuiz(){
+      $('#quiz').innerHTML = topic.quiz.map((q)=>`
+        <div class="q" data-q="${q.i}"><b>${q.i+1}. ${esc(q.text)}</b>
+          ${q.options.map((o,oi)=>`<label class="opt" data-opt="${oi}"><input type="radio" name="q${q.i}" value="${oi}"><span>${esc(o)}</span></label>`).join('')}
+        </div>`).join('');
+      $$('.opt input').forEach((inp)=>inp.onchange=()=>{ const q=inp.closest('.q'); answers[q.dataset.q]=Number(inp.value); $$('.opt',q).forEach((l)=>l.classList.remove('sel')); inp.closest('.opt').classList.add('sel'); });
+    }
+    $('#check').onclick=async()=>{
+      const r=await api('/juniors/topic/'+encodeURIComponent(id)+'/check',{method:'POST',body:{answers}});
+      const map=Object.fromEntries(r.review.map((x)=>[x.i,x]));
+      $$('.q').forEach((qel)=>{ const qi=Number(qel.dataset.q); const rv=map[qi];
+        $$('.opt',qel).forEach((l)=>{ const oi=Number(l.dataset.opt); l.classList.remove('sel');
+          if(oi===rv.correctIndex) l.classList.add('correct'); else if(oi===rv.yourAnswer) l.classList.add('wrong'); });
+      });
+      const stars='⭐'.repeat(Math.round(r.score/20));
+      $('#result').innerHTML=`<div class="scorebanner" style="background:${r.score>=60?'#e7f7ee':'#fff8ec'};color:${r.score>=60?'#15803d':'#b25a00'}">You scored ${r.score}% ${stars}<br><span style="font-weight:600;font-size:14px">${r.score>=60?'Awesome work!':'Good try — review and go again!'}</span></div>`;
+    };
+    // ---- Buddy chat ----
+    function bubble(who){ const el=document.createElement('div'); el.className='msg '+(who==='me'?'me':'bot'); $('#msgs').appendChild(el); $('#msgs').scrollTop=$('#msgs').scrollHeight; return el; }
+    function addMsg(who,t){ const el=bubble(who); el.textContent=t; }
+    function speak(t){ if(!voiceOn||!SYNTH) return; const c=String(t).replace(/[#*_`>]/g,'').trim(); if(!c) return; try{SYNTH.cancel();const u=new SpeechSynthesisUtterance(c);SYNTH.speak(u);}catch{} }
+    async function send(text){ if(busy)return; text=(text||$('#input').value).trim(); if(!text)return; busy=true; $('#input').value='';
+      addMsg('me',text); history.push({role:'user',content:text}); const el=bubble('bot'); el.textContent='…'; let acc='';
+      try{ const resp=await fetch('/api/juniors/tutor/chat/stream',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({topicId:id,messages:history})});
+        if(!resp.ok||!resp.body) throw new Error('x'); const rd=resp.body.getReader(),dec=new TextDecoder(); el.textContent='';
+        for(;;){ const {value,done}=await rd.read(); if(done)break; acc+=dec.decode(value,{stream:true}); el.textContent=acc; $('#msgs').scrollTop=$('#msgs').scrollHeight; }
+      }catch(e){ el.textContent='Oops — try again in a moment.'; }
+      if(acc){ history.push({role:'assistant',content:acc}); speak(acc); } busy=false;
+    }
+    document.addEventListener('click',(e)=>{ const c=e.target.closest('.chip'); if(c) send(c.dataset.send); if(e.target.id==='send') send(); });
+    document.addEventListener('keydown',(e)=>{ if(e.target.id==='input'&&e.key==='Enter'){e.preventDefault();send();} });
+    $('#speak').onclick=()=>{ voiceOn=!voiceOn; $('#speak').classList.toggle('on',voiceOn); if(!voiceOn&&SYNTH)SYNTH.cancel(); };
+    if(!SR) $('#mic').style.display='none'; else $('#mic').onclick=()=>{ if(listening){try{recog.stop();}catch{}return;}
+      recog=new SR(); recog.interimResults=true; recog.onstart=()=>{listening=true;$('#mic').classList.add('listening');};
+      recog.onresult=(e)=>{let t='';for(const r of e.results)t+=r[0].transcript;$('#input').value=t;};
+      recog.onend=()=>{listening=false;$('#mic').classList.remove('listening');const m=($('#input').value||'').trim();if(m)send(m);}; try{recog.start();}catch{} };
+    init();
+  </script>
+</body>
+</html>

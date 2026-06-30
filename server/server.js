@@ -13,6 +13,8 @@ const tutor = require('./tutor/tutor');
 const { LANGUAGES } = require('./tutor/languages');
 const llm = require('./tutor/llm');
 const tts = require('./tutor/tts');
+let JUNIORS = { curricula: [], bands: [], tracks: [] };
+try { JUNIORS = require('./data/juniors.json'); } catch {}
 
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'ithr-lms-dev-secret-change-me';
@@ -481,6 +483,81 @@ app.post('/api/tts', auth, async (req, res) => {
   res.send(out.buffer);
 });
 
+// ---------- ITHR Juniors (school learners, ages 10-18) ----------
+function jTrack(curriculum, band, subject) {
+  return JUNIORS.tracks.find((t) => t.curriculum === curriculum && t.band === band && t.subject === subject);
+}
+function jFindTopic(id) {
+  for (const t of JUNIORS.tracks) { const top = (t.topics || []).find((x) => x.id === id); if (top) return { track: t, topic: top }; }
+  return null;
+}
+app.get('/api/juniors', (req, res) => {
+  const tracks = JUNIORS.tracks.map((t) => ({
+    curriculum: t.curriculum, band: t.band, subject: t.subject, icon: t.icon || 'book',
+    topicCount: (t.topics || []).length, withContent: (t.topics || []).filter((x) => x.hasContent).length,
+  }));
+  res.json({ curricula: JUNIORS.curricula, bands: JUNIORS.bands, tracks });
+});
+app.get('/api/juniors/track', (req, res) => {
+  const { curriculum, band, subject } = req.query;
+  const t = jTrack(curriculum, band, subject);
+  if (!t) return res.status(404).json({ error: 'Track not found' });
+  res.json({ curriculum, band, subject, icon: t.icon || 'book',
+    topics: (t.topics || []).map((x) => ({ id: x.id, title: x.title, hasContent: !!x.hasContent })) });
+});
+app.get('/api/juniors/topic/:id', (req, res) => {
+  const found = jFindTopic(req.params.id);
+  if (!found || !found.topic.hasContent) return res.status(404).json({ error: 'Topic content not available yet' });
+  const t = found.topic;
+  res.json({
+    id: t.id, title: t.title, subject: found.track.subject, band: found.track.band,
+    objectives: t.objectives || [], body: t.body || [], keyPoints: t.keyPoints || [], example: t.example || '', summary: t.summary || '',
+    quiz: (t.quiz || []).map((q, i) => ({ i, text: q.text, options: q.options })),
+  });
+});
+app.post('/api/juniors/topic/:id/check', (req, res) => {
+  const found = jFindTopic(req.params.id);
+  if (!found || !found.topic.hasContent) return res.status(404).json({ error: 'Topic not found' });
+  const answers = (req.body || {}).answers || {};
+  const quiz = found.topic.quiz || [];
+  let correct = 0; const review = quiz.map((q, i) => {
+    const ok = Number(answers[i]) === q.correctIndex; if (ok) correct++;
+    return { i, correctIndex: q.correctIndex, yourAnswer: answers[i] == null ? null : Number(answers[i]), correct: ok, explanation: q.explanation || '' };
+  });
+  res.json({ correct, total: quiz.length, score: quiz.length ? Math.round((correct / quiz.length) * 100) : 0, review });
+});
+function juniorTutorPrompt(track, topic) {
+  const band = (JUNIORS.bands.find((b) => b.id === track.band) || {}).label || track.band;
+  return [
+    'You are Buddy, a friendly, patient AI study buddy for school students on the ITHR Juniors platform by ITHR Technologies Consulting LLC.',
+    'You are helping with the subject "' + track.subject + '" for learners aged ' + band + ' (Cambridge curriculum).',
+    'Current topic: "' + topic.title + '".',
+    topic.objectives && topic.objectives.length ? 'Learning goals: ' + topic.objectives.join('; ') + '.' : '',
+    topic.keyPoints && topic.keyPoints.length ? 'Key points: ' + topic.keyPoints.join('; ') + '.' : '',
+    topic.summary ? 'Summary: ' + topic.summary : '',
+    '',
+    'HOW YOU HELP: Use simple, warm, age-appropriate language and short sentences. Be very encouraging and celebrate effort. Explain with everyday examples a child can picture. Ask a small guiding question and give a hint before any full answer. If the learner is stuck, slow down and try a different, simpler explanation.',
+    'GUARDRAILS: Stay strictly on this subject/topic and school learning. Keep everything kind, safe and age-appropriate. Do NOT just give away answers to the practice quiz - guide the student to work it out. Never ask for personal details. If asked something off-topic or unsafe, gently steer back to learning, and suggest asking a teacher or parent for anything outside studies.',
+    'LANGUAGE: Detect the student\'s language and reply in it; you may switch if they do. Keep technical terms accurate.',
+  ].filter(Boolean).join('\n');
+}
+app.post('/api/juniors/tutor/chat/stream', async (req, res) => {
+  const { topicId, messages, language } = req.body || {};
+  const found = jFindTopic(topicId);
+  if (!found) return res.status(404).json({ error: 'Topic not found' });
+  if (!Array.isArray(messages) || messages.length === 0) return res.status(400).json({ error: 'messages[] required' });
+  let systemPrompt = juniorTutorPrompt(found.track, found.topic);
+  if (language) systemPrompt += '\n\nReply in language code "' + language + '" unless the student clearly writes another.';
+  const clean = messages.slice(-16).filter((m) => m && typeof m.content === 'string' && (m.role === 'user' || m.role === 'assistant')).map((m) => ({ role: m.role, content: m.content.slice(0, 3000) }));
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.setHeader('Cache-Control', 'no-cache, no-transform');
+  res.setHeader('X-Accel-Buffering', 'no');
+  res.setHeader('X-Tutor-Provider', llm.activeProvider());
+  try { await llm.chatStream({ systemPrompt, messages: clean, onDelta: (t) => { try { res.write(t); } catch {} } }); }
+  catch (e) { try { res.write('\n\n[tutor unavailable: ' + e.message + ']'); } catch {} }
+  res.end();
+});
+
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 // Host-based routing: each ITHR subdomain serves its own app from one deploy.
 function hostLanding(host) {
@@ -488,6 +565,7 @@ function hostLanding(host) {
   if (host.startsWith('apps.')) return 'apps.html';
   if (host.startsWith('recruit.')) return 'recruit.html';
   if (host.startsWith('verify.')) return 'verify.html';
+  if (host.startsWith('juniors.')) return 'juniors.html';
   return 'index.html'; // learn.ithr.tech, apex, and onrender.com -> LMS
 }
 app.use(express.static(PUBLIC_DIR, { index: false }));

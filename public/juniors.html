@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ITHR Juniors — Learning for Ages 10–18</title>
+  <link rel="icon" href="/assets/brand/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    body { background:#f3f8ff; }
+    .jtop { background:#fff; border-bottom:1px solid var(--line); }
+    .jtop .container { display:flex; align-items:center; height:84px; gap:12px; }
+    .jtop .logo-img { height:42px; }
+    .jtop b { font-size:18px; color:var(--brand-700); }
+    .jhero { background:linear-gradient(135deg,#16335E 0%, #00A78B 100%); color:#fff; }
+    .jhero .container { padding:60px 24px; text-align:center; }
+    .jhero h1 { color:#fff; font-size:clamp(30px,5vw,52px); margin:0; }
+    .jhero p { color:#eaf6ff; font-size:19px; max-width:54ch; margin:14px auto 0; }
+    .bands { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:30px; }
+    .band { border:0; cursor:pointer; text-align:left; border-radius:20px; padding:22px; color:#fff; font:inherit; transition:.15s; box-shadow:0 8px 24px rgba(15,38,71,.15); }
+    .band:hover { transform:translateY(-4px); }
+    .band h3 { color:#fff; font-size:22px; margin:0 0 4px; }
+    .band .stage { font-size:13px; opacity:.92; }
+    .band .soon { display:inline-block; margin-top:10px; font-size:11px; font-weight:700; background:rgba(255,255,255,.25); padding:3px 10px; border-radius:999px; }
+    .band.sel { outline:4px solid #fff; outline-offset:-4px; }
+    .subjects { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .subj { background:#fff; border:1px solid var(--line); border-radius:18px; padding:22px; }
+    .subj .ic { width:50px;height:50px;border-radius:14px;display:grid;place-items:center;color:#fff;margin-bottom:12px; }
+    .subj h3 { font-size:20px; margin:0 0 10px; }
+    .topic { display:flex; align-items:center; gap:10px; padding:9px 0; border-top:1px dashed var(--line); font-size:15px; }
+    .topic .dot { width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;flex:none;background:var(--bg-soft);color:var(--muted); }
+    .topic.live .dot { background:#00A78B;color:#fff; }
+    .topic a { font-weight:600; color:var(--ink); }
+    .topic .soon { margin-left:auto; font-size:11px; color:var(--muted); }
+    .picker { display:flex; gap:10px; align-items:center; justify-content:center; margin-top:18px; color:#eaf6ff; font-size:14px; }
+    .picker select { padding:9px 12px;border-radius:999px;border:0;font:inherit; }
+    @media(max-width:820px){ .bands,.subjects{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <div class="jtop"><div class="container">
+    <a class="logo" href="/"><img class="logo-img" src="/assets/brand/ITHR_Logo_FullColor.svg" alt="ITHR"></a>
+    <b>Juniors</b>
+    <div style="margin-left:auto"><a class="btn btn-ghost btn-sm" href="https://learn.ithr.tech">For professionals →</a></div>
+  </div></div>
+
+  <section class="jhero"><div class="container">
+    <h1>Learning that gets you 🎓</h1>
+    <p>Friendly, curriculum-aligned lessons for ages 10–18 — with your own patient AI study buddy who explains anything, in any language.</p>
+    <div class="picker">
+      <span>Curriculum:</span>
+      <select id="curriculum"></select>
+    </div>
+    <div class="bands" id="bands"></div>
+  </div></section>
+
+  <section class="block"><div class="container">
+    <div class="section-head"><h2 id="band-title" style="font-size:clamp(24px,3vw,32px)">Subjects</h2><p class="muted" id="band-sub"></p></div>
+    <div class="subjects" id="subjects"><div class="loading">Loading…</div></div>
+  </div></section>
+
+  <div id="site-footer"></div>
+  <script src="/js/app.js"></script>
+  <script>
+    renderFooter();
+    const COLORS = { English:'#2E7FC1', Mathematics:'#00A78B', Science:'#F6A41B' };
+    let data, curriculum, band;
+    async function init(){
+      data = await api('/juniors');
+      curriculum = data.curricula[0] ? data.curricula[0].id : 'cambridge';
+      $('#curriculum').innerHTML = data.curricula.map((c)=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+      band = (data.bands.find((b)=>b.active) || data.bands[0]).id;
+      renderBands(); renderSubjects();
+    }
+    function renderBands(){
+      $('#bands').innerHTML = data.bands.map((b)=>`
+        <button class="band ${b.id===band?'sel':''}" style="background:linear-gradient(135deg,${b.color},#16335E)" data-band="${b.id}" ${b.active?'':'disabled'}>
+          <h3>${esc(b.label)}</h3>
+          <div class="stage">${esc(b.stage)}</div>
+          <div style="font-size:13px;opacity:.95;margin-top:6px">${esc(b.blurb)}</div>
+          ${b.active?'':'<span class="soon">Coming soon</span>'}
+        </button>`).join('');
+      $$('.band').forEach((el)=>{ if(!el.disabled) el.onclick=()=>{ band=el.dataset.band; renderBands(); renderSubjects(); }; });
+    }
+    async function renderSubjects(){
+      const b = data.bands.find((x)=>x.id===band);
+      $('#band-title').textContent = b.label + ' · ' + b.stage;
+      $('#band-sub').textContent = 'Pick a subject and start learning. Topics with a tick are ready now.';
+      const subs = data.tracks.filter((t)=>t.curriculum===curriculum && t.band===band);
+      if(!subs.length){ $('#subjects').innerHTML='<p class="muted">Content for this level is coming soon.</p>'; return; }
+      $('#subjects').innerHTML='<div class="loading">Loading…</div>';
+      const blocks = await Promise.all(subs.map(async (s)=>{
+        const tr = await api('/juniors/track?curriculum='+curriculum+'&band='+band+'&subject='+encodeURIComponent(s.subject));
+        const color = COLORS[s.subject] || '#16335E';
+        const topics = tr.topics.map((t)=>`
+          <div class="topic ${t.hasContent?'live':''}">
+            <span class="dot">${t.hasContent?'✓':'•'}</span>
+            ${t.hasContent?`<a href="/juniors-topic.html?id=${encodeURIComponent(t.id)}">${esc(t.title)}</a>`:`<span>${esc(t.title)}</span><span class="soon">soon</span>`}
+          </div>`).join('');
+        return `<div class="subj"><div class="ic" style="background:${color}">${icon(s.icon,26)}</div><h3>${esc(s.subject)}</h3>${topics}</div>`;
+      }));
+      $('#subjects').innerHTML = blocks.join('');
+    }
+    $('#curriculum').onchange=(e)=>{ curriculum=e.target.value; renderSubjects(); };
+    init();
+  </script>
+</body>
+</html>
