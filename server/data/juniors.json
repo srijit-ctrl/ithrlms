@@ -1,66 +1,319 @@
 {
   "curricula": [
-    { "id": "cambridge", "name": "Cambridge", "blurb": "Cambridge Primary, Lower Secondary, IGCSE & O Level." }
+    {
+      "id": "cambridge",
+      "name": "Cambridge",
+      "blurb": "Cambridge Primary, Lower Secondary, IGCSE & O Level."
+    }
   ],
   "bands": [
-    { "id": "10-12", "label": "Ages 10–12", "stage": "Cambridge Primary (Stages 5–6)", "blurb": "Foundations, with lots of examples and encouragement.", "active": true, "color": "#00A78B" },
-    { "id": "12-15", "label": "Ages 12–15", "stage": "Cambridge Lower Secondary (Stages 7–9)", "blurb": "Building skills, rigor and confidence.", "active": false, "color": "#2E7FC1" },
-    { "id": "15-18", "label": "Ages 15–18", "stage": "Cambridge IGCSE / O Level", "blurb": "Exam-ready depth and problem solving.", "active": false, "color": "#16335E" }
+    {
+      "id": "10-12",
+      "label": "Ages 10–12",
+      "stage": "Cambridge Primary (Stages 5–6)",
+      "blurb": "Foundations, with lots of examples and encouragement.",
+      "active": true,
+      "color": "#00A78B"
+    },
+    {
+      "id": "12-15",
+      "label": "Ages 12–15",
+      "stage": "Cambridge Lower Secondary (Stages 7–9)",
+      "blurb": "Building skills, rigor and confidence.",
+      "active": false,
+      "color": "#2E7FC1"
+    },
+    {
+      "id": "15-18",
+      "label": "Ages 15–18",
+      "stage": "Cambridge IGCSE / O Level",
+      "blurb": "Exam-ready depth and problem solving.",
+      "active": false,
+      "color": "#16335E"
+    }
   ],
   "tracks": [
     {
-      "curriculum": "cambridge", "band": "10-12", "subject": "English", "icon": "book",
+      "curriculum": "cambridge",
+      "band": "10-12",
+      "subject": "English",
+      "icon": "book",
       "topics": [
         {
-          "id": "cam-1012-eng-pos", "title": "Parts of Speech: Naming and Doing Words", "hasContent": true,
-          "objectives": ["Tell the difference between nouns, verbs and adjectives", "Spot these word types in a sentence", "Use each kind of word to make your own sentences clearer"],
+          "id": "cam-1012-eng-pos",
+          "title": "Parts of Speech: Naming and Doing Words",
+          "hasContent": true,
+          "objectives": [
+            "Tell the difference between nouns, verbs and adjectives",
+            "Spot these word types in a sentence",
+            "Use each kind of word to make your own sentences clearer"
+          ],
           "body": [
             "Every sentence is built from different kinds of words, and three of the most important ones are nouns, verbs and adjectives. Once you can spot them, reading and writing both get easier, because you understand the job each word is doing.",
             "A noun is a naming word. It names a person, a place, an animal or a thing. 'Maya', 'school', 'tiger' and 'pencil' are all nouns. A quick trick: if you can put 'the' or 'a' in front of a word and it still makes sense, it is probably a noun, like 'the school' or 'a pencil'.",
             "A verb is a doing or being word. It tells you the action in a sentence, like 'run', 'jump', 'read' or 'is'. Try this test: can someone actually do it? You can 'jump' and you can 'read', so those are verbs. In 'The tiger runs fast', the verb is 'runs'.",
             "An adjective is a describing word. It tells you more about a noun, like 'happy', 'tall', 'red' or 'noisy'. In 'the noisy classroom', the adjective 'noisy' describes the noun 'classroom'. Good writers use adjectives to paint a clear picture in the reader's mind, but they choose them carefully so the writing does not feel crowded."
           ],
-          "keyPoints": ["A noun names a person, place, animal or thing", "A verb shows an action or a state of being", "An adjective describes a noun", "Most sentences use all three together", "Try the simple tests: 'the/a' for nouns, 'can you do it?' for verbs"],
+          "keyPoints": [
+            "A noun names a person, place, animal or thing",
+            "A verb shows an action or a state of being",
+            "An adjective describes a noun",
+            "Most sentences use all three together",
+            "Try the simple tests: 'the/a' for nouns, 'can you do it?' for verbs"
+          ],
           "example": "In the sentence 'The brave firefighter climbed the tall ladder', the nouns are 'firefighter' and 'ladder', the verb is 'climbed', and the adjectives are 'brave' and 'tall'.",
           "summary": "Nouns name, verbs do, and adjectives describe. Spotting them helps you read closely and write clearly.",
           "quiz": [
-            { "text": "Which word is a noun in: 'The puppy barked loudly'?", "options": ["puppy", "barked", "loudly", "the"], "correctIndex": 0, "explanation": "'Puppy' names an animal, so it is a noun." },
-            { "text": "Which word is a verb in: 'She paints beautiful pictures'?", "options": ["She", "paints", "beautiful", "pictures"], "correctIndex": 1, "explanation": "'Paints' is the action, so it is the verb." },
-            { "text": "Which word is an adjective in: 'A cold wind blew'?", "options": ["wind", "blew", "cold", "A"], "correctIndex": 2, "explanation": "'Cold' describes the noun 'wind', so it is an adjective." },
-            { "text": "An adjective is a word that…", "options": ["names a thing", "shows an action", "describes a noun", "joins two sentences"], "correctIndex": 2, "explanation": "Adjectives describe nouns." },
-            { "text": "How many verbs are in: 'He ran and jumped'?", "options": ["0", "1", "2", "3"], "correctIndex": 2, "explanation": "'Ran' and 'jumped' are both actions — two verbs." }
+            {
+              "text": "Which word is a noun in: 'The puppy barked loudly'?",
+              "options": [
+                "puppy",
+                "barked",
+                "loudly",
+                "the"
+              ],
+              "correctIndex": 0,
+              "explanation": "'Puppy' names an animal, so it is a noun."
+            },
+            {
+              "text": "Which word is a verb in: 'She paints beautiful pictures'?",
+              "options": [
+                "She",
+                "paints",
+                "beautiful",
+                "pictures"
+              ],
+              "correctIndex": 1,
+              "explanation": "'Paints' is the action, so it is the verb."
+            },
+            {
+              "text": "Which word is an adjective in: 'A cold wind blew'?",
+              "options": [
+                "wind",
+                "blew",
+                "cold",
+                "A"
+              ],
+              "correctIndex": 2,
+              "explanation": "'Cold' describes the noun 'wind', so it is an adjective."
+            },
+            {
+              "text": "An adjective is a word that…",
+              "options": [
+                "names a thing",
+                "shows an action",
+                "describes a noun",
+                "joins two sentences"
+              ],
+              "correctIndex": 2,
+              "explanation": "Adjectives describe nouns."
+            },
+            {
+              "text": "How many verbs are in: 'He ran and jumped'?",
+              "options": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ],
+              "correctIndex": 2,
+              "explanation": "'Ran' and 'jumped' are both actions — two verbs."
+            }
           ]
         },
-        { "id": "cam-1012-eng-sentences", "title": "Sentences and Punctuation", "hasContent": false },
-        { "id": "cam-1012-eng-tenses", "title": "Verb Tenses: Past, Present, Future", "hasContent": false },
-        { "id": "cam-1012-eng-comprehension", "title": "Reading for Meaning", "hasContent": false },
-        { "id": "cam-1012-eng-vocab", "title": "Building Your Vocabulary", "hasContent": false },
-        { "id": "cam-1012-eng-paragraph", "title": "Writing a Great Paragraph", "hasContent": false },
-        { "id": "cam-1012-eng-narrative", "title": "Telling a Story (Narrative Writing)", "hasContent": false },
-        { "id": "cam-1012-eng-persuade", "title": "Writing to Persuade", "hasContent": false },
-        { "id": "cam-1012-eng-spelling", "title": "Spelling Strategies", "hasContent": false },
-        { "id": "cam-1012-eng-speaking", "title": "Speaking and Listening with Confidence", "hasContent": false }
+        {
+          "id": "cam-1012-eng-sentences",
+          "title": "Sentences and Punctuation",
+          "hasContent": false
+        },
+        {
+          "id": "cam-1012-eng-tenses",
+          "title": "Verb Tenses: Past, Present, Future",
+          "hasContent": false
+        },
+        {
+          "id": "cam-1012-eng-comprehension",
+          "title": "Reading for Meaning",
+          "hasContent": false
+        },
+        {
+          "id": "cam-1012-eng-vocab",
+          "title": "Building Your Vocabulary",
+          "hasContent": false
+        },
+        {
+          "id": "cam-1012-eng-paragraph",
+          "title": "Writing a Great Paragraph",
+          "hasContent": false
+        },
+        {
+          "id": "cam-1012-eng-narrative",
+          "title": "Telling a Story (Narrative Writing)",
+          "hasContent": false
+        },
+        {
+          "id": "cam-1012-eng-persuade",
+          "title": "Writing to Persuade",
+          "hasContent": false
+        },
+        {
+          "id": "cam-1012-eng-spelling",
+          "title": "Spelling Strategies",
+          "hasContent": false
+        },
+        {
+          "id": "cam-1012-eng-speaking",
+          "title": "Speaking and Listening with Confidence",
+          "hasContent": false
+        }
       ]
     },
     {
-      "curriculum": "cambridge", "band": "10-12", "subject": "Mathematics", "icon": "calculator",
+      "curriculum": "cambridge",
+      "band": "10-12",
+      "subject": "Mathematics",
+      "icon": "calculator",
       "topics": [
-        { "id": "cam-1012-mat-place", "title": "Place Value and Number Sense", "hasContent": false },
-        { "id": "cam-1012-mat-fractions", "title": "Fractions, Decimals and Percentages", "hasContent": false },
-        { "id": "cam-1012-mat-geometry", "title": "Shapes and Basic Geometry", "hasContent": false },
-        { "id": "cam-1012-mat-measure", "title": "Measurement: Length, Mass and Time", "hasContent": false },
-        { "id": "cam-1012-mat-data", "title": "Data Handling and Graphs", "hasContent": false },
-        { "id": "cam-1012-mat-word", "title": "Solving Word Problems", "hasContent": false }
+        {
+          "id": "cam-1012-mat-place",
+          "title": "Place Value and Number Sense",
+          "hasContent": false
+        },
+        {
+          "id": "cam-1012-mat-fractions",
+          "title": "Understanding Fractions",
+          "hasContent": true,
+          "objectives": [
+            "Understand that a fraction is a part of a whole",
+            "Read and write fractions using the numerator and denominator",
+            "Find simple equivalent fractions and compare two fractions"
+          ],
+          "body": [
+            "A fraction is a way of showing part of a whole. Imagine a pizza cut into equal slices: if you take some of the slices, a fraction tells you exactly how much of the pizza you have. Fractions are everywhere - sharing a chocolate bar, telling half-past three, or splitting a bill all use them.",
+            "Every fraction has two numbers. The bottom number is the denominator: it tells you how many equal parts the whole has been split into. The top number is the numerator: it tells you how many of those parts you are talking about. So in three quarters, written 3/4, the 4 means the whole is in 4 equal parts and the 3 means you have 3 of them.",
+            "Different fractions can be worth the same amount - these are called equivalent fractions. One half (1/2) is the same as two quarters (2/4) and the same as four eighths (4/8). The trick is that if you multiply (or divide) the top and bottom by the same number, the value does not change. That is why 1/2 and 50 percent and 0.5 all mean the same thing.",
+            "To compare fractions, a picture or a number line helps a lot. If the bottom numbers are the same, the fraction with the bigger top number is bigger - 3/5 is more than 2/5. A handy idea: when the top number is 1, a bigger bottom number actually means smaller pieces, so 1/8 is smaller than 1/4 even though 8 is bigger than 4."
+          ],
+          "keyPoints": [
+            "The denominator (bottom) is how many equal parts make the whole",
+            "The numerator (top) is how many parts you have",
+            "Equivalent fractions are equal in value, like 1/2 = 2/4 = 4/8",
+            "Multiply or divide top and bottom by the same number to find equivalents",
+            "With the same denominator, the bigger numerator is the bigger fraction"
+          ],
+          "example": "A chocolate bar has 8 equal squares. If you eat 3 squares you have eaten 3/8 of the bar. Your friend eats 4 squares, which is 4/8 - the same as 1/2 - so your friend ate more.",
+          "summary": "A fraction shows part of a whole: the top number counts the parts you have, and the bottom number says how many equal parts make up the whole.",
+          "quiz": [
+            {
+              "text": "In the fraction 3/4, which number is the denominator?",
+              "options": [
+                "3",
+                "4",
+                "Both",
+                "Neither"
+              ],
+              "correctIndex": 1,
+              "explanation": "The denominator is the bottom number, which is 4."
+            },
+            {
+              "text": "Which fraction is equal to 1/2?",
+              "options": [
+                "2/4",
+                "1/3",
+                "3/4",
+                "2/5"
+              ],
+              "correctIndex": 0,
+              "explanation": "2/4 simplifies to 1/2, so they are equivalent."
+            },
+            {
+              "text": "You cut a cake into 6 equal slices and eat 1 slice. What fraction did you eat?",
+              "options": [
+                "1/6",
+                "6/1",
+                "1/5",
+                "6"
+              ],
+              "correctIndex": 0,
+              "explanation": "One out of six equal parts is 1/6."
+            },
+            {
+              "text": "Which fraction is bigger: 3/5 or 2/5?",
+              "options": [
+                "3/5",
+                "2/5",
+                "They are equal",
+                "You cannot tell"
+              ],
+              "correctIndex": 0,
+              "explanation": "Same denominator, so the bigger numerator (3) wins."
+            },
+            {
+              "text": "The numerator of a fraction is the…",
+              "options": [
+                "Top number",
+                "Bottom number",
+                "Dividing line",
+                "Whole number"
+              ],
+              "correctIndex": 0,
+              "explanation": "The numerator is the top number - the parts you have."
+            }
+          ]
+        },
+        {
+          "id": "cam-1012-mat-geometry",
+          "title": "Shapes and Basic Geometry",
+          "hasContent": false
+        },
+        {
+          "id": "cam-1012-mat-measure",
+          "title": "Measurement: Length, Mass and Time",
+          "hasContent": false
+        },
+        {
+          "id": "cam-1012-mat-data",
+          "title": "Data Handling and Graphs",
+          "hasContent": false
+        },
+        {
+          "id": "cam-1012-mat-word",
+          "title": "Solving Word Problems",
+          "hasContent": false
+        }
       ]
     },
     {
-      "curriculum": "cambridge", "band": "10-12", "subject": "Science", "icon": "flask",
+      "curriculum": "cambridge",
+      "band": "10-12",
+      "subject": "Science",
+      "icon": "flask",
       "topics": [
-        { "id": "cam-1012-sci-living", "title": "Living Things and Their Needs", "hasContent": false },
-        { "id": "cam-1012-sci-materials", "title": "Materials and Their Properties", "hasContent": false },
-        { "id": "cam-1012-sci-forces", "title": "Forces and Motion", "hasContent": false },
-        { "id": "cam-1012-sci-earth", "title": "Earth and Space", "hasContent": false },
-        { "id": "cam-1012-sci-energy", "title": "Energy All Around Us", "hasContent": false }
+        {
+          "id": "cam-1012-sci-living",
+          "title": "Living Things and Their Needs",
+          "hasContent": false
+        },
+        {
+          "id": "cam-1012-sci-materials",
+          "title": "Materials and Their Properties",
+          "hasContent": false
+        },
+        {
+          "id": "cam-1012-sci-forces",
+          "title": "Forces and Motion",
+          "hasContent": false
+        },
+        {
+          "id": "cam-1012-sci-earth",
+          "title": "Earth and Space",
+          "hasContent": false
+        },
+        {
+          "id": "cam-1012-sci-energy",
+          "title": "Energy All Around Us",
+          "hasContent": false
+        }
       ]
     }
   ]
